@@ -1,0 +1,51 @@
+.blank-container-one {
+    height: 100vh;
+}
+
+.home-logo {
+    width: 300px;
+    transition: 1s;
+}
+
+.bd-masthead {
+    background: linear-gradient(165deg, var(--corp-color-one-hover) 10%, #fff 50%);
+}
+
+hr.line {
+    border-top: 4px solid var(--corp-color-one);
+    margin: 0.75rem;
+}
+
+@media only screen and (max-width: 650px) {
+    .home-logo {
+        width: 250px;
+        transition: 1s;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .home-logo {
+        width: 200px;
+        transition: 1s;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .home-logo {
+        width: 150px;
+        transition: 1s;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .home-logo {
+        width: 100px;
+        transition: 1s;
+    }
+}
+
+@media only screen and (max-width: 215px) {
+    hr {
+        display: none;
+    }
+}

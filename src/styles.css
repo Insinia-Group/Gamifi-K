@@ -31,7 +31,8 @@
     --corp-color-one-hover: #6e30f365;
     --corp-color-two: #4434ac;
     --corp-color-three: #a37af3;
-    --transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    --corp-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    --transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 *, html, body {
@@ -42,12 +43,19 @@
     background-color: var(--corp-color-one);
 }
 
+.btn-check:focus+.btn, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem var(--corp-color-one-hover) !important;
+}
+
 .btn-color {
     background-color: var(--corp-color-one) !important;
 }
 
 .btn-color:hover {
-    background-color: var(--corp-color-one-hover) !important;
+    border: 1px solid var(--corp-color-one);
+    background-color: white !important;
+    color: var(--corp-color-one) !important;
 }
 
 .btn-outline-color {
@@ -62,9 +70,4 @@
 
 .text-color {
     color: var(--corp-color-one);
-}
-
-.btn-check:focus+.btn, .btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem var(--corp-color-one-hover) !important;
 }

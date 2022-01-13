@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --corp-color-one: #6d30f3;
+    --corp-color-one-hover: #6e30f365;
+    --corp-color-two: #4434ac;
+    --corp-color-three: #a37af3;
+    --transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.bg-color {
+    background-color: var(--corp-color-one);
+}
+
+.btn-color {
+    background-color: var(--corp-color-one) !important;
+}
+
+.btn-color:hover {
+    background-color: var(--corp-color-one-hover) !important;
+}
+
+.btn-outline-color {
+    border: 1px solid var(--corp-color-one) !important;
+}
+
+.btn-outline-color:hover {
+    background-color: var(--corp-color-one) !important;
+}

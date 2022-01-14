@@ -39,6 +39,19 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    overflow-y: scroll;
+    background: transparent;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar-thumb {
+    background: var(--corp-color-one);
+}
+
 .bg-color {
     background-color: var(--corp-color-one);
 }
@@ -68,6 +81,45 @@
     color: white !important;
 }
 
+.btn-outline-color-alt {
+    color: var(--corp-color-one) !important;
+}
+
+.btn-outline-color-alt:hover {
+    color: var(--corp-color-one-hover) !important;
+}
+
+.border-color {
+    border: solid var(--transition) !important;
+    border-color: var(--corp-color-one) !important;
+}
+
 .text-color {
     color: var(--corp-color-one);
+}
+
+.link-color {
+    color: var(--corp-color-one) !important;
+    transition: var(--transition);
+}
+
+.link-color:hover{
+    color: var(--corp-color-one-hover) !important;
+}
+
+.link-white-to-color {
+    color: white !important;
+    transition: var(--transition);
+}
+
+.link-white-to-color:hover {
+    color: var(--corp-color-three) !important;
+}
+
+.start-25 {
+    left: 25% !important;
+}
+
+.start-75 {
+    left: 75% !important;
 }

@@ -27,6 +27,10 @@
     animation: float 10s ease infinite;
 }
 
+.float-alt {
+    animation: float 15s ease infinite;
+}
+
 .pulse {
     animation: pulse-color 3s infinite;
 }
@@ -38,6 +42,13 @@
 .home-logo {
     width: 300px;
     transition: 1s;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    padding: 0.5rem;
 }
 
 .img-sections {

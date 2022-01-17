@@ -23,6 +23,10 @@
     background: linear-gradient(0deg, rgba(109,48,243,1) 0%, rgba(0,0,0,0) 100%);
 }
 
+#landing-home {
+    height: 32vh;
+}
+
 .float {
     animation: float 10s ease infinite;
 }
@@ -93,6 +97,25 @@ hr.line {
 
     .container-blank {
         height: 56.5vh;
+    }
+
+    #landing-home {
+        height: 32vh;
+    }
+}
+
+@media only screen and (max-width: 1360px) {
+    .home-logo {
+        width: 250px;
+        transition: 1s;
+    }
+
+    .container-blank {
+        height: 56.5vh;
+    }
+
+    #landing-home {
+        height: 12vh;
     }
 }
 

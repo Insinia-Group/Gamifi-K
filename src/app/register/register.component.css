@@ -1,3 +1,5 @@
+
+
 .backgroundRegister {
   padding: 0;
   width: 100vw;
@@ -15,6 +17,10 @@ input::-webkit-input-placeholder {
   line-height: 100px; /* Centrado vertical */
 }
 
+.messageOne{
+  margin-top: 3em !important;
+  margin-left: -0.5em;
+}
 /*   .registerTittle{
       position: absolute;
       width: max-content;
@@ -27,7 +33,7 @@ input::-webkit-input-placeholder {
   } */
 
 .containerRegister {
-  padding-top: 15%;
+ 
   /* padding-top: 30%; */
 }
 
@@ -51,9 +57,10 @@ input::-webkit-input-placeholder {
 }
 
 .logo {
+  min-width: 7em;
   width: 100%;
   max-width: 300px; /* Original width of the logo image */
-  margin-left: auto;
+  margin-left: -2em;
   margin-right: auto;
   text-align: center;
   float: left;
@@ -64,8 +71,16 @@ input::-webkit-input-placeholder {
 }
 
 .inputsRegister {
-  max-width: 15em;
-  min-width: 10em !important;
+  max-width: 20em;
+  min-width: 15em !important;
+}
+
+.messageOne{
+  text-align: center;
+  background-size: cover;
+  color: aliceblue;
+  font-size: xx-large;
+  font-weight: bold;
 }
 /* 
 .bg-registro{

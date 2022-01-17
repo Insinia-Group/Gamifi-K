@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuraio } from '../interface/usuraio';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; 
+import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 
@@ -10,8 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit  {
   userName: string;
-  lastUsernName: string;
-  nick: string;
+  lastUserName: string ="";
+  nick: string ="";
 
   constructor ()
   { 
@@ -41,17 +44,17 @@ export class RegisterComponent implements OnInit  {
      {
        Swal.fire({
   title: 'Error!',
-  text: 'Nombre demasiado corto',
+  text: 'Longitud del nombre invalida',
   icon: 'error',
   confirmButtonText: 'Volver'
 })
      }
 
-   else  if ( lastUserName.length <2)
+   else  if ( lastUserName.length <2 || lastUserName.length>30)
      {
        Swal.fire({
   title: 'Error!',
-  text: 'Apellido demasiado corto',
+  text: 'Longitud del apellido invalida',
   icon: 'error',
   confirmButtonText: 'Volver'
 })
@@ -61,14 +64,14 @@ export class RegisterComponent implements OnInit  {
      {
        Swal.fire({
   title: 'Error!',
-  text: 'Apodo demasiado corto',
+  text: 'Longitud del apodo invalida',
   icon: 'error',
   confirmButtonText: 'Volver'
        } )
        
      }
      else{
-       this.nick = nick;
+       
  this.firstFormActive = false;
      this.secondFormActive = true;
      }
@@ -83,7 +86,6 @@ export class RegisterComponent implements OnInit  {
   
   backSecond ()
   {
-    document.getElementById( "nick" )!.innerHTML = this.nick;
      this.firstFormActive = true;
      this.secondFormActive = false;
     }

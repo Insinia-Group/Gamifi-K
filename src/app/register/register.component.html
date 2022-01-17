@@ -1,14 +1,21 @@
-<h1 id="titulo"></h1>
 
 <div class="backgroundRegister">
+<div class="row">
+  <div class="col-4"></div>
+<div class="col-4  mt-5 messageOne">Diviertete  Compite  Coopera</div>
+<div class="col-4"></div>
+
+</div>
+
   <div class="comtainer containerRegister">
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-5 imgContainer">
+      <div class="col-5"></div>
+      <div class="col-3 img-fluid  ">
         <a href="#">
           <img src="../../assets/insinia.png" class="img-fluid float logo"
+          
         /></a>
-      </div>
+     
 
       <!-- <div class="col-1"></div> -->
       <div class="col-5 pt-3 form" id="firstForm" *ngIf="firstFormActive">
@@ -17,7 +24,8 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
-                type="text"
+              [(ngModel)]="userName"
+                type="text" 
                 class="form-control"
                 id="name"
                 aria-describedby="name"
@@ -31,6 +39,7 @@
             <div class="col-5 inputsRegister">
               <label for="inpuLastName"></label>
               <input
+              [(ngModel)]="lastUserName"
                 type="text"
                 class="form-control"
                 id="lastName"
@@ -43,11 +52,14 @@
             <div class="col-5 inputsRegister">
               <label for="inputNick"></label>
               <input
+              
                 type="text"
+              [(ngModel)]="nick"
                 class="form-control"
                 id="nick"
                 aria-describedby="name"
                 placeholder="Apodo"
+               
               />
             </div>
           </div>
@@ -114,25 +126,25 @@
             <div class="col-5 inputsRegister">
               <label for="inputNick"></label>
               <button
-                (click)="nextSecond()"
-                type="submit"
-                class="btn btn-primary"
-                id="name"
-                aria-describedby="name"
-              >
-                Siguiente
-              </button>
-            </div>
-            <div class="col-5 inputsRegister">
-              <label for="inputNick"></label>
-              <button
                 (click)="backSecond()"
                 type="submit"
                 class="btn btn-primary"
                 id="name"
                 aria-describedby="name"
               >
-                Atras
+                Volver
+              </button>
+            </div>
+            <div class="col-5 inputsRegister">
+              <label for="inputNick"></label>
+              <button
+                (click)="nextSecond()"
+                type="submit"
+                class="btn btn-primary"
+                id="name"
+                aria-describedby="name"
+              >
+              Siguiente
               </button>
             </div>
           </div>
@@ -176,7 +188,18 @@
                 id="name"
                 aria-describedby="name"
               >
-                Siguiente
+                Atras
+              </button>
+            </div>
+            <div class="col-5 inputsRegister">
+              <label for="inputDescription"></label>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="name"
+                aria-describedby="name"
+              >
+                Enviar
               </button>
             </div>
           </div>

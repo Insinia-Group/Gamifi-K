@@ -14,8 +14,7 @@ export class HomeComponent implements OnInit {
   
   constructor() { }
 
-  @HostListener('window:resize', ['$event'])
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:resize', ['onResize($event)'])
 
   ngOnInit(): void {
     this.resizeObservable$ = fromEvent(window, 'resize');
@@ -25,7 +24,5 @@ export class HomeComponent implements OnInit {
 
   onResize(event: any) {
     console.log(event.target.innerWidth)
-    var element = document.getElementById('getStarted');
-    console.log(element?.getBoundingClientRect())
   }
 }

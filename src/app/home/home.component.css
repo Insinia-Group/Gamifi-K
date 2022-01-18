@@ -21,10 +21,6 @@
     transition: 1s;
 }
 
-.asset-item {
-    width: 200px;
-}
-
 .list-group-item {
     background-color: transparent;
     border: 0;
@@ -35,26 +31,6 @@
 .img-sections {
     width: 105px;
     height: 106px;
-}
-
-.container-blank {
-    height: 28.4vh;
-}
-
-.item-section-home {
-    width: 300px;
-}
-
-.container-custom-home-one {
-    height: 20vh;
-}
-
-.head-container {
-    height: 870px;
-}
-
-.bd-masthead {
-    background: linear-gradient(200deg, var(--corp-color-one-hover) 15%, #fff 50%);
 }
 
 .card-custom {

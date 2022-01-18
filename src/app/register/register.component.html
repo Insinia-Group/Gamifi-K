@@ -1,208 +1,187 @@
-
 <div class="backgroundRegister">
-<div class="row">
-  <div class="col-4"></div>
-<div class="col-4  mt-5 messageOne">Diviertete <br> Compite <br>  Coopera</div>
-<div class="col-4"></div>
-
-</div>
-
   <div class="comtainer containerRegister">
-    <div class="row">
-      <div class="col-5"></div>
-      <div class="col-3 img-fluid  ">
-        <a href="#">
-          <img src="../../assets/insinia.png" class="img-fluid float logo"
-          
-        /></a>
-     
-
-      <!-- <div class="col-1"></div> -->
-      <div class="col-5 pt-3 form" id="firstForm" *ngIf="firstFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister">
-              <label for="inputName"></label>
-              <input
-              [(ngModel)]="userName"
-                type="text" 
-                class="form-control"
-                id="name"
-                aria-describedby="name"
-                placeholder="Nombre"
-              />
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+    <div class="logoContai">
+      <a href="#">
+        <img
+          src="../../assets/insinia.png"
+          class="img-fluid float mx-auto d-block logo"
+      /></a>
+    </div>
+    <!-- <div class="col-1"></div> -->
+    <div class="regstro" id="firstForm" *ngIf="firstFormActive">
+      <div class="row justify-content-center" id="registro">
+        <div class="col-5 inputsRegister">
+          <label for="inputName"></label>
+          <input
+            [(ngModel)]="userName"
+            type="text"
+            class="form-control"
+            id="name"
+            aria-describedby="name"
+            placeholder="Nombre"
+          />
+          <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
  -->
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-5 inputsRegister">
-              <label for="inpuLastName"></label>
-              <input
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-5 inputsRegister">
+            <label for="inpuLastName"></label>
+            <input
               [(ngModel)]="lastUserName"
-                type="text"
-                class="form-control"
-                id="lastName"
-                aria-describedby="name"
-                placeholder="Apellido"
-              />
-            </div>
+              type="text"
+              class="form-control"
+              id="lastName"
+              aria-describedby="name"
+              placeholder="Apellido"
+            />
           </div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister">
-              <label for="inputNick"></label>
-              <input
-              
-                type="text"
+        </div>
+        <div class="row justify-content-center pb-4">
+          <div class="col-5 inputsRegister">
+            <label for="inputNick"></label>
+            <input
+              type="text"
               [(ngModel)]="nick"
-                class="form-control"
-                id="nick"
-                aria-describedby="name"
-                placeholder="Apodo"
-               
-              />
-            </div>
+              class="form-control"
+              id="nick"
+              aria-describedby="name"
+              placeholder="Apodo"
+            />
           </div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister">
-              <label for="inputNick"></label>
-              <button
-                (click)="nextOne()"
-                type="submit"
-                class="btn btn-primary"
-                id="nextFirstForm"
-                aria-describedby="submit"
-              >
-                Siguiente
-              </button>
-            </div>
+        </div>
+        <div class="row justify-content-center pb-4">
+          <div class="col-5 inputsRegister" style="text-align: center">
+            <label for="inputNick"></label>
+            <button
+              (click)="nextOne()"
+              type="submit"
+              class="btn btn-primary bi bi-arrow-bar-right"
+              id="nextFirstForm"
+              aria-describedby="submit"
+            ></button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-5 pt-3 form" *ngIf="secondFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister">
-              <label for="inputMail"></label>
-              <input
-                ngModel
-                email
-                type="email"
-                class="form-control"
-                id="email"
-                aria-describedby="name"
-                placeholder="Correo"
-              />
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+    <div class="form" *ngIf="secondFormActive">
+      <div class="col-12 rounded-3 bg-registro">
+        <div class="row justify-content-center" id="registro">
+          <div class="col-5 inputsRegister">
+            <label for="inputMail"></label>
+            <input
+              [(ngModel)]="email"
+              type="email"
+              class="form-control"
+              id="email"
+              aria-describedby="name"
+              placeholder="Correo"
+            />
+            <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-            </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-5 inputsRegister">
-              <label for="inpuPassword"></label>
-              <input
-                type="text"
-                class="form-control"
-                id="password"
-                aria-describedby="name"
-                placeholder="Contraseña"
-              />
-            </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-5 inputsRegister">
+            <label for="inpuPassword"></label>
+            <input
+              [(ngModel)]="password"
+              type="password"
+              class="form-control"
+              id="password"
+              aria-describedby="name"
+              placeholder="Contraseña"
+            />
           </div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister">
-              <label for="inputPassword2"></label>
-              <input
-                type="text"
-                class="form-control"
-                id="password2"
-                aria-describedby="name"
-                placeholder="Repite la contraseña"
-              />
-            </div>
+        </div>
+        <div class="row justify-content-center pb-4">
+          <div class="col-5 inputsRegister">
+            <label for="inputPassword2"></label>
+            <input
+              [(ngModel)]="password2"
+              type="password"
+              class="form-control"
+              id="password2"
+              aria-describedby="name"
+              placeholder="Repite la contraseña"
+            />
           </div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister">
-              <label for="inputNick"></label>
-              <button
-                (click)="backSecond()"
-                type="submit"
-                class="btn btn-primary"
-                id="name"
-                aria-describedby="name"
-              >
-                Volver
-              </button>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-5 inputsRegister">
-              <label for="inputNick"></label>
-              <button
-                (click)="nextSecond()"
-                type="submit"
-                class="btn btn-primary"
-                id="name"
-                aria-describedby="name"
-              >
-              Siguiente
-              </button>
-            </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-5 nextBackButtons">
+            <label for="inputNick"></label>
+            <button
+              (click)="backSecond()"
+              type="submit"
+              class="btn btn-primary bi bi-arrow-bar-left"
+              id="name"
+              aria-describedby="name"
+            ></button>
+          </div>
+
+          <div class="col-5 nextBackButtons">
+            <label for="inputNick"></label>
+            <button
+              (click)="nextSecond()"
+              type="submit"
+              class="btn btn-primary bi bi-arrow-bar-right"
+              id="name"
+              aria-describedby="name"
+            ></button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-5 pt-3 form" *ngIf="thirdFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro3">
-            <div class="col-5 inputsRegister">
-              <label for="inputName"></label>
-              <input
-                type="date"
-                class="form-control"
-                id="birthDate"
-                aria-describedby="name"
-                placeholder="Fecha de nacimiento"
-              />
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+    <div class="form" *ngIf="thirdFormActive">
+      <div class="col-12 rounded-3 bg-registro">
+        <div class="row justify-content-center" id="registro3">
+          <div class="col-5 inputsRegister">
+            <label for="inputName"></label>
+            <input
+              type="date"
+              class="form-control"
+              id="birthDate"
+              aria-describedby="name"
+              placeholder="Fecha de nacimiento"
+            />
+            <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-            </div>
           </div>
+        </div>
 
-          <div class="row justify-content-center">
-            <div class="col-5 inputsRegister">
-              <label for="inpuLastName"></label>
-              <textarea
-                name=""
-                id="description"
-                class="form-control"
-              ></textarea>
-            </div>
+        <div class="row justify-content-center">
+          <div class="col-5">
+            <label for="inpuLastName"></label>
+            <textarea
+              name=""
+              id="description"
+              class="form-control"
+              rows="4"
+            ></textarea>
           </div>
-          <div class="row justify-content-center pb-4"></div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister">
-              <label for="inputDescription"></label>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                id="name"
-                aria-describedby="name"
-              >
-                Atras
-              </button>
-            </div>
-            <div class="col-5 inputsRegister">
-              <label for="inputDescription"></label>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                id="name"
-                aria-describedby="name"
-              >
-                Enviar
-              </button>
-            </div>
+        </div>
+        <div class="row justify-content-center pb-4"></div>
+        <div class="row justify-content-center pb-4">
+          <div class="col-5 nextBackButtons">
+            <label for="inputDescription"></label>
+            <button
+              (click)="backThird()"
+              type="submit"
+              class="btn btn-primary bi bi-arrow-bar-left"
+              id="name"
+              aria-describedby="name"
+            ></button>
+          </div>
+          <div class="col-5 nextBackButtons">
+            <label for="inputDescription"></label>
+            <button
+              type="submit"
+              class="btn btn-primary bi bi-send-check"
+              id="name"
+              aria-describedby="name"
+            ></button>
           </div>
         </div>
       </div>

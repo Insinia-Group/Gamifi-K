@@ -1,5 +1,3 @@
-
-
 .backgroundRegister {
   padding: 0;
   width: 100vw;
@@ -17,7 +15,6 @@ input::-webkit-input-placeholder {
   line-height: 100px; /* Centrado vertical */
 }
 
-
 /*   .registerTittle{
       position: absolute;
       width: max-content;
@@ -30,8 +27,9 @@ input::-webkit-input-placeholder {
   } */
 
 .containerRegister {
- 
-  /* padding-top: 30%; */
+  position: absolute;
+  margin-top: 4rem;
+  width: 100%;
 }
 
 .form {
@@ -54,13 +52,12 @@ input::-webkit-input-placeholder {
 }
 
 .logo {
-  min-width: 7em;
+  min-width: 7rem;
   width: 100%;
-  max-width: 300px; /* Original width of the logo image */
-  margin-left: -2em;
+  max-width: 200px; /* Original width of the logo image */
+
   margin-right: auto;
   text-align: center;
-  float: left;
 }
 
 .logo:hover {
@@ -72,18 +69,23 @@ input::-webkit-input-placeholder {
   min-width: 15em !important;
 }
 
-.messageOne{
+.messageOne {
   text-align: center;
   background-size: cover;
   color: aliceblue;
   font-size: xx-large;
-  font-weight:900  !important;
-  font-size: 2em;
-  margin-top: 3em !important;
-  margin-left: -0.5em; 
+  font-weight: 900 !important;
+  font-size: 3rem;
+  /*   margin-top: 3em !important;
+ */
+  margin-left: -0.5em;
   margin-bottom: 2rem;
-
 }
+
+.nextBackButtons {
+  max-width: 25rem;
+}
+
 /* 
 .bg-registro{
     width: 35%;

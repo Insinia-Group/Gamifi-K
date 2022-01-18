@@ -14,8 +14,10 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit  {
   userName: string;
   lastUserName: string ="";
-  nick: string ="";
-
+  nick: string = "";
+  email: string;
+  password: string;
+  password2: string;
   constructor ()
   { 
     /*  user:Usuraio = {name:"marc"}   */
@@ -79,7 +81,10 @@ export class RegisterComponent implements OnInit  {
 
   }
   nextSecond ()
-    {
+  {
+     let email = (document.getElementById("email") as HTMLInputElement).value;
+     let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
+     let password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
      this.secondFormActive = false;
      this.thirdFormActive = true;
   }
@@ -88,5 +93,11 @@ export class RegisterComponent implements OnInit  {
   {
      this.firstFormActive = true;
      this.secondFormActive = false;
+  }
+  backThird()
+  {
+     this.thirdFormActive = false;
+     this.secondFormActive = true;
+    
     }
 }

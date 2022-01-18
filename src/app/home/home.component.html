@@ -1,14 +1,18 @@
-<div class="container-fluid bd-masthead">
-
-    <div class="row bg-color pt-1"></div>
-
-    <div class="row mt-5 justify-content-center gap-1">
-        <div class="col-4 rounded">
+<div class="container-fluid">
+    <!-- HEADER -->
+    <div class="row pt-5 justify-content-center gap-1">
+        <!-- TEXT -->
+        <div class="col-6 rounded">
             <div class="col-auto p-0">
                 <h4 class="text-color fw-bolder pt-2">Bienvenido a Insinia</h4>
+                <div class="row">
+                    <p class="text-color">
+                        <i class="bi bi-house-door-fill me-1"></i>Insinia
+                        <i class="bi bi-caret-right-fill mx-1"></i>Home
+                     </p>
+                </div>
                 <h5 class="text-color">La herramienta definitiva para crear, organizar y manejar rankings.</h5>
                 <h5 class="text-color">Diseñada tanto uso profesional, casual y educativo.</h5>
-                <h5 class="text-color"></h5>
                 <div class="row">
                     <div class="col-auto">
                         <button class="btn btn-color text-light fw-bolder" routerLink="/register">¿Comenzamos?</button>
@@ -16,6 +20,7 @@
                 </div>
             </div>
         </div>
+        <!-- LOGO -->
         <div class="col-2">
             <div class="col-lg text-center">
                 <img src="../../assets/insinia-shadow.png" class="img-fluid home-logo float">
@@ -23,237 +28,75 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <hr class="line">
+    <!-- CHAT -->
+    <div class="row justify-content-center bg-color-home-inverted pb-5 mt-2 mx-auto rounded">
+
+        <!-- FIRST MESSAGE -->
+        <div class="row justify-content-end mt-5">
+            <div class="col-md-4 col-lg-4">
+                <div class="card bg-color border-0 shadow-sm card-hover-primary">
+                    <div class="card-body border-bottom border-color text-color pb-4">
+                        <div class="d-flex text-truncate align-items-center justify-content-between">
+                            <h5 class="text-color fw-bolder">Bienvenido</h5>
+                            <span class="fs-sm text-muted"><i class="bi bi-bell-fill"></i></span>
+                        </div>
+                        <p class="fw-lighter mt-3 p-0 m-0"><i class="bi bi-person-circle me-2"></i>Bienvenido a Insinia, proporcionamos herramientas para facilitar el desarrollo de las cosas.</p>
+                    </div>
+                    <div class="card-footer bg-light d-flex align-items-center py-3 text-muted border-top-0 gap-1">
+                        <button class="btn btn-color text-light shadow"><i class="bi bi-moon-stars-fill"></i></button>
+                        <button class="btn btn-color text-light shadow"><i class="bi bi-star-fill"></i></button>
+                        <button class="btn btn-color text-light shadow"><i class="bi bi-stars"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
         </div>
-    </div>
 
-    <div class="row bg-color-home-inverted pb-5 mt-2 mx-auto rounded">
-
-        <div class="row justify-content-center" id="landing-home">
-            <div class="col-10 text-center text-color py-2 mb-3">
-                <h5 class="fw-bolder">¡Empezamos!</h5>
-                <h6>Ahora es el momento, puedes crearte tu cuenta o acceder a ella si ya has creado una.</h6>
+        <!-- SECOND MESSAGE -->
+        <div class="row justify-content-start mt-1">
+            <div class="col-2"></div>
+            <div class="col-md-4 col-lg-4">
+                <div class="card bg-color border-0 shadow-sm card-hover-primary">
+                    <div class="card-body text-color pb-4 border-bottom border-color">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="text-color fw-bolder">Vamos a comenzar</h5>
+                            <span class="fs-sm text-muted"><i class="bi bi-bell-fill"></i></span>
+                        </div>
+                        <p class="fw-lighter mt-3 p-0 m-0"><i class="bi bi-person-plus-fill me-2"></i>Si no tienes una cuenta puedes crearte una ahora aquí.</p>
+                    </div>
+                    <div class="card-footer bg-light justify-content-end d-flex py-3 text-muted border-top-0 gap-2">
+                        <button class="btn btn-color text-light shadow" routerLink="/register">¡Crearme una!</button>
+                        <button class="btn btn-color text-light shadow" routerLink="/login">¡Ya tengo una!</button>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- THIRD MESSAGE -->
+        <div class="row justify-content-end mt-1">
+            <div class="col-md-4 col-lg-4">
+                <div class="card bg-color border-0 shadow-sm card-hover-primary">
+                    <div class="card-body border-bottom border-color text-color pb-4">
+                        <div class="d-flex text-truncate align-items-center justify-content-between">
+                            <h5 class="text-color fw-bolder">Más información</h5>
+                            <span class="fs-sm text-muted"><i class="bi bi-bell-fill"></i></span>
+                        </div>
+                        <p class="fw-lighter mt-3 p-0 m-0"><i class="bi bi-info-circle-fill me-2"></i>Deseas saber más acerca de Insinia.</p>
+                    </div>
+                    <div class="card-footer bg-light d-flex align-items-center py-3 text-muted border-top-0 gap-2">
+                        <button class="btn btn-color text-light shadow" routerLink="/about">¡Sobre nosotros!</button>
+                        <button class="btn btn-color text-light shadow" routerLink="/contact">¡Contactanos!</button>
+                        <button class="btn btn-color text-light shadow" routerLink="/documentation">¡Documentación!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
         
-        <div class="row justify-content-center">
-            <div class="col-4 col-lg-4 bg-color rounded text-light text-center">
-                <div class="row">
-                    <p class="fw-lighter mt-3 p-0 m-0"><i class="bi bi-person-plus-fill"></i> ¿No tienes una cuenta?</p>
-                </div>
-    
-                <div class="row">
-                    <div class="col p-0 g-0-">
-                        <hr class="line border-light my-2">
-                    </div>
-                </div>
-    
-                <div class="row text-light">
-                    <ul class="text-start">
-                        <li class="list-group-item">
-                            <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Sin publicidad.</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Sin limitaciones de uso.</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Poder utilizar el panel de control.</p>
-                        </li>
-                        <div class="row mx-2 mt-3">
-                            <button class="col bg-light btn btn-outline-color border-light shadow" routerLink="/register">¡Registrate!</button>
-                        </div>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="col-2 d-flex text-center">
-            </div>
-    
-            <div class="col-4 col-lg-4">
-                <div class="row">
-                    <div class="col bg-color rounded text-light text-center">
-                        
-                        <div class="row">
-                            <p class="fw-lighter mt-3 p-0 m-0"><i class="bi bi-person-square"></i> ¿Ya tienes una cuenta?</p>
-                            <div class="col p-0 g-0">
-                                <hr class="line border-light my-2">
-                            </div>
-                        </div>
-        
-                        <div class="row text-light">
-                            <ul class="text-start">
-                                <li class="list-group-item">
-                                    <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Vuelve a cargar tu progreso.</p>
-                                </li>
-                                <li class="list-group-item">
-                                    <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Edita y configura tu perfil.</p>
-                                </li>
-                                <li class="list-group-item">
-                                    <p class="p-0 m-0"><i class="bi bi-check-lg"></i> Crea nuevos rankings.</p>
-                                </li>
-                                <div class="row mx-2 mt-3">
-                                    <button class="col bg-light btn btn-outline-color border-light shadow" routerLink="/login">¡Inicia sesión!</button>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ***** Home Parallax Start ***** -->
-    <section class="mini bg-color g-0 p-0 m-0 mt-2 rounded" id="work-process">
-        <div class="container pb-3">
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="info text-start text-light pt-3">
-                        <h5>Ventajas</h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ***** Mini Box Start ***** -->
-            <div class="row text-center text-color">
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-eye-fill me-1"></i>Visualicación</strong>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-gear-fill me-1"></i>Rendimiento</strong>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-chat-text-fill me-1"></i>Debates</strong>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-share-fill me-1"></i>Compartir</strong>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-hand-thumbs-up-fill me-1"></i>Valorar</strong>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 col-6">
-                    <div class="card p-2 m-1">
-                        <strong><i class="bi bi-people-fill me-1"></i>Aportar</strong>
-                    </div>
-                </div>
-            </div>
-            <!-- ***** Mini Box End ***** -->
-        </div>
-    </section>
-
-    <div class="mt-3 bg-color-home-0 rounded">
-
-        <div class="row text-center py-3">
-            <h3 class="text-light"><i class="bi bi-award"></i> Características</h3>
-        </div>
-
-        <div class="row text-center py-2">
-            <h5 class="text-light">Totalmente eficiente, diseñada para la intuitividad y pensada para el ámbito escolar.</h5>
-        </div>
-
-        <div class="row justify-content-center text-light m-2 gap-3">
-            
-            <div class="col-lg my-2 bg-color position-relative text-center rounded">
-                <div class="row">
-                    <div class="col">
-                        <img src="../../assets/stats.png" class="text-center img-fluid img-sections">
-                    </div>
-                </div>
-                <div class="row">
-                    <p>Ofrecemos estadísticas de uso, rendimiento y <br> más caracteristicas.</p>
-                </div>
-                <div class="row mt-4">
-                    <div class="bg-light p-0 rounded text-color position-absolute top-100 start-50 translate-middle item-section-home shadow">
-                        <h6 class="pt-2">Muestreo de datos</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg my-2 bg-color position-relative text-center rounded">
-                <div class="row">
-                    <div class="col">
-                        <img src="../../assets/users.png" class="text-center img-fluid img-sections">
-                    </div>
-                </div>
-                <div class="row">
-                    <p>Preparado por completo para usuarios individuales y grupales.</p>
-                </div>
-                <div class="row my-2 mt-4">
-                    <div class="bg-light p-0 rounded text-color position-absolute top-100 start-50 translate-middle item-section-home shadow">
-                        <h6 class="pt-2">Uso para múltiples usuarios</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg my-2 bg-color position-relative text-center rounded">
-                <div class="row">
-                    <div class="col">
-                        <img src="../../assets/gear.png" class="text-center img-fluid img-sections">
-                    </div>
-                </div>
-                <div class="row">
-                    <p>Los estilos, los datos y otros parámetros son totalmente configurables.</p>
-                </div>
-                <div class="row mt-4">
-                    <div class="bg-light p-0 rounded text-color position-absolute top-100 start-50 translate-middle item-section-home shadow">
-                        <h6 class="pt-2">Totalmente configurable</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-blank g-0 rounded"></div>
-
-    <div class="row justify-content-center mt-5">
-        <div class="col-4 col-lg-4">
-            <div class="row text-center">
-                <h5 class="text-color">Para desarrolladores</h5>
-            </div>
-            <div class="row justify-content-center">
-                <h3 class="text-center text-color">
-                    <i class="bi bi-code-slash"></i>
-                </h3>
-            </div>
-        </div>
-
-        <div class="col-4 col-lg-4">
-            <div class="row text-center">
-                <h5 class="text-color">Fácil de utilizar</h5>
-            </div>
-            <div class="row justify-content-center">
-                <h3 class="text-center text-color">
-                    <i class="bi bi-pencil"></i>
-                </h3>
-            </div>
-        </div>
-
-        <div class="col-4 col-lg-4">
-            <div class="row text-center">
-                <h5 class="text-color">Documentación completa</h5>
-            </div>
-            <div class="row justify-content-center">
-                <h3 class="text-center text-color">
-                    <i class="bi bi-book"></i>
-                </h3>
-            </div>
-        </div>
     </div>
 </div>
 
-<div class="container-fluid bg-color fixed mt-3">
+<footer class="container-fluid bg-color fixed mt-3">
     <div class="row bg-color-home justify-content-center">
         <div class="col-2 text-light">
             <ul>
@@ -272,7 +115,7 @@
             </ul>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 text-center">
             <li class="list-group-item mt-3 p-0">
                 <p class="fw-bolder">ACCESO</p>
             </li>
@@ -284,7 +127,7 @@
             </li>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 text-center">
             <li class="list-group-item mt-3 p-0">
                 <p class="fw-bolder">SERVICIOS</p>
             </li>
@@ -296,7 +139,7 @@
             </li>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 text-center">
             <li class="list-group-item mt-3 p-0">
                 <p class="fw-bolder">CONTACTANOS</p>
             </li>
@@ -316,7 +159,7 @@
             </li>
         </div>
     </div>
-</div>
+</footer>
 
 
 

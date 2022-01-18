@@ -119,7 +119,6 @@
 
 .border-color {
     border: solid var(--transition) !important;
-    border-color: var(--corp-color-one) !important;
 }
 
 .text-color {

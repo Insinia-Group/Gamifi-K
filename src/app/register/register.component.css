@@ -17,10 +17,7 @@ input::-webkit-input-placeholder {
   line-height: 100px; /* Centrado vertical */
 }
 
-.messageOne{
-  margin-top: 3em !important;
-  margin-left: -0.5em;
-}
+
 /*   .registerTittle{
       position: absolute;
       width: max-content;
@@ -80,7 +77,12 @@ input::-webkit-input-placeholder {
   background-size: cover;
   color: aliceblue;
   font-size: xx-large;
-  font-weight: bold;
+  font-weight:900  !important;
+  font-size: 2em;
+  margin-top: 3em !important;
+  margin-left: -0.5em; 
+  margin-bottom: 2rem;
+
 }
 /* 
 .bg-registro{

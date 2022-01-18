@@ -28,13 +28,9 @@
     padding: 0.5rem;
 }
 
-.img-sections {
-    width: 105px;
-    height: 106px;
-}
-
-.card-custom {
-    height: 105px;
+#chat-container {
+    padding-bottom: 7rem !important;
+    margin-top: 3rem !important;
 }
 
 hr.line {
@@ -48,11 +44,6 @@ p.link-white-to-color {
 
 footer {
     font-size: 12px !important;
-}
-
-#head-home {
-    padding-top: 10rem !important;
-    margin-bottom: 20rem;
 }
 
 @media only screen and (max-width: 1920px) {

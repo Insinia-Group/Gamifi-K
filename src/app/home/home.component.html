@@ -12,10 +12,9 @@
                      </p>
                 </div>
                 <h5 class="text-color">La herramienta definitiva para crear, organizar y manejar rankings.</h5>
-                <h5 class="text-color">Diseñada tanto uso profesional, casual y educativo.</h5>
                 <div class="row">
                     <div class="col-auto">
-                        <button class="btn btn-sm btn-color text-light fw-bolder" routerLink="/register">¿Comenzamos?</button>
+                        <button class="btn btn-color text-light shadow-sm fw-bolder" routerLink="/register">¿Comenzamos?</button>
                     </div>
                 </div>
             </div>
@@ -29,7 +28,13 @@
     </div>
 
     <!-- CHAT -->
-    <div class="row justify-content-center bg-color-home-inverted pb-5 mt-2 mx-auto rounded">
+    <div class="row justify-content-center bg-color-home-inverted mt-2 mx-auto rounded" id="chat-container">
+
+        <div class="row justify-content-center">
+            <div class="col text-color text-center">
+                <h5>Insinia chat</h5>
+            </div>
+        </div>
 
         <!-- FIRST MESSAGE -->
         <div class="row justify-content-end mt-5">
@@ -51,12 +56,11 @@
             </div>
             <div class="col-2"></div>
         </div>
-
         <!-- SECOND MESSAGE -->
         <div class="row justify-content-start mt-1">
             <div class="col-2"></div>
             <div class="col-xl-4">
-                <div class="card bg-color border-0 shadow-sm card-hover-primary">
+                <div class="card bg-color border-0 border-color shadow-sm card-hover-primary">
                     <div class="card-body text-color pb-4 border-bottom border-color">
                         <div class="d-flex align-items-center justify-content-between">
                             <h5 class="text-color fw-bolder">Vamos a comenzar</h5>
@@ -71,7 +75,6 @@
                 </div>
             </div>
         </div>
-
         <!-- THIRD MESSAGE -->
         <div class="row justify-content-end mt-1">
             <div class="col-xl-4">
@@ -91,7 +94,15 @@
             </div>
             <div class="col-2"></div>
         </div>
-        
+
+        <div class="row justify-content-center pb-3 mt-5">
+            <div class="col-8">
+                <div class="d-flex gap-1 text-color">
+                    <input class="form-control text-color rounded" placeholder="Escribe para enviar un mensaje">
+                    <button class="btn btn btn-outline-color border-0 bg-light"><i class="bi bi-send"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

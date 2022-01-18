@@ -84,9 +84,17 @@
     background: linear-gradient(200deg, var(--corp-color-one-hover) 15%, #fff 50%);
 }
 
+.card-custom {
+    height: 105px;
+}
+
 hr.line {
     border-top: 3px solid var(--corp-color-one);
     margin: 1.5rem;
+}
+
+p.link-white-to-color {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 1920px) {

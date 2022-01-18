@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
+  public response: string
+
   constructor() { }
 }

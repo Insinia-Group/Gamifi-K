@@ -69,6 +69,10 @@ input::-webkit-input-placeholder {
   min-width: 15em !important;
 }
 
+.borderMail{
+  border: 2px red;
+}
+
 .messageOne {
   text-align: center;
   background-size: cover;

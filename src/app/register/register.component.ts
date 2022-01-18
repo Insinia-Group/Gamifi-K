@@ -16,8 +16,14 @@ export class RegisterComponent implements OnInit  {
   lastUserName: string ="";
   nick: string = "";
   email: string;
+  emailVerify:string;
   password: string;
+  passwordVerify:boolean;
   password2: string;
+  password2Verify:boolean;
+  birthDate:Date;
+  description:string;
+
   constructor ()
   { 
     /*  user:Usuraio = {name:"marc"}   */
@@ -82,9 +88,15 @@ export class RegisterComponent implements OnInit  {
   }
   nextSecond ()
   {
-     let email = (document.getElementById("email") as HTMLInputElement).value;
+
      let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
      let password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
+     let email = (document.getElementById("email") as HTMLInputElement).value;
+
+  if(email=="12"){
+    this.emailVerify="true";
+  }
+
      this.secondFormActive = false;
      this.thirdFormActive = true;
   }
@@ -96,6 +108,8 @@ export class RegisterComponent implements OnInit  {
   }
   backThird()
   {
+    let birthDate = (document.getElementById("birthDate") as HTMLInputElement).value;
+    let description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
      this.thirdFormActive = false;
      this.secondFormActive = true;
     

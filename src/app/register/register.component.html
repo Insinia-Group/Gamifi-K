@@ -66,17 +66,21 @@
     </div>
 
     <div class="form" *ngIf="secondFormActive">
-      <div class="col-12 rounded-3 bg-registro">
+      <div class="col-12 rounded-3 bg-registro " >
         <div class="row justify-content-center" id="registro">
-          <div class="col-5 inputsRegister">
+          <div class="col-5 inputsRegister" >
             <label for="inputMail"></label>
             <input
+            
               [(ngModel)]="email"
               type="email"
               class="form-control"
+              
               id="email"
               aria-describedby="name"
               placeholder="Correo"
+
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':emailVerify === 'true' ? '#f0f8ff' : 'red' }"
             />
             <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
@@ -92,6 +96,7 @@
               id="password"
               aria-describedby="name"
               placeholder="Contraseña"
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':passwordVerify == false ? 'green' : 'red'  }"
             />
           </div>
         </div>
@@ -105,6 +110,7 @@
               id="password2"
               aria-describedby="name"
               placeholder="Repite la contraseña"
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':password2Verify === false ? 'green' : 'red' }"
             />
           </div>
         </div>
@@ -140,6 +146,7 @@
           <div class="col-5 inputsRegister">
             <label for="inputName"></label>
             <input
+            [(ngModel)]="birthDate"
               type="date"
               class="form-control"
               id="birthDate"
@@ -155,6 +162,7 @@
           <div class="col-5">
             <label for="inpuLastName"></label>
             <textarea
+            [(ngModel)]="description"
               name=""
               id="description"
               class="form-control"

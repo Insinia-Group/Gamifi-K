@@ -8,6 +8,8 @@
       /></a>
     </div>
     <!-- <div class="col-1"></div> -->
+
+    <form [formGroup]="registerForm" >
     <div class="regstro" id="firstForm" *ngIf="firstFormActive">
       <div class="row justify-content-center" id="registro">
         <div class="col-5 inputsRegister">
@@ -65,39 +67,50 @@
       </div>
     </div>
 
-    <div class="form" *ngIf="secondFormActive">
+    <div class="form form-group " *ngIf="secondFormActive">
       <div class="col-12 rounded-3 bg-registro " >
         <div class="row justify-content-center" id="registro">
-          <div class="col-5 inputsRegister" >
+          <div class="col-5 inputsRegister" (click)="nextSecond()" >
             <label for="inputMail"></label>
             <input
             
-              [(ngModel)]="email"
               type="email"
-              class="form-control"
+              class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              formControlName="email" 
+           
               
-              id="email"
-              aria-describedby="name"
               placeholder="Correo"
 
-              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':emailVerify === 'true' ? '#f0f8ff' : 'red' }"
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':submitted==true && !f.email.errors==true ? '#44df07' : 'red' }"
             />
+            
             <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
--->
+-->     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+  <div *ngIf="f.email.errors.required">El correo es obligatorio</div>
+  <div *ngIf="f.email.errors.email">Correo invalido</div>
+</div>
+
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-5 inputsRegister">
+          <div class="col-5 inputsRegister" (click)="nextSecond()">
             <label for="inpuPassword"></label>
             <input
-              [(ngModel)]="password"
+            
+            [(ngModel)]="password"
               type="password"
               class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
               id="password"
-              aria-describedby="name"
+              formControlName="password" 
               placeholder="Contraseña"
-              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':passwordVerify == false ? 'green' : 'red'  }"
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':submitted==true && !f.password.errors==true ? '#44df07' : 'red' }"
             />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Contraseña obligatoria</div>
+              <div *ngIf="f.password.errors.minlength">Debe tener 8 caracteres como minimo</div>
+          </div>
+    
           </div>
         </div>
         <div class="row justify-content-center pb-4">
@@ -109,9 +122,14 @@
               class="form-control"
               id="password2"
               aria-describedby="name"
+              formControlName="password" 
               placeholder="Repite la contraseña"
-              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':password2Verify === false ? 'green' : 'red' }"
+              style="border-left: 4px solid;" [ngStyle]="{'border-left-color':submitted==true && !f.password2.errors==true ? '#44df07' : 'red' }"
             />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Contraseña obligatoria</div>
+              <div *ngIf="f.password.errors.minlength">No coinciden las contraseñas</div>
+          </div>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -194,5 +212,7 @@
         </div>
       </div>
     </div>
+  </form>
   </div>
+  
 </div>

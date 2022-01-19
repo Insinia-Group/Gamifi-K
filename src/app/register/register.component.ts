@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit  {
   userName: string;
   lastUserName: string ="";
   nick: string = "";
-  email: string;
+  /* email: string; */
   emailVerify:string;
   password: string;
   passwordVerify:boolean;
@@ -23,26 +24,37 @@ export class RegisterComponent implements OnInit  {
   password2Verify:boolean;
   birthDate:Date;
   description:string;
+  registerForm: FormGroup;
+  submitted = false;
 
-  constructor ()
+
+
+  constructor (private formBuilder: FormBuilder)
   { 
-    /*  user:Usuraio = {name:"marc"}   */
-    
-  
-    let firstFormActive: boolean = true;
-   
+    /*  user:Usuraio = {name:"marc"}   */  
   }
   
 
-  
+
   ngOnInit (): void
   {
-
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      password2: [!this.password]
+  });
   }
+ 
 
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
   thirdFormActive: boolean = false;
+
+
+
+
    nextOne ()
    {
      let userName = (document.getElementById("name") as HTMLInputElement).value;
@@ -86,19 +98,32 @@ export class RegisterComponent implements OnInit  {
 
 
   }
+  get f() { return this.registerForm.controls; }
+  
   nextSecond ()
   {
+    
 
-     let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
+      this.submitted = true;
+
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+          
+      }
+
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+  
+  /*    let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
      let password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
-     let email = (document.getElementById("email") as HTMLInputElement).value;
+     let email = (document.getElementById("email") as HTMLInputElement).value; */
 
-  if(email=="12"){
+ /*  if(email=="12"){
     this.emailVerify="true";
   }
 
      this.secondFormActive = false;
-     this.thirdFormActive = true;
+     this.thirdFormActive = true; */
   }
   
   backSecond ()

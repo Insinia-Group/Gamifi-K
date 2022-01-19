@@ -27,24 +27,28 @@
         </div>
     </div>
 
+    <div #testDiv>
+        <div *ngIf="isTestDivScrolledIntoView" [@slideInLeft] class="test">Test</div>
+    </div>
+
     <!-- CHAT -->
-    <div class="justify-content-center bg-color-home-inverted mt-2 mx-auto rounded" id="chat-container">
+    <div class="justify-content-center bg-color-home-inverted mt-2 mx-auto" id="chat-container">
 
         <div class="row justify-content-center">
             <div class="col text-color text-center">
-                <h4>Insinia chat</h4>
+                <h4 class="m-0 p-0">Insinia chat</h4>
             </div>
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-10 m-0">
                 <hr class="line">
             </div>
         </div>
 
         <!-- FIRST MESSAGE -->
-        <div class="row justify-content-end mt-2">
-            <div class="col-xl-4">
+        <div #messageOne *ngIf="message" class="row justify-content-end mt-2">
+            <div [@slideInRight] class="col-xl-4">
                 <div class="card bg-color border-0 shadow-sm card-hover-primary">
                     <div class="card-body border-bottom border-color text-color pb-4">
                         <div class="d-flex text-truncate align-items-center justify-content-between">
@@ -63,7 +67,7 @@
             <div class="col-2"></div>
         </div>
         <!-- SECOND MESSAGE -->
-        <div class="row justify-content-start mt-1">
+        <div #messageTwo class="row justify-content-start mt-1">
             <div class="col-2"></div>
             <div class="col-xl-4">
                 <div class="card bg-color border-0 border-color shadow-sm card-hover-primary">
@@ -82,7 +86,7 @@
             </div>
         </div>
         <!-- THIRD MESSAGE -->
-        <div class="row justify-content-end mt-1">
+        <div #messageThree class="row justify-content-end mt-1">
             <div class="col-xl-4">
                 <div class="card bg-color border-0 shadow-sm card-hover-primary">
                     <div class="card-body border-bottom border-color text-color pb-4">
@@ -119,7 +123,7 @@
     </div>
 </div>
 
-<footer class="container-fluid bg-color fixed mt-3">
+<footer class="container-fluid bg-color fixed border-top">
 
     <div class="row bg-color-home justify-content-center">
         <div class="col-2 text-light">

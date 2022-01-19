@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 @NgModule({
   declarations: [
     
@@ -18,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     
   ],
   imports: [
-   
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,

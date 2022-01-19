@@ -15,6 +15,7 @@
         <div class="col-5 inputsRegister">
           <label for="inputName"></label>
           <input
+          [ngModelOptions]="{standalone: true}"
             [(ngModel)]="userName"
             type="text"
             class="form-control"
@@ -30,6 +31,7 @@
           <div class="col-5 inputsRegister">
             <label for="inpuLastName"></label>
             <input
+            [ngModelOptions]="{standalone: true}"
               [(ngModel)]="lastUserName"
               type="text"
               class="form-control"
@@ -43,6 +45,7 @@
           <div class="col-5 inputsRegister">
             <label for="inputNick"></label>
             <input
+            [ngModelOptions]="{standalone: true}"
               type="text"
               [(ngModel)]="nick"
               class="form-control"
@@ -70,7 +73,7 @@
     <div class="form form-group " *ngIf="secondFormActive">
       <div class="col-12 rounded-3 bg-registro " >
         <div class="row justify-content-center" id="registro">
-          <div class="col-5 inputsRegister" (click)="nextSecond()" >
+          <div class="col-5 inputsRegister" (click)="secondValidation()" >
             <label for="inputMail"></label>
             <input
             
@@ -93,7 +96,7 @@
           </div>
         </div>
         <div class="row justify-content-center">
-          <div class="col-5 inputsRegister" (click)="nextSecond()">
+          <div class="col-5 inputsRegister" (click)="secondValidation()">
             <label for="inpuPassword"></label>
             <input
             
@@ -114,7 +117,7 @@
           </div>
         </div>
         <div class="row justify-content-center pb-4">
-          <div class="col-5 inputsRegister">
+          <div class="col-5 inputsRegister"  (click)="secondValidation()">
             <label for="inputPassword2"></label>
             <input
               [(ngModel)]="password2"

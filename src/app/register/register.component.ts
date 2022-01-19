@@ -39,11 +39,11 @@ export class RegisterComponent implements OnInit  {
   ngOnInit (): void
   {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+     /*  firstName: ['', Validators.required],
+      lastName: ['', Validators.required], */
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      password2: [!this.password]
+      password: ['', [Validators.required, Validators.minLength(8)],Validators.maxLength(25)],
+      password2: []
   });
   }
  
@@ -98,11 +98,12 @@ export class RegisterComponent implements OnInit  {
 
 
   }
+  
   get f() { return this.registerForm.controls; }
   
-  nextSecond ()
+  secondValidation()
   {
-    
+   
 
       this.submitted = true;
 
@@ -112,18 +113,21 @@ export class RegisterComponent implements OnInit  {
           
       }
 
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+      /* alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value)) */
   
   /*    let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
      let password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
      let email = (document.getElementById("email") as HTMLInputElement).value; */
 
- /*  if(email=="12"){
-    this.emailVerify="true";
-  }
-
+ /* 
      this.secondFormActive = false;
      this.thirdFormActive = true; */
+  }
+
+  nextSecond(){
+   
+     this.secondFormActive = false;
+     this.thirdFormActive = true;
   }
   
   backSecond ()

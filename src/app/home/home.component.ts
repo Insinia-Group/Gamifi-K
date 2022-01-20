@@ -20,7 +20,7 @@ export class HomeComponent implements AfterViewInit {
     this.message = new MessageHome();
   }
 
-  @ViewChild('testDiv') testDiv: ElementRef
+  @ViewChild('testDiv') testDiv: ElementRef;
   @ViewChild('messageOne') messageOne: ElementRef
   @ViewChild('messageTwo') messageTwo: ElementRef
   @ViewChild('messageThree') messageThree: ElementRef

@@ -28,9 +28,14 @@
     padding: 0.5rem;
 }
 
+.card-height-custom {
+    height: 176px;
+}
+
 #chat-container {
     padding-bottom: 7rem !important;
     margin-top: 3rem !important;
+    height: 920px;
 }
 
 hr.line {

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { slideIn, fadeIn } from '../config/animations.config';
 import { MessageHome } from '../interface/messageHome';
@@ -10,13 +10,14 @@ import { MessageHome } from '../interface/messageHome';
   animations: [slideIn, fadeIn]
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   public resizeSubscription$: Subscription;
   public resizeObservable$: Observable<Event>
   public isTestDivScrolledIntoView: boolean;
   public message: MessageHome;
-  
+
   constructor() {
+    this.message = new MessageHome();
   }
 
   @ViewChild('testDiv') testDiv: ElementRef
@@ -26,22 +27,28 @@ export class HomeComponent implements OnInit {
   
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
-    if (this.testDiv) {
-      const rect = this.testDiv.nativeElement.getBoundingClientRect();
-      const topShown = rect.top >= 0;
-      const bottomShown = rect.bottom <= window.innerHeight;
-      this.isTestDivScrolledIntoView = topShown && bottomShown;
-      console.log(topShown && bottomShown)
-    } else if (this.messageOne) {
-      const rect = this.messageOne.nativeElement.getBoundingClientRect();
-      const topShown = rect.top >= 0;
-      const bottomShown = rect.bottom <= window.innerHeight;
-      this.message.messageOne = topShown && bottomShown;
-    }
+    if (this.messageOne) {
+      this.message.messageOne = this.isElementOnScreen(this.messageOne)
+    };
+    if (this.messageTwo) {
+      this.message.messageTwo = this.isElementOnScreen(this.messageTwo)
+    };
+    if (this.messageThree) {
+      this.message.messageThree = this.isElementOnScreen(this.messageThree)
+    };
+  };
+
+  isElementOnScreen(element: ElementRef): Boolean {
+    const rect = element.nativeElement.getBoundingClientRect();
+    const topShown = rect.top >= 0;
+    const bottomShown = rect.bottom <= window.innerHeight;
+    return topShown && bottomShown;
   }
 
-  ngOnInit() {
-    this.isScrolledIntoView();
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.isScrolledIntoView();
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { slideIn, fadeIn } from '../config/animations.config';
-import { MessageHome } from '../interface/messageHome';
+import { MessageHome } from '../models/messageHome';
 
 @Component({
   selector: 'app-home',

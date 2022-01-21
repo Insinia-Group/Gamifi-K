@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { slideIn, fadeIn } from '../config/animations.config';
-import { MessageHome } from '../models/messageHome';
+import { MessageHome } from '../models/MessageHome';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ export class HomeComponent implements AfterViewInit {
     this.message = new MessageHome();
   }
 
-  @ViewChild('testDiv') testDiv: ElementRef
+  @ViewChild('testDiv') testDiv: ElementRef;
   @ViewChild('messageOne') messageOne: ElementRef
   @ViewChild('messageTwo') messageTwo: ElementRef
   @ViewChild('messageThree') messageThree: ElementRef

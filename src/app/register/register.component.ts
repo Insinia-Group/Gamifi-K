@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuraio } from '../interface/usuraio';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule, ValidationErrors } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterValidation } from '../models/registerValidation';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit  {
-  userName: string;
+  userName: string="";
   lastUserName: string ="";
   nick: string = "";
   /* email: string; */
@@ -26,111 +28,71 @@ export class RegisterComponent implements OnInit  {
   description:string;
   registerForm: FormGroup;
   submitted = false;
-
-
-
-  constructor (private formBuilder: FormBuilder)
-  { 
-    /*  user:Usuraio = {name:"marc"}   */  
-  }
+  valid: RegisterValidation;
   
 
 
+  constructor ( private formBuilder: FormBuilder )
+  {
+    this.valid = new RegisterValidation();
+
+  }
+
+  get f () { return this.registerForm.controls; }
+  
   ngOnInit (): void
   {
-    this.registerForm = this.formBuilder.group({
-     /*  firstName: ['', Validators.required],
-      lastName: ['', Validators.required], */
+
+      this.registerForm = this.formBuilder.group({
+      userName: ['',  [Validators.required, Validators.minLength(2)]],
+      lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ) ] ],
+      userNick : [ '', [ Validators.required, Validators.minLength( 2 ) ] ],  
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(8)],Validators.maxLength(25)],
-      password2: []
-  });
+        password2: []
+      
+    } ); 
   }
- 
-
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
   thirdFormActive: boolean = false;
+ 
+   validation()
+   {
+     this.submitted = true;
 
+     if ( this.f.userName.errors==null )
+     {
+       this.valid.valid++;
+       if ( this.valid.valid == 3 )
+       {
+         this.valid.isDisabled = true;
+       }
 
+       console.log( this.valid.valid );
+}
 
-
+      // stop here if form is invalid
+     if ( this.registerForm.invalid ){
+            return;
+     }
+     
+  }
    nextOne ()
    {
      let userName = (document.getElementById("name") as HTMLInputElement).value;
      let lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
      let nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value;
-     if ( userName.length <2)
-     {
-       Swal.fire({
-  title: 'Error!',
-  text: 'Longitud del nombre invalida',
-  icon: 'error',
-  confirmButtonText: 'Volver'
-})
-     }
-
-   else  if ( lastUserName.length <2 || lastUserName.length>30)
-     {
-       Swal.fire({
-  title: 'Error!',
-  text: 'Longitud del apellido invalida',
-  icon: 'error',
-  confirmButtonText: 'Volver'
-})
-     }
-
-     else  if ( nick.length <2)
-     {
-       Swal.fire({
-  title: 'Error!',
-  text: 'Longitud del apodo invalida',
-  icon: 'error',
-  confirmButtonText: 'Volver'
-       } )
-       
-     }
-     else{
-       
- this.firstFormActive = false;
+     this.firstFormActive = false;
      this.secondFormActive = true;
-     }
-
-
-  }
-  
-  get f() { return this.registerForm.controls; }
-  
-  secondValidation()
-  {
-   
-
-      this.submitted = true;
-
-      // stop here if form is invalid
-      if (this.registerForm.invalid) {
-          return;
-          
-      }
-
-      /* alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value)) */
-  
-  /*    let password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
-     let password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
-     let email = (document.getElementById("email") as HTMLInputElement).value; */
-
- /* 
-     this.secondFormActive = false;
-     this.thirdFormActive = true; */
   }
 
-  nextSecond(){
+    nextSecond(){
    
      this.secondFormActive = false;
      this.thirdFormActive = true;
   }
-  
-  backSecond ()
+    backSecond ()
   {
      this.firstFormActive = true;
      this.secondFormActive = false;

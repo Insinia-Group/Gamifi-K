@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
-
+import { ConfirmedValidator } from '../models/confirmed.validator';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit  {
   registerForm: FormGroup;
   submitted = false;
   valid: RegisterValidation;
-  
+  samePass:boolean = false;
 
 
   constructor ( private formBuilder: FormBuilder )
@@ -49,9 +49,19 @@ export class RegisterComponent implements OnInit  {
       userNick : [ '', [ Validators.required, Validators.minLength( 2 ) ] ],  
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(8)],Validators.maxLength(25)],
-        password2: []
+        password2: ['']
       
-    } ); 
+    
+  }, { 
+    validator: ConfirmedValidator('password', 'password2')
+  }
+    ); 
+
+    if(this.password == this.password2){
+      this.samePass=true;
+    }else{
+      this.samePass=false;
+    }
   }
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
@@ -59,38 +69,42 @@ export class RegisterComponent implements OnInit  {
  
    validation()
    {
-     this.submitted = true;
+    if(this.password == this.password2){
+      this.samePass=true;
+    }else{
+      this.samePass=false;
+    }
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+     
+        return;
+      
+    }
 
-     if ( this.f.userName.errors==null )
-     {
-       this.valid.valid++;
-       if ( this.valid.valid == 3 )
-       {
-         this.valid.isDisabled = true;
-       }
 
-       console.log( this.valid.valid );
-}
-
-      // stop here if form is invalid
-     if ( this.registerForm.invalid ){
-            return;
-     }
      
   }
    nextOne ()
    {
+
+    if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
+      
+   
      let userName = (document.getElementById("name") as HTMLInputElement).value;
      let lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
      let nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value;
      this.firstFormActive = false;
      this.secondFormActive = true;
+    }
   }
 
     nextSecond(){
-   
+      if ( this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true) {
+        
      this.secondFormActive = false;
      this.thirdFormActive = true;
+      }
   }
     backSecond ()
   {

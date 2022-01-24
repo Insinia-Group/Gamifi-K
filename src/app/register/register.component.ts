@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit  {
   emailVerify:string;
   password: string;
   passwordVerify:boolean;
-  password2: string;
+  password2: string="";
   password2Verify:boolean;
   birthDate:Date;
   description:string;
@@ -35,9 +35,9 @@ export class RegisterComponent implements OnInit  {
   constructor ( private formBuilder: FormBuilder )
   {
     this.valid = new RegisterValidation();
-
+    
   }
-
+  
   get f () { return this.registerForm.controls; }
   
   ngOnInit (): void
@@ -50,8 +50,7 @@ export class RegisterComponent implements OnInit  {
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(8)],Validators.maxLength(25)],
         password2: ['']
-      
-    
+         
   }, { 
     validator: ConfirmedValidator('password', 'password2')
   }

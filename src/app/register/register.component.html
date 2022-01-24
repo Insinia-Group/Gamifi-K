@@ -215,9 +215,10 @@
               />
            
               <div *ngIf="f.password2.touched && f.password2.invalid" class="alert alert-danger">
-                <div *ngIf="f.password2.errors.required">Password is required.</div>
-                <div *ngIf="f.password2.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+<!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
+ -->                <div *ngIf="f.password2.errors.confirmedValidator">Password and Confirm Password must be match.</div>
             </div>
+          </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-5 nextBackButtons">

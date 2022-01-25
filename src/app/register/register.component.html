@@ -16,7 +16,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-              [(ngModel)]="userName" 
+                [(ngModel)]="userName"
                 id="name"
                 type="text"
                 class="form-control"
@@ -50,7 +50,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-              [(ngModel)]="lastUserName" 
+                [(ngModel)]="lastUserName"
                 id="lastName"
                 type="text"
                 class="form-control"
@@ -86,8 +86,8 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-              [(ngModel)]="nick" 
-              id="nick"
+                [(ngModel)]="nick"
+                id="nick"
                 type="text"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.userNick.errors }"
@@ -96,7 +96,7 @@
                 style="border-left: 4px solid"
                 [ngStyle]="{
                   'border-left-color':
-                  submitted == true && !f.userNick.errors == true
+                    submitted == true && !f.userNick.errors == true
                       ? '#44df07'
                       : 'red'
                 }"
@@ -120,8 +120,7 @@
             <div class="col-5 inputsRegister" style="text-align: center">
               <label for="inputNick"></label>
               <button
-             
-                (click)=" nextOne()"
+                (click)="nextOne()"
                 type="submit"
                 class="btn btn-primary bi bi-arrow-bar-right"
                 id="nextFirstForm"
@@ -166,7 +165,6 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inpuPassword"></label>
               <input
-                [(ngModel)]="password"
                 type="text"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -185,8 +183,11 @@
                 *ngIf="submitted && f.password.errors"
                 class="invalid-feedback"
               >
+                <div *ngIf="f.password2.errors.confirmedValidator">
+                  Password and Confirm Password must be match.
+                </div>
                 <div *ngIf="f.password.errors.required">
-                 La contraseña es obligatoria
+                  La contraseña es obligatoria
                 </div>
                 <div *ngIf="f.password.errors.minlength">
                   Debe tener 8 caracteres como minimo
@@ -208,17 +209,23 @@
                 style="border-left: 4px solid"
                 [ngStyle]="{
                   'border-left-color':
-                   samePass == false
+                    submitted == true && !f.password2.errors == true
                       ? '#44df07'
                       : 'red'
                 }"
               />
-           
-              <div *ngIf="f.password2.touched && f.password2.invalid" class="alert alert-danger">
-<!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
- -->                <div *ngIf="f.password2.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+
+              <div
+                *ngIf="f.password2.touched && f.password2.invalid"
+                class="alert alert-danger"
+              >
+                <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
+ -->
+                <div *ngIf="f.password2.errors.confirmedValidator">
+                  Password and Confirm Password must be match.
+                </div>
+              </div>
             </div>
-          </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-5 nextBackButtons">
@@ -252,7 +259,6 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="birthDate"
                 type="date"
                 class="form-control"
                 id="birthDate"
@@ -268,7 +274,6 @@
             <div class="col-5">
               <label for="inpuLastName"></label>
               <textarea
-                [(ngModel)]="description"
                 name=""
                 id="description"
                 class="form-control"

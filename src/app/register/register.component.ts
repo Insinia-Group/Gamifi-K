@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit  {
   passwordVerify:boolean;
   password2: string="";
   password2Verify:boolean;
-  birthDate:Date;
+  birthDate = new Date;
   description:string="";
   registerForm: FormGroup;
   submitted = false;
@@ -120,5 +120,13 @@ export class RegisterComponent implements OnInit  {
      this.thirdFormActive = false;
      this.secondFormActive = true;
     
-    }
+  }
+  
+  submmit ()
+  {
+
+    this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
+    console.log( this.birthDate );
+    alert("Hola " + this.userName+ " " + this.lastUserName + " " + this.description + " " + this.birthDate);
+  }
 }

@@ -262,7 +262,7 @@
                 type="date"
                 class="form-control"
                 id="birthDate"
-                aria-describedby="name"
+                aria-describedby="birthDate"
                 placeholder="Fecha de nacimiento"
               />
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
@@ -289,17 +289,18 @@
                 (click)="backThird()"
                 type="submit"
                 class="btn btn-primary bi bi-arrow-bar-left"
-                id="name"
-                aria-describedby="name"
+                id="birthDate"
+                aria-describedby="birthDate"
               ></button>
             </div>
             <div class="col-5 nextBackButtons">
               <label for="inputDescription"></label>
               <button
+                (click)="submmit()"
                 type="submit"
                 class="btn btn-primary bi bi-send-check"
-                id="name"
-                aria-describedby="name"
+                id="description"
+                aria-describedby="description"
               ></button>
             </div>
           </div>

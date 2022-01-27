@@ -183,7 +183,7 @@
                 *ngIf="submitted && f.password.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="f.password2.errors.confirmedValidator">
+                <div *ngIf!="i">
                   Password and Confirm Password must be match.
                 </div>
                 <div *ngIf="f.password.errors.required">
@@ -221,7 +221,7 @@
               >
                 <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
  -->
-                <div *ngIf="f.password2.errors.confirmedValidator">
+                <div *ngIf="i">
                   Las contraseñas deben coincidir.
                 </div>
               </div>

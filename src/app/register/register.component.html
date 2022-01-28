@@ -165,7 +165,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inpuPassword"></label>
               <input
-                type="text"
+                type="password"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                 id="password"
@@ -183,9 +183,6 @@
                 *ngIf="submitted && f.password.errors"
                 class="invalid-feedback"
               >
-                <div *ngIf="f.password2.errors.confirmedValidator">
-                  Password and Confirm Password must be match.
-                </div>
                 <div *ngIf="f.password.errors.required">
                   La contraseña es obligatoria
                 </div>
@@ -200,7 +197,7 @@
               <label for="inputPassword2"></label>
               <input
                 [(ngModel)]="password2"
-                type="text"
+                type="password"
                 class="form-control"
                 id="password2"
                 aria-describedby="name"
@@ -221,7 +218,10 @@
               >
                 <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
  -->
-                <div *ngIf="f.password2.errors.confirmedValidator">
+                <div *ngIf="f.password2.errors?.minlength">
+                  No coinciden, esta es mas corta.
+                </div>
+                <div *ngIf="f.password2.errors?.confirmedValidator">
                   Las contraseñas deben coincidir.
                 </div>
               </div>
@@ -259,6 +259,7 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
+                [(ngModel)]="birthDate"
                 type="date"
                 class="form-control"
                 id="birthDate"

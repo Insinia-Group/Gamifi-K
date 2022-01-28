@@ -59,9 +59,18 @@ input::-webkit-input-placeholder {
   margin-right: auto;
   text-align: center;
 }
-
+@keyframes rotar {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .logo:hover {
   transform: scale(1.1);
+  animation-name: rotar;
+  animation-duration: 1s;
 }
 
 .inputsRegister {
@@ -69,7 +78,7 @@ input::-webkit-input-placeholder {
   min-width: 15em !important;
 }
 
-.borderMail{
+.borderMail {
   border: 2px red;
 }
 

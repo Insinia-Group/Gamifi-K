@@ -10,24 +10,29 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component'; 
+import { JwtModule } from "@auth0/angular-jwt";
+import { HttpClientModule } from "@angular/common/http";
+import { jwtConfig } from './config/jwt.config';
 
 @NgModule({
   declarations: [
-    
     AppComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
     AboutComponent,
-    
   ],
   imports: [
+    JwtModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    
+    JwtModule.forRoot({
+      config: jwtConfig
+    }),
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]

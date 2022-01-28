@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
 import { Observable, Subscription } from 'rxjs';
 import { slideIn, fadeIn } from '../config/animations.config';
 import { MessageHome } from '../models/MessageHome';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,10 @@ export class HomeComponent implements AfterViewInit {
   public isTestDivScrolledIntoView: boolean;
   public message: MessageHome;
 
-  constructor() {
+  constructor(public request: HttpService) {
     this.message = new MessageHome();
+    this.request = request;
+    this.request.status();
   }
 
   @ViewChild('testDiv') testDiv: ElementRef;

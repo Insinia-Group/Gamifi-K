@@ -1,17 +1,133 @@
 .bg-color-home-0 {
-  background: rgb(109, 48, 243);
-  background: linear-gradient(
-    180deg,
-    rgba(109, 48, 243, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: rgb(109,48,243);
+  background: linear-gradient(180deg, rgba(109,48,243,1) 0%, rgba(0,0,0,0) 100%);
 }
 
 .bg-color-home-inverted {
-  background: rgb(109, 48, 243);
-  background: linear-gradient(
-    0deg,
-    rgba(109, 48, 243, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: rgb(109,48,243);
+  background: linear-gradient(0deg, rgba(109,48,243,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.float {
+  animation: float 10s ease infinite;
+}
+
+.float-alt {
+  animation: float 15s ease infinite;
+}
+
+.home-logo {
+  width: 300px;
+  transition: 1s;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  padding: 0.5rem;
+}
+
+.card-height-custom {
+  height: 176px;
+}
+
+#chat-container {
+  padding-bottom: 7rem !important;
+  margin-top: 3rem !important;
+  height: 920px;
+}
+
+hr.line {
+  border-top: 3px solid var(--corp-color-one);
+  margin: 1.5rem;
+}
+
+p.link-white-to-color {
+  cursor: pointer;
+}
+
+footer {
+  font-size: 12px !important;
+}
+
+@media only screen and (max-width: 1920px) {
+  .home-logo {
+      width: 250px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 56.5vh;
+  }
+
+  #landing-home {
+      height: 32vh;
+  }
+}
+
+@media only screen and (max-width: 1360px) {
+  .home-logo {
+      width: 250px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 56.5vh;
+  }
+
+  #landing-home {
+      height: 12vh;
+  }
+}
+
+
+@media only screen and (max-width: 700px) {
+  .home-logo {
+      width: 250px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 36vh;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .home-logo {
+      width: 200px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 43.6vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-logo {
+      width: 150px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 51vh;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .home-logo {
+      width: 100px;
+      transition: 1s;
+  }
+
+  .container-blank {
+      height: 58.8vh;
+  }
+}
+
+@media only screen and (max-width: 215px) {
+  hr {
+      display: none;
+  }
 }

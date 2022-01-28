@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit  {
     
          
   }, { 
-    validator: ConfirmedValidator('password', 'password2')
+   validator: ConfirmedValidator('password', 'password2')
       }
         
     ); 
@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit  {
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
   thirdFormActive: boolean = false;
+   i = ConfirmedValidator('password', 'password2');
  
    validation()
    {

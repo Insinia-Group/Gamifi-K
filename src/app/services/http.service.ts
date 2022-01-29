@@ -15,7 +15,7 @@ export class HttpService {
   }
 
   status() {
-    this.http.post(this.api.toThisPath('/login'), ['asd']).subscribe(
+    this.http.get(this.api.toThisPath('/status')).subscribe(
       (data) => console.log(data),
       (err) => console.log(err)
     );

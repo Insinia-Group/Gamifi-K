@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit  {
   }
   
   get f () { return this.registerForm.controls; }
-  
   ngOnInit (): void
   {
 
@@ -66,6 +65,7 @@ export class RegisterComponent implements OnInit  {
       this.samePass=false;
     }
   }
+ 
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
   thirdFormActive: boolean = false;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   
   <!-- NAVBAR SUPERIOR -->
   <div class="d-flex align-items-center justify-content-between p-2 sticky-top bg-blur">
@@ -9,10 +10,49 @@
       <a href="/documentation" class="mx-2 link-color text-decoration-none">Test</a>
       <a href="/register" class="mx-2 link-color text-decoration-none">Lorem</a>
       <a href="/login" class="mx-2 link-color text-decoration-none">Ipsum</a>
+=======
+<div class="container-fluid">
+  <!-- HEADER -->
+  <div class="row pt-5 justify-content-center gap-1">
+    <!-- TEXT -->
+    <div class="col-6 rounded">
+      <div class="col-auto p-0">
+        <h4 class="text-color fw-bolder pt-2">Bienvenido a Insinia</h4>
+        <div class="row">
+          <p class="text-color">
+            <i class="bi bi-house-door-fill me-1"></i>Insinia
+            <i class="bi bi-caret-right-fill mx-1"></i>Home
+          </p>
+        </div>
+        <h5 class="text-color">
+          La herramienta definitiva para crear, organizar y manejar rankings.
+        </h5>
+        <div class="row">
+          <div class="col-auto">
+            <button
+              class="btn btn-color text-light shadow-sm fw-bolder"
+              routerLink="/register"
+            >
+              ¿Comenzamos?
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="p-2">Login</div>
+    <!-- LOGO -->
+    <div class="col-2">
+      <div class="col-lg text-center">
+        <img
+          src="../../assets/insinia-shadow.png"
+          class="img-fluid home-logo float"
+        />
+      </div>
+>>>>>>> d562c4531d0e274b872d718a2df788bf9b82f0cf
+    </div>
   </div>
+</div>
 
+<<<<<<< HEAD
 <!-- SECTION CONTAINER -->
 <div class="container-fluid fullscreen-section position-relative bg-color-home-inverted">
 
@@ -26,15 +66,157 @@
     <div class="row justify-content-center m-auto mt-1">
       <div class="col-auto">
         <h4 class="text-center fw-bolder">La herramienta definitiva para crear Rankings</h4>
-      </div>
+=======
+<!-- CHAT -->
+<div
+  class="justify-content-center bg-color-home-inverted mt-2 px-3 g-0"
+  id="chat-container"
+>
+  <div class="row justify-content-center">
+    <div class="col text-color text-center">
+      <h4 class="m-0 p-0">Insinia chat</h4>
     </div>
-    <div class="row justify-content-center m-auto mt-3">
-      <div class="col-auto">
-        <button class="btn btn-color text-light rounded-pill px-4">¡Empezamos!</button>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-10 m-0">
+      <hr class="line" />
+    </div>
+  </div>
+
+  <!-- FIRST MESSAGE -->
+  <div #messageOne *ngIf="message">
+    <div class="row justify-content-center mt-2">
+      <div class="col-xl-6" *ngIf="message.messageOne" [@slideInLeft]>
+        <div class="card bg-color border-0 shadow-sm card-hover-primary">
+          <div class="card-body border-bottom border-color text-color pb-4">
+            <div
+              class="d-flex text-truncate align-items-center justify-content-between"
+            >
+              <h5 class="text-color fw-bolder">Bienvenido</h5>
+              <span class="fs-sm text-muted"
+                ><i class="bi bi-bell-fill"></i
+              ></span>
+            </div>
+            <p class="fw-lighter mt-3 p-0 m-0">
+              <i class="bi bi-headset me-2"></i>Bienvenido a Insinia, la
+              herramienta ideada para rankings tanto para uso personal y en
+              grupo.
+            </p>
+          </div>
+          <div
+            class="card-footer bg-light d-flex align-items-center py-3 text-muted border-top-0 gap-1"
+          >
+            <button class="btn btn-sm btn-color text-light shadow">
+              <i class="bi bi-moon-stars-fill"></i>
+            </button>
+            <button class="btn btn-sm btn-color text-light shadow">
+              <i class="bi bi-star-fill"></i>
+            </button>
+            <button class="btn btn-sm btn-color text-light shadow">
+              <i class="bi bi-stars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 card-height-custom"></div>
+    </div>
+  </div>
+
+  <!-- SECOND MESSAGE -->
+  <div #messageTwo *ngIf="message">
+    <div class="row justify-content-center mt-2">
+      <div class="col-4 card-height-custom"></div>
+      <div
+        class="col-xl-6 card-height-custom"
+        *ngIf="message.messageTwo"
+        [@slideInRight]
+      >
+        <div
+          class="card bg-color border-0 border-color shadow-sm card-hover-primary"
+        >
+          <div class="card-body text-color pb-4 border-bottom border-color">
+            <div class="d-flex align-items-center justify-content-between">
+              <h5 class="text-color fw-bolder">Vamos a comenzar</h5>
+              <span class="fs-sm text-muted"
+                ><i class="bi bi-bell-fill"></i
+              ></span>
+            </div>
+            <p class="fw-lighter mt-3 p-0 m-0">
+              <i class="bi bi-headset me-2"></i>Si no tienes una cuenta puedes
+              crearte una ahora aquí.
+            </p>
+          </div>
+          <div
+            class="card-footer bg-light justify-content-end d-flex py-3 text-muted border-top-0 gap-2"
+          >
+            <button
+              class="btn btn-sm btn-color text-light shadow"
+              routerLink="/register"
+            >
+              <i class="bi bi-person-plus-fill me-1"></i>¡Crearme una!
+            </button>
+            <button
+              class="btn btn-sm btn-color text-light shadow"
+              routerLink="/login"
+            >
+              <i class="bi bi-person-circle me-1"></i>¡Ya tengo una!
+            </button>
+          </div>
+        </div>
+>>>>>>> d562c4531d0e274b872d718a2df788bf9b82f0cf
       </div>
     </div>
   </div>
 
+  <!-- THIRD MESSAGE -->
+  <div #messageThree *ngIf="message">
+    <div class="row justify-content-center mt-2">
+      <div class="col-xl-6" *ngIf="message.messageThree" [@slideInLeft]>
+        <div class="card bg-color border-0 shadow-sm card-hover-primary">
+          <div class="card-body border-bottom border-color text-color pb-4">
+            <div
+              class="d-flex text-truncate align-items-center justify-content-between"
+            >
+              <h5 class="text-color fw-bolder">Más información</h5>
+              <span class="fs-sm text-muted"
+                ><i class="bi bi-bell-fill"></i
+              ></span>
+            </div>
+            <p class="fw-lighter mt-3 p-0 m-0">
+              <i class="bi bi-headset me-2"></i>¿Deseas saber más acerca de
+              Insinia?
+            </p>
+          </div>
+          <div
+            class="card-footer bg-light d-flex align-items-center py-3 text-muted border-top-0 gap-2"
+          >
+            <button
+              class="btn btn-sm btn-color text-light shadow"
+              routerLink="/contact"
+            >
+              ¡Contactanos!
+            </button>
+            <button
+              class="btn btn-sm btn-color text-light shadow"
+              routerLink="/documentation"
+            >
+              ¡Documentación!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 card-height-custom"></div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <hr class="line border-light" />
+    </div>
+  </div>
+
+<<<<<<< HEAD
   <div class="row col-10 position-absolute top-60 start-50 translate-middle bg-color rounded py-2">
 
     <div class="col-6">
@@ -97,15 +279,91 @@
   <div class="row pt-5">
     <div class="row justify-content-center m-auto">
       <h1 class="text-center fw-bolder">Bienvenido a <span class="text-color">Insinia</span></h1>
-    </div>
-    <div class="row justify-content-center m-auto mt-1">
-      <h4 class="text-center fw-bolder">La herramienta definitiva para crear Rankings</h4>
-    </div>
-    <div class="row justify-content-center m-auto mt-3">
-      <div class="col-auto">
-        <button class="btn btn-color text-light rounded-pill px-4">¡Empezamos!</button>
+=======
+  <div class="row justify-content-center pb-3 mt-2">
+    <div class="col-10">
+      <div class="d-flex gap-1 text-color">
+        <input
+          class="form-control text-color rounded"
+          placeholder="Escribe para enviar un mensaje"
+          disabled
+        />
+        <button class="btn btn btn-outline-color border-0 bg-light" disabled>
+          <i class="bi bi-send"></i>
+        </button>
       </div>
     </div>
   </div>
-
 </div>
+
+<footer class="container-fluid bg-color fixed border-top">
+  <div class="row bg-color-home justify-content-center">
+    <div class="col-2 text-light">
+      <ul>
+        <li class="list-group-item mt-3 p-0">
+          <p class="fw-bolder mb-1">Insinia ™</p>
+        </li>
+        <li class="list-group-item p-0 m-0">
+          <div class="d-flex">
+            <i class="bi bi-facebook link-white-to-color me-2"></i>
+            <i class="bi bi-google link-white-to-color me-2"></i>
+            <i class="bi bi-twitter link-white-to-color me-2"></i>
+            <i class="bi bi-youtube link-white-to-color me-2"></i>
+            <i class="bi bi-pinterest link-white-to-color me-2"></i>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-2 text-center">
+      <li class="list-group-item mt-3 p-0">
+        <p class="fw-bolder mb-1">ACCESO</p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0 mb-1" routerLink="/register">
+          Register
+        </p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0" routerLink="/login">Login</p>
+      </li>
+>>>>>>> d562c4531d0e274b872d718a2df788bf9b82f0cf
+    </div>
+
+    <div class="col-2 text-center">
+      <li class="list-group-item mt-3 p-0">
+        <p class="fw-bolder mb-1">SERVICIOS</p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0 mb-1" routerLink="/about">
+          Sobre nosotros
+        </p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0" routerLink="/login">Que ofrecemos</p>
+      </li>
+    </div>
+
+    <div class="col-2 text-center">
+      <li class="list-group-item mt-3 p-0">
+        <p class="fw-bolder mb-1">CONTACTANOS</p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0 mb-1" routerLink="/register">
+          Escríbenos
+        </p>
+      </li>
+      <li class="list-group-item p-0 m-0">
+        <p class="link-white-to-color m-0" routerLink="/login">Asistencia</p>
+      </li>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <li class="list-group-item p-0 mt-3">
+        <p class="opacity-50">© 2022 Todos los derechos reservados.</p>
+      </li>
+    </div>
+  </div>
+</footer>

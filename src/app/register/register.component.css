@@ -68,6 +68,7 @@ input::-webkit-input-placeholder {
   }
 }
 .logo:hover {
+  transform: scale(1.1);
   animation-name: rotar;
   animation-duration: 1s;
 }

@@ -1,0 +1,25 @@
+.bg-color-home-0 {
+    background: rgb(109,48,243);
+    background: linear-gradient(180deg, rgba(109,48,243,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.bg-color-home-inverted {
+    background: rgb(109,48,243);
+    background: linear-gradient(0deg, rgba(109,48,243,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.fullscreen-section {
+    height:100vh;
+}
+
+.top-25 {
+    top: 25% !important;
+}
+
+.top-60 {
+    top: 60% !important;
+}
+
+.top-75 {
+    top: 75% !important;
+}

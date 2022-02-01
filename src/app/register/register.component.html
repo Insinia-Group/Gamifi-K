@@ -183,11 +183,6 @@
                 *ngIf="submitted && f.password.errors"
                 class="invalid-feedback"
               >
-
-                <div *ngIf!="i">
-                  Password and Confirm Password must be match.
-                </div>
-
                 <div *ngIf="f.password.errors.required">
                   La contraseña es obligatoria
                 </div>
@@ -211,26 +206,22 @@
                 style="border-left: 4px solid"
                 [ngStyle]="{
                   'border-left-color':
-                    submitted == true && !f.password2.errors == true
+                    submitted == true &&
+                    !f.password2.errors == true &&
+                    !f.password.errors == true
                       ? '#44df07'
                       : 'red'
                 }"
               />
 
               <div
-                *ngIf="f.password2.touched && f.password2.invalid"
+                *ngIf="f.password2.touched && f.password2.errors"
                 class="alert alert-danger"
               >
                 <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
  -->
 
-                <div *ngIf="f.password2.errors?.minlength">
-                  No coinciden, esta es mas corta.
-                </div>
-
-                <div *ngIf="i">
-                  Las contraseñas deben coincidir.
-                </div>
+                <div *ngIf="i">Las contraseñas deben coincidir.</div>
               </div>
             </div>
           </div>

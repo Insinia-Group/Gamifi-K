@@ -59,7 +59,7 @@ input::-webkit-input-placeholder {
   margin-right: auto;
   text-align: center;
 }
-@keyframes rotar {
+/* @keyframes rotar {
   from {
     transform: rotate(0);
   }
@@ -68,10 +68,9 @@ input::-webkit-input-placeholder {
   }
 }
 .logo:hover {
-  transform: scale(1.1);
   animation-name: rotar;
   animation-duration: 1s;
-}
+} */
 
 .inputsRegister {
   max-width: 20em;

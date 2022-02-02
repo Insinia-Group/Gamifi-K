@@ -3,7 +3,6 @@ import { Usuraio } from '../interface/usuraio';
 import { NgModule } from '@angular/core';
 import { FormsModule, ValidationErrors } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
 import { ConfirmedValidator } from '../models/confirmed.validator';

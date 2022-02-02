@@ -15,6 +15,36 @@
     rgba(0, 0, 0, 0) 100%
   );
 }
-.btn-color:hover{
+.btn-color:hover {
   background-color: var(--corp-color-one) !important;
+}
+
+.map {
+  height: 20vh;
+  width: 60vw;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgb(140, 87, 253) 0%, rgba(0, 0, 0, 0) 90%);
+  position: absolute;
+}
+
+a {
+  color: rgb(109, 48, 243);
+  text-decoration: none;
+}
+
+@keyframes rotar {
+  from {
+    transform: rotate(0);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.logo:hover {
+  animation-name: rotar;
+  animation-duration: 1s;
+}

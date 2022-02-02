@@ -15,9 +15,13 @@ export class HttpService {
   }
 
   status() {
-    this.http.get(this.api.toThisPath('/status')).subscribe(
-      (data) => console.log(data),
-      (err) => console.log(err)
-    );
+    try {
+      this.http.get(this.api.toThisPath('/status')).subscribe(
+        (data) => console.log(data),
+        (err) => console.log(err)
+      );
+    } catch {
+      console.log('Error')
+    }
   }
 }

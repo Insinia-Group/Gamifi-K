@@ -16,7 +16,8 @@
   );
 }
 .btn-color:hover {
-  background-color: var(--corp-color-one) !important;
+  background-color: rgb(81, 8, 238) !important;
+  color: white !important;
 }
 
 .map {
@@ -36,15 +37,6 @@ a {
   text-decoration: none;
 }
 
-@keyframes rotar {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .logo:hover {
-  animation-name: rotar;
-  animation-duration: 1s;
+  cursor: pointer;
 }

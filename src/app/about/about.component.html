@@ -9,9 +9,9 @@
           <div class="row">
             <p class="text-color">
               <a
+                class="bi bi-house-door-fill me-1"
                 (click)="goHome()"
                 style="cursor: pointer"
-                class="bi bi-house-door-fill me-1"
                 >Insinia</a
               >
               <i class="bi bi-caret-right-fill mx-1"></i>Sobre nosotros
@@ -74,7 +74,11 @@
       </div>
       <!-- LOGO -->
       <div class="col-2 logo">
-        <div class="col-lg text-center">
+        <div
+          class="col-lg text-center"
+          (click)="goHome()"
+          style="cursor: pointer"
+        >
           <img
             src="../../assets/insinia-shadow.png"
             class="img-fluid home-logo float"

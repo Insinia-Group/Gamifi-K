@@ -13,7 +13,8 @@ export class AboutComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate( [ '/home' ] );
+    console.log( "PENECORTO" );
 }
 
 }

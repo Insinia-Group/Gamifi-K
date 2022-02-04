@@ -1,10 +1,11 @@
 <div class="backgroundRegister">
   <div class="comtainer containerRegister">
     <div class="logoContai">
-      <a href="#">
+      <a (click)="goHome()">
         <img
           src="../../assets/insinia.png"
           class="img-fluid float mx-auto d-block logo"
+          style="cursor: pointer"
       /></a>
     </div>
     <!-- <div class="col-1"></div> -->
@@ -50,6 +51,9 @@
                 <div *ngIf="f.userName.errors.required">
                   El nombre es obligatorio
                 </div>
+                <div *ngIf="f.userName.errors.pattern">
+                  Los nombres solo tienen letras.
+                </div>
                 <div *ngIf="f.userName.errors.minlength">Nombre invalido</div>
               </div>
             </div>
@@ -81,6 +85,9 @@
                 *ngIf="submitted && f.lastUserName.errors"
                 class="invalid-feedback"
               >
+                <div *ngIf="f.lastUserName.errors.pattern">
+                  Los apellidos solo tienen letras.
+                </div>
                 <div *ngIf="f.lastUserName.errors.required">
                   El apellido es obligatorio
                 </div>
@@ -119,6 +126,9 @@
               >
                 <div *ngIf="f.userNick.errors.required">
                   El Apodo es obligatorio
+                </div>
+                <div *ngIf="f.userNick.errors.pattern">
+                  Caracteres prohibidos
                 </div>
                 <div *ngIf="f.userNick.errors.minlength">Apodo invalido</div>
               </div>

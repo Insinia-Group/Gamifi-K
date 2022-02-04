@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
 import { ConfirmedValidator } from '../models/confirmed.validator';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit  {
   samePass:boolean = false;
 
 
-  constructor ( private formBuilder: FormBuilder )
+  constructor ( private formBuilder: FormBuilder , private router:Router)
   {
     this.valid = new RegisterValidation();
     
@@ -44,10 +44,10 @@ export class RegisterComponent implements OnInit  {
     
 
       this.registerForm = this.formBuilder.group({
-      userName: ['',  [Validators.required, Validators.minLength(2)]],
-      lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ) ] ],
-      userNick : [ '', [ Validators.required, Validators.minLength( 2 ) ] ],  
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      userName: ['',  [Validators.required, Validators.minLength(2),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$')]],
+      lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$') ] ],
+      userNick : [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-z0-9_]*$') ] ],  
+      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
       password2: [ [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
     
@@ -129,4 +129,8 @@ export class RegisterComponent implements OnInit  {
     console.log( this.birthDate );
     alert("Hola " + this.userName+ " " + this.lastUserName + " " + this.description + " " + this.birthDate);
   }
+   goHome() {
+    this.router.navigate(['/home']);
+}
+
 }

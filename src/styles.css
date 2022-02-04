@@ -18,6 +18,11 @@
 }
 
 @font-face {
+    font-family: "Circular Std Bold"; 
+    src: url(assets/Circular.woff2) format('woff2');
+}
+
+@font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 300;
@@ -50,7 +55,7 @@
 }
 
 *, html, body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Circular Std Bold', sans-serif;
 }
 
 /* SCROLLBAR */

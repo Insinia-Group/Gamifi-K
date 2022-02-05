@@ -14,6 +14,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { HttpClientModule } from "@angular/common/http";
 import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterComponent,
     AboutComponent,
     NotFoundComponent,
+    UserPageComponent,
   ],
   imports: [
     JwtModule,

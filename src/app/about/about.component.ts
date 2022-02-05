@@ -9,7 +9,11 @@ export class AboutComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  
+  ngOnInit (): void
+  {
+    
+    
   }
 
   goHome() {
@@ -17,4 +21,7 @@ export class AboutComponent implements OnInit {
     console.log( "PENECORTO" );
 }
 
+
+  
+  
 }

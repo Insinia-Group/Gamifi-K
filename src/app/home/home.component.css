@@ -35,3 +35,25 @@
 .home-hero{
   width: 500px;
 }
+
+.card-custom {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background: rgb(134,79,255);
+  background: linear-gradient(90deg, rgba(134,79,255,1) 0%, rgba(80,0,255,1) 100%);
+  background-clip: border-box;
+  border-radius: 0.25rem;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+
+
+.text-muted-color {
+  color: rgba(135, 79, 255, 0.652);
+}

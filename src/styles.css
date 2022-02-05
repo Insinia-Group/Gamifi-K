@@ -48,8 +48,8 @@
 }
 
 .bg-blur {
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .btn-check:focus+.btn, .btn:focus {

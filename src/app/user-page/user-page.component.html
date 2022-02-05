@@ -1,17 +1,75 @@
-<div class="backgroundBody">
-  <div class="row align-items-center">
+
+  
+  <!-- NAVBAR SUPERIOR -->
+  <div class="d-flex align-items-center justify-content-between p-2 sticky-top bg-blur">
+    <div class="p-2">
+      <img src="../../assets/insinia.png" width="30">
+    </div>
+    <div class="p-2">
+      <a href="/home" class="mx-2 link-color text-decoration-none fw-bolder">Rankings</a>
+      <a href="/documentation" class="mx-2 link-color text-decoration-none">Supervisores</a>
+      <a href="/register" class="mx-2 link-color text-decoration-none">Usuarios</a>
+      <a href="/login" class="mx-2 link-color text-decoration-none">Ajustes</a>
+    </div>
+    <div class="p-2">Perfil</div>
+  </div>
+  <div class="row"style="margin-top: 1%; width: 100%;"> 
+  </div>
+    
+
+<!-- AVATAR -->
+  <div class="row container-fluid ">
     <div
       id="avatar"
-      class="rounded-circle align-items-center"
+      class="col-2 rounded-circle avatar "
       [ngStyle]="{
-        width: ' 10rem',
-        height: '10rem',
-        'background-size': 'contain',
-        left: '50%',
-        position: 'absolute',
-        top: '10%',
-        'margin-left': '-5rem'
+        'background': 'url(' +avatar + ') no-repeat 0 0 / cover'        
       }"
     ></div>
-  </div>
+
+<!--     CONTENEDOR DESTACADOS -->
+<section class="detacados ">
+ <div class="row" style="height: 10vh;"></div>
+ <div class="row d-flex justify-content-center " style="overflow-y: auto;">
+ <div class="col-5 bg-white " style="width: 70vw; height: 40vh;margin-bottom: 10%;">
+  <div class="row">
+<div class="col-12 d-flex justify-content-center mb-4">
+  <div class="col-1 filter-icons mx-2" ><img class="img-fluid home-hero" src="../../assets/png/world-outline-badged.png" alt=""></div>
+  <div class="col-1 filter-icons mx-2" ><img class="img-fluid home-hero" src="../../assets/png/ranking.png" alt=""></div>
+  <div class="col-1 filter-icons mx-2" ><img class="img-fluid home-hero" src="../../assets/png/medal-outline.png" alt=""></div>
+
 </div>
+</div>
+<!--     CONTENEDOR DESTACADOS/ LISTA NOTIFICACIONES -->
+
+<div   *ngFor="let item of rankings">
+
+<div class="row bg-black d-flex justify-content-center " style="width: 100%; height: 40vh;">
+  
+ 
+  <div class="row d-flex justify-content-center">
+  <div class="col d-flex justify-content-center"style="width: 5rem; height: 5rem;" ><img class="img-fluid home-hero" src="{{item.imagen}}" alt=""></div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-12 nombre-ranking d-flex justify-content-center">{{item.nombre}}</div>
+
+</div>
+  <div class="row ">
+    <div class="col nombre-ranking d-flex justify-content-center">{{item.tipo}}</div>
+  </div>
+
+
+
+
+
+</div>
+
+<br>
+</div>
+</div>
+
+ </div>
+ </section>
+  <div class="row" style="height: 48vh;"></div>
+

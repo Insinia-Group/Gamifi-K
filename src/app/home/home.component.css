@@ -20,6 +20,10 @@
   height: 100vh;
 }
 
+.top-20 {
+  top: 20% !important;
+}
+
 .top-25 {
   top: 25% !important;
 }
@@ -52,8 +56,23 @@
   font-size: 12px;
 }
 
-
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
 
 .text-muted-color {
   color: rgba(135, 79, 255, 0.652);
+}
+
+.browser {
+  transition: 1s;
+}
+
+.browser:hover {
+  transition: 1s;
+  transform: scale(1.3);
 }

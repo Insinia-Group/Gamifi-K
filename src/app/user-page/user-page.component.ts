@@ -12,7 +12,7 @@ export class UserPageComponent implements OnInit {
  avatar="https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg";
  
  rankings:any [] = [
-  {nombre:"Has ganado una Medalla",tipo:"Buena iniciativa",total:5,imagen: "../../assets/png/medal-outline.png" },
+  {nombre:"Has ganado una Medalla",tipo:"Buena iniciativa",imagen: "../../assets/png/medal-outline.png" },
   {nombre:"Te has unido a DAW",total:5,imagen: "../../assets/png/ranking.png" },
   {nombre:"Te has unido a FEM",total:6,imagen :"https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg"},
   {nombre:"DAW",total:5,imagen: "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" },

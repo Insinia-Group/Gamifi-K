@@ -1,35 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { Ranking } from '../models/rankings';
 
-@Component({
+
+
+declare var $: any;
+@Component( {
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.css']
-})
-export class UserPageComponent implements OnInit {
+  styleUrls: [ './user-page.component.css' ]
+} )
+export class UserPageComponent implements OnInit
+{
 
- 
-
- avatar="https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg";
- 
- rankings:any [] = [
-  {nombre:"Has ganado una Medalla",tipo:"Buena iniciativa",imagen: "../../assets/png/medal-outline.png" },
-  {nombre:"Te has unido a DAW",total:5,imagen: "../../assets/png/ranking.png" },
-  {nombre:"Te has unido a FEM",total:6,imagen :"https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg"},
-  {nombre:"DAW",total:5,imagen: "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" },
-  {nombre:"DAW",total:5,imagen: "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" },
-  {nombre:"DAW",total:5,imagen: "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" },
-  {nombre:"FEM",total:6,imagen :"https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg"},
- ]
+  selectedRanking:Ranking;
+  avatar = "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg";
+  rankingFav: Ranking = new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png" );
   
-  constructor() { }
+ listaRankings: Ranking[] = [];
+  
+  constructor ()
+  {
+    
+    this.listaRankings.push( 
+      new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png" ),
+      new Ranking( 2, "Segundo", "descripcion2", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" ),
+      new Ranking(3, "Tercero", "descripcion3", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg")
+     );
+
+   }
 
   ngOnInit (): void
   {
-   /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
+      this.selectedRanking=this.listaRankings[0];
 
+   /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
+    $( '#dropdownMenuButton1' ).dropdown( 'toggle' );
   }
 
- 
 
-
+  toggleDropdown (id:string):void
+  {
+   $( '#'+id ).dropdown( 'toggle' );
 }
+  rankingSelected (id:Ranking): void
+  {
+     this.selectedRanking = id;
+  }
+  
+  
+  
+}
+

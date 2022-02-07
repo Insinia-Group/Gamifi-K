@@ -1,5 +1,5 @@
 
-export class Ranking
+export class Ranking 
 {
     public id: number;
     public description: string;

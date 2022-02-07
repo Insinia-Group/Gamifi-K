@@ -60,10 +60,10 @@
                 Dropdown button
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <li *ngFor="let item of listaRankings">
+                  <a class="dropdown-item" (click)="rankingSelected(item)">{{
+                    item.description
+                  }}</a>
                 </li>
               </ul>
             </div>
@@ -74,7 +74,7 @@
 
     <!--     CONTENEDOR RANKING / LISTA NOTIFICACIONES -->
     <div class="container" style="overflow-y: auto; height: 40vh">
-      <div *ngFor="let item of listaRankings">
+      <div>
         <div
           class="row bg-black d-flex justify-content-center rounded"
           style="width: 100%; height: 40vh"
@@ -84,24 +84,28 @@
               class="col d-flex justify-content-center"
               style="width: 5rem; height: 5rem"
             >
-              <img class="img-fluid home-hero" src="{{ item.logo }}" alt="" />
+              <img
+                class="img-fluid home-hero"
+                src="{{ selectedRanking.logo }}"
+                alt=""
+              />
             </div>
           </div>
 
           <div class="row d-flex justify-content-center">
             <div class="col-12 nombre-ranking d-flex justify-content-center">
-              {{ item.description }}
+              {{ selectedRanking.description }}
             </div>
           </div>
           <div class="row">
             <div class="col nombre-ranking d-flex justify-content-center">
-              {{ item.description }}
+              {{ selectedRanking.description }}
             </div>
           </div>
 
-          <div class="row" *ngIf="item.description != null">
+          <div class="row" *ngIf="selectedRanking.description != null">
             <div class="col nombre-ranking d-flex justify-content-center">
-              Hay {{ item.description }} personas
+              Hay {{ selectedRanking.description }} personas
             </div>
           </div>
         </div>
@@ -121,7 +125,7 @@
         class="col-5 bg-white"
         style="width: 70vw; height: 0vh; margin-bottom: 50rem"
       >
-        <div class="row">
+        <div class="row" style="margin-bottom: 1em">
           <div class="col-12 d-flex justify-content-center mb-4">
             <div class="col-1 filter-icons mx-2" style="cursor: pointer">
               <img

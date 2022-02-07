@@ -33,10 +33,10 @@
   <div class="col-5"></div>
 </div>
 <!--    CONTENEDOR RANKING  -->
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center ">
   <!--    CONTENEDOR RANKING /  FILTRO -->
 
-  <div class="row d-flex justify-content-center" style="height: 10vh"></div>
+  <div class="row d-flex justify-content-center " style="height: 10vh"></div>
 
   <div class="col-7" style="margin-bottom: 5rem; min-width: 26em">
     <div class="row d-flex justify-content-center" style="height: 5vh">
@@ -57,7 +57,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown button
+                Rankings
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li *ngFor="let item of listaRankings">
@@ -73,7 +73,7 @@
     </div>
 
     <!--     CONTENEDOR RANKING / LISTA NOTIFICACIONES -->
-    <div class="container" style="overflow-y: auto; height: 40vh">
+    <div class="container ranking-container" style="overflow-y: auto; height: 40vh">
       <div>
         <div
           class="row bg-black d-flex justify-content-center rounded"
@@ -115,12 +115,12 @@
     </div>
   </div>
 
-  <div class="col-1"></div>
+
   <!--    CONTENEDOR DESTACADOS  -->
-  <div class="col-3" style="">
+  <div class="col-3" style="margin-bottom: 5rem; min-width: 26em;">
     <!--    CONTENEDOR DESTACADOS /  FILTRO -->
-    <div class="col-1"></div>
-    <div class="row d-flex justify-content-center" style="height: 5vh">
+ 
+    <div class="row d-flex justify-content-center  " style="height: 5vh">
       <div
         class="col-5 bg-white"
         style="width: 70vw; height: 0vh; margin-bottom: 50rem"

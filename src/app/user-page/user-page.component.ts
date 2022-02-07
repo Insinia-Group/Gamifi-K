@@ -22,9 +22,9 @@ export class UserPageComponent implements OnInit
   {
     
     this.listaRankings.push( 
-      new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png" ),
-      new Ranking( 2, "Segundo", "descripcion2", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg" ),
-      new Ranking(3, "Tercero", "descripcion3", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg")
+      new Ranking( 1, "Primero", "../../assets/png/medal-outline.png" , "descripcion"),
+      new Ranking( 2, "Segundo", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion2" ),
+      new Ranking(3, "Tercero", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion3")
      );
 
    }
@@ -34,7 +34,7 @@ export class UserPageComponent implements OnInit
       this.selectedRanking=this.listaRankings[0];
 
    /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
-    $( '#dropdownMenuButton1' ).dropdown( 'toggle' );
+  
   }
 
 

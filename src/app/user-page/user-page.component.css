@@ -33,3 +33,12 @@ height: 2rem;
 .ranking-container{
      padding-right: 0 !important;
 }
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

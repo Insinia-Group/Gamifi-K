@@ -1,4 +1,4 @@
-export interface Usuraio
+export interface Usuario
 {
     name: string;
     lastName: string;
@@ -7,4 +7,13 @@ export interface Usuraio
     password: string;
     description: string;
     birthDate: Date;
+}
+
+
+export interface UsuarioRanking
+{
+    name: string;
+    lastName: string;
+    position:number;
+   
 }

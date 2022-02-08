@@ -6,6 +6,10 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -24,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, routerOptions)],
+  imports: [RouterModule.forRoot(routes, routerOptions), FormsModule, MatInputModule],
   exports: [RouterModule]
 })
 

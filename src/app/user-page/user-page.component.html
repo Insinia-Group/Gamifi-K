@@ -76,38 +76,46 @@
     <div class="container ranking-container" style="overflow-y: auto; height: 40vh">
       <div>
         <div
-          class="row bg-black d-flex justify-content-center rounded"
-          style="width: 100%; height: 40vh"
+          class="row  d-flex justify-content-center rounded"
+          style="width: 100%"
         >
-          <div class="row d-flex justify-content-center">
-            <div
-              class="col d-flex justify-content-center"
-              style="width: 5rem; height: 5rem"
-            >
-              <img
-                class="img-fluid home-hero"
-                src="{{ selectedRanking.logo }}"
-                alt=""
-              />
-            </div>
-          </div>
+         
 
-          <div class="row d-flex justify-content-center">
-            <div class="col-12 nombre-ranking d-flex justify-content-center">
-              {{ selectedRanking.description }}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col nombre-ranking d-flex justify-content-center">
-              {{ selectedRanking.description }}
-            </div>
-          </div>
-
-          <div class="row" *ngIf="selectedRanking.description != null">
-            <div class="col nombre-ranking d-flex justify-content-center">
-              Hay {{ selectedRanking.description }} personas
-            </div>
-          </div>
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+          <!--  Columna Posicion-->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Posicion </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+        
+          <!--  Columna Nombre -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Columna Apellido -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+          </ng-container>
+        
+         
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No hay nada que coincida con: "{{input.value}}"</td>
+          </tr>
+        </table>
         </div>
 
         <br />

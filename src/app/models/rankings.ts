@@ -2,20 +2,21 @@
 export class Ranking 
 {
     public id: number;
+    public name: string;
     public description: string;
     public logo: string;
-    public name: string;
+    
 
     constructor ( id: number,description:string,logo:string,name:string )
     {
         this.id = id;
+        this.name = name;
         this.description = description;
         this.logo = logo;
-        this.name = name;
     }
 
     // GETTERS \\
-    getId (){
+  /*   getId (){
         return this.id;
     }
 
@@ -46,5 +47,5 @@ export class Ranking
     setName (name:string)
     {
        this.name =name;
-    }
+    } */
 }

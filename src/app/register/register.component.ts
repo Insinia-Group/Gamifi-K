@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuraio } from '../interface/usuraio';
+import { Usuario } from '../interface/usuario';
 import { NgModule } from '@angular/core';
 import { FormsModule, ValidationErrors } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';

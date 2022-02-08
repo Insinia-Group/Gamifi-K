@@ -15,6 +15,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -25,9 +28,11 @@ import { UserPageComponent } from './user-page/user-page.component';
     AboutComponent,
     NotFoundComponent,
     UserPageComponent,
+ 
   ],
   imports: [
     JwtModule,
+    MatTableModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -37,6 +42,8 @@ import { UserPageComponent } from './user-page/user-page.component';
     JwtModule.forRoot({
       config: jwtConfig
     }),
+    FormsModule,
+    MatInputModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]

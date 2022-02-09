@@ -1,37 +1,36 @@
-
-
-
-#avatar{
+#avatar {
   background-color: black;
-  width : 10rem;
-  height:10rem;
-  margin-left:2vw ;
+  width: 10rem;
+  height: 10rem;
+  margin-left: 2vw;
 }
 
-.rankings-container{
-height: 50vh;
-width: 40vw;
-}
-
-.filter-icons{
-width: 2rem;
-height: 2rem;
-}
-
-.destacados{
+.rankings-container {
   height: 50vh;
- 
+  width: 40vw;
+}
+.select-ranking {
+  margin-top: -2%;
 }
 
-.nombre-ranking{
-  color: white;
-  font-size: xx-large;
-  
+.filter-icons {
+  height: 5vh;
+  margin-bottom: 2rem;
+  margin-top: -0.5rem;
 }
 
+.destacados {
+  height: 50vh;
+}
 
-.ranking-container{
-     padding-right: 0 !important;
+.nombre-ranking {
+  color: black;
+  margin-bottom: 2%;
+  font-size: 2vh;
+}
+
+.ranking-container {
+  padding-right: 0 !important;
 }
 
 table {
@@ -41,4 +40,9 @@ table {
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+
+.icono-destacados {
+  width: 5rem;
+  height: 3rem;
 }

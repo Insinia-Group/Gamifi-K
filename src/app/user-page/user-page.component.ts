@@ -23,6 +23,8 @@ const ELEMENT_DATA:UsuarioRanking[] = [
   
 ];
 
+
+
 declare var $: any;
 @Component( {
   selector: 'app-user-page',
@@ -31,6 +33,7 @@ declare var $: any;
 } )
 export class UserPageComponent implements OnInit
 {
+  filtroDestacados: string = "todo";
   displayedColumns: string[] = ['position','name','lastName'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   
@@ -40,7 +43,7 @@ export class UserPageComponent implements OnInit
   }
   selectedRanking:Ranking;
   avatar = "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg";
-  rankingFav: Ranking = new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png" );
+  rankingFav: Ranking = new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png","logro" );
   
  listaRankings: Ranking[] = [];
   
@@ -48,9 +51,9 @@ export class UserPageComponent implements OnInit
   {
     
     this.listaRankings.push( 
-      new Ranking( 1, "Primero", "../../assets/png/medal-outline.png" , "descripcion"),
-      new Ranking( 2, "Segundo", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion2" ),
-      new Ranking(3, "Tercero", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion3")
+      new Ranking( 1, "Primero", "../../assets/png/medal-outline.png" , "descripcion","logro"),
+      new Ranking( 2, "Segundo", "../../assets/png/ranking.png", "descripcion2","ranking" ),
+      new Ranking(3, "Tercero", "../../assets/png/ranking.png", "descripcion3","ranking")
      );
 
    }
@@ -74,6 +77,12 @@ export class UserPageComponent implements OnInit
      this.selectedRanking = id;
   }
   
+  destacadosSelected ( tipo: string ):void
+  {
+    
+    this.filtroDestacados = tipo;
+
+  }
   
   
 }

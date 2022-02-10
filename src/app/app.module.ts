@@ -27,8 +27,7 @@ import {MatInputModule} from '@angular/material/input';
     RegisterComponent,
     AboutComponent,
     NotFoundComponent,
-    UserPageComponent,
- 
+    UserPageComponent
   ],
   imports: [
     JwtModule,

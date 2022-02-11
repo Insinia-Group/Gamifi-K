@@ -1,3 +1,4 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 #avatar {
   background-color: black;
   width: 10rem;
@@ -27,6 +28,12 @@
   color: black;
   margin-bottom: 2%;
   font-size: 2vh;
+}
+
+.tabla-ranking {
+  border-radius: 0.5rem;
+  box-shadow: black 15px;
+  width: 98% !important;
 }
 
 .ranking-container {

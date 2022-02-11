@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Usuario } from '../interface/usuario';
 import { NgModule } from '@angular/core';
 import { FormsModule, ValidationErrors } from '@angular/forms'; 
@@ -7,13 +7,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
 import { ConfirmedValidator } from '../models/confirmed.validator';
 import { Router } from '@angular/router';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { User } from '../models/user';
+import { API } from '../models/api';
+@Injectable({
+  providedIn: "root"
+} )
 
-@Component({
+@Component( {
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
-})
-export class RegisterComponent implements OnInit  {
+} )
+  
+export class RegisterComponent implements OnInit
+{
+  
   userName: string="";
   lastUserName: string ="";
   nick: string = "";
@@ -29,9 +38,11 @@ export class RegisterComponent implements OnInit  {
   submitted = false;
   valid: RegisterValidation;
   samePass:boolean = false;
+  user: User;
+  avatar: Blob;
+  dateJoined: Date = new Date(Date.now()) ;
 
-
-  constructor ( private formBuilder: FormBuilder , private router:Router)
+  constructor ( private formBuilder: FormBuilder , private router:Router , private http: HttpClient,private api: API)
   {
     this.valid = new RegisterValidation();
     
@@ -127,10 +138,17 @@ export class RegisterComponent implements OnInit  {
 
     this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
     console.log( this.birthDate );
-    alert("Hola " + this.userName+ " " + this.lastUserName + " " + this.description + " " + this.birthDate);
+    alert( "Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.birthDate );
+    this.user = new User(1,this.nick,this.userName,this.lastUserName,this.emailVerify,this.description,this.password,this.birthDate,this.avatar,"user",this.dateJoined,true );
+     
   }
    goHome() {
     this.router.navigate(['/home']);
-}
+  }
+  
+  sendRegister ()
+  {
+   return this.api.toThisPath('http://localhost/api/register');
+  }
 
 }

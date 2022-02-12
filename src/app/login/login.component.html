@@ -2,22 +2,23 @@
     <div class="row position-relative align-items-center vh-100">
         <div class="login-card-width mx-auto position-absolute top-40 start-50 translate-middle">
             <h3 class="text-light">Login</h3>
-            <div class="card login-card-height shadow border text-color">
+            <div class="card border-0 border-bottom border-5 border-color-hover login-card-height shadow border text-color">
                 <div class="card-body d-flex flex-column">
                     <form>
                         <label for="email">Email</label>
-                        <input id="email" type="text" class="form-control mb-3"/>
+                        <input id="email" type="text" placeholder="Introduce tu email" class="form-control text-color mb-3"/>
                         <label for="email">Password</label>
-                        <input id="password" type="password" class="form-control mb-3"/>
+                        <input id="password" type="password" placeholder="Introduce tu contraseña" class="form-control text-color mb-3"/>
                         <div class="d-grid">
                             <button class="btn btn-color text-light mb-3">Iniciar sesión</button>
                         </div>
+                        <hr class="my-1 border-danger">
+                        <div class="d-flex justify-content-center mt-3">
+                            <button class="btn bg-info btn-color text-light mx-1"><i class="bi bi-twitter"></i></button>
+                            <button class="btn bg-danger btn-color text-light mx-1" disabled><i class="bi bi-google"></i></button>
+                            <button class="btn bg-primary btn-color text-light mx-1" disabled><i class="bi bi-facebook"></i></button>
+                        </div>
                     </form>
-                    <div class="d-grid">
-                        <button class="btn btn-info text-light mb-3"><i class="bi bi-twitter"></i></button>
-                        <button class="btn btn-danger text-light mb-3" disabled><i class="bi bi-google"></i></button>
-                        <button class="btn btn-primary text-light" disabled><i class="bi bi-facebook"></i></button>
-                    </div>
                 </div>
             </div>
         </div>

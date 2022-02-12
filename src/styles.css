@@ -47,6 +47,10 @@
     background-color: var(--corp-color-one);
 }
 
+.bg-color-hover {
+    background-color: var(--corp-color-three);
+}
+
 .bg-blur {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -89,6 +93,10 @@
     border-color: var(--corp-color-one) !important;
 }
 
+.border-color-hover {
+    border-color: var(--corp-color-three) !important;
+}
+
 .text-color {
     color: var(--corp-color-one);
 }
@@ -117,4 +125,13 @@
 
 .start-75 {
     left: 75% !important;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: var(--corp-color-one-hover) !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.10rem var(--corp-color-one-hover) !important;
+    transition: var(--transition);
 }

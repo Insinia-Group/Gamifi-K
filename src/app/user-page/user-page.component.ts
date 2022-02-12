@@ -7,7 +7,8 @@ import { UsuarioRanking } from '../interface/usuario';
 
 
 
-let posicion =1;
+let posicion = 1;
+
 const ELEMENT_DATA:UsuarioRanking[] = [
   { position:posicion++, name: 'Panqueue', lastName:"Pedro"},
   { position:posicion++ , name:  'Alimon', lastName:"Retac"},
@@ -33,6 +34,9 @@ declare var $: any;
 } )
 export class UserPageComponent implements OnInit
 {
+  
+  filterText: boolean = false;
+  filterInput:string="Filtrar";
   filtroDestacados: string = "todo";
   displayedColumns: string[] = ['position','name','lastName'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -60,8 +64,8 @@ export class UserPageComponent implements OnInit
 
   ngOnInit (): void
   {
-  
-      this.selectedRanking=this.listaRankings[0];
+    this.selectedRanking = this.listaRankings[ 0 ];
+    
 
    /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
   
@@ -83,6 +87,15 @@ export class UserPageComponent implements OnInit
     this.filtroDestacados = tipo;
 
   }
+
+  
+  
+
+isSelected ()
+  {
+    this.filterText = true;
+}
+ 
   
   
 }

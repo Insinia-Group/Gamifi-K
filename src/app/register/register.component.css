@@ -3,12 +3,7 @@
   width: 100vw;
   height: 100vh;
   background: rgb(82, 6, 214);
-  background: linear-gradient(
-    180deg,
-    rgba(82, 6, 214, 1) 0%,
-    rgba(109, 48, 243, 1) 32%,
-    rgba(255, 255, 255, 1) 62%
-  );
+  background-color: rgb(109, 48, 243);
 }
 input::-webkit-input-placeholder {
   text-align: center;

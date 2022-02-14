@@ -7,11 +7,10 @@ import { UsuarioRanking } from '../interface/usuario';
 
 
 
-let posicion = 1;
-
+let posicion =1;
 const ELEMENT_DATA:UsuarioRanking[] = [
   { position:posicion++, name: 'Panqueue', lastName:"Pedro"},
-  { position:posicion++ , name:  'Alimon', lastName:"Retac"},
+    { position:posicion++ , name:  'Alimon', lastName:"Retac"},
   { position:posicion++ , name:  'Salama', lastName:"Monolo"},
   { position:posicion++ , name:  'Pentrac', lastName:"Eresta"},
   { position:posicion++ , name:  'datAr', lastName:"Erosto"},
@@ -24,8 +23,6 @@ const ELEMENT_DATA:UsuarioRanking[] = [
   
 ];
 
-
-
 declare var $: any;
 @Component( {
   selector: 'app-user-page',
@@ -34,10 +31,7 @@ declare var $: any;
 } )
 export class UserPageComponent implements OnInit
 {
-  
-  filterText: boolean = false;
-  filterInput:string="Filtrar";
-  filtroDestacados: string = "todo";
+  filtroDestacados:string;
   displayedColumns: string[] = ['position','name','lastName'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   
@@ -47,7 +41,7 @@ export class UserPageComponent implements OnInit
   }
   selectedRanking:Ranking;
   avatar = "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg";
-  rankingFav: Ranking = new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png","logro" );
+  rankingFav: Ranking = new Ranking( 1, "Primero", "descripcion", "../../assets/png/medal-outline.png","DAW" );
   
  listaRankings: Ranking[] = [];
   
@@ -55,17 +49,17 @@ export class UserPageComponent implements OnInit
   {
     
     this.listaRankings.push( 
-      new Ranking( 1, "Primero", "../../assets/png/medal-outline.png" , "descripcion","logro"),
-      new Ranking( 2, "Segundo", "../../assets/png/ranking.png", "descripcion2","ranking" ),
-      new Ranking(3, "Tercero", "../../assets/png/ranking.png", "descripcion3","ranking")
+      new Ranking( 1, "Primero", "../../assets/png/medal-outline.png" , "descripcion","E"),
+      new Ranking( 2, "Segundo", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion2","DAW" ),
+      new Ranking(3, "Tercero", "https://www.cabroworld.com/wp-content/uploads/2019/06/2-15.jpg", "descripcion3","DAW")
      );
 
    }
 
   ngOnInit (): void
   {
-    this.selectedRanking = this.listaRankings[ 0 ];
-    
+  
+      this.selectedRanking=this.listaRankings[0];
 
    /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
   
@@ -80,22 +74,11 @@ export class UserPageComponent implements OnInit
   {
      this.selectedRanking = id;
   }
-  
-  destacadosSelected ( tipo: string ):void
-  {
-    
-    this.filtroDestacados = tipo;
 
+  destacadosSelected(tipo:string){
+  this.filtroDestacados = tipo;
   }
-
   
-  
-
-isSelected ()
-  {
-    this.filterText = true;
-}
- 
   
   
 }

@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component'; 
 import { JwtModule } from "@auth0/angular-jwt";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';

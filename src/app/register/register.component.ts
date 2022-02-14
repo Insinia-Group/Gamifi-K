@@ -40,10 +40,12 @@ export class RegisterComponent implements OnInit
   samePass:boolean = false;
   user: User;
   avatar: Blob;
-  dateJoined: Date = new Date(Date.now()) ;
+  dateJoined: Date = new Date( Date.now() );
+  api: API;
 
-  constructor ( private formBuilder: FormBuilder , private router:Router , private http: HttpClient,private api: API)
+  constructor ( private formBuilder: FormBuilder , private router:Router , private http: HttpClient)
   {
+    this.api = new API;
     this.valid = new RegisterValidation();
     
   }

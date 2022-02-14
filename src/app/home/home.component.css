@@ -40,6 +40,10 @@
   width: 500px;
 }
 
+.home-hero-card{
+  width: 300px;
+}
+
 .card-custom {
   position: relative;
   display: flex;

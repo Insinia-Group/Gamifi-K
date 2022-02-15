@@ -157,6 +157,7 @@
               <label for="inputMail"></label>
               <input
                 type="email"
+                id="email"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                 formControlName="email"
@@ -276,11 +277,11 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="birthDate"
+                [(ngModel)]="dateBirth"
                 type="date"
                 class="form-control"
-                id="birthDate"
-                aria-describedby="birthDate"
+                id="dateBirth"
+                aria-describedby="dateBirth"
                 placeholder="Fecha de nacimiento"
               />
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
@@ -307,8 +308,8 @@
                 (click)="backThird()"
                 type="submit"
                 class="btn btn-primary bi bi-arrow-bar-left"
-                id="birthDate"
-                aria-describedby="birthDate"
+                id="dateBirth"
+                aria-describedby="dateBirth"
               ></button>
             </div>
             <div class="col-5 nextBackButtons">

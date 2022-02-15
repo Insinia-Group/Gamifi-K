@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { API } from '../models/api';
@@ -31,7 +31,9 @@ export class HttpService {
   }
   register(user: any): any {
     try {
-      this.http.post(this.api.toThisPath('/register'), JSON.stringify(user)).subscribe(
+      const headers = new HttpHeaders();
+      headers.append( 'Content-type', 'application/x-www-form-urlencoded; charset=UTF-8' );
+      this.http.post( this.api.toThisPath( '/register' ), user, {headers:headers}).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );

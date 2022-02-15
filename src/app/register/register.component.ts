@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit
   passwordVerify:boolean;
   password2: string="";
   password2Verify:boolean;
-  birthDate = new Date;
+  dateBirth = new Date;
   description:string="";
   registerForm: FormGroup;
   submitted = false;
@@ -106,15 +106,19 @@ export class RegisterComponent implements OnInit
     if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
       
    
-     let userName = (document.getElementById("name") as HTMLInputElement).value;
-     let lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
-     let nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value;
+     this.userName = (document.getElementById("name") as HTMLInputElement).value;
+     this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
+     this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value;
      this.firstFormActive = false;
      this.secondFormActive = true;
     }
   }
 
-    nextSecond(){
+  nextSecond ()
+  {
+     this.email = (document.getElementById("email") as HTMLInputElement).value;
+     this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
+     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
       if ( this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true) {
         
      this.secondFormActive = false;
@@ -138,9 +142,9 @@ export class RegisterComponent implements OnInit
   {
 
     this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
-    console.log( this.birthDate );
-    alert( "Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.birthDate );
-    this.user = new User(1,this.nick,this.userName,this.lastUserName,this.emailVerify,this.description,this.password,this.birthDate,this.avatar,"user",this.dateJoined,true );
+    console.log( this.dateBirth );
+    alert( "Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.dateBirth );
+    this.user = new User(1,this.nick,this.userName,this.lastUserName,this.emailVerify,this.description,this.password,this.dateBirth,this.avatar,"user",this.dateJoined,true );
      
   }
    goHome() {
@@ -149,6 +153,7 @@ export class RegisterComponent implements OnInit
   
   sendRegister ()
   {
+    this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
     console.log( this.nick );
     const user = {
       nick: this.nick,
@@ -157,10 +162,9 @@ export class RegisterComponent implements OnInit
       email: this.email,
       description: this.description,
       password: this.password,
-      birthDate: this.birthDate,
-      avatar: " ",
+      dateBirth: "1999-11-11",
       role: "user",
-      dateJoined: 1991 - 11 - 11,
+      dateJoined: "2201-11-11",
       status:1
 
       

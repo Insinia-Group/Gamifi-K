@@ -1,13 +1,12 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Usuario } from '../interface/usuario';
 import { NgModule } from '@angular/core';
-import { FormsModule, ValidationErrors } from '@angular/forms'; 
-import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
 import { ConfirmedValidator } from '../models/confirmed.validator';
 import { Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http.service';
 import { User } from '../models/user';
 import { API } from '../models/api';
 @Injectable({
@@ -22,11 +21,11 @@ import { API } from '../models/api';
   
 export class RegisterComponent implements OnInit
 {
-  
+  public form: FormGroup;
   userName: string="";
   lastUserName: string ="";
   nick: string = "";
-  /* email: string; */
+  email: string;
   emailVerify:string;
   password: string;
   passwordVerify:boolean;
@@ -43,7 +42,7 @@ export class RegisterComponent implements OnInit
   dateJoined: Date = new Date( Date.now() );
   api: API;
 
-  constructor ( private formBuilder: FormBuilder , private router:Router , private http: HttpClient)
+  constructor ( private formBuilder: FormBuilder , private router:Router ,private request: HttpService)
   {
     this.api = new API;
     this.valid = new RegisterValidation();
@@ -150,7 +149,26 @@ export class RegisterComponent implements OnInit
   
   sendRegister ()
   {
-   return this.api.toThisPath('http://localhost/api/register');
+    console.log( this.nick );
+    const user = {
+      nick: this.nick,
+      userName: this.userName,
+      lastUserName: this.lastUserName,
+      email: this.email,
+      description: this.description,
+      password: this.password,
+      birthDate: this.birthDate,
+      avatar: " ",
+      role: "user",
+      dateJoined: 1991 - 11 - 11,
+      status:1
+
+      
+    }
+    console.log( user );
+    this.request.register(user);
+    
+    
   }
 
 }

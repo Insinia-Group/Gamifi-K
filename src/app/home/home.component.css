@@ -38,10 +38,17 @@
 
 .home-hero{
   width: 500px;
+  transition: 0.7s;
 }
 
-.home-hero-card{
+.home-hero-card {
   width: 300px;
+  transition: 0.7s;
+}
+
+.home-hero-card:hover, .home-hero:hover {
+  transform: scale(1.1);
+  transition: 0.7s;
 }
 
 .card-custom {
@@ -79,4 +86,15 @@
 .browser:hover {
   transition: 1s;
   transform: scale(1.3);
+}
+
+@media screen and (max-width: 1200px) {
+  #welcome {
+    text-align: center !important;
+    margin-top: 5rem;
+  }
+
+  #welcome-image {
+    margin-right: 0 !important;
+  }
 }

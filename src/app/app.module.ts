@@ -16,7 +16,8 @@ import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { MatTableModule } from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({

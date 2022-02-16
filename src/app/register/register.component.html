@@ -26,7 +26,6 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="userName"
                 id="name"
                 type="text"
                 class="form-control"
@@ -63,7 +62,6 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="lastUserName"
                 id="lastName"
                 type="text"
                 class="form-control"
@@ -102,7 +100,6 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="nick"
                 id="nick"
                 type="text"
                 class="form-control"
@@ -216,7 +213,6 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputPassword2"></label>
               <input
-                [(ngModel)]="password2"
                 type="password"
                 class="form-control"
                 id="password2"
@@ -252,7 +248,6 @@
                 (click)="backSecond()"
                 type="submit"
                 class="btn btn-primary bi bi-arrow-bar-left"
-                id="name"
                 aria-describedby="name"
               ></button>
             </div>
@@ -263,7 +258,6 @@
                 (click)="nextSecond()"
                 type="submit"
                 class="btn btn-primary bi bi-arrow-bar-right"
-                id="name"
                 aria-describedby="name"
               ></button>
             </div>
@@ -277,7 +271,7 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
-                [(ngModel)]="dateBirth"
+                formControlName="dateBirth"
                 type="date"
                 class="form-control"
                 id="dateBirth"
@@ -295,6 +289,7 @@
               <textarea
                 name=""
                 id="description"
+                formControlName="description"
                 class="form-control"
                 rows="4"
               ></textarea>

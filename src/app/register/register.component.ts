@@ -1,14 +1,13 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Usuario } from '../interface/usuario';
-import { NgModule } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidation } from '../models/registerValidation';
 import { ConfirmedValidator } from '../models/confirmed.validator';
 import { Router } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
 import { User } from '../models/user';
 import { API } from '../models/api';
+import * as bcrypt from 'bcryptjs';
+
 @Injectable({
   providedIn: "root"
 } )
@@ -39,7 +38,7 @@ export class RegisterComponent implements OnInit
   samePass:boolean = false;
   user: User;
   avatar: Blob;
-  dateJoined: Date = new Date( Date.now() );
+  dateJoined: Date = new Date(Date.now());
   api: API;
 
   constructor ( private formBuilder: FormBuilder , private router:Router ,private request: HttpService)
@@ -61,7 +60,9 @@ export class RegisterComponent implements OnInit
       userNick : [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-z0-9_]*$') ] ],  
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
-      password2: [ [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
+      password2: [ '', [ Validators.required, Validators.minLength( 8 ), Validators.maxLength( 25 ) ] ],
+      description: [ '' ],
+      dateBirth:[''],
     
          
   }, { 
@@ -102,13 +103,14 @@ export class RegisterComponent implements OnInit
   }
    nextOne ()
    {
-
+    
+     
     if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
       
    
-     this.userName = (document.getElementById("name") as HTMLInputElement).value;
+    /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
      this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
-     this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value;
+     this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value; */
      this.firstFormActive = false;
      this.secondFormActive = true;
     }
@@ -116,9 +118,9 @@ export class RegisterComponent implements OnInit
 
   nextSecond ()
   {
-     this.email = (document.getElementById("email") as HTMLInputElement).value;
+     /* this.email = (document.getElementById("email") as HTMLInputElement).value;
      this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
-     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value;
+     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
       if ( this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true) {
         
      this.secondFormActive = false;
@@ -141,7 +143,6 @@ export class RegisterComponent implements OnInit
   submmit ()
   {
 
-    this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
     console.log( this.dateBirth );
     alert( "Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.dateBirth );
     this.user = new User(1,this.nick,this.userName,this.lastUserName,this.emailVerify,this.description,this.password,this.dateBirth,this.avatar,"user",this.dateJoined,true );
@@ -153,8 +154,16 @@ export class RegisterComponent implements OnInit
   
   sendRegister ()
   {
-    this.description = ( document.getElementById( "description" ) as HTMLInputElement ).value;
-    console.log( this.nick );
+    this.nick = this.registerForm.controls.userNick.value;
+    this.userName = this.registerForm.controls.userName.value;
+    this.lastUserName = this.registerForm.controls.lastUserName.value;
+    this.password = this.registerForm.controls.password.value;
+    this.email = this.registerForm.controls.email.value;
+    this.description = this.registerForm.controls.description.value;
+    this.dateBirth = this.registerForm.controls.dateBirth.value;
+
+    const salt = bcrypt.genSaltSync(10);
+    this.password = bcrypt.hashSync(this.password, 10);
     const user = {
       nick: this.nick,
       userName: this.userName,
@@ -162,9 +171,9 @@ export class RegisterComponent implements OnInit
       email: this.email,
       description: this.description,
       password: this.password,
-      dateBirth: "1999-11-11",
+      dateBirth: this.dateBirth,
       role: "user",
-      dateJoined: "2201-11-11",
+      dateJoined: this.dateJoined.toISOString().split('T')[0],
       status:1
 
       

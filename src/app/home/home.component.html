@@ -1,27 +1,27 @@
-<div class="d-flex align-items-center justify-content-between p-2 pb-3 bg-blur">
+<div class="d-flex align-items-center justify-content-between p-2 bg-blur sticky-top" *ngIf="!navbarStatus" @slideDownHideUp>
   <div class="ms-2">
     <p class="text-color">Insinia</p>
   </div>
   <div>
     <a href="/home" class="mx-2 link-color text-decoration-none fw-bolder">Home</a>
-    <a href="/documentation" class="mx-2 link-color text-decoration-none">Test</a>
-    <a href="/register" class="mx-2 link-color text-decoration-none">Lorem</a>
-    <a href="/login" class="mx-2 link-color text-decoration-none">Ipsum</a>
+    <a href="/documentation" class="mx-2 link-color text-decoration-none">Documentación</a>
+    <a href="/register" class="mx-2 link-color text-decoration-none">Register</a>
+    <a href="/login" class="mx-2 link-color text-decoration-none">Login</a>
   </div>
   <div class="me-2">
     <p class="text-color">Login</p>
   </div>
 </div>
 
-<div class="d-flex bg-color align-items-center justify-content-between bg-blur sticky-top overflow-visible g-0 m-0" *ngIf="navbarStatus" @slideDownHideUp>
+<div class="d-flex bg-color align-items-center justify-content-between bg-blur sticky-top p-2" *ngIf="navbarStatus" @slideDownHideUp>
   <div class="ms-2">
     <p class="text-light">Insinia</p>
   </div>
   <div>
     <a href="/home" class="mx-2 link-light text-decoration-none fw-bolder">Home</a>
-    <a href="/documentation" class="mx-2 link-light text-decoration-none">Test</a>
-    <a href="/register" class="mx-2 link-light text-decoration-none">Lorem</a>
-    <a href="/login" class="mx-2 link-light text-decoration-none">Ipsum</a>
+    <a href="/documentation" class="mx-2 link-light text-decoration-none">Documentación</a>
+    <a href="/register" class="mx-2 link-light text-decoration-none">Register</a>
+    <a href="/login" class="mx-2 link-light text-decoration-none">Login</a>
   </div>
   <div class="me-2">
     <p class="text-light">Login</p>
@@ -43,7 +43,6 @@
   </div>
 </div>
 
-
 <div class="container-fluid fullscreen-section">
   <div class="row">
     <div class="col-xxl mb-3">
@@ -51,10 +50,7 @@
         <div class="card-body">
           <div class="row px-4">
             <div class="col-6  align-self-center">
-              <h2>Ofrecemos lo siguiente:</h2>
-              <h5 class="mt-2"><i class="bi bi-patch-check-fill me-2"></i>Colaboración</h5>
-              <h5><i class="bi bi-patch-check-fill me-2"></i>Organización</h5>
-              <h5><i class="bi bi-patch-check-fill me-2"></i>Facilidad de uso</h5>
+              <h1><i class="bi bi-patch-question-fill me-2"></i>¿Qué ofrecemos?</h1>
             </div>
             <div class="col-6 text-end">
               <img class="img-fluid home-hero-card" src="../../assets/svg/colaboration.svg">
@@ -66,12 +62,12 @@
   </div>
   <div class="row">
     <div class="col-xxl mb-3">
-      <div class="card-custom shadow-sm text-light">
+      <div class="card-custom-alt shadow-sm text-light">
         <div class="card-body">
           <div class="row">
             <div class="col ps-4 align-self-center">
-              <h2>Organización</h2>
-              <h3>Una genial manera de manejar organizar, cambiar y editar.</h3>
+              <h2><i class="bi bi-patch-check-fill me-2"></i>Organización</h2>
+              <p>Una genial manera de manejar organizar, cambiar y editar.</p>
             </div>
             <div class="col text-end">
               <img class="img-fluid home-hero-card" src="../../assets/svg/manage.svg">
@@ -88,8 +84,25 @@
               <img class="img-fluid home-hero-card" src="../../assets/svg/group.svg">
             </div>
             <div class="col pe-4 align-self-center text-end">
-              <h2>Colaboración</h2>
-              <h3>La colaboración es prioridad para nosotros.</h3>
+              <h2><i class="bi bi-patch-check-fill me-2"></i>Colaboración</h2>
+              <p>La colaboración parte de nosotros y asi lo hemos implementado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xxl mb-3">
+      <div class="card-custom-alt shadow-sm text-light">
+        <div class="card-body">
+          <div class="row px-4">
+            <div class="col-6  align-self-center">
+              <h2><i class="bi bi-patch-check-fill me-2"></i>Facilidad de uso</h2>
+              <p>Desarrollado en mente con para uso escolar, casual y profesional.</p>
+            </div>
+            <div class="col-6 text-end">
+              <img class="img-fluid home-hero-card" src="../../assets/svg/easy.svg">
             </div>
           </div>
         </div>
@@ -102,13 +115,13 @@
   <div class="container-fluid fullscreen-section">
     <div class="row position-relative top-25 justify-content-center">
       <div class="col-8 text-center align-self-center pt-5">
-          <h1 class="text-color mb-2">Disponible para los navegadores</h1>
-          <p class="text-small text-muted-color mb-3">Utilizar las ultimas versiones de estos navegadores</p>
-          <a href="https://brave.com/es/download/"><img src="../../assets/brave.png" class="mx-3 browser" width="50" alt="brave icon"></a>
-          <a href="https://www.opera.com/es/download"><img src="../../assets/opera.png" class="mx-3 browser" width="50" alt="opera icon"></a>
-          <a href="https://www.google.com/intl/es/chrome"><img src="../../assets/chrome.png" class="mx-3 browser" width="50" alt="chrome icon"></a>
-          <a href="https://www.mozilla.org/es-ES/firefox/new/"><img src="../../assets/firefox.png" class="mx-3 browser" width="50" alt="firefox icon"></a>
-          <a href="https://www.microsoft.com/es-es/edge"><img src="../../assets/edge.png" class="mx-3 browser" width="50" alt="edge icon"></a>
+        <h1 class="text-color mb-2">Disponible para los navegadores</h1>
+        <p class="text-small text-muted-color mb-3">Utilizar las ultimas versiones de estos navegadores</p>
+        <a href="https://brave.com/es/download/"><img src="../../assets/brave.png" class="mx-3 browser" width="50" alt="brave icon"></a>
+        <a href="https://www.opera.com/es/download"><img src="../../assets/opera.png" class="mx-3 browser" width="50" alt="opera icon"></a>
+        <a href="https://www.google.com/intl/es/chrome"><img src="../../assets/chrome.png" class="mx-3 browser" width="50" alt="chrome icon"></a>
+        <a href="https://www.mozilla.org/es-ES/firefox/new/"><img src="../../assets/firefox.png" class="mx-3 browser" width="50" alt="firefox icon"></a>
+        <a href="https://www.microsoft.com/es-es/edge"><img src="../../assets/edge.png" class="mx-3 browser" width="50" alt="edge icon"></a>
       </div>
     </div>
   </div>

@@ -28,14 +28,13 @@ export class HomeComponent implements AfterViewInit {
   
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
-    console.log(window.scrollY)
-    if (window.scrollY >= 500) {
+    if (window.scrollY >= 250) {
       this.goupStatus = true;
     } else {
       this.goupStatus = false;
     }
 
-    if (window.scrollY >= 56) {
+    if (window.scrollY >= 55) {
       this.navbarStatus = true;
     } else {
       this.navbarStatus = false;

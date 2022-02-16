@@ -10,6 +10,8 @@ import { UserPageComponent } from './user-page/user-page.component';
 const routerOptions: ExtraOptions = {
   useHash: false,
   anchorScrolling: 'enabled',
+  onSameUrlNavigation: "ignore",
+  scrollPositionRestoration: 'enabled'
 };
 
 const routes: Routes = [

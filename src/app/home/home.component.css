@@ -83,7 +83,9 @@
 }
 
 #section-land {
-  margin-top: 10%;
+  padding-top: 10%;
+  height: 720px;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 1200px) {

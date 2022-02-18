@@ -1,9 +1,11 @@
-import { Component, OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ElementRef } from '@angular/core';
 import { Ranking } from '../models/rankings';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { UsuarioRanking } from '../interface/usuario';
+import { HttpService } from '../services/http.service';
+
 
 
 
@@ -45,7 +47,7 @@ export class UserPageComponent implements OnInit
   
  listaRankings: Ranking[] = [];
   
-  constructor ()
+  constructor (private http : HttpService)
   {
     
     this.listaRankings.push( 
@@ -55,6 +57,25 @@ export class UserPageComponent implements OnInit
      );
 
    }
+
+  @ViewChild( 'pictureProfile' ) pictureProfile: ElementRef;
+  
+  test  ()
+  {
+    const fileList: FileList = this.pictureProfile.nativeElement.files;
+    const formData: FormData = new FormData();
+    const headers = new Headers();
+    formData.append( 'file', fileList[ 0 ], fileList[ 0 ].name );
+    headers.append( 'Content-Type', 'miltipart/form-data' );
+    headers.append( 'Accept', 'application/json' );
+    const options = {
+      headers: headers
+    };
+     this.http.pictureUpload( formData, options);
+
+
+    console.log(this.pictureProfile.nativeElement.files[0])
+  }
 
   ngOnInit (): void
   {

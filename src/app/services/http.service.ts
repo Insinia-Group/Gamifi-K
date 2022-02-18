@@ -18,10 +18,9 @@ export class HttpService {
    * @param user any
    */
   login ( user: any ): any{
-    console.log( user );
     try {
-      this.http.post(this.api.toThisPath('/login'), user).subscribe(
-        (data) => console.log(data),
+      this.http.post<any>(this.api.toThisPath('/login'), user).subscribe(
+        (resp) => console.log(resp.headers),
         (err) => console.log(err)
       );
      
@@ -51,4 +50,14 @@ export class HttpService {
       console.log('Error')
     }
   }
+  pictureUpload (data:FormData,options:object)
+  {
+    console.log( data );
+    this.http.post<any>( this.api.toThisPath( '/uploadAvatar' ),data,options ).subscribe(
+      ( data ) => console.log( data ),
+      ( err ) => console.log( err )
+    );
+    
+  }
+
 }

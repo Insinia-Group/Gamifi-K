@@ -10,6 +10,21 @@ input::-webkit-input-placeholder {
   line-height: 100px; /* Centrado vertical */
 }
 
+.titulo {
+  color: aliceblue;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.loginLink {
+  color: aliceblue;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+  display: block;
+}
 /*   .registerTittle{
       position: absolute;
       width: max-content;
@@ -23,7 +38,7 @@ input::-webkit-input-placeholder {
 
 .containerRegister {
   position: absolute;
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 100%;
 }
 

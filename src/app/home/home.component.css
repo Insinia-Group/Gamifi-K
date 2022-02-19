@@ -1,10 +1,10 @@
 .bg-color-home-0 {
-  background: rgb(109, 48, 243);
+  background: var(--corp-color-one);
   background: linear-gradient(180deg, rgba(109, 48, 243, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .bg-color-home-inverted {
-  background: rgb(109, 48, 243);
+  background: var(--corp-color-one);
   background: linear-gradient(0deg, rgba(109, 48, 243, 1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
@@ -98,6 +98,11 @@
   padding-top: 10%;
   height: 720px;
   background-repeat: no-repeat;
+  position: relative;
+}
+
+#under-landing, #under-cards {
+  margin-top: 16rem;
 }
 
 @media screen and (max-width: 1200px) {
@@ -109,4 +114,115 @@
   #welcome-image {
     margin-right: 0 !important;
   }
+}
+
+.card-home-corp {
+	line-height: 1.4;
+	font-weight: 400;
+	padding: 2.5rem;
+	border-radius: 0.75rem;
+	background-color: var(--corp-color-one);
+	display: flex;
+	flex-direction: column;
+}¡
+
+.navbar-home {
+  z-index: 1;
+}
+
+.card-home-corp h3 {
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+}
+
+.card-home-corp svg {
+	margin-top: -2%;
+	margin-left: -0.5%;
+	width: 2em;
+	height: 2em;
+}
+
+.card-home-corp h3 {
+	margin-top: 0.875em;
+}
+
+.card-home-corp h4 {
+	margin-top: 0.750em;
+}
+
+.card-home-corp p {
+	margin-top: 0.875em;
+	--tw-text-opacity: 1;
+	color: rgba(174, 175, 176, var(--tw-text-opacity));
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+}
+
+@media (min-width: 640px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+	}
+}
+
+@media (min-width: 640px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.card-home-corp svg,
+	.card-home-corp h3 {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+	}
+}
+
+@media (min-width: 640px) {
+	.card-home-corp p {
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.card-home-corp p {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	.card-home-corp p {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
 }

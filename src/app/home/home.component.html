@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center justify-content-between position-fixed w-100 top-0 p-2 bg-blur">
+<div class="d-flex bg-blur align-items-center justify-content-between position-fixed w-100 top-0 p-1 navbar-home" *ngIf="!navbarStatus" @slideDownHideUp>
   <div class="ms-2">
     <p class="text-color">Insinia</p>
   </div>
@@ -9,11 +9,13 @@
     <a href="/login" class="mx-2 link-color text-decoration-none">Login</a>
   </div>
   <div class="me-2">
-    <p class="text-color">Login</p>
+    <p class="text-color">
+
+    </p>
   </div>
 </div>
 
-<div class="d-flex bg-color align-items-center justify-content-between bg-blur w-100 position-fixed top-0 p-2" *ngIf="navbarStatus" @slideDownHideUp>
+<div class="d-flex bg-color align-items-center justify-content-between border-bottom border-1 border-light position-fixed w-100 p-1 top-0 navbar-home" *ngIf="navbarStatus" @slideDownHideUp>
   <div class="ms-2">
     <p class="text-light">Insinia</p>
   </div>
@@ -24,105 +26,73 @@
     <a href="/login" class="mx-2 link-light text-decoration-none">Login</a>
   </div>
   <div class="me-2">
-    <p class="text-light">Login</p>
+    <p class="text-light">
+
+    </p>
   </div>
 </div>
 
-<div class="container-fluid fullscreen-section mb-5" id="section-land">
-  <div class="row top-20 justify-content-center">
-    <div class="col-xl-4 text-center me-5" id="welcome-image">
-      <img class="img-fluid home-hero" src="../../assets/svg/working.svg" alt="">
-    </div>
-    <div class="col-xl-4 text-start align-self-center" id="welcome">
-      <h1 class="text-color mb-2">Bienvenido a Inisnia</h1>
-      <p class="text-color mb-1">Insinia es un grupo que ha desarrollado la herramienta definitiva para los Rankings.<br> Tanto para uso escolar, casual y profesional.</p>
-      <p class="text-small text-muted-color mb-3">Disponible para navegador</p>
-      <a class="btn btn-color text-light py-sm-2 px-sm-3 rounded-pill shadow-sm me-2">Comienza</a>
-      <a class="btn btn-outline-color py-sm-2 px-sm-3 rounded-pill shadow-sm">Contáctanos</a>
-    </div>
-  </div>
-</div>
-
-<div class="container-fluid fullscreen-section">
-  <div class="row">
-    <div class="col-xxl mb-3">
-      <div class="card-custom shadow-sm text-light">
-        <div class="card-body">
-          <div class="row px-4">
-            <div class="col-6  align-self-center">
-              <h1><i class="bi bi-patch-question-fill me-2"></i>¿Qué ofrecemos?</h1>
-            </div>
-            <div class="col-6 text-end">
-              <img class="img-fluid home-hero-card" src="../../assets/svg/colaboration.svg">
-            </div>
+<div class="container rounded fullscreen-section skewed-bg pt-5" id="section-land">
+  <div class="container position-absolute top-25 px-5">
+      <div class="row gx-5 align-items-center">
+          <div class="col-lg-6 aos-init text-color aos-animate" data-aos="fade-up">
+              <h1>Bienvenido a Inisnia</h1>
+              <p>Insinia es un grupo que ha desarrollado la herramienta<br> definitiva para creación, edición y manejo de Rankings</p>
+              <p class="text-small text-muted-color mb-3">Disponible para navegador</p>
+              <div class="d-flex flex-column flex-sm-row">
+                  <a routerLink="/login" class="btn btn-lg btn-color text-light fw-500 me-sm-3 mb-3 mb-sm-0">Comienza<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right ms-2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                  <div class="btn btn-lg link-color fw-500">Contáctanos</div>
+              </div>
           </div>
-        </div>
+          <div class="col-lg-6 d-none d-lg-block aos-init aos-animate " data-aos="fade-up" data-aos-delay="100"><img class="img-fluid home-hero" src="../../assets/svg/working.svg"></div>
       </div>
-    </div>
   </div>
+</div>
+
+<div class="container" id="under-landing">
   <div class="row">
-    <div class="col-xxl mb-3">
-      <div class="card-custom-alt shadow-sm text-light">
-        <div class="card-body">
-          <div class="row">
-            <div class="col ps-4 align-self-center">
-              <h2><i class="bi bi-patch-check-fill me-2"></i>Organización</h2>
+    <div class="col mb-3">
+      <section>
+        <div class="text-center">
+          <h2 class="text-color mb-4">¿Qué ofrecemos?</h2>
+        </div>
+        <div class="row">
+          <div class="col-xl mb-3">
+            <section class="card-home-corp">
+              <h4 class="text-light"><i class="bi bi-building me-2"></i>Organización</h4>
               <p>Una genial manera de manejar organizar, cambiar y editar.</p>
-            </div>
-            <div class="col text-end">
-              <img class="img-fluid home-hero-card" src="../../assets/svg/manage.svg">
-            </div>
+            </section>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xxl mb-3">
-      <div class="card-custom shadow-sm text-light">
-        <div class="card-body">
-          <div class="row">
-            <div class="col g-0 text-start">
-              <img class="img-fluid home-hero-card" src="../../assets/svg/group.svg">
-            </div>
-            <div class="col pe-4 align-self-center text-end">
-              <h2><i class="bi bi-patch-check-fill me-2"></i>Colaboración</h2>
+          <div class="col-xl mb-3">
+            <section class="card-home-corp">
+              <h4 class="text-light"><i class="bi bi-people-fill me-2"></i>Colaboración</h4>
               <p>La colaboración parte de nosotros y asi lo hemos implementado.</p>
-            </div>
+            </section>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xxl mb-3">
-      <div class="card-custom-alt shadow-sm text-light">
-        <div class="card-body">
-          <div class="row px-4">
-            <div class="col-6  align-self-center">
-              <h2><i class="bi bi-patch-check-fill me-2"></i>Facilidad de uso</h2>
-              <p>Desarrollado en mente con para uso escolar, casual y profesional.</p>
-            </div>
-            <div class="col-6 text-end">
-              <img class="img-fluid home-hero-card" src="../../assets/svg/easy.svg">
-            </div>
+        <div class="row">
+          <div class="col">
+            <section class="card-home-corp">
+              <h4 class="text-light"><i class="bi bi-hand-thumbs-up-fill me-2"></i>Facilidad de uso</h4>
+              <p>Desarrollado en mente para un uso escolar, casual y profesional.</p>
+            </section>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </div>
 
-<div class="container-fluid fullscreen-section">
-  <div class="container-fluid fullscreen-section">
-    <div class="row position-relative top-25 justify-content-center">
-      <div class="col-8 text-center align-self-center pt-5">
-        <h1 class="text-color mb-2">Disponible para los navegadores</h1>
-        <p class="text-small text-muted-color mb-3">Utilizar las ultimas versiones de estos navegadores</p>
-        <a href="https://brave.com/es/download/"><img src="../../assets/brave.png" class="mx-3 browser" width="50" alt="brave icon"></a>
-        <a href="https://www.opera.com/es/download"><img src="../../assets/opera.png" class="mx-3 browser" width="50" alt="opera icon"></a>
-        <a href="https://www.google.com/intl/es/chrome"><img src="../../assets/chrome.png" class="mx-3 browser" width="50" alt="chrome icon"></a>
-        <a href="https://www.mozilla.org/es-ES/firefox/new/"><img src="../../assets/firefox.png" class="mx-3 browser" width="50" alt="firefox icon"></a>
-        <a href="https://www.microsoft.com/es-es/edge"><img src="../../assets/edge.png" class="mx-3 browser" width="50" alt="edge icon"></a>
-      </div>
+<div class="container-fluid" id="under-cards">
+  <div class="row justify-content-center mb-5">
+    <div class="col-8 text-center align-self-center pt-5">
+      <h1 class="text-color mb-2">Disponible para los navegadores</h1>
+      <p class="text-small text-muted-color mb-3"><i class="bi bi-exclamation-circle-fill me-2"></i>Es importante utilizar las últimas versiones de estos navegadores</p>
+      <a href="https://brave.com/es/download/"><img src="../../assets/brave.png" class="mx-3 browser" width="50" alt="brave icon"></a>
+      <a href="https://www.opera.com/es/download"><img src="../../assets/opera.png" class="mx-3 browser" width="50" alt="opera icon"></a>
+      <a href="https://www.google.com/intl/es/chrome"><img src="../../assets/chrome.png" class="mx-3 browser" width="50" alt="chrome icon"></a>
+      <a href="https://www.mozilla.org/es-ES/firefox/new/"><img src="../../assets/firefox.png" class="mx-3 browser" width="50" alt="firefox icon"></a>
+      <a href="https://www.microsoft.com/es-es/edge"><img src="../../assets/edge.png" class="mx-3 browser" width="50" alt="edge icon"></a>
     </div>
   </div>
 </div>
@@ -133,9 +103,7 @@
   </div>
 </div>
 
-<div class="container-fluid">
-  <div class="text-center text-color">
-    <p class="mb-1">Desarrollado por Insinia</p>
-    <p class="text-small text-muted-color">2022 © Insinia. Todos los derechos reservados.</p>
-  </div>
+<div class="text-center text-color">
+  <p class="mb-1">Desarrollado por Insinia</p>
+  <p class="text-small text-muted-color">2022 © Insinia. Todos los derechos reservados.</p>
 </div>

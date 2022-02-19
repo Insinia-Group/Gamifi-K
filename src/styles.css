@@ -4,7 +4,6 @@
     src: url(assets/Circular.woff2) format('woff2');
 }
 
-
 @keyframes float {
 	0% {
 		transform: translateY(0px);
@@ -100,7 +99,7 @@
 }
 
 .text-color {
-    color: var(--corp-color-one);
+    color: var(--corp-color-one) !important;
 }
 
 .link-color {

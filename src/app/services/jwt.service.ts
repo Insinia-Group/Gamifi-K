@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
-@Injectable({
+@Injectable( {
   providedIn: 'root'
-})
-export class JwtService {
+} )
+export class JwtService
+{
 
 
-  constructor(public JwtHelperService: JwtHelperService) {
-    
+  constructor ( public JwtHelperService: JwtHelperService )
+  {
+
   }
-  setToken  ( token:any ):void {
-  localStorage.setItem('token',token)
-  }
-  
-  getToken ():any {
-    return localStorage.getItem('token');
+  setToken ( token: any ): void
+  {
+    localStorage.setItem( 'token', token )
   }
 
-  remove ():void
+  getToken (): any
+  {
+    return localStorage.getItem( 'token' );
+  }
+
+  remove (): void
   {
     localStorage.removeItem( 'token' );
   }
 
-  exist ():boolean
+  exist (): boolean
   {
     if ( this.getToken() )
     {

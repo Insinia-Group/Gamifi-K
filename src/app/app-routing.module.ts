@@ -15,19 +15,19 @@ const routerOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, pathMatch: 'full'},
-  {path: 'about', component: AboutComponent, pathMatch: 'full'},
-  {path: 'login', component: LoginComponent, pathMatch: 'full' },
-  {path: 'pagina-usuario', component: UserPageComponent, pathMatch: 'full'},
-  {path: '404', component: NotFoundComponent, pathMatch: 'full'},
-  {path: 'register',  component: RegisterComponent, pathMatch: 'full'},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', redirectTo: '/404'}
+  { path: 'home', component: HomeComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'pagina-usuario', component: UserPageComponent, pathMatch: 'full' },
+  { path: '404', component: NotFoundComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent, pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/404' }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes, routerOptions)],
-  exports: [RouterModule]
-})
+@NgModule( {
+  imports: [ RouterModule.forRoot( routes, routerOptions ) ],
+  exports: [ RouterModule ]
+} )
 
 export class AppRoutingModule { }

@@ -9,7 +9,7 @@ import { API } from '../models/api';
 import * as bcrypt from 'bcryptjs';
 import { fadeIn } from '../config/animations.config';
 
-@Injectable({
+@Injectable( {
   providedIn: "root"
 } )
 
@@ -17,131 +17,139 @@ import { fadeIn } from '../config/animations.config';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: [ './register.component.css' ],
-  animations: [fadeIn]
+  animations: [ fadeIn ]
 } )
-  
+
 export class RegisterComponent implements OnInit
 {
   public form: FormGroup;
-  userName: string="";
-  lastUserName: string ="";
+  userName: string = "";
+  lastUserName: string = "";
   nick: string = "";
   email: string;
-  emailVerify:string;
+  emailVerify: string;
   password: string;
-  passwordVerify:boolean;
-  password2: string="";
-  password2Verify:boolean;
+  passwordVerify: boolean;
+  password2: string = "";
+  password2Verify: boolean;
   dateBirth = new Date;
-  description:string="";
+  description: string = "";
   registerForm: FormGroup;
   submitted = false;
   valid: RegisterValidation;
-  samePass:boolean = false;
+  samePass: boolean = false;
   user: User;
   avatar: Blob;
-  dateJoined: Date = new Date(Date.now());
+  dateJoined: Date = new Date( Date.now() );
   api: API;
 
-  constructor ( private formBuilder: FormBuilder , private router:Router ,private request: HttpService)
+  constructor ( private formBuilder: FormBuilder, private router: Router, private request: HttpService )
   {
     this.api = new API;
     this.valid = new RegisterValidation();
-    
+
   }
-  
+
   get f () { return this.registerForm.controls; }
   ngOnInit (): void
   {
-      this.registerForm = this.formBuilder.group({
-      userName: ['',  [Validators.required, Validators.minLength(2),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$')]],
-      lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$') ] ],
-      userNick : [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-z0-9_]*$') ] ],  
-      email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
+    this.registerForm = this.formBuilder.group( {
+      userName: [ '', [ Validators.required, Validators.minLength( 2 ), Validators.maxLength( 25 ), Validators.pattern( '^[a-zA-Z ]*$' ) ] ],
+      lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ), Validators.maxLength( 25 ), Validators.pattern( '^[a-zA-Z ]*$' ) ] ],
+      userNick: [ '', [ Validators.required, Validators.minLength( 2 ), Validators.maxLength( 25 ), Validators.pattern( '^[a-z0-9_]*$' ) ] ],
+      email: [ '', [ Validators.required, Validators.email, Validators.pattern( '^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$' ) ] ],
+      password: [ '', [ Validators.required, Validators.minLength( 8 ), Validators.maxLength( 25 ) ] ],
       password2: [ '', [ Validators.required, Validators.minLength( 8 ), Validators.maxLength( 25 ) ] ],
       description: [ '' ],
-      dateBirth:[''],       
-  }, { 
-   validator: ConfirmedValidator('password', 'password2')
-      } 
-    ); 
+      dateBirth: [ '' ],
+    }, {
+      validator: ConfirmedValidator( 'password', 'password2' )
+    }
+    );
 
-    if(this.password == this.password2){
-      this.samePass=true;
-    }else{
-      this.samePass=false;
+    if ( this.password == this.password2 )
+    {
+      this.samePass = true;
+    } else
+    {
+      this.samePass = false;
     }
   }
- 
+
   firstFormActive: boolean = true;
   secondFormActive: boolean = false;
   thirdFormActive: boolean = false;
-   i = ConfirmedValidator('password', 'password2');
- 
-   validation()
-   {
-    if(this.password == this.password2){
-      this.samePass=true;
-    }else{
-      this.samePass=false;
+  i = ConfirmedValidator( 'password', 'password2' );
+
+  validation ()
+  {
+    if ( this.password == this.password2 )
+    {
+      this.samePass = true;
+    } else
+    {
+      this.samePass = false;
     }
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
-        return;
+    if ( this.registerForm.invalid )
+    {
+      return;
     }
-     
+
   }
-   nextOne ()
-   {
-     
-    if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
-      
-    /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
-     this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
-     this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value; */
-     this.firstFormActive = false;
-     this.secondFormActive = true;
+  nextOne ()
+  {
+
+    if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true )
+    {
+
+      /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
+       this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
+       this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value; */
+      this.firstFormActive = false;
+      this.secondFormActive = true;
     }
   }
 
   nextSecond ()
   {
-     /* this.email = (document.getElementById("email") as HTMLInputElement).value;
-     this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
-     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
-      if ( this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true) {
-        
-     this.secondFormActive = false;
-     this.thirdFormActive = true;
-      }
+    /* this.email = (document.getElementById("email") as HTMLInputElement).value;
+    this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
+    this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
+    if ( this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true )
+    {
+
+      this.secondFormActive = false;
+      this.thirdFormActive = true;
+    }
   }
-    backSecond ()
+  backSecond ()
   {
-     this.firstFormActive = true;
-     this.secondFormActive = false;
+    this.firstFormActive = true;
+    this.secondFormActive = false;
   }
-  backThird()
+  backThird ()
   {
- 
-     this.thirdFormActive = false;
-     this.secondFormActive = true;
-    
+
+    this.thirdFormActive = false;
+    this.secondFormActive = true;
+
   }
-  
+
   submmit ()
   {
 
     console.log( this.dateBirth );
     alert( "Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.dateBirth );
-    this.user = new User(1,this.nick,this.userName,this.lastUserName,this.emailVerify,this.description,this.password,this.dateBirth,this.avatar,"user",this.dateJoined,true );
-     
+    this.user = new User( 1, this.nick, this.userName, this.lastUserName, this.emailVerify, this.description, this.password, this.dateBirth, this.avatar, "user", this.dateJoined, true );
+
   }
-   goHome() {
-    this.router.navigate(['/home']);
+  goHome ()
+  {
+    this.router.navigate( [ '/home' ] );
   }
-  
+
   sendRegister ()
   {
     this.nick = this.registerForm.controls.userNick.value;
@@ -152,8 +160,8 @@ export class RegisterComponent implements OnInit
     this.description = this.registerForm.controls.description.value;
     this.dateBirth = this.registerForm.controls.dateBirth.value;
 
-    const salt = bcrypt.genSaltSync(10);
-    this.password = bcrypt.hashSync(this.password, 10);
+    const salt = bcrypt.genSaltSync( 10 );
+    this.password = bcrypt.hashSync( this.password, 10 );
     const user = {
       nick: this.nick,
       userName: this.userName,
@@ -163,15 +171,15 @@ export class RegisterComponent implements OnInit
       password: this.password,
       dateBirth: this.dateBirth,
       role: "user",
-      dateJoined: this.dateJoined.toISOString().split('T')[0],
-      status:1
+      dateJoined: this.dateJoined.toISOString().split( 'T' )[ 0 ],
+      status: 1
 
-      
+
     }
     console.log( user );
-    this.request.register(user);
-    
-    
+    this.request.register( user );
+
+
   }
 
 }

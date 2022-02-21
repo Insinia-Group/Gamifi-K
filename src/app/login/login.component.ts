@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { HttpService } from '../services/http.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(private request: HttpService) {
+  constructor(private request: HttpService,private jwt:JwtService) {
     this.request = request;
   }
 
@@ -25,12 +26,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logIn() {
+  async logIn() {
     const user = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     }
-    this.request.login(user);
+     await this.request.login( user );
+    console.log( this.jwt.getToken() );
+    this.jwt.remove();
   }
 
 }

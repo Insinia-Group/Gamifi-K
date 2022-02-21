@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { API } from '../models/api';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class HttpService {
   public api: API;
   public response: string
 
-  constructor(public http: HttpClient, public jwtHelper: JwtHelperService) {
+  constructor(public http: HttpClient, private jwt:JwtService) {
     this.api = new API();
   }
   /**
@@ -27,9 +28,10 @@ export class HttpService {
       };
 
       this.http.post<HttpResponse<any>>( this.api.toThisPath( '/login' ), user,{observe:'response'} ).subscribe(
-        (resp) => console.log(resp.headers.get('Authorization')?.split('"')[1]),
+        (resp) => this.jwt.setToken((resp.headers.get('Authorization')?.split('"')[1])),
         (err) => console.log(err)
       );
+
      
     } catch {
       console.log('Error')
@@ -43,6 +45,7 @@ export class HttpService {
         (data) => console.log(data),
         (err) => console.log(err)
       );
+
     } catch(e) {
       console.log(e)
     }

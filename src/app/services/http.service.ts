@@ -14,29 +14,32 @@ export class HttpService {
   constructor(public http: HttpClient, private jwt:JwtService) {
     this.api = new API();
   }
+
   /**
    * 
    * @param user any
    */
-  
-  login ( user: any ): any{
-    try
-    {
-      const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      observe: 'response' as 'response'
-      };
-
-      this.http.post<HttpResponse<any>>( this.api.toThisPath( '/login' ), user,{observe:'response'} ).subscribe(
-        (resp) => this.jwt.setToken((resp.headers.get('Authorization')?.split('"')[1])),
-        (err) => console.log(err)
+  async login ( user: any ): Promise<any>{
+    return new Promise((resolve, reject) => {
+      this.http.post<HttpResponse<any>>(this.api.toThisPath( '/login' ), user, { observe:'response' }).subscribe(
+        (resp) => {
+          console.log(resp.status)
+          const token = resp.headers.get('Authorization')?.split('"')[1];
+          this.jwt.setToken(token);
+          resolve(token);
+        },
+        (err) => {
+          reject({error: err});
+        }
       );
-
-     
-    } catch {
-      console.log('Error')
-    }
+      console.log('Error');
+    });
   }
+
+  /**
+   * 
+   * @param user 
+   */
   register(user: any): any {
     try {
       const headers = new HttpHeaders();
@@ -50,6 +53,10 @@ export class HttpService {
       console.log(e)
     }
   }
+
+  /**
+   * 
+   */
   status() {
     try {
       this.http.get(this.api.toThisPath('/status')).subscribe(
@@ -60,10 +67,15 @@ export class HttpService {
       console.log('Error')
     }
   }
-  pictureUpload (data:FormData,options:object)
-  {
+
+  /**
+   * 
+   * @param data
+   * @param options 
+   */
+  pictureUpload (data:FormData, options:object) {
     console.log( data );
-    this.http.post<any>( this.api.toThisPath( '/uploadAvatar' ),data,options ).subscribe(
+    this.http.post<any>( this.api.toThisPath( '/uploadAvatar' ),data, options ).subscribe(
       ( data ) => console.log( data ),
       ( err ) => console.log( err )
     );

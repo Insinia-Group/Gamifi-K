@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { API } from '../models/api';
@@ -17,10 +17,17 @@ export class HttpService {
    * 
    * @param user any
    */
+  
   login ( user: any ): any{
-    try {
-      this.http.post<any>(this.api.toThisPath('/login'), user).subscribe(
-        (resp) => console.log(resp.headers),
+    try
+    {
+      const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      observe: 'response' as 'response'
+      };
+
+      this.http.post<HttpResponse<any>>( this.api.toThisPath( '/login' ), user,{observe:'response'} ).subscribe(
+        (resp) => console.log(resp.headers.get('Authorization')?.split('"')[1]),
         (err) => console.log(err)
       );
      

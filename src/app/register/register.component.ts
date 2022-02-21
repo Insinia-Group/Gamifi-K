@@ -7,6 +7,7 @@ import { HttpService } from '../services/http.service';
 import { User } from '../models/user';
 import { API } from '../models/api';
 import * as bcrypt from 'bcryptjs';
+import { fadeIn } from '../config/animations.config';
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,8 @@ import * as bcrypt from 'bcryptjs';
 @Component( {
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: [ './register.component.css' ],
+  animations: [fadeIn]
 } )
   
 export class RegisterComponent implements OnInit
@@ -51,9 +53,6 @@ export class RegisterComponent implements OnInit
   get f () { return this.registerForm.controls; }
   ngOnInit (): void
   {
-
-    
-
       this.registerForm = this.formBuilder.group({
       userName: ['',  [Validators.required, Validators.minLength(2),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$')]],
       lastUserName: [ '', [ Validators.required, Validators.minLength( 2 ),Validators.maxLength(25),Validators.pattern( '^[a-zA-Z ]*$') ] ],
@@ -62,13 +61,10 @@ export class RegisterComponent implements OnInit
       password: ['', [Validators.required, Validators.minLength(8),Validators.maxLength(25)]],
       password2: [ '', [ Validators.required, Validators.minLength( 8 ), Validators.maxLength( 25 ) ] ],
       description: [ '' ],
-      dateBirth:[''],
-    
-         
+      dateBirth:[''],       
   }, { 
    validator: ConfirmedValidator('password', 'password2')
-      }
-        
+      } 
     ); 
 
     if(this.password == this.password2){
@@ -93,21 +89,15 @@ export class RegisterComponent implements OnInit
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
-     
         return;
-      
     }
-
-
      
   }
    nextOne ()
    {
-    
      
     if ( this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
       
-   
     /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
      this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
      this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value; */

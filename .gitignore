@@ -5,6 +5,7 @@
 /dist
 /tmp
 /out-tsc
+.vscode
 # Only exists if Bazel was run
 /bazel-out
 

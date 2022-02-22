@@ -64,7 +64,7 @@ export class UserPageComponent implements OnInit {
   test() {
     const fileList: FileList = this.pictureProfile.nativeElement.files;
     const formData: FormData = new FormData();
-    const headers = new HttpHeaders({
+    const headers = new Headers({
       'Content-Type': 'miltipart/form-data',
       'Accept': 'application/json',
       'Authorization': this.jwt.getToken(),
@@ -77,13 +77,10 @@ export class UserPageComponent implements OnInit {
     const options = {
       headers: headers
     };
+
+    console.log(formData.getAll('file'));
     this.http.pictureUpload(formData, options);
-
-
-    console.log(this.pictureProfile.nativeElement.files[0])
   }
-
-
 
   ngOnInit(): void {
     console.log(this.http.getHeaderWhithToken(this.jwt.getToken()));

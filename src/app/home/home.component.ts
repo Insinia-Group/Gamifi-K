@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { slideIn, fadeIn, slideInOut, slideDownHideUp } from '../config/animations.config';
-import { HttpService } from '../services/http.service';
+import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {Observable, Subscription} from 'rxjs';
+import {slideIn, fadeIn, slideInOut, slideDownHideUp} from '../config/animations.config';
+import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +25,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   @ViewChild('go-up') goup: ElementRef;
-  
+
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
     if (window.scrollY >= 250) {
@@ -47,5 +47,5 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
   }
 
-  
+
 }

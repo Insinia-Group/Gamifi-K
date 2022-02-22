@@ -1,5 +1,4 @@
-export interface Usuario
-{
+export interface Usuario {
     name: string;
     lastName: string;
     nick: string;
@@ -10,10 +9,9 @@ export interface Usuario
 }
 
 
-export interface UsuarioRanking
-{
+export interface UsuarioRanking {
     name: string;
     lastName: string;
-    position:number;
-   
+    position: number;
+
 }

@@ -39,25 +39,23 @@ export class HttpService {
   }
 
   /**
-   * 
+   * Making a request with a register data.
    * @param user 
    */
   register(user: any): any {
     try {
-      const headers = new HttpHeaders();
-      headers.append('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
       this.http.post(this.api.toThisPath('/register'), user, {headers: headers}).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
-
     } catch (e) {
       console.log(e)
     }
   }
 
   /**
-   * 
+   * Checks status with the API.
    */
   status() {
     try {
@@ -71,7 +69,7 @@ export class HttpService {
   }
 
   /**
-   * 
+   * Makes a HTTP request to the API to upload an image.
    * @param data
    * @param options 
    */
@@ -81,17 +79,31 @@ export class HttpService {
       (data) => console.log(data),
       (err) => console.log(err)
     );
-
   }
 
+  /**
+   * Sets multiples headers with one method.
+   * @param names 
+   * @param values 
+   * @param isHTTP 
+   * @returns 
+   */
+  createHeader(names: string[], values: string[], isHTTP: boolean): any {
+    let headers: any;
+    if (isHTTP) {
+      headers = new HttpHeaders();
+    } else {
+      headers = new Headers();
+    }
 
-
-
-  getHeaderWhithToken(token: any): HttpHeaders {
-
-
-    const header = new HttpHeaders().set('Authorization', token);
-    return header;
+    if (names.length === values.length) {
+      names.forEach((name, index) => {
+        headers.append(name, values[index])
+      });
+    } else {
+      throw 'Not the same amount of names ' + names.length + ' values ' + values.length;
+    }
+    return headers;
   }
 
 }

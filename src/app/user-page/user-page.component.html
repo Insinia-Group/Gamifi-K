@@ -177,6 +177,14 @@
           style="width: 105%; height: 20vh"
           *ngIf="filtroDestacados == item.tipo || filtroDestacados == 'todo'"
         >
+          <!-- <div
+            class="row d-flex justify-content-center"
+            *ngIf="notificationEmpty; else notifications"
+          >
+            <div
+              class="col d-flex justify-content-center icono-destacados"
+            ></div>
+          </div> -->
           <div class="row d-flex justify-content-center">
             <div class="col d-flex justify-content-center icono-destacados">
               <img class="img-fluid home-hero" src="{{ item.logo }}" alt="" />
@@ -198,6 +206,8 @@
         <br />
       </div>
     </div>
+    <input #pictureProfile type="file" name="pictureProfile" />
+    <button (click)="test()"></button>
   </div>
 </div>
 <div class="row" style="height: 48vh"></div>

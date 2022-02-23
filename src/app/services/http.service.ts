@@ -73,9 +73,8 @@ export class HttpService {
    * @param data
    * @param options 
    */
-  pictureUpload(data: FormData, options: object) {
-    console.log(options);
-    this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data, options).subscribe(
+  pictureUpload(data: FormData) {
+    this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data).subscribe(
       (data) => console.log(data),
       (err) => console.log(err)
     );

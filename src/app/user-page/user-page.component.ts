@@ -64,26 +64,17 @@ export class UserPageComponent implements OnInit {
   test() {
     const fileList: FileList = this.pictureProfile.nativeElement.files;
     const formData: FormData = new FormData();
-    const headers = new Headers({
-      'Content-Type': 'miltipart/form-data',
-      'Accept': 'application/json',
-      'Authorization': this.jwt.getToken(),
-    });
+
 
     formData.append('file', fileList[0], fileList[0].name);
 
-    console.log(headers);
 
-    const options = {
-      headers: headers
-    };
 
-    console.log(formData.getAll('file'));
-    this.http.pictureUpload(formData, options);
+    this.http.pictureUpload(formData);
   }
 
   ngOnInit(): void {
-    console.log(this.http.getHeaderWhithToken(this.jwt.getToken()));
+    console.log(this.http.createHeader(['Authorization'], [this.jwt.getToken()], false));
     this.selectedRanking = this.listaRankings[0];
 
     /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
@@ -101,7 +92,6 @@ export class UserPageComponent implements OnInit {
   destacadosSelected(tipo: string) {
     this.filtroDestacados = tipo;
   }
-
 
 
 }

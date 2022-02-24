@@ -85,7 +85,7 @@ export class HttpService {
    * @param names 
    * @param values 
    * @param isHTTP 
-   * @returns 
+   * @returns any (Headers | HttpHeader);
    */
   createHeader(names: string[], values: string[], isHTTP: boolean): any {
     let headers: any;
@@ -104,5 +104,4 @@ export class HttpService {
     }
     return headers;
   }
-
 }

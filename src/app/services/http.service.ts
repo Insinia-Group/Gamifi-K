@@ -16,7 +16,7 @@ export class HttpService {
   }
 
   /**
-   * 
+   * Makes a request with the login data to get access.
    * @param user any
    */
   async login(user: any): Promise<any> {
@@ -81,7 +81,7 @@ export class HttpService {
   }
 
   /**
-   * Sets multiples headers with one method.
+   * Sets multiples headers.
    * @param names 
    * @param values 
    * @param isHTTP 

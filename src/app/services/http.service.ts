@@ -19,12 +19,12 @@ export class HttpService {
    * Makes a request with the login data to get access.
    * @param user any
    */
-  async login(user: any): Promise<any> {
+  login(user: any): any {
     return new Promise((resolve, reject) => {
       this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, {observe: 'response'}).subscribe(
-        (resp) => {
-          if (resp.status == 200 && resp.statusText == 'OK') {
-            const token = resp.headers.get('Authorization')?.split('"')[1];
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            const token = res.headers.get('Authorization')?.split('"')[1];
             this.jwt.setToken(token);
             resolve(token);
           } else {
@@ -32,7 +32,7 @@ export class HttpService {
           }
         },
         (err) => {
-          reject({error: err});
+          reject('Error with the login');
         }
       );
     });
@@ -57,15 +57,21 @@ export class HttpService {
   /**
    * Checks status with the API.
    */
-  status() {
-    try {
-      this.http.get(this.api.toThisPath('/status')).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
+  status(): any {
+    return new Promise((resolve, reject) => {
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/status'), {observe: 'response'}).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          reject('Error with the status.' + err);
+        }
       );
-    } catch {
-      console.log('Error')
-    }
+    });
   }
 
   /**

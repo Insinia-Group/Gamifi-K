@@ -19,7 +19,6 @@ export class HomeComponent implements AfterViewInit {
 
   constructor(public request: HttpService) {
     this.request = request;
-    this.request.status();
     this.goupStatus = false;
     this.navbarStatus = false;
   }
@@ -37,6 +36,11 @@ export class HomeComponent implements AfterViewInit {
     }
   };
 
+  /**
+   * 
+   * @param element 
+   * @returns 
+   */
   isElementOnScreen(element: ElementRef): Boolean {
     const rect = element.nativeElement.getBoundingClientRect();
     const topShown = rect.top >= 0;
@@ -44,8 +48,11 @@ export class HomeComponent implements AfterViewInit {
     return topShown && bottomShown;
   }
 
-  ngAfterViewInit() {
+  /**
+   * 
+   */
+  async ngAfterViewInit() {
+    const test = await this.request.status();
+    console.log('status:', test)
   }
-
-
 }

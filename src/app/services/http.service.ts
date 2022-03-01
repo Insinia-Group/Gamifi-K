@@ -119,10 +119,10 @@ export class HttpService {
    * 
    */
 
-  getRankingByUser(idUser: any) {
+  getRankingByUser(idUser: FormData) {
     try {
       const headers = this.createHeader(['Content-type'], ['text/html; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/getRankingByUser'), idUser, {headers: headers}).subscribe(
+      this.http.post<any>(this.api.toThisPath('/ranking'), idUser).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -132,3 +132,21 @@ export class HttpService {
   }
 
 }
+
+// getRankingByUser(idUser: FormData) {
+//   return new Promise((resolve, reject) => {
+//     this.http.post<HttpResponse<any>>(this.api.toThisPath('/getRankingByUser'), idUser, {observe: 'response'}).subscribe(
+//       (res) => {
+//         console.log(res);
+//         if (res.status == 200 && res.statusText == 'OK') {
+//           resolve(res.body);
+//         } else {
+//           reject('Server Error');
+//         }
+//       },
+//       (err) => {
+//         reject('Error with the status.' + err);
+//       }
+//     );
+//   });
+// }

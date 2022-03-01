@@ -94,8 +94,9 @@ export class UserPageComponent implements OnInit {
   }
 
   getRankingByUser() {
-    this.http.getRankingByUser(18);
-
+    const idUser: FormData = new FormData();
+    idUser.append("idUser", "18")
+    this.http.getRankingByUser(idUser);
   }
 
 }

@@ -93,6 +93,9 @@ export class UserPageComponent implements OnInit {
     this.filtroDestacados = tipo;
   }
 
+  getRankingByUser() {
+    this.http.getRankingByUser(18);
+
+  }
 
 }
-

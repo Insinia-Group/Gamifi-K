@@ -110,4 +110,25 @@ export class HttpService {
     }
     return headers;
   }
+
+
+  /**
+   * @idUser
+   * 
+   * 
+   * 
+   */
+
+  getRankingByUser(idUser: any) {
+    try {
+      const headers = this.createHeader(['Content-type'], ['text/html; charset=UTF-8'], true);
+      this.http.post(this.api.toThisPath('/getRankingByUser'), idUser, {headers: headers}).subscribe(
+        (data) => console.log(data),
+        (err) => console.log(err)
+      );
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
 }

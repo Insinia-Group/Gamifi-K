@@ -11,16 +11,22 @@ import {JwtService} from '../services/jwt.service';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(public jwt: JwtService) {}
+  constructor(private jwt: JwtService) {}
 
+  /**
+   * Set a Header Authorization to every request if the token exists.
+   * @param request 
+   * @param next 
+   * @returns 
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-
-    request = request.clone({
-      setHeaders: {
-        Authorization: this.jwt.getToken()
-      }
-    });
-
+    if (this.jwt.exist()) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: this.jwt.getToken()
+        }
+      });
+    }
     return next.handle(request);
   }
 }

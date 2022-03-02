@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')?.value
     }
     await this.request.login(user);
+    await this.request.status();
   }
 
 

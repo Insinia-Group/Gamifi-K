@@ -32,6 +32,7 @@ export class HttpService {
           }
         },
         (err) => {
+          console.log(err)
           reject('Error with the login');
         }
       );
@@ -61,6 +62,7 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/status'), {observe: 'response'}).subscribe(
         (res) => {
+          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
           } else {

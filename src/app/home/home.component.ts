@@ -52,7 +52,7 @@ export class HomeComponent implements AfterViewInit {
    * 
    */
   async ngAfterViewInit() {
-    const test = await this.request.status();
-    console.log('status:', test)
+    const status = await this.request.status().then();
+    console.log(status);
   }
 }

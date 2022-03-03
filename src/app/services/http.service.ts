@@ -24,15 +24,16 @@ export class HttpService {
       this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, {observe: 'response'}).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            const token = res.headers.get('Authorization')?.split('"')[1];
-            this.jwt.setToken(token);
-            resolve(token);
+            if (res.headers.get('Authorization')) {
+              const token = res.headers.get('Authorization')?.split('"')[1];
+              this.jwt.setToken(token);
+              resolve(token);
+            }
           } else {
             reject('Server Error');
           }
         },
         (err) => {
-          console.log(err)
           reject('Error with the login');
         }
       );
@@ -62,7 +63,6 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/status'), {observe: 'response'}).subscribe(
         (res) => {
-          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
           } else {

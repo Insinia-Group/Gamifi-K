@@ -32,13 +32,12 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')?.value
     }
     await this.request.login(user);
-    await this.request.status();
   }
 
   fiveSeconds() {
-//     this.timeOut = true;
+    //     this.timeOut = true;
     setTimeout(() => {
-//       this.timeOut = false;
+      //       this.timeOut = false;
     }, 5000);
   }
 }

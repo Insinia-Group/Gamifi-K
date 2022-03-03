@@ -76,9 +76,7 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.http.createHeader(['Authorization'], [this.jwt.getToken()], false));
     this.selectedRanking = this.listaRankings[0];
-
-    /*  document.body.style.backgroundImage = " linear-gradient(180deg, rgba(109, 48, 243, 1) 0%,rgba(0, 0, 0, 0) 100%)" */
-
+    this.http.getProfile();
   }
 
 
@@ -93,10 +91,8 @@ export class UserPageComponent implements OnInit {
     this.filtroDestacados = tipo;
   }
 
-  getRankingByUser() {
-    const idUser: FormData = new FormData();
-    idUser.append("idUser", "18")
-    this.http.getRankingByUser(idUser);
+  getRankings() {
+    this.http.getRankings();
   }
 
 }

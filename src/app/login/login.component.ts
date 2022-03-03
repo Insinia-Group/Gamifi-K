@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   fiveSeconds() {
 //     this.timeOut = true;
-    setInterval(() => {
+    setTimeout(() => {
 //       this.timeOut = false;
     }, 5000);
   }

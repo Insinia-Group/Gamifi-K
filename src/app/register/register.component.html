@@ -18,6 +18,8 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
+                autocomplete="off"
+                autocomplete="off"
                 id="name"
                 type="text"
                 class="form-control"
@@ -33,17 +35,17 @@
 
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-              <div
-                *ngIf="submitted && f.userName.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.userName.errors.required">
-                  El nombre es obligatorio
-                </div>
-                <div *ngIf="f.userName.errors.pattern">
-                  Los nombres solo tienen letras.
-                </div>
-                <div *ngIf="f.userName.errors.minlength">Nombre invalido</div>
+              <div *ngIf="registerForm.controls.userName.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.userName.touched &&
+                    registerForm.controls.userName.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>El nombre debe ser mas
+                  largo.</small
+                >
               </div>
             </div>
           </div>
@@ -52,6 +54,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
+                autocomplete="off"
                 id="lastName"
                 type="text"
                 class="form-control"
@@ -69,19 +72,26 @@
 
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-              <div
-                *ngIf="submitted && f.lastUserName.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.lastUserName.errors.pattern">
-                  Los apellidos solo tienen letras.
-                </div>
-                <div *ngIf="f.lastUserName.errors.required">
-                  El apellido es obligatorio
-                </div>
-                <div *ngIf="f.lastUserName.errors.minlength">
-                  Apellido invalido
-                </div>
+              <div *ngIf="registerForm.controls.lastUserName.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.lastUserName.touched &&
+                    registerForm.controls.lastUserName.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>El Apellido debe ser mas
+                  largo.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.lastUserName.touched &&
+                    registerForm.controls.lastUserName.errors['maxLength']
+                  "
+                  ><i class="bi bi-x me-2"></i>El Apellido es muy largo.</small
+                >
               </div>
             </div>
           </div>
@@ -90,6 +100,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputName"></label>
               <input
+                autocomplete="off"
                 id="nick"
                 type="text"
                 class="form-control"
@@ -107,17 +118,17 @@
 
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-              <div
-                *ngIf="submitted && f.userNick.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.userNick.errors.required">
-                  El Apodo es obligatorio
-                </div>
-                <div *ngIf="f.userNick.errors.pattern">
-                  Caracteres prohibidos
-                </div>
-                <div *ngIf="f.userNick.errors.minlength">Apodo invalido</div>
+              <div *ngIf="registerForm.controls.userNick.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.userNick.touched &&
+                    registerForm.controls.userNick.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>El nick debe ser mas
+                  largo.</small
+                >
               </div>
             </div>
           </div>
@@ -160,11 +171,26 @@
 
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">
-                  El correo es obligatorio
-                </div>
-                <div *ngIf="f.email.errors.minlength">Correo invalido</div>
+              <div *ngIf="registerForm.controls.email.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.email.touched &&
+                    registerForm.controls.email.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>El correo debe ser mas
+                  largo.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    registerForm.controls.email.touched &&
+                    registerForm.controls.email.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>El correo es obligatorio.</small
+                >
               </div>
             </div>
           </div>
@@ -172,6 +198,7 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inpuPassword"></label>
               <input
+                autocomplete="off"
                 type="password"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -203,10 +230,10 @@
             <div class="col-5 inputsRegister" (click)="validation()">
               <label for="inputPassword2"></label>
               <input
+                autocomplete="off"
                 type="password"
                 class="form-control"
                 id="password2"
-                aria-describedby="name"
                 [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
                 formControlName="password2"
                 placeholder="Repite la contraseña"
@@ -228,7 +255,7 @@
                 <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
  -->
 
-                <div *ngIf="i">Las contraseñas deben coincidir.</div>
+                <div *ngIf="match">Las contraseñas deben coincidir.</div>
               </div>
             </div>
           </div>
@@ -262,9 +289,11 @@
             <div class="col-5 inputsRegister">
               <label for="inputName"></label>
               <input
+                autocomplete="off"
                 formControlName="dateBirth"
                 type="date"
                 class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.dateBirth.errors }"
                 id="dateBirth"
                 aria-describedby="dateBirth"
                 placeholder="Fecha de nacimiento"
@@ -272,6 +301,7 @@
               <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
             </div>
+            <div *ngIf="futureDate">ddasc</div>
           </div>
 
           <div class="row justify-content-center">

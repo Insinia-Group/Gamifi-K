@@ -13,7 +13,9 @@ export class HttpService {
 
   constructor(public http: HttpClient, private jwt: JwtService) {
     this.api = new API();
-    this.observe = this.observe;
+    this.observe = {
+      observe: 'response'
+    };
   }
 
   /**
@@ -24,6 +26,7 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, this.observe).subscribe(
         (res) => {
+          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             if (res.headers.get('Authorization')) {
               const token = res.headers.get('Authorization')?.split('"')[1];
@@ -114,7 +117,6 @@ export class HttpService {
     return headers;
   }
 
-
   getRankings() {
     try {
       this.http.get(this.api.toThisPath('/rankings'), this.observe).subscribe(
@@ -130,6 +132,7 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
+          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
           } else {
@@ -137,7 +140,8 @@ export class HttpService {
           }
         },
         (err) => {
-          reject('Error with the status.' + err);
+          console.log(err)
+          reject('Error with the status.');
         }
       );
     });

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {fadeIn} from '../config/animations.config';
-import {HttpService} from '../services/http.service';
-import {JwtService} from '../services/jwt.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { fadeIn } from '../config/animations.config';
+import { HttpService } from '../services/http.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,10 @@ import {JwtService} from '../services/jwt.service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public disabledButton: boolean;
 
-  constructor(private request: HttpService, private jwt: JwtService) {
+  constructor(private request: HttpService, private jwt: JwtService, private router: Router) {
+    this.disabledButton = false;
     this.request = request;
   }
 
@@ -26,18 +29,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async logIn() {
+  async logIn(): Promise<void> {
     const user = {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     }
     await this.request.login(user);
-  }
-
-  fiveSeconds() {
-    //     this.timeOut = true;
-    setTimeout(() => {
-      //       this.timeOut = false;
-    }, 5000);
+    this.jwt.redirectTo('/profile');
   }
 }

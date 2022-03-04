@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtService {
+
+  constructor(private router: Router) {}
 
   /**
    * Saves the token in the localStorage.
@@ -37,6 +40,13 @@ export class JwtService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  redirectTo(path: string) {
+    if (path.charAt(0) !== '/') path = '/' + path;
+    if (this.exist()) {
+      this.router.navigate([path]);
     }
   }
 }

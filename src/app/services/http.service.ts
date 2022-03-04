@@ -1,8 +1,7 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {API} from '../models/api';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +9,11 @@ import {JwtService} from './jwt.service';
 export class HttpService {
   public api: API;
   public response: string
+  protected observe: object;
 
   constructor(public http: HttpClient, private jwt: JwtService) {
     this.api = new API();
+    this.observe = this.observe;
   }
 
   /**
@@ -21,7 +22,7 @@ export class HttpService {
    */
   login(user: any): any {
     return new Promise((resolve, reject) => {
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, {observe: 'response'}).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             if (res.headers.get('Authorization')) {
@@ -47,7 +48,7 @@ export class HttpService {
   register(user: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/register'), user, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/register'), user, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -61,7 +62,7 @@ export class HttpService {
    */
   status(): any {
     return new Promise((resolve, reject) => {
-      this.http.get<HttpResponse<any>>(this.api.toThisPath('/status'), {observe: 'response'}).subscribe(
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/status'), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
@@ -82,7 +83,7 @@ export class HttpService {
    * @param options 
    */
   pictureUpload(data: FormData) {
-    this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data).subscribe(
+    this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data, this.observe).subscribe(
       (data) => console.log(data),
       (err) => console.log(err)
     );
@@ -114,17 +115,9 @@ export class HttpService {
   }
 
 
-  /**
-   * @idUser
-   * 
-   * 
-   * 
-   */
-
   getRankings() {
     try {
-      const headers = this.createHeader(['Content-type'], ['text/html; charset=UTF-8'], true);
-      this.http.get(this.api.toThisPath('/rankings')).subscribe(
+      this.http.get(this.api.toThisPath('/rankings'), this.observe).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -134,16 +127,19 @@ export class HttpService {
   }
 
   getProfile() {
-    try {
-      const headers = this.createHeader(['Content-type'], ['text/html; charset=UTF-8'], true);
-      this.http.get(this.api.toThisPath('/profile')).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
+    return new Promise((resolve, reject) => {
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          reject('Error with the status.' + err);
+        }
       );
-    } catch (e) {
-      console.log(e)
-    }
+    });
   }
-
 }
-

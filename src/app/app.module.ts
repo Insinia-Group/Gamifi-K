@@ -10,8 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AboutComponent} from './about/about.component';
-import {JwtInterceptor, JwtModule} from "@auth0/angular-jwt";
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {jwtConfig} from './config/jwt.config';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {UserPageComponent} from './user-page/user-page.component';
@@ -33,7 +32,6 @@ import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
     UserPageComponent
   ],
   imports: [
-    JwtModule,
     MatTableModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -41,9 +39,6 @@ import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    JwtModule.forRoot({
-      config: jwtConfig
-    }),
     FormsModule,
     MatInputModule
   ],

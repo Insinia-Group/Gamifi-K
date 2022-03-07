@@ -1,5 +1,15 @@
 <div
-  class="d-flex bg-blur align-items-center justify-content-between position-fixed w-100 top-0 p-1 navbar-home"
+  class="
+    d-flex
+    bg-blur
+    align-items-center
+    justify-content-between
+    position-fixed
+    w-100
+    top-0
+    p-1
+    navbar-home
+  "
 >
   <div class="ms-2">
     <p class="text-color">Insinia</p>
@@ -21,8 +31,30 @@
   </div>
 </div>
 
-<div class="container-fluid bg-color">
-    <div class="row">
-
+<div class="container bg-color text-light mt-5">
+  <div class="row justify-content-center">
+    <div *ngIf="profile" class="col bg-danger">{{profile.name + profile}}</div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <div class="row">
+        <p>Profile</p>
+        <div class="col">
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+      </div>
     </div>
+    <div class="col-8">
+      <p>Profile</p>
+      <div class="col">
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+    <div class="col-2">
+      <p>Profile</p>
+      <div class="col">
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </div>
 </div>

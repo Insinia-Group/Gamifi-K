@@ -11,336 +11,326 @@
     <!-- <div class="col-1"></div> -->
     <h1 class="titulo">REGISTRO</h1>
     <a [routerLink]="['/login']" class="loginLink">¿Ya tienes cuenta?</a>
-    <form [formGroup]="registerForm">
-      <div class="form form-group" *ngIf="firstFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inputName"></label>
-              <input
-                autocomplete="off"
-                autocomplete="off"
-                id="name"
-                type="text"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
-                formControlName="userName"
-                placeholder="Nombre"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    !f.userName.errors == true ? '#44df07' : 'red'
-                }"
-              />
 
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+    <div class="container bg-white container-register justify-content-center">
+      <form [formGroup]="registerForm">
+        <div
+          class="form form-group justify-content-center"
+          *ngIf="firstFormActive"
+        >
+          <div class="col-12 rounded-3 bg-registro justify-content-center">
+            <div class="row justify-content-center" id="registro">
+              <div class="col-5 inputsRegister justify-content-center">
+                <label for="inputName"></label>
+                <input
+                  autocomplete="off"
+                  id="name"
+                  type="text"
+                  class="form-control"
+                  formControlName="userName"
+                  placeholder="Nombre"
+                />
+
+                <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
-              <div *ngIf="registerForm.controls.userName.errors">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.userName.touched &&
-                    registerForm.controls.userName.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-2"></i>El nombre debe ser mas
-                  largo.</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inputName"></label>
-              <input
-                autocomplete="off"
-                id="lastName"
-                type="text"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.lastUserName.errors }"
-                formControlName="lastUserName"
-                placeholder="Apellido"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    submitted == true && !f.lastUserName.errors == true
-                      ? '#44df07'
-                      : 'red'
-                }"
-              />
-
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
--->
-              <div *ngIf="registerForm.controls.lastUserName.errors">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.lastUserName.touched &&
-                    registerForm.controls.lastUserName.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-2"></i>El Apellido debe ser mas
-                  largo.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.lastUserName.touched &&
-                    registerForm.controls.lastUserName.errors['maxLength']
-                  "
-                  ><i class="bi bi-x me-2"></i>El Apellido es muy largo.</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inputName"></label>
-              <input
-                autocomplete="off"
-                id="nick"
-                type="text"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.userNick.errors }"
-                formControlName="userNick"
-                placeholder="Apodo"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    submitted == true && !f.userNick.errors == true
-                      ? '#44df07'
-                      : 'red'
-                }"
-              />
-
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
--->
-              <div *ngIf="registerForm.controls.userNick.errors">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.userNick.touched &&
-                    registerForm.controls.userNick.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-2"></i>El nick debe ser mas
-                  largo.</small
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="row justify-content-center pt-4 pb-4">
-            <div class="col-5 inputsRegister" style="text-align: center">
-              <label for="inputNick"></label>
-              <button
-                (click)="nextOne()"
-                type="submit"
-                class="btn btn-primary bi bi-arrow-bar-right"
-                id="nextFirstForm"
-                aria-describedby="submit"
-              ></button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="form form-group" *ngIf="secondFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inputMail"></label>
-              <input
-                type="email"
-                id="email"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                formControlName="email"
-                placeholder="Correo"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    submitted == true && !f.email.errors == true
-                      ? '#44df07'
-                      : 'red'
-                }"
-              />
-
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
--->
-              <div *ngIf="registerForm.controls.email.errors">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.email.touched &&
-                    registerForm.controls.email.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-2"></i>El correo debe ser mas
-                  largo.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    registerForm.controls.email.touched &&
-                    registerForm.controls.email.errors['required']
-                  "
-                  ><i class="bi bi-x me-2"></i>El correo es obligatorio.</small
-                >
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inpuPassword"></label>
-              <input
-                autocomplete="off"
-                type="password"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                id="password"
-                formControlName="password"
-                placeholder="Contraseña"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    submitted == true && !f.password.errors == true
-                      ? '#44df07'
-                      : 'red'
-                }"
-              />
-              <div
-                *ngIf="submitted && f.password.errors"
-                class="invalid-feedback"
-              >
-                <div *ngIf="f.password.errors.required">
-                  La contraseña es obligatoria
+                <div *ngIf="!registerForm.controls.userName.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Nombre.</small
+                  >
                 </div>
-                <div *ngIf="f.password.errors.minlength">
-                  Debe tener 8 caracteres como minimo
+                <div *ngIf="registerForm.controls.userName.errors">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.userName.touched &&
+                      registerForm.controls.userName.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-2"></i>El nombre debe ser mas
+                    largo.</small
+                  >
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 inputsRegister" (click)="validation()">
-              <label for="inputPassword2"></label>
-              <input
-                autocomplete="off"
-                type="password"
-                class="form-control"
-                id="password2"
-                [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"
-                formControlName="password2"
-                placeholder="Repite la contraseña"
-                style="border-left: 4px solid"
-                [ngStyle]="{
-                  'border-left-color':
-                    submitted == true &&
-                    !f.password2.errors == true &&
-                    !f.password.errors == true
-                      ? '#44df07'
-                      : 'red'
-                }"
-              />
 
-              <div
-                *ngIf="f.password2.touched && f.password2.errors"
-                class="invalid-feedback"
-              >
-                <!--                 <div *ngIf="f.password2.errors.required">Password is required.</div>
- -->
+            <div class="row justify-content-center" id="registro">
+              <div class="col-5 inputsRegister" (click)="validation()">
+                <label for="inputName"></label>
+                <input
+                  autocomplete="off"
+                  id="lastName"
+                  type="text"
+                  class="form-control"
+                  formControlName="lastUserName"
+                  placeholder="Apellido"
+                />
+                <div *ngIf="!registerForm.controls.lastUserName.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Apellido.</small
+                  >
+                </div>
+                <div *ngIf="registerForm.controls.lastUserName.errors">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.lastUserName.touched &&
+                      registerForm.controls.lastUserName.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-2"></i>El Apellido debe ser mas
+                    largo.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.lastUserName.touched &&
+                      registerForm.controls.lastUserName.errors['maxLength']
+                    "
+                    ><i class="bi bi-x me-2"></i>El Apellido es muy
+                    largo.</small
+                  >
+                </div>
+              </div>
+            </div>
 
-                <div *ngIf="match">Las contraseñas deben coincidir.</div>
+            <div class="row justify-content-center" id="registro">
+              <div class="col-5 inputsRegister" (click)="validation()">
+                <label for="inputName"></label>
+                <input
+                  autocomplete="off"
+                  id="nick"
+                  type="text"
+                  class="form-control"
+                  formControlName="userNick"
+                  placeholder="Apodo"
+                />
+                <div *ngIf="!registerForm.controls.userNick.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Apodo.</small
+                  >
+                </div>
+                <div *ngIf="registerForm.controls.userNick.errors">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.userNick.touched &&
+                      registerForm.controls.userNick.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-2"></i>El nick debe ser mas
+                    largo.</small
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="row justify-content-center pt-4 pb-4">
+              <div class="col-5 inputsRegister" style="text-align: center">
+                <label for="inputNick"></label>
+                <button
+                  (click)="nextOne()"
+                  type="submit"
+                  class="btn btn-primary bi bi-arrow-bar-right"
+                  id="nextFirstForm"
+                  aria-describedby="submit"
+                ></button>
               </div>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-5 nextBackButtons">
-              <label for="inputNick"></label>
-              <button
-                (click)="backSecond()"
-                type="submit"
-                class="btn btn-primary bi bi-arrow-bar-left"
-                aria-describedby="name"
-              ></button>
-            </div>
-
-            <div class="col-5 nextBackButtons">
-              <label for="inputNick"></label>
-              <button
-                (click)="nextSecond()"
-                type="submit"
-                class="btn btn-primary bi bi-arrow-bar-right"
-                aria-describedby="name"
-              ></button>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="form" *ngIf="thirdFormActive">
-        <div class="col-12 rounded-3 bg-registro">
-          <div class="row justify-content-center" id="registro3">
-            <div class="col-5 inputsRegister">
-              <label for="inputName"></label>
-              <input
-                autocomplete="off"
-                formControlName="dateBirth"
-                type="date"
-                class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.dateBirth.errors }"
-                id="dateBirth"
-                aria-describedby="dateBirth"
-                placeholder="Fecha de nacimiento"
-              />
-              <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+        <div class="form form-group" *ngIf="secondFormActive">
+          <div class="col-12 rounded-3 bg-registro">
+            <div class="row justify-content-center" id="registro">
+              <div class="col-5 inputsRegister" (click)="validation()">
+                <label for="inputMail"></label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Correo"
+                />
+
+                <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
+                <div *ngIf="!registerForm.controls.email.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Correo.</small
+                  >
+                </div>
+                <div *ngIf="registerForm.controls.email.errors">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.email.touched &&
+                      registerForm.controls.email.errors['pattern']
+                    "
+                    ><i class="bi bi-x me-2"></i>Por favor, introduce un correo
+                    valido.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.email.touched &&
+                      registerForm.controls.email.errors['required']
+                    "
+                    ><i class="bi bi-x me-2"></i>El correo es
+                    obligatorio.</small
+                  >
+                </div>
+              </div>
             </div>
-            <div *ngIf="futureDate">ddasc</div>
-          </div>
+            <div class="row justify-content-center">
+              <div class="col-5 inputsRegister" (click)="validation()">
+                <label for="inpuPassword"></label>
+                <input
+                  autocomplete="off"
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Contraseña"
+                />
+                <div *ngIf="!registerForm.controls.password.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Contraseña.</small
+                  >
+                </div>
+                <div *ngIf="registerForm.controls.password.errors">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.password.touched &&
+                      registerForm.controls.password.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-2"></i>La contraseña debe tener 8
+                    caracteres minimo.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.password.touched &&
+                      registerForm.controls.password.errors['required']
+                    "
+                    ><i class="bi bi-x me-2"></i>La contraseña es
+                    obligatoria.</small
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center pb-4">
+              <div class="col-5 inputsRegister">
+                <label for="inputPassword2"></label>
+                <input
+                  autocomplete="off"
+                  type="password"
+                  class="form-control"
+                  id="password2"
+                  formControlName="password2"
+                  placeholder="Repite la contraseña"
+                />
+                <!-- <div *ngIf="!registerForm.controls.password2.errors">
+                  <small [@fadeIn] class="text-success"
+                    ><i class="bi bi-check-lg me-2 me-2"></i>Coinciden.</small
+                  >
+                </div> -->
+                <div *ngIf="registerForm.controls.password2.errors">
+                  <small [@fadeIn] class="text-danger"
+                    ><i class="bi bi-x me-2"></i>Las contraseñas no
+                    coinciden.</small
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-5 nextBackButtons">
+                <label for="inputNick"></label>
+                <button
+                  (click)="backSecond()"
+                  type="submit"
+                  class="btn btn-primary bi bi-arrow-bar-left"
+                  aria-describedby="name"
+                ></button>
+              </div>
 
-          <div class="row justify-content-center">
-            <div class="col-5">
-              <label for="inpuLastName"></label>
-              <textarea
-                name=""
-                id="description"
-                formControlName="description"
-                class="form-control"
-                rows="4"
-              ></textarea>
-            </div>
-          </div>
-          <div class="row justify-content-center pb-4"></div>
-          <div class="row justify-content-center pb-4">
-            <div class="col-5 nextBackButtons">
-              <label for="inputDescription"></label>
-              <button
-                (click)="backThird()"
-                type="submit"
-                class="btn btn-primary bi bi-arrow-bar-left"
-                id="dateBirth"
-                aria-describedby="dateBirth"
-              ></button>
-            </div>
-            <div class="col-5 nextBackButtons">
-              <label for="inputDescription"></label>
-              <button
-                (click)="sendRegister()"
-                type="submit"
-                class="btn btn-primary bi bi-send-check"
-                id="description"
-                aria-describedby="description"
-              ></button>
+              <div class="col-5 nextBackButtons">
+                <label for="inputNick"></label>
+                <button
+                  (click)="nextSecond()"
+                  type="submit"
+                  class="btn btn-primary bi bi-arrow-bar-right"
+                  aria-describedby="name"
+                ></button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
+
+        <div class="form" *ngIf="thirdFormActive">
+          <div class="col-12 rounded-3 bg-registro">
+            <div class="row justify-content-center" id="registro3">
+              <div class="col-5 inputsRegister">
+                <label for="inputName"></label>
+                <input
+                  autocomplete="off"
+                  formControlName="dateBirth"
+                  type="date"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.dateBirth.errors }"
+                  id="dateBirth"
+                  aria-describedby="dateBirth"
+                  placeholder="Fecha de nacimiento"
+                />
+                <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
+-->
+              </div>
+              <div *ngIf="futureDate">ddasc</div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-5">
+                <label for="inpuLastName"></label>
+                <textarea
+                  name=""
+                  id="description"
+                  formControlName="description"
+                  class="form-control"
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row justify-content-center pb-4"></div>
+            <div class="row justify-content-center pb-4">
+              <div class="col-5 nextBackButtons">
+                <label for="inputDescription"></label>
+                <button
+                  (click)="backThird()"
+                  type="submit"
+                  class="btn btn-primary bi bi-arrow-bar-left"
+                  id="dateBirth"
+                  aria-describedby="dateBirth"
+                ></button>
+              </div>
+              <div class="col-5 nextBackButtons">
+                <label for="inputDescription"></label>
+                <button
+                  (click)="sendRegister()"
+                  type="submit"
+                  class="btn btn-primary bi bi-send-check"
+                  id="description"
+                  aria-describedby="description"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

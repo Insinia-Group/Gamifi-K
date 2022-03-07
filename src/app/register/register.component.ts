@@ -1,5 +1,5 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
 import {RegisterValidation} from '../models/registerValidation';
 import {ConfirmedValidator, futureDate} from '../models/confirmed.validator';
 import {Router} from '@angular/router';
@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
   nick: string = "";
   email: string;
   emailVerify: string;
-  password: string;
+  password: string = "1";
   passwordVerify: boolean;
-  password2: string = "";
+  password2: string = "2";
   password2Verify: boolean;
   dateBirth = new Date;
   dateJoined = new Date;
@@ -58,14 +58,16 @@ export class RegisterComponent implements OnInit {
       userNick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-z0-9_]*$')]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
-      password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
+      password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.validate.bind(this)]),
       description: new FormControl(''),
       dateBirth: new FormControl(''),
 
     }, {
-      // validator: ConfirmedValidator('password', 'password2'),
+      // validators: ConfirmedValidator('password', 'password2'),
+
     }
     );
+
 
     if (this.password == this.password2) {
       this.samePass = true;
@@ -82,6 +84,14 @@ export class RegisterComponent implements OnInit {
   match = ConfirmedValidator('password', 'password2');
 
 
+
+  validate(control: AbstractControl): {[key: string]: any} | null {
+    if (control.value !== this.password) {
+      return {'matchPasswords': true};
+    }
+    return null;
+  }
+
   validation() {
     if (this.password == this.password2) {
       this.samePass = true;
@@ -96,7 +106,7 @@ export class RegisterComponent implements OnInit {
 
   }
   nextOne() {
-    if (this.submitted == true && !this.f.userNick.errors == true && !this.f.userName.errors == true && !this.f.lastUserName.errors == true) {
+    if (!this.registerForm.controls.userNick.errors && !this.registerForm.controls.userName.errors && !this.registerForm.controls.lastUserName.errors) {
 
       /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
        this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
@@ -110,7 +120,7 @@ export class RegisterComponent implements OnInit {
     /* this.email = (document.getElementById("email") as HTMLInputElement).value;
     this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
-    if (this.submitted == true && !this.f.email.errors == true && !this.f.password.errors == true && !this.f.password2.errors == true) {
+    if (!this.registerForm.controls.email.errors && !this.registerForm.controls.password.errors && !this.registerForm.controls.password2.errors) {
       this.secondFormActive = false;
       this.thirdFormActive = true;
     }

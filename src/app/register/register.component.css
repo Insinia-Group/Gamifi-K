@@ -5,6 +5,15 @@
   background: rgb(82, 6, 214);
   background-color: rgb(109, 48, 243);
 }
+.container-register {
+  width: 25em;
+  border-radius: 0.5rem;
+}
+
+.bg-white {
+  --bs-bg-opacity: 0.9 !important;
+}
+
 input::-webkit-input-placeholder {
   text-align: center;
   line-height: 100px; /* Centrado vertical */
@@ -92,8 +101,8 @@ input::-webkit-input-placeholder {
 } */
 
 .inputsRegister {
-  max-width: 20em;
-  min-width: 15em !important;
+  max-width: 30em;
+  min-width: 25em !important;
 }
 
 .borderMail {
@@ -115,6 +124,7 @@ input::-webkit-input-placeholder {
 
 .nextBackButtons {
   max-width: 25rem;
+  margin-bottom: 1rem;
 }
 
 /* 

@@ -31,30 +31,54 @@
   </div>
 </div>
 
-<div class="container bg-color text-light mt-5">
-  <div class="row justify-content-center">
-    <div *ngIf="profile" class="col bg-danger">{{profile.name + profile}}</div>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <div class="row">
-        <p>Profile</p>
-        <div class="col">
-          <p>Lorem ipsum dolor sit amet.</p>
+<div class="container-fluid text-color mt-5">
+  <!-- <div class="row justify-content-center">
+    <div *ngIf="profile" class="col">
+      <div class="d-flex justify-content-start pt-3">
+        <img *ngIf="profile.avatar" class="flex-shrink-0 me-3 rounded" src="{{profile.avatar}}" width="35" height="32">
+        <p class="pb-3 mb-0 small">
+          <small class="d-block">@{{profile.nick}}</small>
+          <small class="d-block">{{profile.email}}</small>
+        </p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="col-md-5 col-lg-6">
+    <h4 class="mb-3">Perfil</h4>
+    <form class="needs-validation" [formGroup]="profileForm" (ngSubmit)="updateSubmit()" novalidate="">
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+          <!-- <div *ngIf="profileForm.controls.password.errors">
+            <small [@fadeIn] class="text-danger" *ngIf ="loginForm.controls.password.touched && loginForm.controls.password.errors['minlength']"><i class="bi bi-x me-2"></i>La longitud debe ser de 8 caracteres.</small>
+            <small [@fadeIn] class="text-danger" *ngIf ="loginForm.controls.password.touched && loginForm.controls.password.errors['required']">><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small>
+          </div> -->
+        </div>
+
+        <div class="col-sm-6">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" id="username" placeholder="Username" required="">
+          <div class="invalid-feedback">
+              Your username is required.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-8">
-      <p>Profile</p>
-      <div class="col">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </div>
-    <div class="col-2">
-      <p>Profile</p>
-      <div class="col">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </div>
+    </form>
   </div>
+
 </div>
+
+

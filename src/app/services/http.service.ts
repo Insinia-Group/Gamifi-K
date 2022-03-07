@@ -26,7 +26,6 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.post<HttpResponse<any>>(this.api.toThisPath('/login'), user, this.observe).subscribe(
         (res) => {
-          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             if (res.headers.get('Authorization')) {
               const token = res.headers.get('Authorization')?.split('"')[1];
@@ -132,7 +131,6 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
-          console.log(res)
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
           } else {

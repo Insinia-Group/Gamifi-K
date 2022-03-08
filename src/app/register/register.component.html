@@ -295,7 +295,23 @@
                 <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
               </div>
-              <div *ngIf="futureDate">ddasc</div>
+              <div *ngIf="!registerForm.controls.dateBirth.errors">
+                <small [@fadeIn] class="text-success"
+                  ><i class="bi bi-check-lg me-2 me-2"></i>Fecha de
+                  nacimiento.</small
+                >
+              </div>
+              <div
+                *ngIf="
+                  registerForm.controls.dateBirth.touched &&
+                  registerForm.controls.dateBirth.errors
+                "
+              >
+                <small [@fadeIn] class="text-danger"
+                  ><i class="bi bi-x me-2"></i>Porfavo introduce una fecha
+                  valida.</small
+                >
+              </div>
             </div>
 
             <div class="row justify-content-center">

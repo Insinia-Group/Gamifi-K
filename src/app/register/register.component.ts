@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm) {
       console.log();
       if (typeof (this.registerForm) !== 'undefined') {
-        if (control.value < "1920-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
+        if (control.value < "1900-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
           console.log('errorss')
           return {'notEqual': true};
         }

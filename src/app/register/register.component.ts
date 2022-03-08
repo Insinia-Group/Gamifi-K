@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
   nick: string = "";
   email: string;
   emailVerify: string;
-  password: string = "1";
+  password: string;
   passwordVerify: boolean;
-  password2: string = "2";
+  password2: string;
   password2Verify: boolean;
   dateBirth = new Date;
   dateJoined = new Date;
@@ -58,12 +58,12 @@ export class RegisterComponent implements OnInit {
       userNick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-z0-9_]*$')]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
-      password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.validate.bind(this)]),
+      password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.passwordValidator.bind(this)]),
       description: new FormControl(''),
-      dateBirth: new FormControl(''),
+      dateBirth: new FormControl('', this.dateValidator.bind(this)),
 
     }, {
-      // validators: ConfirmedValidator('password', 'password2'),
+      // validators: ConfirmedValidator('password', 'password2'),S
 
     }
     );
@@ -83,11 +83,31 @@ export class RegisterComponent implements OnInit {
   thirdFormActive: boolean = false;
   match = ConfirmedValidator('password', 'password2');
 
+  dateValidator(control: AbstractControl): {[key: string]: any} | null {
 
+    if (this.registerForm) {
+      console.log();
+      if (typeof (this.registerForm) !== 'undefined') {
+        if (control.value < "1920-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
+          console.log('errorss')
+          return {'notEqual': true};
+        }
+      }
+    }
+    return null;
 
-  validate(control: AbstractControl): {[key: string]: any} | null {
-    if (control.value !== this.password) {
-      return {'matchPasswords': true};
+  }
+
+  passwordValidator(control: AbstractControl): {[key: string]: any} | null {
+
+    if (this.registerForm) {
+      console.log(control.value, this.registerForm.controls.password.value);
+      if (typeof (this.registerForm) !== 'undefined') {
+        if (control.value !== this.registerForm.controls.password.value) {
+          console.log('error')
+          return {'notEqual': true};
+        }
+      }
     }
     return null;
   }

@@ -235,12 +235,17 @@
                   formControlName="password2"
                   placeholder="Repite la contraseña"
                 />
-                <!-- <div *ngIf="!registerForm.controls.password2.errors">
+                <div *ngIf="!registerForm.controls.password2.errors">
                   <small [@fadeIn] class="text-success"
                     ><i class="bi bi-check-lg me-2 me-2"></i>Coinciden.</small
                   >
-                </div> -->
-                <div *ngIf="registerForm.controls.password2.errors">
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls.password2.touched &&
+                    registerForm.controls.password2.errors
+                  "
+                >
                   <small [@fadeIn] class="text-danger"
                     ><i class="bi bi-x me-2"></i>Las contraseñas no
                     coinciden.</small
@@ -294,13 +299,13 @@
             </div>
 
             <div class="row justify-content-center">
-              <div class="col-5">
+              <div class="col-12">
                 <label for="inpuLastName"></label>
                 <textarea
                   name=""
                   id="description"
                   formControlName="description"
-                  class="form-control"
+                  class="form-control descripcion"
                   rows="4"
                 ></textarea>
               </div>

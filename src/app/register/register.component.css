@@ -14,6 +14,11 @@
   --bs-bg-opacity: 0.9 !important;
 }
 
+.descripcion {
+  width: 20.5rem;
+  max-height: calc(2.5em + 3.75rem + 2px) !important;
+}
+
 input::-webkit-input-placeholder {
   text-align: center;
   line-height: 100px; /* Centrado vertical */

@@ -16,12 +16,6 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
     }
 }
 
-export function validate(control: AbstractControl): {[key: string]: any} | null {
-    if (control.value && control.value.length != 10) {
-        return {'matchPasswords': true};
-    }
-    return null;
-}
 
 export function futureDate(date: Date) {
     console.log(date);

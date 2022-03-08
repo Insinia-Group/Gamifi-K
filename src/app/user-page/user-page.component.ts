@@ -18,8 +18,15 @@ export class UserPageComponent implements OnInit {
   public profileForm: FormGroup;
   constructor(private http: HttpService) {
     this.profileForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+      name: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      nick: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      dateBirth: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      dateJoined: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
   }
 

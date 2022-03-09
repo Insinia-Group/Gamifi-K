@@ -19,14 +19,13 @@ export class UserPageComponent implements OnInit {
   constructor(private http: HttpService) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      nick: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      description: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      dateBirth: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
+      nick: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(300)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(60)]),
+      dateBirth: new FormControl('', [Validators.required]),
       avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      dateJoined: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
   }
 
@@ -38,7 +37,7 @@ export class UserPageComponent implements OnInit {
       profile[0].avatar = atob(profile[0].avatar);
     }
     this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
-    console.log(this.profile);
+
   }
 
   toggleDropdown(id: string): void {
@@ -46,6 +45,6 @@ export class UserPageComponent implements OnInit {
   }
 
   updateSubmit() {
-
+    console.log('asd')
   }
 }

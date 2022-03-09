@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
 
   get f() {return this.registerForm.controls;}
   ngOnInit(): void {
+
     document.getElementById("dateBirth")?.setAttribute("max", this.dateJoined.toISOString());
     this.registerForm = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
@@ -59,22 +60,28 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
       password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.passwordValidator.bind(this)]),
-      description: new FormControl(''),
-      dateBirth: new FormControl('', this.dateValidator.bind(this)),
+      dateBirth: new FormControl('', [Validators.required, this.dateValidator.bind(this)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+
 
     }, {
       // validators: ConfirmedValidator('password', 'password2'),S
 
     }
     );
-
-
+    if (this.registerForm) {
+      console.log(this.registerForm.get('description')?.value)
+    }
     if (this.password == this.password2) {
       this.samePass = true;
     } else {
       this.samePass = false;
     }
-
+    if (!this.registerForm.controls.errors) {
+      console.log("Errorros");
+    } else {
+      console.log('yess')
+    }
 
   }
 
@@ -165,30 +172,33 @@ export class RegisterComponent implements OnInit {
   }
 
   sendRegister() {
-    this.nick = this.registerForm.controls.userNick.value;
-    this.userName = this.registerForm.controls.userName.value;
-    this.lastUserName = this.registerForm.controls.lastUserName.value;
-    this.password = this.registerForm.controls.password.value;
-    this.email = this.registerForm.controls.email.value;
-    this.description = this.registerForm.controls.description.value;
-    this.dateBirth = this.registerForm.controls.dateBirth.value;
+    if (!this.registerForm.controls.dateBirth.errors && !this.registerForm.controls.description.errors) {
+      this.nick = this.registerForm.controls.userNick.value;
+      this.userName = this.registerForm.controls.userName.value;
+      this.lastUserName = this.registerForm.controls.lastUserName.value;
+      this.password = this.registerForm.controls.password.value;
+      this.email = this.registerForm.controls.email.value;
+      this.description = this.registerForm.controls.description.value;
+      this.dateBirth = this.registerForm.controls.dateBirth.value;
 
-    const salt = bcrypt.genSaltSync(10);
-    this.password = bcrypt.hashSync(this.password, 10);
-    const user = {
-      nick: this.nick,
-      userName: this.userName,
-      lastUserName: this.lastUserName,
-      email: this.email,
-      description: this.description,
-      password: this.password,
-      dateBirth: this.dateBirth,
-      role: "user",
-      dateJoined: this.dateJoined.toISOString().slice(0, -14),
-      status: 1
+
+      const salt = bcrypt.genSaltSync(10);
+      this.password = bcrypt.hashSync(this.password, 10);
+      const user = {
+        nick: this.nick,
+        userName: this.userName,
+        lastUserName: this.lastUserName,
+        email: this.email,
+        description: this.description,
+        password: this.password,
+        dateBirth: this.dateBirth,
+        role: "user",
+        dateJoined: this.dateJoined.toISOString().slice(0, -14),
+        status: 1
+      }
+
+      this.request.register(user);
     }
-
-    this.request.register(user);
   }
 
 }

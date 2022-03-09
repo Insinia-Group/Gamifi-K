@@ -49,6 +49,16 @@
                     ><i class="bi bi-x me-2"></i>El nombre debe ser mas
                     largo.</small
                   >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.userName.touched &&
+                      registerForm.controls.userName.errors['pattern']
+                    "
+                    ><i class="bi bi-x me-2"></i>No puede contener numeros ni
+                    simbolos.</small
+                  >
                 </div>
               </div>
             </div>
@@ -308,7 +318,7 @@
                 "
               >
                 <small [@fadeIn] class="text-danger"
-                  ><i class="bi bi-x me-2"></i>Porfavo introduce una fecha
+                  ><i class="bi bi-x me-2"></i>Por favor introduce una fecha
                   valida.</small
                 >
               </div>
@@ -325,6 +335,23 @@
                   rows="4"
                 ></textarea>
               </div>
+
+              <div *ngIf="!registerForm.controls.description.errors">
+                <small [@fadeIn] class="text-success"
+                  ><i class="bi bi-check-lg me-2 me-2"></i>Descripción.</small
+                >
+              </div>
+              <div
+                *ngIf="
+                  registerForm.controls.description.touched &&
+                  registerForm.controls.description.errors
+                "
+              >
+                <small [@fadeIn] class="text-danger"
+                  ><i class="bi bi-x me-2"></i>Porfavo introduce una
+                  descripción.</small
+                >
+              </div>
             </div>
             <div class="row justify-content-center pb-4"></div>
             <div class="row justify-content-center pb-4">
@@ -334,8 +361,6 @@
                   (click)="backThird()"
                   type="submit"
                   class="btn btn-primary bi bi-arrow-bar-left"
-                  id="dateBirth"
-                  aria-describedby="dateBirth"
                 ></button>
               </div>
               <div class="col-5 nextBackButtons">
@@ -344,8 +369,6 @@
                   (click)="sendRegister()"
                   type="submit"
                   class="btn btn-primary bi bi-send-check"
-                  id="description"
-                  aria-describedby="description"
                 ></button>
               </div>
             </div>

@@ -49,6 +49,16 @@
                     ><i class="bi bi-x me-2"></i>El nombre debe ser mas
                     largo.</small
                   >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      registerForm.controls.userName.touched &&
+                      registerForm.controls.userName.errors['pattern']
+                    "
+                    ><i class="bi bi-x me-2"></i>No puede contener numeros ni
+                    simbolos.</small
+                  >
                 </div>
               </div>
             </div>
@@ -235,12 +245,17 @@
                   formControlName="password2"
                   placeholder="Repite la contraseña"
                 />
-                <!-- <div *ngIf="!registerForm.controls.password2.errors">
+                <div *ngIf="!registerForm.controls.password2.errors">
                   <small [@fadeIn] class="text-success"
                     ><i class="bi bi-check-lg me-2 me-2"></i>Coinciden.</small
                   >
-                </div> -->
-                <div *ngIf="registerForm.controls.password2.errors">
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls.password2.touched &&
+                    registerForm.controls.password2.errors
+                  "
+                >
                   <small [@fadeIn] class="text-danger"
                     ><i class="bi bi-x me-2"></i>Las contraseñas no
                     coinciden.</small
@@ -290,19 +305,52 @@
                 <!--                                 <h1 class="next  bi bi-arrow-bar-right fa-9x" id="next" onclick="next()"> </h1> 
 -->
               </div>
-              <div *ngIf="futureDate">ddasc</div>
+              <div *ngIf="!registerForm.controls.dateBirth.errors">
+                <small [@fadeIn] class="text-success"
+                  ><i class="bi bi-check-lg me-2 me-2"></i>Fecha de
+                  nacimiento.</small
+                >
+              </div>
+              <div
+                *ngIf="
+                  registerForm.controls.dateBirth.touched &&
+                  registerForm.controls.dateBirth.errors
+                "
+              >
+                <small [@fadeIn] class="text-danger"
+                  ><i class="bi bi-x me-2"></i>Por favor introduce una fecha
+                  valida.</small
+                >
+              </div>
             </div>
 
             <div class="row justify-content-center">
-              <div class="col-5">
+              <div class="col-12">
                 <label for="inpuLastName"></label>
                 <textarea
                   name=""
                   id="description"
                   formControlName="description"
-                  class="form-control"
+                  class="form-control descripcion"
                   rows="4"
                 ></textarea>
+              </div>
+
+              <div *ngIf="!registerForm.controls.description.errors">
+                <small [@fadeIn] class="text-success"
+                  ><i class="bi bi-check-lg me-2 me-2"></i>Descripción.</small
+                >
+              </div>
+              <div
+                *ngIf="
+                  registerForm.controls.description.touched &&
+                  registerForm.controls.description.errors
+                "
+              >
+                <small [@fadeIn] class="text-danger"
+                  ><i class="bi bi-x me-2"></i>Porfavo introduce una
+                  descripción.</small
+                >
               </div>
             </div>
             <div class="row justify-content-center pb-4"></div>
@@ -313,8 +361,6 @@
                   (click)="backThird()"
                   type="submit"
                   class="btn btn-primary bi bi-arrow-bar-left"
-                  id="dateBirth"
-                  aria-describedby="dateBirth"
                 ></button>
               </div>
               <div class="col-5 nextBackButtons">
@@ -323,8 +369,6 @@
                   (click)="sendRegister()"
                   type="submit"
                   class="btn btn-primary bi bi-send-check"
-                  id="description"
-                  aria-describedby="description"
                 ></button>
               </div>
             </div>

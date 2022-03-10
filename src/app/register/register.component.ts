@@ -2,7 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
 import {RegisterValidation} from '../models/registerValidation';
 import {ConfirmedValidator, futureDate} from '../models/confirmed.validator';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {HttpService} from '../services/http.service';
 import {User} from '../models/user';
 import {API} from '../models/api';
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       userName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
       lastUserName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
-      userNick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-z0-9_]*$')]),
+      userNick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z0-9_]*$')]),
       email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
       password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.passwordValidator.bind(this)]),
@@ -198,6 +198,7 @@ export class RegisterComponent implements OnInit {
       }
 
       this.request.register(user);
+      this.router.navigate(['/login']);
     }
   }
 

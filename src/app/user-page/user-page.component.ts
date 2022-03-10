@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { fadeIn } from '../config/animations.config';
-import { isBase64 } from '../helpers/helpers';
-import { tempProfile } from '../models/profile';
-import { HttpService } from '../services/http.service';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {fadeIn} from '../config/animations.config';
+import {isBase64} from '../helpers/helpers';
+import {tempProfile} from '../models/profile';
+import {HttpService} from '../services/http.service';
 declare var $: any;
 
 @Component({
@@ -33,6 +33,7 @@ export class UserPageComponent implements OnInit {
   @ViewChild('pictureProfile') pictureProfile: ElementRef;
 
   async ngOnInit(): Promise<void> {
+    this.http.tokenValidation();
     const profile: any = await this.http.getProfile();
     if (isBase64(profile[0].avatar)) {
       profile[0].avatar = atob(profile[0].avatar);

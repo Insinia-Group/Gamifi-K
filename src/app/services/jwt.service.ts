@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,7 @@ export class JwtService {
     return localStorage.getItem('token');
   }
 
-  /**
-   * Removes the token from the localStorage.
-   */
-  remove(): void {
-    localStorage.removeItem('token');
-  }
+
 
   /**
    * Checks if the token exists.
@@ -48,6 +43,10 @@ export class JwtService {
     if (this.exist()) {
       this.router.navigate([path]);
     }
+  }
+
+  removeLocalToken() {
+    localStorage.removeItem('token');
   }
 }
 

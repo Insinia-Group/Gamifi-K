@@ -12,15 +12,12 @@
     <h1 class="titulo">REGISTRO</h1>
     <a [routerLink]="['/login']" class="loginLink">¿Ya tienes cuenta?</a>
 
-    <div class="container bg-white container-register justify-content-center">
+    <div class="container bg-white container-register">
       <form [formGroup]="registerForm">
-        <div
-          class="form form-group justify-content-center"
-          *ngIf="firstFormActive"
-        >
-          <div class="col-12 rounded-3 bg-registro justify-content-center">
-            <div class="row justify-content-center" id="registro">
-              <div class="col-5 inputsRegister justify-content-center">
+        <div class="form form-group" *ngIf="firstFormActive">
+          <div class="col-12 rounded-3 bg-registro">
+            <div class="row" id="registro">
+              <div class="col-5 inputsRegister">
                 <label for="inputName"></label>
                 <input
                   autocomplete="off"

@@ -36,19 +36,17 @@
     <div class="col-lg-6 bg-color rounded p-2">
       <div class="row">
         <div class="col-3 text-center">
-          <img src="{{profile.avatar}}" class="thumbnails rounded-circle">
+          <img src="{{ profile.avatar }}" class="thumbnails rounded-circle" />
         </div>
         <div class="col-4">
           <div class="row text-light mt-2">
-            <small>{{profile.name + ' ' + profile.lastName}}</small>
+            <small>{{ profile.name + " " + profile.lastName }}</small>
           </div>
           <div class="row text-light">
-            <small>@{{profile.nick}}</small>
+            <small>@{{ profile.nick }}</small>
           </div>
         </div>
-        <div class="col-4">
-
-        </div>
+        <div class="col-4"></div>
       </div>
     </div>
   </div>
@@ -67,7 +65,12 @@
         <div class="row g-3">
           <div class="col-sm-6">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" formControlName="name" placeholder="{{profile.name}}" class="form-control"/>
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="{{ profile.name }}"
+              class="form-control"
+            />
             <div *ngIf="profileForm.controls.name.errors">
               <small
                 [@fadeIn]
@@ -97,7 +100,7 @@
               type="text"
               formControlName="lastName"
               class="form-control"
-              placeholder="{{profile.lastName}}"
+              placeholder="{{ profile.lastName }}"
             />
             <div *ngIf="profileForm.controls.lastName.errors">
               <small
@@ -130,7 +133,7 @@
                 type="text"
                 formControlName="nick"
                 class="form-control"
-                placeholder="{{profile.nick}}"
+                placeholder="{{ profile.nick }}"
               />
             </div>
             <div *ngIf="profileForm.controls.nick.errors">
@@ -158,7 +161,12 @@
 
           <div class="col-sm-12">
             <label for="email" class="form-label">Email</label>
-            <input type="text" formControlName="email" class="form-control" placeholder="{{profile.email}}"/>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              placeholder="{{ profile.email }}"
+            />
             <div *ngIf="profileForm.controls.email.errors">
               <small
                 [@fadeIn]
@@ -200,7 +208,8 @@
                   profileForm.controls.dateBirth.errors['minlength']
                 "
                 ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small>
+                caracteres.</small
+              >
               <small
                 [@fadeIn]
                 class="text-danger"

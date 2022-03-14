@@ -14,47 +14,45 @@
   <div class="ms-2">
     <p class="text-color">Insinia</p>
   </div>
-  <div>
-    <a href="/home" class="mx-2 link-color text-decoration-none fw-bolder"
-      >Home</a
-    >
-    <a href="/documentation" class="mx-2 link-color text-decoration-none"
-      >Documentación</a
-    >
-    <a href="/register" class="mx-2 link-color text-decoration-none"
-      >Register</a
-    >
-    <a href="/login" class="mx-2 link-color text-decoration-none">Login</a>
-  </div>
   <div class="me-2">
-    <p class="text-color"></p>
+    <p class="text-color">lorem</p>
   </div>
 </div>
 
-<div class="container-fluid mt-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 bg-color rounded p-2">
-      <div class="row">
-        <div class="col-3 text-center">
-          <img src="{{ profile.avatar }}" class="thumbnails rounded-circle" />
-        </div>
-        <div class="col-4">
-          <div class="row text-light mt-2">
-            <small>{{ profile.name + " " + profile.lastName }}</small>
+<div class="container text-color mt-5">
+  <div class="col-xl-4">
+    <div class="card border-0 shadow-sm card-hover-primary">
+      <div class="card-body border-bottom border-color text-color pb-4">
+        <div class="d-flex text-truncate">
+          <img
+            [@fadeIn]
+            *ngIf="profile && profile.avatar"
+            src="{{ profile.avatar }}"
+            class="thumbnails img-fluid"
+            alt=""
+          />
+          <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
+          <div class="row">
+            <div class="row">
+              <div class="mt-3 p-0 m-0 ms-4">
+                <div *ngIf="profile && profile.name && profile.lastName">
+                  {{ profile.name + " " + profile.lastName }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <p *ngIf="profile" class="mb-2 p-0 m-0 ms-4">
+                Te uniste el {{ profile.dateJoined }}
+              </p>
+            </div>
           </div>
-          <div class="row text-light">
-            <small>@{{ profile.nick }}</small>
-          </div>
         </div>
-        <div class="col-4"></div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid text-color">
   <div class="row justify-content-center">
-    <div class="col-lg-6 rounded p-4">
+    <div [@fadeIn] *ngIf="profile" class="col-lg rounded p-4">
       <h4 class="mb-3">Editar tu perfil</h4>
       <form
         class="needs-validation"
@@ -63,7 +61,7 @@
         novalidate=""
       >
         <div class="row g-3">
-          <div class="col-sm-6">
+          <div class="col-sm">
             <label for="name" class="form-label">Nombre</label>
             <input
               type="text"
@@ -94,7 +92,7 @@
             </div>
           </div>
 
-          <div class="col-sm-6">
+          <div class="col-sm">
             <label for="lastName" class="form-label">Apellidos</label>
             <input
               type="text"

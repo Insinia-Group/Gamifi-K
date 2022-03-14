@@ -29,6 +29,7 @@ export class UserPageComponent implements OnInit {
       dateBirth: new FormControl('', [Validators.required]),
       avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
+    this.setFormValues();
   }
 
   @ViewChild('pictureProfile') pictureProfile: ElementRef;
@@ -52,7 +53,15 @@ export class UserPageComponent implements OnInit {
       profile[0].avatar = atob(profile[0].avatar);
     }
     this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
+  }
 
+  setFormValues() {
+    if (this.profile) {
+      this.profileForm.controls.dateBirth.setValue(this.profile.dateBirth);
+      this.profileForm.controls.nick.setValue(this.profile.nick);
+      this.profileForm.controls.name.setValue(this.profile.name);
+      this.profileForm.controls.lastName.setValue(this.profile.lastName);
+    }
   }
 
   toggleDropdown(id: string): void {

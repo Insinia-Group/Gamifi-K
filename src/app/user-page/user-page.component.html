@@ -52,7 +52,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div [@fadeIn] *ngIf="profile" class="col-lg rounded p-4">
+    <div [@fadeIn] class="col-lg rounded p-4">
       <h4 class="mb-3">Editar tu perfil</h4>
       <form
         class="needs-validation"
@@ -63,10 +63,14 @@
         <div class="row g-3">
           <div class="col-sm">
             <label for="name" class="form-label">Nombre</label>
-            <input
+            <input *ngIf="profile.name"
               type="text"
               formControlName="name"
               placeholder="{{ profile.name }}"
+              class="form-control"
+            />
+            <input *ngIf="!profile.name"
+              type="text"
               class="form-control"
             />
             <div *ngIf="profileForm.controls.name.errors">

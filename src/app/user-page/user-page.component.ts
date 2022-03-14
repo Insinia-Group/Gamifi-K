@@ -4,6 +4,7 @@ import {fadeIn} from '../config/animations.config';
 import {isBase64} from '../helpers/helpers';
 import {tempProfile} from '../models/profile';
 import {HttpService} from '../services/http.service';
+import {Router} from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,8 @@ declare var $: any;
 export class UserPageComponent implements OnInit {
   public profile: tempProfile;
   public profileForm: FormGroup;
-  constructor(private http: HttpService) {
+
+  constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
@@ -32,7 +34,19 @@ export class UserPageComponent implements OnInit {
   @ViewChild('pictureProfile') pictureProfile: ElementRef;
 
   async ngOnInit(): Promise<void> {
-    this.http.tokenValidation();
+
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    } else if (statusToken) {
+      console.log("Token valid");
+    }
+
     const profile: any = await this.http.getProfile();
     if (isBase64(profile[0].avatar)) {
       profile[0].avatar = atob(profile[0].avatar);

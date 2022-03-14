@@ -81,20 +81,15 @@ export class HttpService {
   }
 
   tokenValidation() {
-    if (localStorage.getItem('token') == null) {
-      this.router.navigate(['/login']);
-    }
+
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/tokenValidation'), this.observe).subscribe(
         (res) => {
-          if (res.body == false) {
-            localStorage.removeItem('token');
-            this.router.navigate(['/login']);
-          } else if (res.body == "true") {
-            console.log("Token valid");
-          }
+          resolve(res.body);
         },
         (err) => {
+          console.log(err);
+
           reject('Error with the status.' + err + 'token not valid');
         }
       );

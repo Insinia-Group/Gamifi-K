@@ -63,15 +63,15 @@
         <div class="row g-3">
           <div class="col-sm">
             <label for="name" class="form-label">Nombre</label>
-            <input *ngIf="profile.name"
+            <input *ngIf="profile && profile.name"
               type="text"
               formControlName="name"
               placeholder="{{ profile.name }}"
               class="form-control"
             />
-            <input *ngIf="!profile.name"
+            <input *ngIf="!profile"
               type="text"
-              class="form-control"
+              class="form-control-loading"
             />
             <div *ngIf="profileForm.controls.name.errors">
               <small
@@ -98,11 +98,16 @@
 
           <div class="col-sm">
             <label for="lastName" class="form-label">Apellidos</label>
-            <input
+            <input [@fadeIn]
+            *ngIf="profile && profile.lastName"
               type="text"
               formControlName="lastName"
               class="form-control"
               placeholder="{{ profile.lastName }}"
+            />
+            <input *ngIf="!profile"
+              type="text"
+              class="form-control-loading"
             />
             <div *ngIf="profileForm.controls.lastName.errors">
               <small
@@ -131,12 +136,16 @@
             <label for="username" class="form-label">Nick</label>
             <div class="input-group has-validation">
               <span class="input-group-text">@</span>
-              <input
+              <input *ngIf="profile && profile.nick"
                 type="text"
                 formControlName="nick"
                 class="form-control"
                 placeholder="{{ profile.nick }}"
               />
+              <input *ngIf="!profile"
+              type="text"
+              class="form-control-loading"
+            />
             </div>
             <div *ngIf="profileForm.controls.nick.errors">
               <small

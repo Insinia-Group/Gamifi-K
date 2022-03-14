@@ -21,11 +21,11 @@ export class UserPageComponent implements OnInit {
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
-      nick: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(30)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
+      nick: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
       description: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(300)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.minLength(60)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]),
       dateBirth: new FormControl('', [Validators.required]),
       avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
@@ -53,6 +53,7 @@ export class UserPageComponent implements OnInit {
       profile[0].avatar = atob(profile[0].avatar);
     }
     this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
+    this.setFormValues();
   }
 
   setFormValues() {
@@ -60,7 +61,9 @@ export class UserPageComponent implements OnInit {
       this.profileForm.controls.dateBirth.setValue(this.profile.dateBirth);
       this.profileForm.controls.nick.setValue(this.profile.nick);
       this.profileForm.controls.name.setValue(this.profile.name);
+      this.profileForm.controls.email.setValue(this.profile.email);
       this.profileForm.controls.lastName.setValue(this.profile.lastName);
+      this.profileForm.controls.description.setValue(this.profile.description);
     }
   }
 

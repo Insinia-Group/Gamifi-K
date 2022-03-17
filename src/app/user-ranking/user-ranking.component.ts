@@ -19,23 +19,25 @@ import {Ranking} from '../models/rankings';
 export class UserRankingComponent implements OnInit {
 
   columnDefs: ColDef[] = [
-    {field: 'nick', sortable: true, filter: true},
-    {field: 'name', filter: true},
-    {field: 'points', sortable: true, filter: true},
+    {field: 'Usuario', sortable: true, filter: true},
+    {field: 'Ranking', filter: true},
+    {field: 'Puntos', sortable: true, filter: true},
     // {field: 'logo', sortable: true, filter: true},
   ];
   rowData: any;
-  constructor(private router: Router, private httpC: HttpService, private http: HttpClient) {
-    this.rowData = this.httpC.getRankingData();
-    console.log(this.rowData);
-
+  rowDatas: any;
+  Ranking: any;
+  constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
   }
 
   async ngOnInit(): Promise<void> {
+    this.rowData = this.http.getRankingData();
+    this.rowDatas = await this.http.getRankingData();
+
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
-    const statusToken = await this.httpC.tokenValidation();
+    const statusToken = await this.http.tokenValidation();
     if (statusToken == false) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);

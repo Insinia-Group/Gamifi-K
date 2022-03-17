@@ -1,15 +1,5 @@
 <div
-  class="
-    d-flex
-    bg-blur
-    align-items-center
-    justify-content-between
-    position-fixed
-    w-100
-    top-0
-    p-1
-    navbar-home
-  "
+  class="d-flex bg-blur align-items-center justify-content-between position-fixed w-100 top-0 p-1 navbar-home"
 >
   <div class="ms-2">
     <p class="text-color">Insinia</p>
@@ -20,32 +10,30 @@
 </div>
 
 <div class="container text-color mt-5">
-  <div class="col-xl-4">
+  <div class="col">
     <div class="card border-0 shadow-sm card-hover-primary">
       <div class="card-body border-bottom border-color text-color pb-4">
-        <div class="d-flex text-truncate">
-          <img
-            [@fadeIn]
-            *ngIf="profile && profile.avatar"
-            src="{{ profile.avatar }}"
-            class="thumbnails img-fluid"
-            alt=""
-          />
-          <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
-          <div class="row">
-            <div class="row">
-              <div class="mt-3 p-0 m-0 ms-4">
-                <div *ngIf="profile && profile.name && profile.lastName">
-                  {{ profile.name + " " + profile.lastName }}
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-auto">
+            <img
+              [@fadeIn]
+              *ngIf="profile && profile.avatar"
+              src="{{ profile.avatar }}"
+              class="thumbnails img-fluid"
+            />
+            <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
+          </div>
+          <div class="col-4">
+            <div *ngIf="profile && profile.name && profile.lastName">
+              {{ profile.name + " " + profile.lastName }}
             </div>
-            <div class="row">
-              <p *ngIf="profile" class="mb-2 p-0 m-0 ms-4">
+            <div *ngIf="profile && profile.dateJoined">
+              <p>
                 Te uniste el {{ profile.dateJoined }}
               </p>
             </div>
           </div>
+          <div class="col"></div>
         </div>
       </div>
     </div>
@@ -63,13 +51,17 @@
         <div class="row g-3">
           <div class="col-sm">
             <label for="name" class="form-label">Nombre</label>
-            <input *ngIf="profile && profile.name"
+            <input
+              *ngIf="profile && profile.name"
+              [@fadeIn]
               type="text"
               formControlName="name"
               placeholder="{{ profile.name }}"
               class="form-control"
             />
-            <input *ngIf="!profile"
+            <input
+              *ngIf="!profile"
+              [@fadeIn]
               type="text"
               class="form-control-loading"
             />
@@ -98,14 +90,17 @@
 
           <div class="col-sm">
             <label for="lastName" class="form-label">Apellidos</label>
-            <input [@fadeIn]
-            *ngIf="profile && profile.lastName"
+            <input
+              *ngIf="profile && profile.lastName"
+              [@fadeIn]
               type="text"
               formControlName="lastName"
               class="form-control"
               placeholder="{{ profile.lastName }}"
             />
-            <input *ngIf="!profile"
+            <input
+              *ngIf="!profile"
+              [@fadeIn]
               type="text"
               class="form-control-loading"
             />
@@ -135,17 +130,20 @@
           <div class="col-12">
             <label for="username" class="form-label">Nick</label>
             <div class="input-group has-validation">
-              <span class="input-group-text">@</span>
-              <input *ngIf="profile && profile.nick"
+              <input
+                *ngIf="profile && profile.nick"
+                [@fadeIn]
                 type="text"
                 formControlName="nick"
                 class="form-control"
                 placeholder="{{ profile.nick }}"
               />
-              <input *ngIf="!profile"
-              type="text"
-              class="form-control-loading"
-            />
+              <input
+                *ngIf="!profile"
+                [@fadeIn]
+                type="text"
+                class="form-control-loading"
+              />
             </div>
             <div *ngIf="profileForm.controls.nick.errors">
               <small
@@ -173,10 +171,18 @@
           <div class="col-sm-12">
             <label for="email" class="form-label">Email</label>
             <input
+              *ngIf="profile && profile.email"
+              [@fadeIn]
               type="text"
               formControlName="email"
               class="form-control"
               placeholder="{{ profile.email }}"
+            />
+            <input
+              *ngIf="!profile"
+              [@fadeIn]
+              type="text"
+              class="form-control-loading"
             />
             <div *ngIf="profileForm.controls.email.errors">
               <small
@@ -206,9 +212,17 @@
               >Fecha de nacimiento</label
             >
             <input
+              *ngIf="profile && profile.dateBirth"
+              [@fadeIn]
               type="date"
               formControlName="dateBirth"
               class="form-control"
+            />
+            <input
+              *ngIf="!profile"
+              [@fadeIn]
+              type="text"
+              class="form-control-loading"
             />
             <div *ngIf="profileForm.controls.dateBirth.errors">
               <small
@@ -236,9 +250,17 @@
           <div class="col-sm-12">
             <label for="description" class="form-label">Descripción</label>
             <textarea
+              *ngIf="profile && profile.description"
+              [@fadeIn]
               type="text"
               formControlName="description"
               class="form-control"
+            ></textarea>
+            <textarea
+              *ngIf="!profile"
+              [@fadeIn]
+              type="text"
+              class="form-control-loading"
             ></textarea>
             <div *ngIf="profileForm.controls.description.errors">
               <small

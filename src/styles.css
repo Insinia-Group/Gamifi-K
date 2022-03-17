@@ -1,137 +1,144 @@
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 @font-face {
-    font-family: "Circular Std Bold"; 
-    src: url(assets/Circular.woff2) format('woff2');
+  font-family: "Circular Std Bold";
+  src: url(assets/Circular.woff2) format("woff2");
 }
 
 @keyframes float {
-	0% {
-		transform: translateY(0px);
-	}
+  0% {
+    transform: translateY(0px);
+  }
 
-	50% {
-		transform: translateY(-10px);
-	}
+  50% {
+    transform: translateY(-10px);
+  }
 
-	100% {
-		transform: translateY(0px);
-	}
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 :root {
-    --corp-color-one: #6d30f3;
-    --corp-color-one-hover: #6e30f365;
-    --corp-color-two: #4434ac;
-    --corp-color-three: #a37af3;
-    --corp-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    --transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  --corp-color-one: #6d30f3;
+  --corp-color-one-hover: #6e30f365;
+  --corp-color-two: #4434ac;
+  --corp-color-three: #a37af3;
+  --corp-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  --transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-*, html, body {
-    font-family: 'Circular Std Bold', sans-serif !important; 
+*,
+html,
+body {
+  font-family: "Circular Std Bold", sans-serif !important;
 }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-    overflow-y: scroll;
-    background: transparent;
+  width: 4px;
+  height: 4px;
+  overflow-y: scroll;
+  background: transparent;
 }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar-thumb {
-    background: var(--corp-color-one);
+  background: var(--corp-color-one);
 }
 
 .bg-color {
-    background-color: var(--corp-color-one);
+  background-color: var(--corp-color-one);
 }
 
 .bg-color-hover {
-    background-color: var(--corp-color-three);
+  background-color: var(--corp-color-three);
 }
 
 .bg-blur {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
-.btn-check:focus+.btn, .btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem var(--corp-color-one-hover) !important;
+.btn-check:focus + .btn,
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--corp-color-one-hover) !important;
 }
 
 .btn-color {
-    background-color: var(--corp-color-one) !important;
+  background-color: var(--corp-color-one) !important;
 }
 
 .btn-color:hover {
-    border: 1px solid var(--corp-color-one);
-    background-color: white !important;
-    color: var(--corp-color-one) !important;
+  border: 1px solid var(--corp-color-one);
+  background-color: white !important;
+  color: var(--corp-color-one) !important;
 }
 
 .btn-outline-color {
-    border: 1px solid var(--corp-color-one) !important;
-    color: var(--corp-color-one) !important;
+  border: 1px solid var(--corp-color-one) !important;
+  color: var(--corp-color-one) !important;
 }
 
 .btn-outline-color:hover {
-    background-color: var(--corp-color-one) !important;
-    color: white !important;
+  background-color: var(--corp-color-one) !important;
+  color: white !important;
 }
 
 .btn-outline-color-alt {
-    color: var(--corp-color-one) !important;
+  color: var(--corp-color-one) !important;
 }
 
 .btn-outline-color-alt:hover {
-    color: var(--corp-color-one-hover) !important;
+  color: var(--corp-color-one-hover) !important;
 }
 
 .border-color {
-    border-color: var(--corp-color-one) !important;
+  border-color: var(--corp-color-one) !important;
 }
 
 .border-color-hover {
-    border-color: var(--corp-color-three) !important;
+  border-color: var(--corp-color-three) !important;
 }
 
 .text-color {
-    color: var(--corp-color-one) !important;
+  color: var(--corp-color-one) !important;
 }
 
 .link-color {
-    color: var(--corp-color-one) !important;
-    transition: var(--transition);
+  color: var(--corp-color-one) !important;
+  transition: var(--transition);
 }
 
-.link-color:hover{
-    color: var(--corp-color-one-hover) !important;
+.link-color:hover {
+  color: var(--corp-color-one-hover) !important;
 }
 
 .link-white-to-color {
-    color: white !important;
-    transition: var(--transition);
+  color: white !important;
+  transition: var(--transition);
 }
 
 .link-white-to-color:hover {
-    color: var(--corp-color-three) !important;
+  color: var(--corp-color-three) !important;
 }
 
 .start-25 {
-    left: 25% !important;
+  left: 25% !important;
 }
 
 .start-75 {
-    left: 75% !important;
+  left: 75% !important;
 }
 
 .form-control:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: var(--corp-color-one-hover) !important;
-    outline: 0;
-    box-shadow: 0 0 0 0.10rem var(--corp-color-one-hover) !important;
-    transition: var(--transition);
+  color: #212529;
+  background-color: #fff;
+  border-color: var(--corp-color-one-hover) !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem var(--corp-color-one-hover) !important;
+  transition: var(--transition);
 }

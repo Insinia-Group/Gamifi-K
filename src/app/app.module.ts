@@ -17,6 +17,8 @@ import {UserPageComponent} from './user-page/user-page.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
+import {UserRankingComponent} from './user-ranking/user-ranking.component';
+import {AgGridModule} from 'ag-grid-angular';
 
 
 
@@ -29,7 +31,8 @@ import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
     RegisterComponent,
     AboutComponent,
     NotFoundComponent,
-    UserPageComponent
+    UserPageComponent,
+    UserRankingComponent
   ],
   imports: [
     MatTableModule,
@@ -40,7 +43,8 @@ import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    AgGridModule.withComponents([])
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},

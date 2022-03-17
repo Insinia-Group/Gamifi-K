@@ -88,9 +88,9 @@ export class HttpService {
           resolve(res.body);
         },
         (err) => {
-          console.log(err);
+          reject('Invalid token');
+          this.router.navigate(['/login']);
 
-          reject('Error with the status.' + err + 'token not valid');
         }
       );
     });
@@ -142,6 +142,41 @@ export class HttpService {
     } catch (e) {
       console.log(e)
     }
+  }
+
+  getRanking() {
+    return new Promise((resolve, reject) => {
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/rankings'), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error with the status.');
+        }
+      );
+    });
+  }
+  getRankingData() {
+    return new Promise((resolve, reject) => {
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/rankingData'), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error with the status.');
+        }
+      );
+    });
   }
 
   getProfile() {

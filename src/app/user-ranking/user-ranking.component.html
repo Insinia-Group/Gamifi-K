@@ -1,7 +1,15 @@
 <ag-grid-angular
   style="width: 700px; height: 500px"
   class="ag-theme-alpine"
-  [rowData]="rowData | async"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+>
+</ag-grid-angular>
+
+<ag-grid-angular
+  style="width: 700px; height: 500px"
+  class="ag-theme-alpine"
+  [rowData]="rowDatas"
   [columnDefs]="columnDefs"
 >
 </ag-grid-angular>

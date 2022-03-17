@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private request: HttpService, private jwt: JwtService, private router: Router) {
     this.disabledButton = false;
-    this.request = request;
+    this.request = request;    
   }
 
   ngOnInit(): void {

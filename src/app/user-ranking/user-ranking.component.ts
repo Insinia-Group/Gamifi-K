@@ -31,8 +31,22 @@ export class UserRankingComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.rowData = this.http.getRankingData();
-    this.rowDatas = await this.http.getRankingData();
+    this.rowData = await this.http.getRankingData();
+    // this.rowDatas = await this.http.getRankingData();
+    var d: any[] = [];
+   await this.rowData.forEach((element:any,index:number,array:any) => {
+      var temp = this.rowData[0].Ranking ;
+      
+      if(element.Ranking == temp){
+        d.push(element);
+      }
+
+
+    });
+    console.log(this.rowData[4].Puntos);
+      
+     this.rowDatas = d;
+      
 
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);

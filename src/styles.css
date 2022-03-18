@@ -49,6 +49,11 @@ body {
   background: var(--corp-color-one);
 }
 
+.svg-container {
+  position: relative !important;
+  z-index: -100 !important;
+}
+
 .bg-color {
   background-color: var(--corp-color-one);
 }

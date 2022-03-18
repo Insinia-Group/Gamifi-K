@@ -1,84 +1,63 @@
-<div
-  class="d-flex bg-blur align-items-center justify-content-between position-fixed w-100 top-0 p-1 navbar-home"
+<nav
   *ngIf="!navbarStatus"
   @slideDownHideUp
+  class="navbar navbar-expand bg-blur position-fixed w-100 top-0 navbar-home"
 >
-  <div class="ms-2">
-    <p class="text-color">Insinia</p>
+  <div class="container-fluid">
+    <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
+    <div class="d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-color active" routerLink="/home">
+            <i class="bi bi-house-door-fill"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-color" routerLink="/login">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div>
-    <a href="/home" class="mx-2 link-color text-decoration-none fw-bolder"
-      >Home</a
-    >
-    <a href="/documentation" class="mx-2 link-color text-decoration-none"
-      >Documentación</a
-    >
-    <a href="/register" class="mx-2 link-color text-decoration-none"
-      >Register</a
-    >
-    <a href="/login" class="mx-2 link-color text-decoration-none">Login</a>
-  </div>
-  <div class="me-2">
-    <p class="text-color"></p>
-  </div>
-</div>
+</nav>
 
-<div
-  class="d-flex bg-color align-items-center justify-content-between border-bottom border-1 border-light position-fixed w-100 p-1 top-0 navbar-home"
+<nav
   *ngIf="navbarStatus"
   @slideDownHideUp
+  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
 >
-  <div class="ms-2">
-    <p class="text-light">Insinia</p>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Insinia</a>
+    <div class="d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="nav-link btn active" routerLink="/home">
+            <i class="bi bi-house-door-fill"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn" routerLink="/login">
+            <i class="bi bi-person-circle"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div>
-    <a href="/home" class="mx-2 link-light text-decoration-none fw-bolder"
-      >Home</a
-    >
-    <a href="/documentation" class="mx-2 link-light text-decoration-none"
-      >Documentación</a
-    >
-    <a href="/register" class="mx-2 link-light text-decoration-none"
-      >Register</a
-    >
-    <a href="/login" class="mx-2 link-light text-decoration-none">Login</a>
-  </div>
-  <div class="me-2">
-    <p class="text-light"></p>
-  </div>
-</div>
+</nav>
 
 <div
-  class="container rounded fullscreen-section skewed-bg pt-5"
-  id="section-land"
+  class="position-relative mt-5 px-5 overflow-hidden text-color p-md-5 text-center"
 >
-  <div class="container position-absolute top-25 px-5">
-    <div class="row gx-5 align-items-center">
-      <div class="col-lg-6 aos-init text-color aos-animate" data-aos="fade-up">
-        <h1>Bienvenido a Inisnia</h1>
-        <p>
-          Insinia es un grupo que ha desarrollado la herramienta<br />
-          definitiva para creación, edición y manejo de Rankings
-        </p>
-        <p class="text-small text-muted-color mb-3">
-          Disponible para navegador
-        </p>
-        <div class="d-flex flex-column flex-sm-row">
-          <a
-            routerLink="/login"
-            class="btn btn-lg btn-color text-light fw-500 me-sm-3 mb-3 mb-sm-0"
-            >Comienza<i class="bi bi-arrow-right-short ms-2"></i></a>
-          <div class="btn btn-lg link-color fw-500">Contáctanos</div>
-        </div>
-      </div>
-      <div
-        class="col-lg-6 d-none d-lg-block aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <img class="img-fluid home-hero" src="../../assets/svg/working.svg" />
-      </div>
-    </div>
+  <h1 class="fw-normal mb-4">Bienvenido a Insinia</h1>
+  <div class="product-device d-none d-md-block">
+    <img class="img-fluid home-hero" src="../../assets/svg/working.svg" />
+  </div>
+  <div class="col-md-7 p-lg-5 mx-auto mt-2">
+    <p class="lead fw-normal">
+      Herramienta definitiva para creación, edición y manejo de Rankings
+    </p>
+    <a class="btn btn-color text-light fw-500 me-sm-3 mt-2 mb-sm-0" routerLink="/login">¡Comenzamos!</a>
   </div>
 </div>
 

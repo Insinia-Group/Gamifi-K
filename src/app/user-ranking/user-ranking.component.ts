@@ -19,35 +19,32 @@ import {Ranking} from '../models/rankings';
 export class UserRankingComponent implements OnInit {
 
   columnDefs: ColDef[] = [
-    {field: 'Usuario', sortable: true, filter: true},
-    {field: 'Ranking', filter: true},
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
     // {field: 'logo', sortable: true, filter: true},
   ];
   rowData: any;
-  rowDatas: any;
+  rankings: any;
   Ranking: any;
+  gridApi: any[] = [2];
+  contador:number = 0;
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
   }
 
   async ngOnInit(): Promise<void> {
+    this.rankings = await this.http.getRanking();
+    console.log(this.rankings);
+    
+  // this.rankings.forEach((element: any) => element.rankingData=  JSON.stringify(element.rankingData.replace(/\\/g, '',/"\\/,/'""/,/\\"/,/\\\\\\/))
+  // );
+  console.log(this.rankings);
+
+
     this.rowData = await this.http.getRankingData();
-    // this.rowDatas = await this.http.getRankingData();
-    var d: any[] = [];
-   await this.rowData.forEach((element:any,index:number,array:any) => {
-      var temp = this.rowData[0].Ranking ;
-      
-      if(element.Ranking == temp){
-        d.push(element);
-      }
-
-
-    });
-    console.log(this.rowData[4].Puntos);
-      
-     this.rowDatas = d;
-      
-
+    this.gridApi[0]="saas";
+    this.gridApi[1]=this.rowData ;
+    
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
@@ -60,10 +57,6 @@ export class UserRankingComponent implements OnInit {
     }
 
   }
-
-
-
-
 
 
 }

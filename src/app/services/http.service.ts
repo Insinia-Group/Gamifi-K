@@ -60,6 +60,8 @@ export class HttpService {
     }
   }
 
+
+
   /**
    * Checks status with the API.
    */
@@ -160,6 +162,17 @@ export class HttpService {
         }
       );
     });
+  }
+  getRankingById(id: any): any {
+    try {
+      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
+      this.http.post(this.api.toThisPath('/getRankingById'), id, {headers: headers}).subscribe(
+        (data) => console.log(data),
+        (err) => console.log(err)
+      );
+    } catch (e) {
+      console.log(e)
+    }
   }
   getRankingData() {
     return new Promise((resolve, reject) => {

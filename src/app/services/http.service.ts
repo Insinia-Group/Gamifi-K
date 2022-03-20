@@ -60,6 +60,17 @@ export class HttpService {
     }
   }
 
+  addRankingByCode(code: any): any {
+    try {
+      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
+      this.http.post(this.api.toThisPath('/addRankingByCode'), code, {headers: headers}).subscribe(
+        (data) => console.log(data),
+        (err) => console.log(err)
+      );
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
 
   /**

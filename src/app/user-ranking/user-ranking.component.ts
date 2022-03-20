@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {HttpService} from '../services/http.service';
@@ -7,6 +7,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -29,10 +30,36 @@ export class UserRankingComponent implements OnInit {
   Ranking: any;
   gridApi: any[] = [2];
   contador:number = 0;
+  nullRankings:boolean = true;
+  public navbarStatus: boolean;
+  public goupStatus: boolean;
+  addRanking: FormGroup;
+  rankingId:number;
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
+    this.goupStatus = false;
+    this.navbarStatus = false;
   }
+  @HostListener('window:scroll', ['$event'])
+  isScrolledIntoView() {
+    if (window.scrollY >= 90) {
+      this.navbarStatus = false;
+      this.goupStatus =false;
+    } else {
+      this.navbarStatus = true;
+      this.goupStatus = true;
+    }
+  };
+ 
 
   async ngOnInit(): Promise<void> {
+    this.addRanking= new FormGroup({
+      rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
+     }, {
+      // validators: ConfirmedValidator('password', 'password2'),S
+
+    }
+    );
+    this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
     console.log(this.rankings);
     
@@ -58,5 +85,16 @@ export class UserRankingComponent implements OnInit {
 
   }
 
+  addRankingByCode(){
+    if (1==1) {
+      this.rankingId = this.addRanking.controls.rankingId.value;
+      console.log( this.rankingId);
+      const code = {
+        code: this.rankingId
+      }
+      this.http.addRankingByCode(code);
+  }else{
 
+  }
+  }
 }

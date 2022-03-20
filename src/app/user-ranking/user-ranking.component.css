@@ -4,8 +4,36 @@
 :root{
 }
 
+.add-ranking-title{
+
+min-width: 10rem;
+position:relative;
+cursor:pointer;
+}
+
+.add-ranking{
+    cursor:pointer;
+    position:absolute;
+    }
+    
+
 .tarjetas{
-    width:30vw !important;
+    width:25rem !important;
+}
+
+.add-ranking-input{
+    border-radius: 0.5rem;
+    width: 5rem !important;
+    height: 2.5rem;
+    font-size:x-large;
+ 
+}
+
+.add-ranking-button{
+  margin-left:1vh;
+  background-color: var(--corp-color-one);
+  position: relative;
+  margin-top: -0.3rem !important;
 }
 
 .no-rankings{
@@ -29,19 +57,25 @@
     margin-left: 1rem;
 }
 .title{
-    margin-top:3rem;
-    position:absolute;
+    top:5rem;
+    position:relative;
     color: var(--corp-color-one);
     font-family: "Circular Std Bold";
-    font-size:2rem;
 }
+
+.title:hover{
+    text-shadow: var(--corp-color-one) 0.2px 0.2px;
+    }
+    
 .ag-center-cols-viewport{
     overflow:hidden !important;
 }
 .ranking{
     text-align: left !important;
     overflow: hidden !important;
-    width: 30vw !important;
+    width: 35rem !important;
+    height: 21rem;
+
     
 }
 

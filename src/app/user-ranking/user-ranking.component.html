@@ -46,19 +46,31 @@
 </nav>
 <div class="container">
 <h1 class="title">Mis rankings</h1>
+
+</div>
+<div class="container title ">
+
+  <div class="col-4" *ngIf="!nullRankings">
+  <h1 class="add-ranking-title" (click)="showInput()">Añadir ranking</h1>
+  <form class="add-ranking " [@fadeIn]  [formGroup]="addRanking" *ngIf="showAdd">
+  <input formControlName="rankingId"  class="add-ranking-input" type="text" >
+  <button type="submit"  class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button " (click)="addRankingByCode()" ></button>
+</form>
+</div>
 </div>
 
        <div class="cards_landscape_wrap-2 mt-5">
         <div class="container ">
           <div class="row">
-            <div class="container no-rankings" *ngIf="rankings.length== 0">
+            <div class="container no-rankings" *ngIf="nullRankings">
             <h1 >No hay rankigns, puedes pedir que te unan o introducir su codigo</h1>
             <form action="post" [formGroup]="addRanking">
             <input formControlName="rankingId" id="rankingId" type="text">
             <button type="submit"  class="btn btn-primary bi bi-check-lg " (click)="addRankingByCode()" ></button>
           </form>
           </div>
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 tarjetas" *ngFor="let item of rankings;">
+<div *ngIf="!nullRankings" class="row">
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-12"  [@fadeIn] *ngFor="let item of rankings;">
                         <div class="card-flyer">
                             <div class="text-box">
                                 <div class="image-box">
@@ -70,11 +82,9 @@
                                 </div>
                             </div>
                         </div>
-                      
                     <div class="row">
                       <div class="col-5"></div>
                     <ag-grid-angular 
-                      style="width: 700px; height: 300px"
                       class="ag-theme-alpine ranking"
                       [columnDefs]="columnDefs"
                       [rowData]="item.rankingData"
@@ -82,6 +92,7 @@
                     </ag-grid-angular >
                     </div>
                 </div>
+              </div>
             </div>
         </div>
     </div>

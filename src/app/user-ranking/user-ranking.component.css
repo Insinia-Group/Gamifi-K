@@ -6,8 +6,12 @@
 min-width: 10rem;
 position:relative;
 cursor:pointer;
+
 }
 
+.add-ranking-title:hover{
+    text-shadow: var(--corp-color-one) 0.2px 0.2px;
+    }
 .add-ranking{
     cursor:pointer;
     position:absolute;
@@ -60,9 +64,6 @@ cursor:pointer;
     font-family: "Circular Std Bold";
 }
 
-.title:hover{
-    text-shadow: var(--corp-color-one) 0.2px 0.2px;
-    }
     
 .ag-center-cols-viewport{
     overflow:hidden !important;

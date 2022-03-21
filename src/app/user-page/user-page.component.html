@@ -1,142 +1,79 @@
-<div
-  class="d-flex bg-blur align-items-center justify-content-between position-fixed w-100 top-0 p-1 navbar-home"
+<nav
+  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
 >
-  <div class="ms-2">
-    <p class="text-color">Insinia</p>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Insinia</a>
+    <div class="d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="nav-link btn active" routerLink="/home">
+            <i class="bi bi-house-door-fill"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn" routerLink="/login">
+            <i class="bi bi-person-circle"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="me-2">
-    <p class="text-color">lorem</p>
-  </div>
-</div>
+</nav>
 
-<div class="container text-color mt-5">
-  <div class="col">
-    <div class="card border-0 shadow-sm card-hover-primary">
-      <div class="card-body border-bottom border-color text-color pb-4">
-        <div class="row">
-          <div class="col-auto">
-            <img
-              [@fadeIn]
-              *ngIf="profile && profile.avatar"
-              src="{{ profile.avatar }}"
-              class="thumbnails img-fluid"
-            />
-            <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
-          </div>
-          <div class="col-4">
-            <div *ngIf="profile && profile.name && profile.lastName">
-              {{ profile.name + " " + profile.lastName }}
+<div class="container text-color">
+  <div class="card border-0 shadow-sm card-hover-primary">
+    <div class="card-body border-bottom border-color text-color pb-4">
+      <div class="row justify-content-center">
+        <div id="content" class="content p-0">
+          <div class="row">
+            <div class="ms-3 col-auto">
+              <img
+                [@fadeIn]
+                *ngIf="profile && profile.avatar"
+                src="{{ profile.avatar }}"
+                class="thumbnails img-fluid"
+              />
+              <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
             </div>
-            <div *ngIf="profile && profile.dateJoined">
-              <p>
-                Te uniste el {{ profile.dateJoined }}
-              </p>
+            <div class="col-auto">
+              <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
+              <small>{{ profile.dateJoined }}</small><br>
+              <small>{{ profile.description }}</small>
+            </div>
+            <div class="col-auto">
+              <div class="d-grid gap-1">
+                <button class="btn btn-sm text-light btn-color" type="button"><i class="bi bi-images me-2"></i>Foto</button>
+                <button class="btn btn-sm text-light btn-color" type="button"><i class="bi bi-pen me-2"></i>Perfil</button>
+              </div>
             </div>
           </div>
-          <div class="col"></div>
+        </div>
+        <div *ngIf="profile" class="row justify-content-center mt-2">
+          <div class="col-6">
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="row justify-content-center">
-    <div [@fadeIn] class="col-lg rounded p-4">
-      <h4 class="mb-3">Editar tu perfil</h4>
-      <form
-        class="needs-validation"
-        [formGroup]="profileForm"
-        (ngSubmit)="updateSubmit()"
-        novalidate=""
-      >
-        <div class="row g-3">
-          <div class="col-sm">
-            <label for="name" class="form-label">Nombre</label>
-            <input
-              *ngIf="profile && profile.name"
-              [@fadeIn]
-              type="text"
-              formControlName="name"
-              placeholder="{{ profile.name }}"
-              class="form-control"
-            />
-            <input
-              *ngIf="!profile"
-              [@fadeIn]
-              type="text"
-              class="form-control-loading"
-            />
-            <div *ngIf="profileForm.controls.name.errors">
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.name.touched &&
-                  profileForm.controls.name.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.name.touched &&
-                  profileForm.controls.name.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
-              >
-            </div>
-          </div>
-
-          <div class="col-sm">
-            <label for="lastName" class="form-label">Apellidos</label>
-            <input
-              *ngIf="profile && profile.lastName"
-              [@fadeIn]
-              type="text"
-              formControlName="lastName"
-              class="form-control"
-              placeholder="{{ profile.lastName }}"
-            />
-            <input
-              *ngIf="!profile"
-              [@fadeIn]
-              type="text"
-              class="form-control-loading"
-            />
-            <div *ngIf="profileForm.controls.lastName.errors">
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.lastName.touched &&
-                  profileForm.controls.lastName.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.lastName.touched &&
-                  profileForm.controls.lastName.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
-              >
-            </div>
-          </div>
-
-          <div class="col-12">
-            <label for="username" class="form-label">Nick</label>
-            <div class="input-group has-validation">
+    <div class="row justify-content-center">
+      <div [@fadeIn] class="col-lg rounded p-4">
+        <h4 class="mb-3">Editar tu perfil</h4>
+        <form
+          class="needs-validation"
+          [formGroup]="profileForm"
+          (ngSubmit)="updateSubmit()"
+          novalidate=""
+        >
+          <div class="row g-3">
+            <div class="col-sm">
+              <label for="name" class="form-label">Nombre</label>
               <input
-                *ngIf="profile && profile.nick"
+                *ngIf="profile && profile.name"
                 [@fadeIn]
                 type="text"
-                formControlName="nick"
+                formControlName="name"
+                placeholder="{{ profile.name }}"
                 class="form-control"
-                placeholder="{{ profile.nick }}"
               />
               <input
                 *ngIf="!profile"
@@ -144,148 +81,228 @@
                 type="text"
                 class="form-control-loading"
               />
+              <div *ngIf="profileForm.controls.name.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.name.touched &&
+                    profileForm.controls.name.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.name.touched &&
+                    profileForm.controls.name.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
             </div>
-            <div *ngIf="profileForm.controls.nick.errors">
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.nick.touched &&
-                  profileForm.controls.nick.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.nick.touched &&
-                  profileForm.controls.nick.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
-              >
-            </div>
-          </div>
 
-          <div class="col-sm-12">
-            <label for="email" class="form-label">Email</label>
-            <input
-              *ngIf="profile && profile.email"
-              [@fadeIn]
-              type="text"
-              formControlName="email"
-              class="form-control"
-              placeholder="{{ profile.email }}"
-            />
-            <input
-              *ngIf="!profile"
-              [@fadeIn]
-              type="text"
-              class="form-control-loading"
-            />
-            <div *ngIf="profileForm.controls.email.errors">
-              <small
+            <div class="col-sm">
+              <label for="lastName" class="form-label">Apellidos</label>
+              <input
+                *ngIf="profile && profile.lastName"
                 [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.email.touched &&
-                  profileForm.controls.email.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
+                type="text"
+                formControlName="lastName"
+                class="form-control"
+                placeholder="{{ profile.lastName }}"
+              />
+              <input
+                *ngIf="!profile"
                 [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.email.touched &&
-                  profileForm.controls.email.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
-              >
+                type="text"
+                class="form-control-loading"
+              />
+              <div *ngIf="profileForm.controls.lastName.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.lastName.touched &&
+                    profileForm.controls.lastName.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.lastName.touched &&
+                    profileForm.controls.lastName.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
             </div>
-          </div>
 
-          <div class="col-sm-12">
-            <label for="dateBirth" class="form-label"
-              >Fecha de nacimiento</label
-            >
-            <input
-              *ngIf="profile && profile.dateBirth"
-              [@fadeIn]
-              type="date"
-              formControlName="dateBirth"
-              class="form-control"
-            />
-            <input
-              *ngIf="!profile"
-              [@fadeIn]
-              type="text"
-              class="form-control-loading"
-            />
-            <div *ngIf="profileForm.controls.dateBirth.errors">
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.dateBirth.touched &&
-                  profileForm.controls.dateBirth.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
-                [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.dateBirth.touched &&
-                  profileForm.controls.dateBirth.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
-              >
+            <div class="col-12">
+              <label for="username" class="form-label">Nick</label>
+              <div class="input-group has-validation">
+                <input
+                  *ngIf="profile && profile.nick"
+                  [@fadeIn]
+                  type="text"
+                  formControlName="nick"
+                  class="form-control"
+                  placeholder="{{ profile.nick }}"
+                />
+                <input
+                  *ngIf="!profile"
+                  [@fadeIn]
+                  type="text"
+                  class="form-control-loading"
+                />
+              </div>
+              <div *ngIf="profileForm.controls.nick.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.nick.touched &&
+                    profileForm.controls.nick.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.nick.touched &&
+                    profileForm.controls.nick.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
             </div>
-          </div>
 
-          <div class="col-sm-12">
-            <label for="description" class="form-label">Descripción</label>
-            <textarea
-              *ngIf="profile && profile.description"
-              [@fadeIn]
-              type="text"
-              formControlName="description"
-              class="form-control"
-            ></textarea>
-            <textarea
-              *ngIf="!profile"
-              [@fadeIn]
-              type="text"
-              class="form-control-loading"
-            ></textarea>
-            <div *ngIf="profileForm.controls.description.errors">
-              <small
+            <div class="col-sm-12">
+              <label for="email" class="form-label">Email</label>
+              <input
+                *ngIf="profile && profile.email"
                 [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.description.touched &&
-                  profileForm.controls.description.errors['minlength']
-                "
-                ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                caracteres.</small
-              >
-              <small
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="{{ profile.email }}"
+              />
+              <input
+                *ngIf="!profile"
                 [@fadeIn]
-                class="text-danger"
-                *ngIf="
-                  profileForm.controls.description.touched &&
-                  profileForm.controls.description.errors['required']
-                "
-                ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                type="text"
+                class="form-control-loading"
+              />
+              <div *ngIf="profileForm.controls.email.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.email.touched &&
+                    profileForm.controls.email.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.email.touched &&
+                    profileForm.controls.email.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="dateBirth" class="form-label"
+                >Fecha de nacimiento</label
               >
+              <input
+                *ngIf="profile && profile.dateBirth"
+                [@fadeIn]
+                type="date"
+                formControlName="dateBirth"
+                class="form-control"
+              />
+              <input
+                *ngIf="!profile"
+                [@fadeIn]
+                type="text"
+                class="form-control-loading"
+              />
+              <div *ngIf="profileForm.controls.dateBirth.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.dateBirth.touched &&
+                    profileForm.controls.dateBirth.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.dateBirth.touched &&
+                    profileForm.controls.dateBirth.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label for="description" class="form-label">Descripción</label>
+              <textarea
+                *ngIf="profile && profile.description"
+                [@fadeIn]
+                type="text"
+                formControlName="description"
+                class="form-control"
+              ></textarea>
+              <textarea
+                *ngIf="!profile"
+                [@fadeIn]
+                type="text"
+                class="form-control-loading"
+              ></textarea>
+              <div *ngIf="profileForm.controls.description.errors">
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.description.touched &&
+                    profileForm.controls.description.errors['minlength']
+                  "
+                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
+                  caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.description.touched &&
+                    profileForm.controls.description.errors['required']
+                  "
+                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                >
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

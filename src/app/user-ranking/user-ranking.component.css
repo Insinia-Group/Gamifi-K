@@ -34,7 +34,7 @@ cursor:pointer;
   margin-left:1vh;
   background-color: var(--corp-color-one);
   position: relative;
-  margin-top: -0.3rem !important;
+  margin-top: -0.5rem !important;
 }
 
 .no-rankings{
@@ -71,7 +71,7 @@ cursor:pointer;
 .ranking{
     text-align: left !important;
     overflow: hidden !important;
-    width: 35rem !important;
+    width: 35rem ;
     height: 21rem;
 
     

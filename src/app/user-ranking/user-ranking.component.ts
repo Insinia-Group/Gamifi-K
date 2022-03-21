@@ -36,6 +36,7 @@ export class UserRankingComponent implements OnInit {
   addRanking: FormGroup;
   rankingId:number;
   showAdd:boolean;
+  rankingCard: any;
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
@@ -53,6 +54,15 @@ export class UserRankingComponent implements OnInit {
  
 
   async ngOnInit(): Promise<void> {
+    
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    } else if (statusToken) {
+      console.log("Token valid");
+    }
+
     this.addRanking= new FormGroup({
       rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
      }
@@ -70,13 +80,7 @@ export class UserRankingComponent implements OnInit {
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
-    const statusToken = await this.http.tokenValidation();
-    if (statusToken == false) {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    } else if (statusToken) {
-      console.log("Token valid");
-    }
+  
   }
 
   async addRankingByCode(){
@@ -101,4 +105,9 @@ export class UserRankingComponent implements OnInit {
   showInput(){
     this.showAdd = true;
   }
+
+  expandCard(){
+    this.rankingCard.nativeElement.style("with:60 rem");
+  }
+
 }

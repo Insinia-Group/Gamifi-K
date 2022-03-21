@@ -70,7 +70,7 @@
           </form>
           </div>
 <div *ngIf="!nullRankings" class="row">
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-12"  [@fadeIn] *ngFor="let item of rankings;">
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-12" id="rankingCard" #rankingCard (click)="expandCard()" [@fadeIn] *ngFor="let item of rankings;">
                         <div class="card-flyer">
                             <div class="text-box">
                                 <div class="image-box">
@@ -82,12 +82,12 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="row">
-                      <div class="col-5"></div>
+                    <div class="row" >
                     <ag-grid-angular 
                       class="ag-theme-alpine ranking"
                       [columnDefs]="columnDefs"
                       [rowData]="item.rankingData"
+                      id="dataTable"
                       >
                     </ag-grid-angular >
                     </div>

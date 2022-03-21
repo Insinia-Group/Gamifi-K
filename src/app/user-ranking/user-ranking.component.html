@@ -1,11 +1,76 @@
+<nav
+  *ngIf="!navbarStatus"
+  @slideDownHideUp
+  class="navbar navbar-expand  position-fixed w-100 top-0 navbar-home"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
+    <div class="d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-color active" routerLink="/home">
+            <i class="bi bi-house-door-fill"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-color" routerLink="/profile">
+            <i class="bi bi-person-circle"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
+<nav
+  *ngIf="navbarStatus"
+  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">Insinia</a>
+    <div class="d-flex justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="nav-link btn active" routerLink="/home">
+            <i class="bi bi-house-door-fill"></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn" routerLink="/profile">
+            <i class="bi bi-person-circle"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+<h1 class="title">Mis rankings</h1>
 
-       <div class="cards_landscape_wrap-2">
-        <div class="container">
+</div>
+<div class="container title ">
+
+  <div class="col-4" *ngIf="!nullRankings">
+  <h1 class="add-ranking-title" (click)="showInput()">Añadir ranking</h1>
+  <form class="add-ranking " [@fadeIn]  [formGroup]="addRanking" *ngIf="showAdd">
+  <input formControlName="rankingId"  class="add-ranking-input" type="text" >
+  <button type="submit"  class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button " (click)="addRankingByCode()" ></button>
+</form>
+</div>
+</div>
+
+       <div class="cards_landscape_wrap-2 mt-5">
+        <div class="container ">
           <div class="row">
-  
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5" *ngFor="let item of rankings;">
-                  
+            <div class="container no-rankings" *ngIf="nullRankings">
+            <h1 >No hay rankigns, puedes pedir que te unan o introducir su codigo</h1>
+            <form action="post" [formGroup]="addRanking">
+            <input formControlName="rankingId" id="rankingId" type="text">
+            <button type="submit"  class="btn btn-primary bi bi-check-lg " (click)="addRankingByCode()" ></button>
+          </form>
+          </div>
+<div *ngIf="!nullRankings" class="row">
+<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-12"  [@fadeIn] *ngFor="let item of rankings;">
                         <div class="card-flyer">
                             <div class="text-box">
                                 <div class="image-box">
@@ -17,11 +82,9 @@
                                 </div>
                             </div>
                         </div>
-                      
-                    <div onGenerated class="row">
+                    <div class="row">
                       <div class="col-5"></div>
                     <ag-grid-angular 
-                      style="width: 700px; height: 500px"
                       class="ag-theme-alpine ranking"
                       [columnDefs]="columnDefs"
                       [rowData]="item.rankingData"
@@ -29,6 +92,7 @@
                     </ag-grid-angular >
                     </div>
                 </div>
+              </div>
             </div>
         </div>
     </div>

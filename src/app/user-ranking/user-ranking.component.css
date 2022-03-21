@@ -1,6 +1,82 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
+.add-ranking-title{
+
+min-width: 10rem;
+position:relative;
+cursor:pointer;
+
+}
+
+.add-ranking-title:hover{
+    text-shadow: var(--corp-color-one) 0.2px 0.2px;
+    }
+.add-ranking{
+    cursor:pointer;
+    position:absolute;
+    }
+    
+
+.tarjetas{
+    width:25rem !important;
+}
+
+.add-ranking-input{
+    border-radius: 0.5rem;
+    width: 5rem !important;
+    height: 2.5rem;
+    font-size:x-large;
+ 
+}
+
+.add-ranking-button{
+  margin-left:1vh;
+  background-color: var(--corp-color-one);
+  position: relative;
+  margin-top: -0.3rem !important;
+}
+
+.no-rankings{
+    margin-top:3rem;
+    color: var(--corp-color-one);
+    font-family: "Circular Std Bold";
+    font-size:2rem;
+
+}
+#rankingId{
+    border-radius:0.5rem;
+    width:7.5rem !important;
+    height:3rem;
+}
+
+.btn-primary{
+    background-color: var(--corp-color-one);
+    transform: scale(1.2);
+    margin-top: -0.2rem !important;
+    border-color: var(--corp-color-one);
+    margin-left: 1rem;
+}
+.title{
+    top:5rem;
+    position:relative;
+    color: var(--corp-color-one);
+    font-family: "Circular Std Bold";
+}
+
+    
+.ag-center-cols-viewport{
+    overflow:hidden !important;
+}
+.ranking{
+    text-align: left !important;
+    overflow: hidden !important;
+    width: 35rem !important;
+    height: 21rem;
+
+    
+}
+
 .cards_landscape_wrap-2{
     text-align: center;
     background: #F7F7F7;
@@ -29,7 +105,7 @@
     -o-transition:all .9s ease;
     -ms-transition:all .9s ease; 
     width: 100%;
-    height: 19rem;
+    height: 28vh;
   }
  .cards_landscape_wrap-2 .card-flyer:hover .image-box img{
     opacity: 0.7;

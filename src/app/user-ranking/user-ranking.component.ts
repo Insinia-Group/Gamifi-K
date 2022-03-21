@@ -3,13 +3,12 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {fadeIn} from '../config/animations.config';
 import {HttpService} from '../services/http.service';
-import {ColDef} from 'ag-grid-community';
+import {ColDef, GridReadyEvent} from 'ag-grid-community';
 import {BrowserModule} from '@angular/platform-browser';
 import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 
@@ -21,22 +20,35 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class UserRankingComponent implements OnInit {
 
+  private resizeListenerFunc = () => {this.gridApi.api.sizeColumnsToFit();};
+  // onGridReady() {
+  //   this.gridApi.api.sizeColumnsToFit();
+  //   window.addEventListener('resize', this.resizeListenerFunc);
+  // }
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListenerFunc);
+  }
+
   columnDefs: ColDef[] = [
     {field: 'Nombre', sortable: true, filter: true},
     {field: 'Apellido', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
     // {field: 'logo', sortable: true, filter: true},
   ];
-  rowData: any;
-  rankings: any;
-  Ranking: any;
-  nullRankings:boolean;
+  public rowData: any;
+  public rankings: any;
+  public Ranking: any;
+  public nullRankings: boolean;
   public navbarStatus: boolean;
   public goupStatus: boolean;
-  addRanking: FormGroup;
-  rankingId:number;
-  showAdd:boolean;
-  rankingCard: any;
+  public addRanking: FormGroup;
+  public rankingId: number;
+  public showAdd: boolean;
+  public rankingCard: any;
+  public gridApi: any;
+  public columnApi: any;
+  public defaultColDef: any;
+
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
@@ -45,16 +57,15 @@ export class UserRankingComponent implements OnInit {
   isScrolledIntoView() {
     if (window.scrollY >= 90) {
       this.navbarStatus = false;
-      this.goupStatus =false;
+      this.goupStatus = false;
     } else {
       this.navbarStatus = true;
       this.goupStatus = true;
     }
   };
- 
 
   async ngOnInit(): Promise<void> {
-    
+
     const statusToken = await this.http.tokenValidation();
     if (statusToken == false) {
       localStorage.removeItem('token');
@@ -63,32 +74,26 @@ export class UserRankingComponent implements OnInit {
       console.log("Token valid");
     }
 
-    this.addRanking= new FormGroup({
+    this.addRanking = new FormGroup({
       rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
-     }
+    }
     );
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    if(this.rankings.length > 0) {
-      this.nullRankings=false;
-    }else{
-      this.nullRankings=true;
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
     }
     console.log(this.rankings);
     this.rowData = await this.http.getRankingData();
-    
-    if (localStorage.getItem('token') == null) {
-      this.router.navigate(['/login']);
-    }
-  
   }
 
-  async addRankingByCode(){
-    if (1==1) {
+  async addRankingByCode() {
+    if (1 == 1) {
       this.showAdd = false;
-
       this.rankingId = this.addRanking.controls.rankingId.value;
-      console.log( this.rankingId);
+      console.log(this.rankingId);
       const code = {
         code: this.rankingId
       }
@@ -96,18 +101,40 @@ export class UserRankingComponent implements OnInit {
       this.rankings = await this.http.getRanking();
       this.rowData = await this.http.getRankingData();
       console.log(this.rankings);
-      this.nullRankings=false;
-      
-  }else{
+      this.nullRankings = false;
 
+    } else {
+
+    }
   }
-  }
-  showInput(){
+  showInput() {
     this.showAdd = true;
   }
 
-  expandCard(){
-    this.rankingCard.nativeElement.style("with:60 rem");
+
+  tablaCargada(params: any) {
+    this.gridApi = params.api;
+    this.columnApi = params.columnApi;
+    console.log(this.gridApi, this.columnApi)
+    this.tableResize({});
+  }
+
+  tableResize(evento: any) {
+    this.gridApi.sizeColumnsToFit();
+    console.log("Bona");
+  }
+
+  onGridSizeChanged(event: any) {
+    console.log("chnege");
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    params.api.sizeColumnsToFit();
+    window.addEventListener('resize', function () {
+      setTimeout(function () {
+        params.api.sizeColumnsToFit();
+      });
+    });
   }
 
 }

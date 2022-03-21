@@ -1,7 +1,6 @@
 <nav
   class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
 >
-<<<<<<< HEAD
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">Insinia</a>
     <div class="d-flex justify-content-center">
@@ -18,13 +17,6 @@
         </li>
       </ul>
     </div>
-=======
-  <div class="ms-2">
-    <p class="text-color">Insinia</p>
-  </div>
-  <div class="me-2">
-    <p class="text-color"  routerLink="/rankings">Rankings</p>
->>>>>>> a8b086d4fd557a648a89eea4b2e78d551a27933d
   </div>
 </nav>
 
@@ -45,20 +37,24 @@
             </div>
             <div class="col-auto">
               <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
-              <small>{{ profile.dateJoined }}</small><br>
+              <small>{{ profile.dateJoined }}</small
+              ><br />
               <small>{{ profile.description }}</small>
             </div>
             <div class="col-auto">
               <div class="d-grid gap-1">
-                <button class="btn btn-sm text-light btn-color" type="button"><i class="bi bi-images me-2"></i>Foto</button>
-                <button class="btn btn-sm text-light btn-color" type="button"><i class="bi bi-pen me-2"></i>Perfil</button>
+                <button class="btn btn-sm text-light btn-color" type="button">
+                  <i class="bi bi-images me-2"></i>Foto
+                </button>
+                <button class="btn btn-sm text-light btn-color" type="button">
+                  <i class="bi bi-pen me-2"></i>Perfil
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div *ngIf="profile" class="row justify-content-center mt-2">
-          <div class="col-6">
-          </div>
+          <div class="col-6"></div>
         </div>
       </div>
     </div>

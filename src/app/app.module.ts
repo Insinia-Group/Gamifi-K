@@ -33,6 +33,7 @@ import {AgGridModule} from 'ag-grid-angular';
     NotFoundComponent,
     UserPageComponent,
     UserRankingComponent
+
   ],
   imports: [
     MatTableModule,

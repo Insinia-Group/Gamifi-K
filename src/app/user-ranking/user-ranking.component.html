@@ -1,7 +1,6 @@
 <nav
   *ngIf="!navbarStatus"
-  @slideDownHideUp
-  class="navbar navbar-expand  position-fixed w-100 top-0 navbar-home"
+  class="navbar navbar-expand position-fixed w-100 top-0 navbar-home"
 >
   <div class="container-fluid">
     <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
@@ -45,54 +44,83 @@
   </div>
 </nav>
 <div class="container">
-<h1 class="title">Mis rankings</h1>
-
+  <h1 class="title col-6">Mis rankings</h1>
 </div>
-<div class="container title ">
-
-  <div class="col-4" *ngIf="!nullRankings">
-  <h1 class="add-ranking-title" (click)="showInput()">Añadir ranking</h1>
-  <form class="add-ranking " [@fadeIn]  [formGroup]="addRanking" *ngIf="showAdd">
-  <input formControlName="rankingId"  class="add-ranking-input" type="text" >
-  <button type="submit"  class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button " (click)="addRankingByCode()" ></button>
-</form>
+<div class="container title">
+  <div class="col-6" *ngIf="!nullRankings">
+    <h1 class="add-ranking-title col-6" (click)="showInput()">
+      Añadir ranking
+    </h1>
+    <form
+      class="add-ranking"
+      [@fadeIn]
+      [formGroup]="addRanking"
+      *ngIf="showAdd"
+    >
+      <input
+        formControlName="rankingId"
+        class="add-ranking-input"
+        type="text"
+      />
+      <button
+        type="submit"
+        class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button"
+        (click)="addRankingByCode()"
+      ></button>
+    </form>
+  </div>
 </div>
-</div>
 
-       <div class="cards_landscape_wrap-2 mt-5">
-        <div class="container ">
-          <div class="row">
-            <div class="container no-rankings" *ngIf="nullRankings">
-            <h1 >No hay rankigns, puedes pedir que te unan o introducir su codigo</h1>
-            <form action="post" [formGroup]="addRanking">
-            <input formControlName="rankingId" id="rankingId" type="text">
-            <button type="submit"  class="btn btn-primary bi bi-check-lg " (click)="addRankingByCode()" ></button>
-          </form>
-          </div>
-<div *ngIf="!nullRankings" class="row">
-<div class="col-xs-12 col-sm-6 col-md-3 col-lg-5 col-12" id="rankingCard" #rankingCard (click)="expandCard()" [@fadeIn] *ngFor="let item of rankings;">
-                        <div class="card-flyer">
-                            <div class="text-box">
-                                <div class="image-box">
-                                    <img src="data:image/png;base64,{{item.logo}}"/>
-                                </div>
-                                <div class="text-container">
-                                    <h6>{{item.name}}</h6>
-                                    <p>{{item.description}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    <div class="row" >
-                    <ag-grid-angular 
-                      class="ag-theme-alpine ranking"
-                      [columnDefs]="columnDefs"
-                      [rowData]="item.rankingData"
-                      id="dataTable"
-                      >
-                    </ag-grid-angular >
-                    </div>
-                </div>
+<div class="cards_landscape_wrap-2 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="container no-rankings" *ngIf="nullRankings">
+        <h1>
+          No hay rankigns, puedes pedir que te unan o introducir su codigo
+        </h1>
+        <form action="post" [formGroup]="addRanking">
+          <input formControlName="rankingId" id="rankingId" type="text" />
+          <button
+            type="submit"
+            class="btn btn-primary bi bi-check-lg"
+            (click)="addRankingByCode()"
+          ></button>
+        </form>
+      </div>
+      <div *ngIf="!nullRankings" class="row">
+        <div
+          class="col-xs-12 col-sm-12 col-md-10 col-lg-5 col-12"
+          id="rankingCard"
+          #rankingCard
+          [@fadeIn]
+          *ngFor="let item of rankings"
+        >
+          <div class="card-flyer">
+            <div class="text-box">
+              <div class="image-box">
+                <img src="data:image/png;base64,{{ item.logo }}" />
+              </div>
+              <div class="text-container">
+                <h6>{{ item.name }}</h6>
+                <p>{{ item.description }}</p>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <ag-grid-angular
+              class="ag-theme-alpine ranking table-responsive"
+              [columnDefs]="columnDefs"
+              [rowData]="item.rankingData"
+              id="dataTable"
+              [defaultColDef]="defaultColDef"
+              resizable="true"
+              (onGridSizeChanged)="onGridSizeChanged($event)"
+              (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>

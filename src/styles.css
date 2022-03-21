@@ -36,6 +36,10 @@ body {
   font-family: "Circular Std Bold", sans-serif ;
 }
 
+nav {
+ z-index: 1000;
+}
+
 /* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 4px;

@@ -4,6 +4,10 @@
   object-fit: cover;
 }
 
+.card-hover-primary {
+  margin-top: 8rem;
+}
+
 .form-control-loading {
   display: block;
   width: 100%;

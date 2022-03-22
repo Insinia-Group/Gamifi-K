@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {fadeIn} from '../config/animations.config';
-import {isBase64} from '../helpers/helpers';
-import {tempProfile} from '../models/profile';
-import {HttpService} from '../services/http.service';
-import {Router} from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { fadeIn } from '../config/animations.config';
+import { isBase64 } from '../helpers/helpers';
+import { tempProfile } from '../models/profile';
+import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -17,6 +17,7 @@ declare var $: any;
 export class UserPageComponent implements OnInit {
   public profile: tempProfile;
   public profileForm: FormGroup;
+  public profilePictureForm: FormGroup;
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
@@ -30,6 +31,10 @@ export class UserPageComponent implements OnInit {
       avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
     this.setFormValues();
+    this.profilePictureForm = new FormGroup({
+      profilePicture: new FormControl(null, [Validators.required]),
+      profilePictureLabel: new FormControl()
+    })
   }
 
   @ViewChild('pictureProfile') pictureProfile: ElementRef;
@@ -44,8 +49,6 @@ export class UserPageComponent implements OnInit {
     if (statusToken == false) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
-    } else if (statusToken) {
-      console.log("Token valid");
     }
 
     const profile: any = await this.http.getProfile();
@@ -67,8 +70,12 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  toggleDropdown(id: string): void {
-    $('#' + id).dropdown('toggle');
+  modal(id: string, state: string): void {
+    $('#' + id).modal(state);
+  }
+
+  updateProfilePicture() {
+    console.log('Update profile picture', this.profilePictureForm)
   }
 
   updateSubmit() {

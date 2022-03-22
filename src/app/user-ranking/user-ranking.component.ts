@@ -9,6 +9,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {rejectByToken} from '../helpers/helpers';
 
 
 
@@ -33,7 +34,7 @@ export class UserRankingComponent implements OnInit {
     {field: 'Nombre', sortable: true, filter: true},
     {field: 'Apellido', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
-    // {field: 'logo', sortable: true, filter: true},
+    {field: 'Insinias'},
   ];
   public rowData: any;
   public rankings: any;
@@ -43,7 +44,7 @@ export class UserRankingComponent implements OnInit {
   public goupStatus: boolean;
   public addRanking: FormGroup;
   public rankingId: number;
-  public showAdd: boolean;
+  public showAdd: boolean = false;
   public rankingCard: any;
   public gridApi: any;
   public columnApi: any;
@@ -52,6 +53,7 @@ export class UserRankingComponent implements OnInit {
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
+    rejectByToken(http, router);
   }
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
@@ -66,13 +68,7 @@ export class UserRankingComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    const statusToken = await this.http.tokenValidation();
-    if (statusToken == false) {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    } else if (statusToken) {
-      console.log("Token valid");
-    }
+
 
     this.addRanking = new FormGroup({
       rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
@@ -90,7 +86,9 @@ export class UserRankingComponent implements OnInit {
   }
 
   async addRankingByCode() {
-    if (1 == 1) {
+    if (this.addRanking.controls.rankingId.value != "") {
+      console.log(this.addRanking.controls.rankingId.value);
+
       this.showAdd = false;
       this.rankingId = this.addRanking.controls.rankingId.value;
       console.log(this.rankingId);
@@ -104,11 +102,15 @@ export class UserRankingComponent implements OnInit {
       this.nullRankings = false;
 
     } else {
-
+      this.nullRankings = false;
     }
   }
   showInput() {
-    this.showAdd = true;
+    if (this.showAdd == false) {
+      this.showAdd = true;
+    } else {
+      this.showAdd = false;
+    }
   }
 
 
@@ -116,14 +118,7 @@ export class UserRankingComponent implements OnInit {
     this.gridApi = params.api;
     this.columnApi = params.columnApi;
     console.log(this.gridApi, this.columnApi)
-    this.tableResize({});
   }
-
-  tableResize(evento: any) {
-    this.gridApi.sizeColumnsToFit();
-    console.log("Bona");
-  }
-
   onGridSizeChanged(event: any) {
     console.log("chnege");
   }
@@ -136,5 +131,7 @@ export class UserRankingComponent implements OnInit {
       });
     });
   }
+
+
 
 }

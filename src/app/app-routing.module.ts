@@ -7,6 +7,7 @@ import {LoginComponent} from './login/login.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {UserPageComponent} from './user-page/user-page.component';
 import {UserRankingComponent} from './user-ranking/user-ranking.component';
+import {ModeratorPageComponent} from './moderator-page/moderator-page.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: '404', component: NotFoundComponent, pathMatch: 'full'},
   {path: 'register', component: RegisterComponent, pathMatch: 'full'},
   {path: 'rankings', component: UserRankingComponent, pathMatch: 'full'},
+  {path: 'moderation', component: ModeratorPageComponent, pathMatch: 'full'},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/404'}
 ];

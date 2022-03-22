@@ -1,5 +1,12 @@
 <nav
-  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
+  class="
+    navbar navbar-expand navbar-dark
+    bg-color
+    position-fixed
+    w-100
+    top-0
+    navbar-home
+  "
 >
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">Insinia</a>
@@ -21,53 +28,57 @@
 </nav>
 
 <div class="container text-color">
-  <div class="card border-0 shadow-sm card-hover-primary">
-    <div class="card-body border-bottom border-color text-color pb-4">
-      <div class="row justify-content-center">
-        <div id="content" class="content p-0">
-          <div class="row">
-            <div class="ms-3 col-auto">
-              <img
-                [@fadeIn]
-                *ngIf="profile && profile.avatar"
-                src="{{ profile.avatar }}"
-                class="thumbnails img-fluid"
-              />
-              <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
-            </div>
-            <div class="col-auto">
-              <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
-              <small>{{ profile.dateJoined }}</small
-              ><br />
-              <small>{{ profile.description }}</small>
-            </div>
-            <div class="col-auto">
-              <div class="d-grid gap-1">
-                <button class="btn btn-sm text-light btn-color" type="button">
-                  <i class="bi bi-images me-2"></i>Foto
-                </button>
-                <button class="btn btn-sm text-light btn-color" type="button">
-                  <i class="bi bi-pen me-2"></i>Perfil
-                </button>
-              </div>
-            </div>
+  <div class="border-0 shadow-sm card-hover-primary">
+    <div class="row justify-content-center">
+      <div id="content" class="content">
+        <div class="row">
+          <div class="ms-3 col-auto col-sm-auto">
+            <img
+              [@fadeIn]
+              *ngIf="profile && profile.avatar"
+              src="{{ profile.avatar }}"
+              class="thumbnails img-fluid"
+            />
+            <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
           </div>
-        </div>
-        <div *ngIf="profile" class="row justify-content-center mt-2">
-          <div class="col-6"></div>
+          <div *ngIf="profile" class="col-auto">
+            <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
+            <small>Te uniste el {{ profile.dateJoined }}</small
+            ><br />
+            <small>{{ profile.description }}</small>
+          </div>
+          <div *ngIf="!profile" class="col-9 col-xxl-7">
+            <button
+              class="btn btn-sm form-control-loading loading-10 mb-2"
+            ></button>
+            <button
+              class="btn btn-sm form-control-loading loading-25 mb-2"
+            ></button>
+            <button class="btn btn-sm form-control-loading loading-50"></button>
+          </div>
         </div>
       </div>
     </div>
 
+    <ul class="list-group list-group-horizontal mt-2">
+      <button
+        *ngIf="profile"
+        class="btn btn-sm btn-color text-light"
+        data-bs-toggle="modal"
+        data-bs-target="#profilePictureModal"
+      >
+        Cambiar foto
+      </button>
+      <button
+        *ngIf="!profile"
+        class="btn btn-sm form-control-loading button-loading loading-10"
+      ></button>
+    </ul>
+
     <div class="row justify-content-center">
       <div [@fadeIn] class="col-lg rounded p-4">
         <h4 class="mb-3">Editar tu perfil</h4>
-        <form
-          class="needs-validation"
-          [formGroup]="profileForm"
-          (ngSubmit)="updateSubmit()"
-          novalidate=""
-        >
+        <form [formGroup]="profileForm" (ngSubmit)="updateSubmit()">
           <div class="row g-3">
             <div class="col-sm">
               <label for="name" class="form-label">Nombre</label>
@@ -306,6 +317,75 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="profilePictureModal"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header p-3 text-light bg-color">
+        <h2 class="modal-title">Cambio de foto de perfil</h2>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div *ngIf="profile" class="row text-center">
+            <h3>Esta es tu foto ahora</h3>
+            <div class="col text-center">
+              <img
+                src="{{ profile.avatar }}"
+                class="img-fluid"
+                style="width: 12em"
+              />
+            </div>
+          </div>
+
+          <div class="row text-center">
+            <h3 *ngIf="!profilePictureForm.controls.profilePicture.value">Selecciona una imagen para cambiar tu foto de perfil</h3>
+            <form
+              [formGroup]="profilePictureForm"
+              (ngSubmit)="updateProfilePicture()"
+              class="col"
+            > 
+              <label formControlName="profilePictureLabel" *ngIf="!profilePictureForm.controls.profilePicture.value" for="profilePicture" class="form-control-img"
+                >Selecciona una foto</label
+              >
+              <input 
+                formControlName="profilePicture"
+                name="profilePicture"
+                id="profilePicture"
+                type="file"
+                accept="image/png, image/jpg, image/jpeg, image/svg"
+                class="hide"
+              />
+              <img src="" alt="">
+              <button [disabled]="profilePictureForm.invalid" type="submit" class="btn btn-sm btn-color text-light">
+                Aceptar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button
+          type="button"
+          class="btn btn-sm btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cerrar
+        </button>
       </div>
     </div>
   </div>

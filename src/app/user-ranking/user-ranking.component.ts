@@ -9,7 +9,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {rejectByToken} from '../helpers/helpers';
+
 
 
 
@@ -53,7 +53,7 @@ export class UserRankingComponent implements OnInit {
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
-    rejectByToken(http, router);
+    // this.http.tokenValidation();
   }
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {

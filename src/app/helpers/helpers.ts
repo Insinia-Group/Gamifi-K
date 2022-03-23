@@ -11,13 +11,17 @@ export function isBase64(string: string) {
     }
 }
 
-export async function rejectByToken(http: HttpService, router: Router) {
-
+export async function rejectByToken(http: HttpService, router: Router): Promise<boolean> {
     const statusToken = await http.tokenValidation();
     if (statusToken == false) {
+        return true;
         localStorage.removeItem('token');
         router.navigate(['/login']);
     } else if (statusToken) {
+        return false;
         console.log("Token valid");
+    }
+    else {
+        return false;
     }
 }

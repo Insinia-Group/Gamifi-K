@@ -36,7 +36,7 @@
             <img
               [@fadeIn]
               *ngIf="profile && profile.avatar"
-              src="{{ profile.avatar }}"
+              [src]="profile.avatar"
               class="thumbnails img-fluid"
             />
             <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
@@ -345,7 +345,7 @@
             <h3>Esta es tu foto ahora</h3>
             <div class="col text-center">
               <img
-                src="{{ profile.avatar }}"
+                [src]="profile.avatar"
                 class="img-fluid"
                 style="width: 12em"
               />
@@ -353,25 +353,33 @@
           </div>
 
           <div class="row text-center">
-            <h3 *ngIf="!profilePictureForm.controls.profilePicture.value">Selecciona una imagen para cambiar tu foto de perfil</h3>
-            <form
-              [formGroup]="profilePictureForm"
-              (ngSubmit)="updateProfilePicture()"
-              class="col"
-            > 
-              <label formControlName="profilePictureLabel" *ngIf="!profilePictureForm.controls.profilePicture.value" for="profilePicture" class="form-control-img"
+            <h3>Selecciona una imagen para cambiar tu foto de perfil</h3>
+            <form class="col">
+              <label
+                #profilePictureLabel
+                for="profilePicture"
+                class="form-control-img"
                 >Selecciona una foto</label
               >
-              <input 
-                formControlName="profilePicture"
+              <input
+                #profilePicture
                 name="profilePicture"
                 id="profilePicture"
                 type="file"
                 accept="image/png, image/jpg, image/jpeg, image/svg"
                 class="hide"
+                (change)="readURL($event)"
               />
-              <img src="" alt="">
-              <button [disabled]="profilePictureForm.invalid" type="submit" class="btn btn-sm btn-color text-light">
+              <img
+                *ngIf="image"
+                [src]="image.base"
+                class="img-fluid"
+                style="width: 12em"
+              />
+              <button
+                (click)="updateProfilePicture()"
+                class="btn btn-sm btn-color text-light"
+              >
                 Aceptar
               </button>
             </form>

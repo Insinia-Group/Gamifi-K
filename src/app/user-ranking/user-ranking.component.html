@@ -1,111 +1,116 @@
-<nav
-  *ngIf="!navbarStatus"
-  class="navbar navbar-expand position-fixed w-100 top-0 navbar-home"
->
-  <div class="container-fluid">
-    <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
-    <div class="d-flex justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-color active" routerLink="/home">
-            <i class="bi bi-house-door-fill"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-color" routerLink="/profile">
-            <i class="bi bi-person-circle"></i>
-          </a>
-        </li>
-      </ul>
+<!-- <div *ngIf="ready">
+  <loading></loading>
+</div> -->
+<div class="body">
+  <nav
+    *ngIf="!navbarStatus"
+    class="navbar navbar-expand position-fixed w-100 top-0 navbar-home"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
+      <div class="d-flex justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-color active" routerLink="/home">
+              <i class="bi bi-house-door-fill"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-color" routerLink="/profile">
+              <i class="bi bi-person-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<nav
-  *ngIf="navbarStatus"
-  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
->
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home">Insinia</a>
-    <div class="d-flex justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <button class="nav-link btn active" routerLink="/home">
-            <i class="bi bi-house-door-fill"></i>
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link btn" routerLink="/profile">
-            <i class="bi bi-person-circle"></i>
-          </button>
-        </li>
-      </ul>
+  <nav
+    *ngIf="navbarStatus"
+    class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Insinia</a>
+      <div class="d-flex justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="nav-link btn active" routerLink="/home">
+              <i class="bi bi-house-door-fill"></i>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn" routerLink="/profile">
+              <i class="bi bi-person-circle"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="container">
-  <h1 class="title col-6">Mis rankings</h1>
-</div>
-<div class="container title">
-  <div class="col-6" *ngIf="!nullRankings">
-    <h1 class="add-ranking-title col-6" (click)="showInput()">
-      Añadir ranking
-    </h1>
-    <form
-      class="add-ranking"
-      [@fadeIn]
-      [formGroup]="addRanking"
-      *ngIf="showAdd"
-    >
-      <input
-        formControlName="rankingId"
-        class="add-ranking-input"
-        type="text"
-      />
-      <button
-        type="submit"
-        class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button"
-        (click)="addRankingByCode()"
-      ></button>
-    </form>
-  </div>
-</div>
-
-<div class="cards_landscape_wrap-2 mt-5">
   <div class="container">
-    <div class="container no-rankings" *ngIf="nullRankings">
-      <h1>No hay rankigns, puedes pedir que te unan o introducir su codigo</h1>
-      <form action="post" [formGroup]="addRanking">
-        <input formControlName="rankingId" id="rankingId" type="text" />
+    <h1 class="title col-6">Mis rankings</h1>
+  </div>
+  <div class="container title">
+    <div class="col-6" *ngIf="!nullRankings">
+      <h1 class="add-ranking-title col-6" (click)="showInput()">
+        Añadir ranking
+      </h1>
+      <form
+        class="add-ranking"
+        [@fadeIn]
+        [formGroup]="addRanking"
+        *ngIf="showAdd"
+      >
+        <input
+          formControlName="rankingId"
+          class="add-ranking-input"
+          type="text"
+        />
         <button
           type="submit"
-          class="btn btn-primary bi bi-check-lg"
+          class="btn btn-secondary bi bi-plus-circle-dotted add-ranking-button"
           (click)="addRankingByCode()"
         ></button>
       </form>
     </div>
+  </div>
 
-    <div *ngIf="!nullRankings" class="row justify-content-center">
-      <div
-        class="col-xs-10 col-sm-12 col-md-10 col-lg-5 col-12 ranking-card"
-        id="rankingCard"
-        #rankingCard
-        [@fadeIn]
-        *ngFor="let item of rankings"
-      >
-        <div class="card-flyer">
-          <div class="text-box">
-            <div class="image-box">
-              <img src="data:image/png;base64,{{ item.logo }}" />
-            </div>
-            <div class="text-container">
-              <h6>{{ item.name }}</h6>
-              <p>{{ item.description }}</p>
+  <div class="cards_landscape_wrap-2 mt-5">
+    <div class="container">
+      <div class="container no-rankings" *ngIf="nullRankings">
+        <h1>
+          No hay rankigns, puedes pedir que te unan o introducir su codigo
+        </h1>
+        <form action="post" [formGroup]="addRanking">
+          <input formControlName="rankingId" id="rankingId" type="text" />
+          <button
+            type="submit"
+            class="btn btn-primary bi bi-check-lg"
+            (click)="addRankingByCode()"
+          ></button>
+        </form>
+      </div>
+
+      <div *ngIf="!nullRankings" class="row justify-content-center">
+        <div
+          class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
+          id="rankingCard"
+          #rankingCard
+          [@fadeIn]
+          *ngFor="let item of rankings"
+        >
+          <div class="card-flyer">
+            <div class="text-box">
+              <div class="image-box ranking-image">
+                <img src="data:image/png;base64,{{ item.logo }}" />
+              </div>
+              <div class="text-container">
+                <h6>{{ item.name }}</h6>
+                <p>{{ item.description }}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
           <ag-grid-angular
             class="ag-theme-alpine ranking table-responsive"
             [columnDefs]="columnDefs"

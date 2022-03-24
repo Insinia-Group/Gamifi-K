@@ -177,9 +177,9 @@ export class RegisterComponent implements OnInit {
       this.userName = this.registerForm.controls.userName.value;
       this.lastUserName = this.registerForm.controls.lastUserName.value;
       this.password = this.registerForm.controls.password.value;
-      this.email = this.registerForm.controls.email.value;
-      this.description = this.registerForm.controls.description.value;
       this.dateBirth = this.registerForm.controls.dateBirth.value;
+      this.description = this.registerForm.controls.description.value;
+      this.email = this.registerForm.controls.email.value;
 
 
       const salt = bcrypt.genSaltSync(10);

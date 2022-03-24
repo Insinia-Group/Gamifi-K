@@ -33,7 +33,11 @@
 *,
 html,
 body {
-  font-family: "Circular Std Bold", sans-serif !important;
+  font-family: "Circular Std Bold", sans-serif ;
+}
+
+nav {
+ z-index: 1000;
 }
 
 /* SCROLLBAR */

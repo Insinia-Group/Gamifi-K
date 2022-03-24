@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {fadeIn} from '../config/animations.config';
-import {isBase64} from '../helpers/helpers';
-import {tempProfile} from '../models/profile';
-import {HttpService} from '../services/http.service';
-import {Router} from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { fadeIn } from '../config/animations.config';
+import { isBase64 } from '../helpers/helpers';
+import { tempProfile } from '../models/profile';
+import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
+import { ProfilePicture } from '../interface/image';
 declare var $: any;
 
 @Component({
@@ -16,7 +17,9 @@ declare var $: any;
 
 export class UserPageComponent implements OnInit {
   public profile: tempProfile;
-  public profileForm: FormGroup;
+  public profileForm: any;
+  public profilePictureForm: any;
+  public image: ProfilePicture;
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
@@ -30,24 +33,27 @@ export class UserPageComponent implements OnInit {
       avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
     this.setFormValues();
+    this.image = {
+      base: undefined,
+      name: undefined,
+      size: undefined,
+      type: undefined,
+      ready: false
+    }
   }
 
-  @ViewChild('pictureProfile') pictureProfile: ElementRef;
+  @ViewChild('pictureProfile') profilePicture: ElementRef;
+  @ViewChild('profilePictureLabel') profilePictureLabel: ElementRef;
 
   async ngOnInit(): Promise<void> {
-
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
-
     const statusToken = await this.http.tokenValidation();
     if (statusToken == false) {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
-    } else if (statusToken) {
-      console.log("Token valid");
     }
-
     const profile: any = await this.http.getProfile();
     if (isBase64(profile[0].avatar)) {
       profile[0].avatar = atob(profile[0].avatar);
@@ -57,18 +63,39 @@ export class UserPageComponent implements OnInit {
   }
 
   setFormValues() {
+    const controls = this.profileForm.controls;
     if (this.profile) {
-      this.profileForm.controls.dateBirth.setValue(this.profile.dateBirth);
-      this.profileForm.controls.nick.setValue(this.profile.nick);
-      this.profileForm.controls.name.setValue(this.profile.name);
-      this.profileForm.controls.email.setValue(this.profile.email);
-      this.profileForm.controls.lastName.setValue(this.profile.lastName);
-      this.profileForm.controls.description.setValue(this.profile.description);
+      controls.dateBirth.setValue(this.profile.dateBirth);
+      controls.nick.setValue(this.profile.nick);
+      controls.name.setValue(this.profile.name);
+      controls.email.setValue(this.profile.email);
+      controls.lastName.setValue(this.profile.lastName);
+      controls.description.setValue(this.profile.description);
     }
   }
 
-  toggleDropdown(id: string): void {
-    $('#' + id).dropdown('toggle');
+  async readURL(event: any) {
+    const file = event.target.files[0];
+    console.log(file)
+    if (file) {
+      this.image.name = file.name;
+      this.image.size = file.size;
+      this.image.type = file.type;
+      this.image.base = null;
+      this.image.ready = false;
+    }
+    const reader = new FileReader();
+    reader.onload = () => this.image.base = reader.result;
+    reader.readAsDataURL(file);
+    this.image.ready = true;
+  }
+
+  modal(id: string, state: string): void {
+    $('#' + id).modal(state);
+  }
+
+  updateProfilePicture() {
+    console.log('Update profile picture', this.image)
   }
 
   updateSubmit() {

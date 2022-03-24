@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {TokenInterceptor} from './interceptors/token-interceptor.interceptor';
 import {UserRankingComponent} from './user-ranking/user-ranking.component';
 import {AgGridModule} from 'ag-grid-angular';
+import {ModeratorPageComponent} from './moderator-page/moderator-page.component';
+import {LoadingComponent} from './loading/loading.component';
 
 
 
@@ -32,7 +34,9 @@ import {AgGridModule} from 'ag-grid-angular';
     AboutComponent,
     NotFoundComponent,
     UserPageComponent,
-    UserRankingComponent
+    UserRankingComponent,
+    ModeratorPageComponent,
+    LoadingComponent
   ],
   imports: [
     MatTableModule,

@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
+import {fadeIn} from '../config/animations.config';
 import {HttpService} from '../services/http.service';
-import {ColDef} from 'ag-grid-community';
+import {ColDef, GridReadyEvent} from 'ag-grid-community';
 import {BrowserModule} from '@angular/platform-browser';
 import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 
@@ -14,55 +16,121 @@ import {Ranking} from '../models/rankings';
 @Component({
   selector: 'app-user-ranking',
   templateUrl: './user-ranking.component.html',
-  styleUrls: ['./user-ranking.component.css']
+  styleUrls: ['./user-ranking.component.css'],
+  animations: [fadeIn]
 })
 export class UserRankingComponent implements OnInit {
 
-  columnDefs: ColDef[] = [
-    {field: 'Usuario', sortable: true, filter: true},
-    {field: 'Ranking', filter: true},
-    {field: 'Puntos', sortable: true, filter: true},
-    // {field: 'logo', sortable: true, filter: true},
-  ];
-  rowData: any;
-  rowDatas: any;
-  Ranking: any;
-  constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
+  private resizeListenerFunc = () => {this.gridApi.api.sizeColumnsToFit();};
+  // onGridReady() {
+  //   this.gridApi.api.sizeColumnsToFit();
+  //   window.addEventListener('resize', this.resizeListenerFunc);
+  // }
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListenerFunc);
   }
+
+  columnDefs: ColDef[] = [
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true},
+    {field: 'Insinias'},
+  ];
+  public rowData: any;
+  public rankings: any;
+  public Ranking: any;
+  public nullRankings: boolean;
+  public navbarStatus: boolean;
+  public goupStatus: boolean;
+  public addRanking: FormGroup;
+  public rankingId: number;
+  public showAdd: boolean = false;
+  public rankingCard: any;
+  public gridApi: any;
+  public columnApi: any;
+  public defaultColDef: any;
+
+  constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
+    this.goupStatus = false;
+    this.navbarStatus = false;
+    // this.http.tokenValidation();
+  }
+  @HostListener('window:scroll', ['$event'])
+  isScrolledIntoView() {
+    if (window.scrollY >= 90) {
+      this.navbarStatus = false;
+      this.goupStatus = false;
+    } else {
+      this.navbarStatus = true;
+      this.goupStatus = true;
+    }
+  };
 
   async ngOnInit(): Promise<void> {
+
+
+
+    this.addRanking = new FormGroup({
+      rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
+    }
+    );
+    this.isScrolledIntoView();
+    this.rankings = await this.http.getRanking();
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
+    }
+    console.log(this.rankings);
     this.rowData = await this.http.getRankingData();
-    // this.rowDatas = await this.http.getRankingData();
-    var d: any[] = [];
-   await this.rowData.forEach((element:any,index:number,array:any) => {
-      var temp = this.rowData[0].Ranking ;
-      
-      if(element.Ranking == temp){
-        d.push(element);
+  }
+
+  async addRankingByCode() {
+    if (this.addRanking.controls.rankingId.value != "") {
+      console.log(this.addRanking.controls.rankingId.value);
+
+      this.showAdd = false;
+      this.rankingId = this.addRanking.controls.rankingId.value;
+      console.log(this.rankingId);
+      const code = {
+        code: this.rankingId
       }
+      this.http.addRankingByCode(code);
+      this.rankings = await this.http.getRanking();
+      this.rowData = await this.http.getRankingData();
+      console.log(this.rankings);
+      this.nullRankings = false;
 
-
-    });
-    console.log(this.rowData[4].Puntos);
-      
-     this.rowDatas = d;
-      
-
-    if (localStorage.getItem('token') == null) {
-      this.router.navigate(['/login']);
+    } else {
+      this.nullRankings = false;
     }
-    const statusToken = await this.http.tokenValidation();
-    if (statusToken == false) {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    } else if (statusToken) {
-      console.log("Token valid");
+  }
+  showInput() {
+    if (this.showAdd == false) {
+      this.showAdd = true;
+    } else {
+      this.showAdd = false;
     }
-
   }
 
 
+  tablaCargada(params: any) {
+    this.gridApi = params.api;
+    this.columnApi = params.columnApi;
+    console.log(this.gridApi, this.columnApi)
+  }
+  onGridSizeChanged(event: any) {
+    console.log("chnege");
+  }
 
+  onGridReady(params: GridReadyEvent) {
+    params.api.sizeColumnsToFit();
+    window.addEventListener('resize', function () {
+      setTimeout(function () {
+        params.api.sizeColumnsToFit();
+      });
+    });
+  }
 
 
 

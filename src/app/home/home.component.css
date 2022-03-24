@@ -2,131 +2,74 @@
   background: var(--corp-color-one);
   background: linear-gradient(
     180deg,
-    rgba(109, 48, 243, 1) 0%,
+    rgba(109, 48, 243, 1) 0,
     rgba(0, 0, 0, 0) 100%
   );
 }
-
-.bg-color-home-inverted {
-  background: var(--corp-color-one);
-  background: linear-gradient(
-    0deg,
-    rgba(109, 48, 243, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-.fullscreen-section {
-  height: 102vh;
-}
-
 .top-20 {
   top: 20% !important;
 }
-
 .top-25 {
   top: 25% !important;
 }
-
 .top-60 {
   top: 60% !important;
 }
-
 .top-75 {
   top: 75% !important;
 }
-
 .home-hero {
   width: 500px;
   transition: 0.7s;
 }
-
 .home-hero-card {
   margin: 1rem;
   width: 250px;
   height: 150px;
   transition: 0.7s;
 }
-
 .home-hero-card:hover,
 .home-hero:hover {
   transform: scale(1.1);
   transition: 0.7s;
 }
-
-.card-custom {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background: rgb(134, 79, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(134, 79, 255, 1) 0%,
-    rgba(80, 0, 255, 1) 100%
-  );
-  background-clip: border-box;
-  border-radius: 0.25rem;
-}
-
-.card-custom-alt {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background: rgb(134, 79, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(80, 0, 255, 1) 0%,
-    rgba(134, 79, 255, 1) 100%
-  );
-  background-clip: border-box;
-  border-radius: 0.25rem;
-}
-
 .text-small {
   font-size: 12px;
 }
-
-.center-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-}
-
 .text-muted-color {
   color: rgba(135, 79, 255, 0.652);
 }
-
 .browser {
   transition: 1s;
+  filter: grayscale(1);
 }
-
 .browser:hover {
-  transition: 1s;
+  transition: 0.8s;
+  filter: grayscale(100%) brightness(70%) sepia(50%) hue-rotate(-140deg)
+    saturate(800%) contrast(1);
   transform: scale(1.3);
 }
-
-#under-landing,
-#under-cards {
+.client-section {
+  padding: 64px 0;
+  background-color: #f6f5fc;
+}
+.client-section .item {
+  padding: 16px 0;
+  text-align: center;
+}
+#under-cards,
+#under-landing {
   margin-top: 4rem;
 }
-
 @media screen and (max-width: 1200px) {
   #welcome {
     text-align: center !important;
     margin-top: 5rem;
   }
-
   #welcome-image {
     margin-right: 0 !important;
   }
 }
-
 .card-home-corp {
   line-height: 1.4;
   font-weight: 400;
@@ -139,27 +82,22 @@
 .navbar-home {
   z-index: 1;
 }
-
 .card-home-corp h3 {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-
 .card-home-corp svg {
   margin-top: -2%;
   margin-left: -0.5%;
   width: 2em;
   height: 2em;
 }
-
 .card-home-corp h3 {
   margin-top: 0.875em;
 }
-
 .card-home-corp h4 {
   margin-top: 0.75em;
 }
-
 .card-home-corp p {
   margin-top: 0.875em;
   --tw-text-opacity: 1;
@@ -167,7 +105,6 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-
 .rectangle-1 {
   width: 2000px;
   height: 400px;
@@ -180,7 +117,6 @@
   z-index: 0;
   transform: scale(1) rotate(-10deg);
 }
-
 .rectangle-2 {
   width: 2000px;
   height: 400px;
@@ -193,19 +129,16 @@
   z-index: 0;
   transform: scale(1) rotate(50deg);
 }
-
 .rectangle-1 {
   opacity: 0;
   animation: grow1 ease 1s forwards;
-  box-shadow: 0px 20px 30px 0px rgba(9, 21, 54, 0.25) !important;
+  box-shadow: 0 20px 30px 0 rgba(9, 21, 54, 0.25) !important;
 }
-
 .rectangle-2 {
   opacity: 0;
   animation: grow2 ease 1s forwards;
-  box-shadow: 0px 20px 30px 0px rgba(9, 21, 54, 0.25) !important;
+  box-shadow: 0 20px 30px 0 rgba(9, 21, 54, 0.25) !important;
 }
-
 .rectangle-transparent-1 {
   width: 500px;
   height: 500px;
@@ -216,7 +149,6 @@
   display: block;
   animation: floating-slow ease-in-out 12s infinite;
 }
-
 .rectangle-transparent-2 {
   width: 600px;
   height: 600px;
@@ -227,7 +159,6 @@
   display: block;
   animation: floating-slow ease-in-out 12s infinite;
 }
-
 .circle-1 {
   width: 50px;
   height: 50px;
@@ -240,7 +171,6 @@
   top: 50%;
   animation: fadeInFromTop 0.5s linear forwards, floating ease 4s infinite;
 }
-
 .circle-2 {
   width: 70px;
   height: 70px;
@@ -254,7 +184,6 @@
   animation: fadeInFromTop 0.5s linear forwards,
     floating ease-in-out 4s infinite;
 }
-
 .circle-3 {
   top: 80%;
   right: 25%;
@@ -267,11 +196,9 @@
   animation: fadeInFromTop 0.5s linear forwards,
     floating ease-in-out 4s infinite;
 }
-
 .triangle {
   position: absolute;
 }
-
 .triangle-1 {
   right: 0;
   animation: fadeInFromTop 0.5s linear forwards,
@@ -282,7 +209,6 @@
   width: 50px;
   transform: rotate(30deg);
 }
-
 .triangle-2 {
   top: 30%;
   left: 20%;
@@ -294,7 +220,6 @@
   height: 75px;
   transform: rotate(15deg);
 }
-
 .triangle-3 {
   top: 80%;
   left: 15%;
@@ -306,7 +231,6 @@
   height: 45px;
   transform: rotate(40deg);
 }
-
 .triangle-4 {
   top: 60%;
   right: 15%;
@@ -318,7 +242,6 @@
   height: 45px;
   transform: rotate(-40deg);
 }
-
 .jumbotron {
   color: #fff;
   padding-top: 80px;
@@ -332,87 +255,77 @@
   overflow: hidden;
   min-height: 100vh;
 }
-
 @keyframes floating {
-	0% {
-	  transform: translate(0%, 0%) rotate(25deg);
-	}
-	25% {
-	  transform: translate(5%, 15%) rotate(25deg);
-	}
-	50% {
-	  transform: translate(10%, 5%) rotate(25deg);
-	}
-	75% {
-	  transform: translate(0%, 15%) rotate(25deg);
-	}
-	100% {
-	  transform: translate(0%, 0%) rotate(25deg);
-	}
+  0% {
+    transform: translate(0, 0) rotate(25deg);
   }
-
+  25% {
+    transform: translate(5%, 15%) rotate(25deg);
+  }
+  50% {
+    transform: translate(10%, 5%) rotate(25deg);
+  }
+  75% {
+    transform: translate(0, 15%) rotate(25deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(25deg);
+  }
+}
 @media (min-width: 640px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 }
-
 @media (min-width: 1024px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
 }
-
 @media (min-width: 1280px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
-
 @media (min-width: 640px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 }
-
 @media (min-width: 1024px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
 }
-
 @media (min-width: 1280px) {
-  .card-home-corp svg,
-  .card-home-corp h3 {
+  .card-home-corp h3,
+  .card-home-corp svg {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
 }
-
 @media (min-width: 640px) {
   .card-home-corp p {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
 }
-
 @media (min-width: 1024px) {
   .card-home-corp p {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
-
 @media (min-width: 1280px) {
   .card-home-corp p {
     font-size: 1.5rem;

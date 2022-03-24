@@ -130,24 +130,18 @@
   </div>
 </div>
 
-<div class="container-fluid" id="under-cards">
-  <div class="row justify-content-center mb-5">
-    <div class="col-8 text-center align-self-center pt-5">
-      <h1 class="text-color mb-2">Disponible para los navegadores</h1>
-      <p class="text-small text-muted-color mb-3">
-        <i class="bi bi-exclamation-circle-fill me-2"></i>Es importante utilizar
-        las últimas versiones de estos navegadores
-      </p>
+<div class="container" id="under-cards">
+  <div class="row">
+    <div class="col-auto g-0 text-start align-self-center pt-5">
+      <h1 class="text-color mb-1">Disponible para los navegadores</h1>
     </div>
   </div>
 </div>
 
-<div class="page-section client-section">
-  <div class="container-fluid">
-    <div
-      class="row row-cols-2 row-cols-md-3 row-cols-lg-5 justify-content-center"
-    >
-      <div class="text-center">
+<div class="page-section">
+  <div class="container client-section">
+    <div class="row justify-content-center">
+      <div class="col-auto text-center">
         <img
           src="../../assets/firefox.png"
           class="mx-3 browser"
@@ -155,7 +149,7 @@
           alt="firefox icon"
         />
       </div>
-      <div class="text-center">
+      <div class="col-auto text-center">
         <img
           src="../../assets/opera.png"
           class="mx-3 browser"
@@ -163,7 +157,7 @@
           alt="opera icon"
         />
       </div>
-      <div class="text-center">
+      <div class="col-auto text-center">
         <img
           src="../../assets/brave.png"
           class="mx-3 browser"
@@ -171,7 +165,7 @@
           alt="brave icon"
         />
       </div>
-      <div class="text-center">
+      <div class="col-auto text-center">
         <img
           src="../../assets/chrome.png"
           class="mx-3 browser"
@@ -179,7 +173,7 @@
           alt="chrome icon"
         />
       </div>
-      <div class="text-center">
+      <div class="col-auto text-center">
         <img
           src="../../assets/edge.png"
           class="mx-3 browser"
@@ -189,10 +183,16 @@
       </div>
     </div>
   </div>
-  <!-- .container-fluid -->
 </div>
 
-<div class="fixed-bottom pe-2 pb-2" *ngIf="goupStatus" @slideInOut>
+<div class="text-center bg-color text-light pt-2">
+  <p>Desarrollado por Insinia</p>
+  <p class="text-light mb-0 pb-2">
+    2022 © Insinia. Todos los derechos reservados.
+  </p>
+</div>
+
+<div class="fixed-bottom me-2 mb-2" *ngIf="goupStatus" @slideInOut>
   <div class="text-end">
     <a
       routerLink="/home#welcome-image"
@@ -201,11 +201,4 @@
       ><i class="bi bi-arrow-up-circle-fill"></i
     ></a>
   </div>
-</div>
-
-<div class="text-center text-color">
-  <p class="mb-1">Desarrollado por Insinia</p>
-  <p class="text-small text-muted-color">
-    2022 © Insinia. Todos los derechos reservados.
-  </p>
 </div>

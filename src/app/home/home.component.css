@@ -111,16 +111,9 @@
   transform: scale(1.3);
 }
 
-#section-land {
-  padding-top: 10%;
-  height: 720px;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
 #under-landing,
 #under-cards {
-  margin-top: 16rem;
+  margin-top: 4rem;
 }
 
 @media screen and (max-width: 1200px) {

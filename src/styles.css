@@ -51,7 +51,7 @@ body {
 
 .svg-container {
   position: relative !important;
-  z-index: -100 !important;
+  z-index: 0 !important;
 }
 
 .bg-color {

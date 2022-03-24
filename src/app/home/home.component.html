@@ -4,7 +4,8 @@
   class="navbar navbar-expand bg-blur position-fixed w-100 top-0 navbar-home"
 >
   <div class="container-fluid">
-    <a class="navbar-brand text-light" routerLink="/home">Insinia</a>
+    <a class="navbar-brand text-light" routerLink="/home"><logo [animated]="false"></logo>
+    </a>
     <div class="d-flex justify-content-center">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -28,7 +29,7 @@
   class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home">Insinia</a>
+    <a class="navbar-brand" routerLink="/home"><img src="../../assets/svg/Insinia.svg" style="width: 30px"/></a>
     <div class="d-flex justify-content-center">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -37,7 +38,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-color" routerLink="/login">
+          <a class="nav-link text-light" routerLink="/login">
             <i class="bi bi-person-circle"></i>
           </a>
         </li>
@@ -46,9 +47,9 @@
   </div>
 </nav>
 
-<div class="jumbotron bg-color d-flex align-items-center">
+<div class="jumbotron bg-color d-flex align-items-center" id="welcome-image"> 
   <div class="container text-center">
-    <h1 class="lead mb-4">Insinia</h1>
+    <h1 class="mb-4">Insinia</h1>
     <div class="svg-container d-none d-md-block">
       <img class="img-fluid home-hero" src="../../assets/svg/working.svg" />
     </div>
@@ -90,7 +91,7 @@
     <div class="col">
       <section>
         <div class="text-center">
-          <h2 class="text-color mb-4">¿Qué ofrecemos?</h2>
+          <h1 class="text-color mb-4">¿Qué ofrecemos?</h1>
         </div>
         <div class="row">
           <div class="col-xl mb-3">
@@ -178,7 +179,7 @@
 
 <div class="fixed-bottom pe-2 pb-2" *ngIf="goupStatus" @slideInOut>
   <div class="text-end">
-    <a rotuerLink="#welcome-image" class="btn btn-color text-light" id="go-up"
+    <a routerLink="/home#welcome-image" class="btn btn-color text-light" id="go-up"
       ><i class="bi bi-arrow-up-circle-fill"></i
     ></a>
   </div>

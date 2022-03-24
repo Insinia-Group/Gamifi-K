@@ -23,9 +23,6 @@ import { ModeratorPageComponent } from './moderator-page/moderator-page.componen
 import { LoadingComponent } from './loading/loading.component';
 import { LogoComponent } from './logo/logo.component';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

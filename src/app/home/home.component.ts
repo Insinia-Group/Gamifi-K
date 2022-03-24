@@ -28,25 +28,17 @@ export class HomeComponent implements AfterViewInit {
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
     if (window.scrollY >= 250) {
-      this.navbarStatus = true;
       this.goupStatus = true;
     } else {
-      this.navbarStatus = false;
       this.goupStatus = false;
     }
-  };
 
-  /**
-   * 
-   * @param element 
-   * @returns 
-   */
-  isElementOnScreen(element: ElementRef): Boolean {
-    const rect = element.nativeElement.getBoundingClientRect();
-    const topShown = rect.top >= 0;
-    const bottomShown = rect.bottom <= window.innerHeight;
-    return topShown && bottomShown;
-  }
+    if (window.scrollY >= 1075) {
+      this.navbarStatus = true;
+    } else {
+      this.navbarStatus = false;
+    }
+  };
 
   /**
    * 

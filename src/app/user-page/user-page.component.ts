@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
-import { isBase64 } from '../helpers/helpers';
+import { calculateSize, isBase64 } from '../helpers/helpers';
 import { tempProfile } from '../models/profile';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
@@ -88,6 +88,8 @@ export class UserPageComponent implements OnInit {
     reader.onload = () => this.image.base = reader.result;
     reader.readAsDataURL(file);
     this.image.ready = true;
+    this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
+    console.log();
   }
 
   modal(id: string, state: string): void {

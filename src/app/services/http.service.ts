@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {API} from '../models/api';
-import {Router, RouterLink} from '@angular/router';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { Router, RouterLink } from '@angular/router';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -51,19 +51,38 @@ export class HttpService {
   register(user: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/register'), user, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/register'), user, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
     } catch (e) {
       console.log(e)
     }
+  }
+
+  setProfilePicture(profile: string) {
+    return new Promise((resolve, reject) => {
+      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error with the status.');
+        }
+      );
+    });
   }
 
   addRankingByCode(code: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/addRankingByCode'), code, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/addRankingByCode'), code, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -71,7 +90,6 @@ export class HttpService {
       console.log(e)
     }
   }
-
 
   /**
    * Checks status with the API.
@@ -94,7 +112,6 @@ export class HttpService {
   }
 
   tokenValidation() {
-
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/tokenValidation'), this.observe).subscribe(
         (res) => {
@@ -103,7 +120,6 @@ export class HttpService {
         (err) => {
           reject('Invalid token');
           this.router.navigate(['/login']);
-
         }
       );
     });
@@ -174,10 +190,11 @@ export class HttpService {
       );
     });
   }
+
   getRankingById(id: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/getRankingById'), id, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/getRankingById'), id, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -185,6 +202,7 @@ export class HttpService {
       console.log(e)
     }
   }
+
   getRankingData() {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/rankingData'), this.observe).subscribe(

@@ -76,7 +76,6 @@ export class UserPageComponent implements OnInit {
 
   async readURL(event: any) {
     const file = event.target.files[0];
-    console.log(file)
     if (file) {
       this.image.name = file.name;
       this.image.size = file.size;
@@ -89,7 +88,6 @@ export class UserPageComponent implements OnInit {
     reader.readAsDataURL(file);
     this.image.ready = true;
     this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
-    console.log();
   }
 
   modal(id: string, state: string): void {
@@ -97,7 +95,10 @@ export class UserPageComponent implements OnInit {
   }
 
   updateProfilePicture() {
-    console.log('Update profile picture', this.image)
+    const image = {
+      image: this.image.base
+    }
+    console.log(image)
   }
 
   updateSubmit() {

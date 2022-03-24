@@ -26,7 +26,13 @@ export async function rejectByToken(http: HttpService, router: Router): Promise<
     }
 }
 
+export function getExtension(string: string): string {
+    if (!string) return '.unknown';
+    return string.split('.')[string.split('.').length - 1];
+}
+
 export function calculateSize(size: number): string {
+    if (!size) return ' N/A';
     let counterLoop = 0;
     do {
         size /= 1024;

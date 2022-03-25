@@ -94,11 +94,11 @@ export class UserPageComponent implements OnInit {
     $('#' + id).modal(state);
   }
 
-  updateProfilePicture() {
+  async updateProfilePicture() {
     const image = {
       image: this.image.base
     }
-    console.log(image)
+    await this.http.setProfilePicture(image);
   }
 
   updateSubmit() {

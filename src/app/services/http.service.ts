@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API } from '../models/api';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { JwtService } from './jwt.service';
 
 @Injectable({
@@ -60,13 +60,14 @@ export class HttpService {
     }
   }
 
-  setProfilePicture(profile: string) {
+  setProfilePicture(profile: object) {
     return new Promise((resolve, reject) => {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, this.observe).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, { headers: headers }).subscribe(
         (res) => {
-          if (res.status == 200 && res.statusText == 'OK') {
-            resolve(res.body);
+          if (res) {
+            console.log(res)
+            resolve('');
           } else {
             reject('Server Error');
           }

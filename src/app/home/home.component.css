@@ -6,6 +6,11 @@
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+.icon-lg {
+  font-size: 1.2rem;
+}
+
 .top-20 {
   top: 20% !important;
 }
@@ -45,8 +50,7 @@
 }
 .browser:hover {
   transition: 0.8s;
-  filter: grayscale(100%) brightness(70%) sepia(50%) hue-rotate(-140deg)
-    saturate(800%) contrast(1);
+  filter: grayscale(0);
   transform: scale(1.3);
 }
 .client-section {
@@ -59,8 +63,60 @@
 }
 #under-cards,
 #under-landing {
-  margin-top: 4rem;
+  margin-top: 10rem;
 }
+
+.interactive {
+  z-index: 2;
+}
+
+.move {
+  animation: move 6s ease-in-out infinite alternate;
+}
+
+.move-two {
+  animation: move2 6s infinite;
+}
+
+.move-inverted {
+  animation: move 6s ease-in-out infinite alternate-reverse;
+}
+
+.half {
+  height: 25vh;
+  width: 100%;
+}
+
+@keyframes move2 {
+  0% {
+    -webkit-transform: rotate(1deg) translate(2px, 2px);
+    transform: rotate(1deg) translate(2px, 2px);
+  }
+  50% {
+    -webkit-transform: rotate(-1deg) translate(-2px, -2px);
+    transform: rotate(-1deg) translate(-2px, -2px);
+  }
+  to {
+    -webkit-transform: rotate(1deg) translate(2px, 2px);
+    transform: rotate(1deg) translate(2px, 2px);
+  }
+}
+
+@keyframes move {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(10px, 0);
+  }
+
+  80% {
+    transform: translate(-10px, 0);
+  }
+}
+
 @media screen and (max-width: 1200px) {
   #welcome {
     text-align: center !important;
@@ -81,29 +137,6 @@
 }
 .navbar-home {
   z-index: 1;
-}
-.card-home-corp h3 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-.card-home-corp svg {
-  margin-top: -2%;
-  margin-left: -0.5%;
-  width: 2em;
-  height: 2em;
-}
-.card-home-corp h3 {
-  margin-top: 0.875em;
-}
-.card-home-corp h4 {
-  margin-top: 0.75em;
-}
-.card-home-corp p {
-  margin-top: 0.875em;
-  --tw-text-opacity: 1;
-  color: rgba(174, 175, 176, var(--tw-text-opacity));
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 .rectangle-1 {
   width: 2000px;

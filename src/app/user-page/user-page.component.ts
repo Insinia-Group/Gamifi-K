@@ -16,7 +16,7 @@ declare var $: any;
 })
 
 export class UserPageComponent implements OnInit {
-  public profile: tempProfile;
+  public profile: tempProfile | null;
   public profileForm: any;
   public profilePictureForm: any;
   public image: ProfilePicture;
@@ -54,12 +54,7 @@ export class UserPageComponent implements OnInit {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     }
-    const profile: any = await this.http.getProfile();
-    if (isBase64(profile[0].avatar)) {
-      profile[0].avatar = atob(profile[0].avatar);
-    }
-    this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
-    this.setFormValues();
+    await this.setProfile();
   }
 
   setFormValues() {
@@ -85,9 +80,13 @@ export class UserPageComponent implements OnInit {
     }
     const reader = new FileReader();
     reader.onload = () => this.image.base = reader.result;
-    reader.readAsDataURL(file);
-    this.image.ready = true;
-    this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
+    try {
+      reader.readAsDataURL(file);
+      this.image.ready = true;
+      this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
+    } catch (e) {
+      console.log('Image selection cancelled')
+    }
   }
 
   modal(id: string, state: string): void {
@@ -99,6 +98,18 @@ export class UserPageComponent implements OnInit {
       image: this.image.base
     }
     await this.http.setProfilePicture(image);
+    this.profile = null;
+    await this.setProfile();
+  }
+
+  async setProfile() {
+    console.log('Cargando perfil');
+    const profile: any = await this.http.getProfile();
+    if (isBase64(profile[0].avatar)) {
+      profile[0].avatar = atob(profile[0].avatar);
+    }
+    this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
+    this.setFormValues();
   }
 
   updateSubmit() {

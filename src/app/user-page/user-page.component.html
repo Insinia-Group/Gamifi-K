@@ -341,19 +341,22 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <div *ngIf="profile" class="row text-center">
-            <h3>Esta es tu foto ahora</h3>
+          <div *ngIf="profile" class="row text-center mb-2">
             <div class="col text-center">
+              <h3>Esta es tu foto ahora</h3>
               <img
                 [src]="profile.avatar"
                 class="img-fluid"
                 style="width: 12em"
               />
             </div>
+            <div *ngIf="image && image.base" class="col text-center">
+              <h3>La imagen que vas a subir</h3>
+              <img [src]="image.base" class="img-fluid" style="width: 12em" />
+            </div>
           </div>
-
           <div class="row text-center">
-            <h3>Selecciona una imagen para cambiar tu foto de perfil</h3>
+            <h3 *ngIf="!image.name">Selecciona una imagen para cambiar tu foto de perfil</h3>
             <form class="col">
               <label
                 #profilePictureLabel
@@ -370,23 +373,17 @@
                 class="hide"
                 (change)="readURL($event)"
               />
-              <img
-                *ngIf="image"
-                [src]="image.base"
-                class="img-fluid"
-                style="width: 12em"
-              />
-              <button
-                (click)="updateProfilePicture()"
-                class="btn btn-sm btn-color text-light"
-              >
-                Aceptar
-              </button>
             </form>
           </div>
         </div>
       </div>
       <div class="modal-footer border-0">
+        <button
+          (click)="updateProfilePicture()"
+          class="btn btn-sm btn-color text-light"
+        >
+          Cambiar imagen
+        </button>
         <button
           type="button"
           class="btn btn-sm btn-secondary"

@@ -8,13 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class LogoComponent implements OnInit{
   @Input() animated: boolean;
+  @Input() width: number;
 
   constructor() {
     this.animated = false;
+    this.width = 50;
   }
 
   ngOnInit() {
-    console.log(this.animated)
+    console.log(this.width);
   }
 }
 

@@ -1,9 +1,9 @@
 <div *ngIf="animated then animate; else static"></div>
 
 <ng-template #animate>
-    <div class="logo"></div>
+    <div class="logo" [style.width.px]="width" [style.height.px]="width"></div>
 </ng-template>
 
 <ng-template #static>
-    <img src="../../assets/svg/Insinia.svg" class="svg-logo"/>
+    <img src="../../assets/svg/Insinia.svg" [style.width.px]="width" [style.height.px]="width" class="svg-logo"/>
 </ng-template>

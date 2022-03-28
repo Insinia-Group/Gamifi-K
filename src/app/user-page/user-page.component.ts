@@ -103,7 +103,6 @@ export class UserPageComponent implements OnInit {
   }
 
   async setProfile() {
-    console.log('Cargando perfil');
     const profile: any = await this.http.getProfile();
     if (isBase64(profile[0].avatar)) {
       profile[0].avatar = atob(profile[0].avatar);

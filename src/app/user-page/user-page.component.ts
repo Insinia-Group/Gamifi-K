@@ -20,6 +20,7 @@ export class UserPageComponent implements OnInit {
   public profileForm: any;
   public profilePictureForm: any;
   public image: ProfilePicture;
+  public editProfile: boolean;
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
@@ -67,6 +68,10 @@ export class UserPageComponent implements OnInit {
       controls.lastName.setValue(this.profile.lastName);
       controls.description.setValue(this.profile.description);
     }
+  }
+
+  toggleEdit() {
+    this.editProfile = !this.editProfile
   }
 
   async readURL(event: any) {

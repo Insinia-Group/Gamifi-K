@@ -67,7 +67,7 @@ export class HttpService {
         (res) => {
           if (res) {
             console.log(res)
-            resolve('');
+            resolve(res);
           } else {
             reject('Server Error');
           }

@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 
-export class LogoComponent implements OnInit{
+export class LogoComponent implements OnInit {
   @Input() animated: boolean;
   @Input() width: number;
 
@@ -16,7 +16,6 @@ export class LogoComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log(this.width);
   }
 }
 

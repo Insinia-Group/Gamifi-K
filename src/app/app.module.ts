@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { MatTableModule } from '@angular/material/table';

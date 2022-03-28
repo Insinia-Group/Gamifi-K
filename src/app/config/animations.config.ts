@@ -1,8 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 
-export const slideIn =  [
-/* SlideInLeft */
-trigger('slideInLeft', [
+export const slideIn = [
+  /* SlideInLeft */
+  trigger('slideInLeft', [
     transition('void => *', [
       style({
         opacity: '0',
@@ -12,8 +12,8 @@ trigger('slideInLeft', [
     ]),
   ]),
 
-/* SlideInRight */
-trigger('slideInRight', [
+  /* SlideInRight */
+  trigger('slideInRight', [
     transition('void => *', [
       style({
         opacity: '0',
@@ -105,6 +105,6 @@ export const fadeOut = [
 ]
 
 export const allCustomAnimations = [
-  slideIn, 
+  slideIn,
   fadeIn
 ]

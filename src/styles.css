@@ -143,6 +143,10 @@ nav {
   left: 75% !important;
 }
 
+.icon-lg {
+  font-size: 1.2rem;
+}
+
 .form-control:focus {
   color: #212529;
   background-color: #fff;

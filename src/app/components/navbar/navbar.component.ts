@@ -9,12 +9,8 @@ import { fadeIn, slideDownHideUp } from 'src/app/config/animations.config';
 })
 export class NavbarComponent {
   @Input() toggleBlur: boolean;
-  
+
   constructor() {
     this.toggleBlur = true;
-    console.log(this.toggleBlur)
   }
-
-  
-
 }

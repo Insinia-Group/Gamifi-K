@@ -10,8 +10,7 @@
   --corp-color-three: #a37af3;
   --corp-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  --transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  --transition: ease-in-out 0.15s;
 }
 
 *,

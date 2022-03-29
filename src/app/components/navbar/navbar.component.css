@@ -1,0 +1,9 @@
+.btn-nav {
+    opacity: 75%;
+    transition: var(--transition);
+}
+
+.btn-nav:hover {
+    opacity: 1;
+    transition: var(--transition);
+}

@@ -1,1 +1,159 @@
-<p>moderator-page works!</p>
+<!-- <div *ngIf="ready">
+  <loading></loading>
+</div> -->
+<div class="body">
+  <nav
+    *ngIf="!navbarStatus"
+    class="navbar navbar-expand position-fixed w-100 top-0 navbar-home"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
+      <div class="d-flex justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-color active" routerLink="/home">
+              <i class="bi bi-house-door-fill"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-color" routerLink="/profile">
+              <i class="bi bi-person-circle"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav
+    *ngIf="navbarStatus"
+    class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Insinia</a>
+      <div class="d-flex justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <button class="nav-link btn active" routerLink="/home">
+              <i class="bi bi-house-door-fill"></i>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn" routerLink="/profile">
+              <i class="bi bi-person-circle"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="title col-6">Mis rankings</h1>
+  </div>
+  <div class="container title justify-content-center">
+    <div class="col-6" *ngIf="!nullRankings">
+      <h1 class="add-ranking-title col-6" (click)="showInput()">
+        Crear ranking
+      </h1>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div
+        class="bg-white add-ranking-container col-xs-7 col-sm-5 col-md-4 col-lg-3 justify-content-center align-items-center"
+        *ngIf="showAdd"
+      >
+        <form [formGroup]="addForm">
+          <div class="form form-group">
+            <div class="col-12 rounded-3 bg-registro">
+              <div
+                class="row justify-content-center align-items-center"
+                id="registro"
+              >
+                <div class="col-6 inputsRegister">
+                  <label for="inputName"></label>
+                  <input
+                    autocomplete="off"
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    placeholder="Nombre"
+                  />
+                  <label for="inputName"></label>
+                  <input
+                    autocomplete="off"
+                    id="description"
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    placeholder="Descripcion"
+                  />
+                  <label for="rankingImage"></label>
+                  <input
+                    autocomplete="off"
+                    id="rankingImage"
+                    type="file"
+                    class="form-control"
+                    formControlName="rankingImage"
+                    placeholder="Descripcion"
+                  />
+                  <button class="form-control send">Crear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards_landscape_wrap-2 mt-5">
+    <div class="container">
+      <div class="container no-rankings" *ngIf="nullRankings">
+        <h1>No hay rankigns, puedes crear uno</h1>
+        <form action="post" [formGroup]="addRanking">
+          <input formControlName="rankingId" id="rankingId" type="text" />
+          <button
+            type="submit"
+            class="btn btn-primary bi bi-check-lg"
+            (click)="addRankingByCode()"
+          ></button>
+        </form>
+      </div>
+
+      <div *ngIf="!nullRankings" class="row justify-content-center">
+        <div
+          class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
+          id="rankingCard"
+          #rankingCard
+          [@fadeIn]
+          *ngFor="let item of rankings"
+        >
+          <div class="card-flyer">
+            <div class="text-box">
+              <div class="image-box ranking-image">
+                <img src="data:image/png;base64,{{ item.logo }}" />
+              </div>
+              <div class="text-container">
+                <h6>{{ item.name }}</h6>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </div>
+          <ag-grid-angular
+            class="ag-theme-alpine ranking table-responsive"
+            [columnDefs]="columnDefs"
+            [rowData]="item.rankingData"
+            id="dataTable"
+            [defaultColDef]="defaultColDef"
+            resizable="true"
+            (onGridSizeChanged)="onGridSizeChanged($event)"
+            (gridReady)="onGridReady($event)"
+            (onCellValueChanged)="changeData($event)"
+          >
+          </ag-grid-angular>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

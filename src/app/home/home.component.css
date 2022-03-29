@@ -71,7 +71,7 @@
 }
 
 .move-two {
-  animation: move2 6s infinite;
+  animation: move2 6s ease-in-out infinite;
 }
 
 .move-inverted {
@@ -82,8 +82,6 @@
   height: 25vh;
   width: 100%;
 }
-
-
 
 @media screen and (max-width: 1200px) {
   #welcome {
@@ -104,7 +102,7 @@
   flex-direction: column;
 }
 .navbar-home {
-  z-index: 1;
+  z-index: 20;
 }
 .rectangle-1 {
   width: 2000px;

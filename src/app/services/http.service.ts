@@ -220,4 +220,11 @@ export class HttpService {
       );
     });
   }
+
+  addRanking(data: any) {
+    this.http.post<any>(this.api.toThisPath('/addRanking'), data, this.observe).subscribe(
+      (data) => console.log(data),
+      (err) => console.log(err)
+    );
+  }
 }

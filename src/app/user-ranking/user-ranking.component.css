@@ -5,11 +5,11 @@
   background: #f7f7f7;
 }
 
+.fast-rankings {
+  height: 15rem;
+  width: 20rem;
+}
 .ranking-image {
-  /* width: 5rem !important;
-  height: 5rem !important;
-  position: absolute;
-  left: 50%; */
   transform: scaleX(0.99);
 }
 .add-ranking-title {

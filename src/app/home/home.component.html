@@ -5,7 +5,7 @@
 >
   <div class="container-fluid">
     <a class="navbar-brand text-light" routerLink="/home"
-      ><logo [animated]="false"></logo>
+      ><logo [animated]="false" [width]="20"></logo>
     </a>
     <div class="d-flex justify-content-center">
       <ul class="navbar-nav">
@@ -59,10 +59,10 @@
       />
     </div>
     <div class="col-md-7 p-lg-5 mx-auto mt-2">
-      <p class="lead fw-normal">
+      <p class="lead fst-italic">
         Herramienta definitiva para creación, edición y manejo de Rankings
       </p>
-      <a class="btn btn-light text-color mt-2" routerLink="/login"
+      <a class="btn btn-light text-color fw-bolder mt-2" routerLink="/login"
         >¡Comenzamos!</a
       >
     </div>
@@ -88,7 +88,7 @@
   </div>
 </div>
 
-<div class="container-fluid position-absolute overflow-hidden mb-3">
+<div class="container-fluid position-absolute overflow-hidden mb-3 text-color">
   <div class="position-relative" style="width: 120%; left: -5%">
     <div class="row my-2 gap-2 move">
       <div class="col bg-color p-2 rounded shadow-sm"></div>
@@ -97,22 +97,22 @@
       <div class="col bg-color p-2 rounded shadow-sm"></div>
       <div class="col bg-color p-2 rounded shadow-sm"></div>
     </div>
-    <div class="row my-2 gap-2">
-      <div class="col bg-color opacity-75 p-2 shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
-      <div class="col bg-color opacity-75 p-2 shadow-sm"></div>
-    </div>
     <div class="row my-2 gap-2 move-inverted">
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+    </div>
+    <div class="row my-2 gap-2 move">
       <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
       <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
       <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
@@ -137,13 +137,10 @@
   <div class="row">
     <div class="col">
       <section>
-        <div class="text-start">
-          <h1 class="text-color mb-1">¿Qué ofrecemos?</h1>
-        </div>
         <div class="row">
           <div class="col-xl mb-3">
             <section class="card-home-corp">
-              <h2 class="text-light">
+              <h2 class="text-light fw-bolder">
                 <i class="bi icon-lg bi-building me-2"></i>Organización
               </h2>
               <p class="text-light">
@@ -153,7 +150,7 @@
           </div>
           <div class="col-xl mb-3">
             <section class="card-home-corp">
-              <h2 class="text-light">
+              <h2 class="text-light fw-bolder">
                 <i class="bi icon-lg bi-people-fill me-2"></i>Colaboración
               </h2>
               <p class="text-light">
@@ -166,7 +163,7 @@
         <div class="row">
           <div class="col">
             <section class="card-home-corp">
-              <h2 class="text-light">
+              <h2 class="text-light fw-bolder">
                 <i class="bi icon-lg bi-hand-thumbs-up-fill me-2"></i>Facilidad
                 de uso
               </h2>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
-import { isBase64 } from '../helpers/helpers';
+import { calculateSize, isBase64 } from '../helpers/helpers';
 import { tempProfile } from '../models/profile';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
@@ -16,10 +16,11 @@ declare var $: any;
 })
 
 export class UserPageComponent implements OnInit {
-  public profile: tempProfile;
+  public profile: tempProfile | null;
   public profileForm: any;
   public profilePictureForm: any;
   public image: ProfilePicture;
+  public editProfile: boolean;
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
@@ -54,12 +55,7 @@ export class UserPageComponent implements OnInit {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     }
-    const profile: any = await this.http.getProfile();
-    if (isBase64(profile[0].avatar)) {
-      profile[0].avatar = atob(profile[0].avatar);
-    }
-    this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
-    this.setFormValues();
+    await this.setProfile();
   }
 
   setFormValues() {
@@ -74,9 +70,12 @@ export class UserPageComponent implements OnInit {
     }
   }
 
+  toggleEdit() {
+    this.editProfile = !this.editProfile
+  }
+
   async readURL(event: any) {
     const file = event.target.files[0];
-    console.log(file)
     if (file) {
       this.image.name = file.name;
       this.image.size = file.size;
@@ -86,16 +85,35 @@ export class UserPageComponent implements OnInit {
     }
     const reader = new FileReader();
     reader.onload = () => this.image.base = reader.result;
-    reader.readAsDataURL(file);
-    this.image.ready = true;
+    try {
+      reader.readAsDataURL(file);
+      this.image.ready = true;
+      this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
+    } catch (e) {
+      console.log('Image selection cancelled')
+    }
   }
 
   modal(id: string, state: string): void {
     $('#' + id).modal(state);
   }
 
-  updateProfilePicture() {
-    console.log('Update profile picture', this.image)
+  async updateProfilePicture() {
+    const image = {
+      image: this.image.base
+    }
+    await this.http.setProfilePicture(image);
+    this.profile = null;
+    await this.setProfile();
+  }
+
+  async setProfile() {
+    const profile: any = await this.http.getProfile();
+    if (isBase64(profile[0].avatar)) {
+      profile[0].avatar = atob(profile[0].avatar);
+    }
+    this.profile = new tempProfile(profile[0].id, profile[0].nick, profile[0].name, profile[0].lastName, profile[0].email, profile[0].description, profile[0].dateBirth, profile[0].avatar, profile[0].role, profile[0].dateJoined, profile[0].status);
+    this.setFormValues();
   }
 
   updateSubmit() {

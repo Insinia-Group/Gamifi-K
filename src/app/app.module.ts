@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { jwtConfig } from './config/jwt.config';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { MatTableModule } from '@angular/material/table';
@@ -20,8 +19,9 @@ import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
 import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModeratorPageComponent } from './moderator-page/moderator-page.component';
-import { LoadingComponent } from './loading/loading.component';
-import { LogoComponent } from './logo/logo.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { LogoComponent } from './logo/logo.component';
     UserRankingComponent,
     ModeratorPageComponent,
     LoadingComponent,
-    LogoComponent
+    LogoComponent,
+    NavbarComponent
   ],
   imports: [
     MatTableModule,

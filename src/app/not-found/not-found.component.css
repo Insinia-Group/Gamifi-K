@@ -1,161 +1,143 @@
-
-@keyframes bubble {
-    0% {
-      transform: translateY(0%);
-      opacity: 0.06;
-    }
-    100% {
-      transform: translateY(-120vh);
-    }
-}
-  
-  @keyframes sideWays {
-    0% {
-      margin-left: 0px;
-    }
-    100% {
-      margin-left: 200px;
-    }
-  }
-
 .fullscreen {
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0
 }
 
 .title {
-    font-size: 150px;
+	font-size: 150px
 }
 
 .subtitle {
-    font-size: 90px;
+	font-size: 90px
 }
 
 .btn-outline-color-white {
-    color: white;
-    border: 1px solid white;
+	color: #fff;
+	border: 1px solid #fff
 }
 
 .btn-outline-color-white:hover {
-    color: var(--corp-color-one);
-    background-color: white;
-    border: 1px solid white;
+	color: var(--corp-color-one);
+	background-color: #fff;
+	border: 1px solid #fff
 }
 
 .bubble {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    position: absolute;
-    background-color: white;
-    bottom: -30px;
-    opacity: 0.2;
-    animation: bubble 15s ease-in-out infinite,
-    sideWays 4s ease-in-out infinite alternate;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	position: absolute;
+	background-color: #fff;
+	bottom: -30px;
+	opacity: .2;
+	animation: bubble 15s ease-in-out infinite, sideWays 4s ease-in-out infinite alternate
 }
-  
-.bubble--1 {
-    left: 10%;
-    animation-delay: 0.5s;
-    animation-duration: 16s;
-    opacity: 0.2;
+
+.bubble-1 {
+	left: 10%;
+	animation-delay: .5s;
+	animation-duration: 16s;
+	opacity: .2
 }
-  
-.bubble--2 {
-    width: 15px;
-    height: 15px;
-    left: 40%;
-    animation-delay: 1s;
-    animation-duration: 10s;
-    opacity: 0.1;
+
+.bubble-2 {
+	width: 15px;
+	height: 15px;
+	left: 40%;
+	animation-delay: 1s;
+	animation-duration: 10s;
+	opacity: .1
 }
-  
-.bubble--3 {
-    width: 10px;
-    height: 10px;
-    left: 30%;
-    animation-delay: 5s;
-    animation-duration: 20s;
-    opacity: 0.3;
+
+.bubble-3 {
+	width: 10px;
+	height: 10px;
+	left: 30%;
+	animation-delay: 5s;
+	animation-duration: 20s;
+	opacity: .3
 }
-  
-.bubble--4 {
-    width: 25px;
-    height: 25px;
-    left: 40%;
-    animation-delay: 8s;
-    animation-duration: 17s;
-    opacity: 0.2;
+
+.bubble-4 {
+	width: 25px;
+	height: 25px;
+	left: 40%;
+	animation-delay: 8s;
+	animation-duration: 17s;
+	opacity: .2
 }
-  
-.bubble--5 {
-    width: 30px;
-    height: 30px;
-    left: 60%;
-    animation-delay: 10s;
-    animation-duration: 15s;
-    opacity: 0.1;
+
+.bubble-5 {
+	width: 30px;
+	height: 30px;
+	left: 60%;
+	animation-delay: 10s;
+	animation-duration: 15s;
+	opacity: .1
 }
-  
-.bubble--6 {
-    width: 10px;
-    height: 10px;
-    left: 80%;
-    animation-delay: 3s;
-    animation-duration: 30s;
-    opacity: 0.4;
+
+.bubble-6 {
+	width: 10px;
+	height: 10px;
+	left: 80%;
+	animation-delay: 3s;
+	animation-duration: 30s;
+	opacity: .4
 }
-  
-.bubble--7 {
-    width: 15px;
-    height: 15px;
-    left: 90%;
-    animation-delay: -7s;
-    animation-duration: 25s;
-    opacity: 0.3;
+
+.bubble-7 {
+	width: 15px;
+	height: 15px;
+	left: 90%;
+	animation-delay: -7s;
+	animation-duration: 25s;
+	opacity: .3
 }
-  
-.bubble--9 {
-    width: 20px;
-    height: 20px;
-    left: 50%;
-    bottom: 30px;
-    animation-delay: -5s;
-    animation-duration: 19s;
-    opacity: 0.2;
+
+.bubble-9 {
+	width: 20px;
+	height: 20px;
+	left: 50%;
+	bottom: 30px;
+	animation-delay: -5s;
+	animation-duration: 19s;
+	opacity: .2
 }
-  
-.bubble--10 {
-    width: 40px;
-    height: 40px;
-    left: 30%;
-    bottom: 30px;
-    animation-delay: -21s;
-    animation-duration: 16s;
-    opacity: 0.3;
+
+.bubble-10 {
+	width: 40px;
+	height: 40px;
+	left: 30%;
+	bottom: 30px;
+	animation-delay: -21s;
+	animation-duration: 16s;
+	opacity: .3
 }
-  
-.bubble--11 {
-    width: 30px;
-    height: 30px;
-    left: 60%;
-    bottom: 30px;
-    animation-delay: -13.75s;
-    animation-duration: 20s;
-    opacity: 0.3;
+
+.bubble-11 {
+	width: 30px;
+	height: 30px;
+	left: 60%;
+	bottom: 30px;
+	animation-delay: -13.75s;
+	animation-duration: 20s;
+	opacity: .3
 }
-  
-.bubble--11 {
-    width: 25px;
-    height: 25px;
-    left: 90%;
-    bottom: 30px;
-    animation-delay: -10.5s;
-    animation-duration: 19s;
-    opacity: 0.3;
+
+.bubble-12 {
+	width: 25px;
+	height: 25px;
+	left: 90%;
+	bottom: 30px;
+	animation-delay: -10.5s;
+	animation-duration: 19s;
+	opacity: .3
 }
-  
+
+.text-shadow {
+	text-shadow: -1px 1px 4px #000
+}

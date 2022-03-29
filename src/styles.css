@@ -1,23 +1,7 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-@font-face {
-  font-family: "Circular Std Bold";
-  src: url(assets/Circular.woff2) format("woff2");
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
+@import "assets/keyframes.css";
+@import "assets/roboto.css";
 
 :root {
   --corp-color-one: #6d30f3;
@@ -33,11 +17,11 @@
 *,
 html,
 body {
-  font-family: "Circular Std Bold", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 nav {
-  z-index: 1000;
+  z-index: 10;
 }
 
 /* SCROLLBAR */
@@ -141,6 +125,10 @@ nav {
 
 .start-75 {
   left: 75% !important;
+}
+
+.icon-lg {
+  font-size: 1.2rem;
 }
 
 .form-control:focus {

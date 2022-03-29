@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {slideIn, fadeIn, slideInOut, slideDownHideUp} from '../config/animations.config';
-import {HttpService} from '../services/http.service';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { slideIn, fadeIn, slideInOut, slideDownHideUp } from '../config/animations.config';
 
 @Component({
   selector: 'app-home',
@@ -10,41 +9,31 @@ import {HttpService} from '../services/http.service';
   animations: [slideIn, fadeIn, slideInOut, slideDownHideUp]
 })
 
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent {
   public resizeSubscription$: Subscription;
   public resizeObservable$: Observable<Event>
   public isTestDivScrolledIntoView: boolean;
-  public goupStatus: boolean;
-  public navbarStatus: boolean;
-
-  constructor(public request: HttpService) {
-    this.request = request;
-    this.goupStatus = false;
-    this.navbarStatus = false;
-  }
-
+  public goupShow: boolean;
+  public topnavShow: boolean;
   @ViewChild('go-up') goup: ElementRef;
+
+  constructor() {
+    this.goupShow = false;
+    this.topnavShow = false;
+  }
 
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
     if (window.scrollY >= 250) {
-      this.goupStatus = true;
+      this.goupShow = true;
     } else {
-      this.goupStatus = false;
+      this.goupShow = false;
     }
 
-    if (window.scrollY >= 1075) {
-      this.navbarStatus = true;
+    if (window.scrollY >= 950) {
+      this.topnavShow = true;
     } else {
-      this.navbarStatus = false;
+      this.topnavShow = false;
     }
   };
-
-  /**
-   * 
-   */
-  async ngAfterViewInit() {
-    const status = await this.request.status().then();
-    console.log(status);
-  }
 }

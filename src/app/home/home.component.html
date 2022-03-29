@@ -1,88 +1,85 @@
-<nav
-  *ngIf="!navbarStatus"
-  @slideDownHideUp
-  class="navbar navbar-expand bg-blur position-fixed w-100 top-0 navbar-home"
->
-  <div class="container-fluid">
-    <a class="navbar-brand text-light" routerLink="/home"
-      ><logo [animated]="false"></logo>
-    </a>
-    <div class="d-flex justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-light active" routerLink="/home">
-            <i class="bi bi-house-door-fill"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" routerLink="/login">
-            <i class="bi bi-person-circle"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<nav
-  *ngIf="navbarStatus"
-  @slideDownHideUp
-  class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
->
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/home"
-      ><logo [animated]="false"></logo
-    ></a>
-    <div class="d-flex justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-light active" routerLink="/home">
-            <i class="bi bi-house-door-fill"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" routerLink="/login">
-            <i class="bi bi-person-circle"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<topnav [toggleBlur]="topnavShow"></topnav>
 
 <div class="jumbotron bg-color d-flex align-items-center" id="welcome-image">
-  <div class="container text-center">
-    <h1 class="mb-4">Insinia</h1>
+  <div [@fadeIn] class="container text-center interactive">
     <div class="svg-container d-none d-md-block">
-      <img class="img-fluid home-hero" src="../../assets/svg/working.svg" />
+      <img 
+        class="img-fluid home-hero move-two"
+        src="../../assets/svg/working-insinia.svg"
+      />
     </div>
     <div class="col-md-7 p-lg-5 mx-auto mt-2">
-      <p class="lead fw-normal">
+      <p class="lead fst-italic">
         Herramienta definitiva para creación, edición y manejo de Rankings
       </p>
-      <a class="btn btn-light text-color mt-2" routerLink="/login"
+      <a class="btn btn-light text-color fw-bolder mt-2" routerLink="/login"
         >¡Comenzamos!</a
       >
     </div>
   </div>
-  <div class="rectangle-1"></div>
-  <div class="rectangle-2"></div>
-  <div class="rectangle-transparent-1"></div>
-  <div class="rectangle-transparent-2"></div>
-  <div class="circle-1"></div>
-  <div class="circle-2"></div>
-  <div class="circle-3"></div>
-  <div class="triangle triangle-1">
+  <div [@fadeIn] class="rectangle-1"></div>
+  <div [@fadeIn] class="rectangle-2"></div>
+  <div [@fadeIn] class="rectangle-transparent-1"></div>
+  <div [@fadeIn] class="rectangle-transparent-2"></div>
+  <div [@fadeIn] class="circle-1"></div>
+  <div [@fadeIn] class="circle-2"></div>
+  <div [@fadeIn] class="circle-3"></div>
+  <div [@fadeIn] class="triangle triangle-1">
     <img src="../../assets/icons/obj_triangle.png" alt="" />
   </div>
-  <div class="triangle triangle-2">
+  <div [@fadeIn] class="triangle triangle-2">
     <img src="../../assets/icons/obj_triangle.png" alt="" />
   </div>
-  <div class="triangle triangle-3">
+  <div [@fadeIn] class="triangle triangle-3">
     <img src="../../assets/icons/obj_triangle.png" alt="" />
   </div>
-  <div class="triangle triangle-4">
+  <div [@fadeIn] class="triangle triangle-4">
     <img src="../../assets/icons/obj_triangle.png" alt="" />
+  </div>
+</div>
+
+<div class="container-fluid position-absolute overflow-hidden mb-3 text-color">
+  <div class="position-relative" style="width: 120%; left: -5%">
+    <div class="row my-2 gap-2 move">
+      <div class="col bg-color p-2 rounded shadow-sm"></div>
+      <div class="col bg-color p-2 rounded shadow-sm"></div>
+      <div class="col bg-color p-2 rounded shadow-sm"></div>
+      <div class="col bg-color p-2 rounded shadow-sm"></div>
+      <div class="col bg-color p-2 rounded shadow-sm"></div>
+    </div>
+    <div class="row my-2 gap-2 move-inverted">
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-75 p-2 rounded shadow-sm"></div>
+    </div>
+    <div class="row my-2 gap-2 move">
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-50 p-2 rounded shadow-sm"></div>
+    </div>
+    <div class="row my-2 gap-2 move-inverted">
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+      <div class="col bg-color opacity-25 p-2 rounded shadow-sm"></div>
+    </div>
   </div>
 </div>
 
@@ -90,25 +87,25 @@
   <div class="row">
     <div class="col">
       <section>
-        <div class="text-start">
-          <h1 class="text-color mb-1">¿Qué ofrecemos?</h1>
-        </div>
         <div class="row">
           <div class="col-xl mb-3">
             <section class="card-home-corp">
-              <h2 class="text-light">
-                <i class="bi bi-building me-2"></i>Organización
+              <h2 class="text-light fw-bolder">
+                <i class="bi icon-lg bi-building me-2"></i>Organización
               </h2>
-              <p>Una genial manera de manejar organizar, cambiar y editar.</p>
+              <p class="text-light">
+                Una genial manera de manejar organizar, cambiar y editar.
+              </p>
             </section>
           </div>
           <div class="col-xl mb-3">
             <section class="card-home-corp">
-              <h2 class="text-light">
-                <i class="bi bi-people-fill me-2"></i>Colaboración
+              <h2 class="text-light fw-bolder">
+                <i class="bi icon-lg bi-people-fill me-2"></i>Colaboración
               </h2>
-              <p>
-                La colaboración parte de nosotros y asi lo hemos implementado.
+              <p class="text-light">
+                La colaboración es parte de nosotros y asi lo hemos
+                implementado.
               </p>
             </section>
           </div>
@@ -116,10 +113,11 @@
         <div class="row">
           <div class="col">
             <section class="card-home-corp">
-              <h2 class="text-light">
-                <i class="bi bi-hand-thumbs-up-fill me-2"></i>Facilidad de uso
+              <h2 class="text-light fw-bolder">
+                <i class="bi icon-lg bi-hand-thumbs-up-fill me-2"></i>Facilidad
+                de uso
               </h2>
-              <p>
+              <p class="text-light">
                 Desarrollado en mente para un uso escolar, casual y profesional.
               </p>
             </section>
@@ -130,75 +128,65 @@
   </div>
 </div>
 
-<div class="container" id="under-cards">
-  <div class="row justify-content-center">
-    <div class="col-auto g-0 text-start align-self-center pt-5">
-      <h1 class="text-color mb-1">Disponible para los navegadores</h1>
+<div class="container half shadow-sm">
+  <div class="h-100 d-flex justify-content-center align-items-center">
+    <div class="col-auto text-center">
+      <img
+        src="../../assets/icons/firefox.png"
+        class="mx-3 browser"
+        width="25"
+        alt="firefox icon"
+      />
     </div>
-  </div>
-</div>
-
-<div class="page-section mb-4">
-  <div class="container mb-3 py-4">
-    <div class="row justify-content-center">
-      <div class="col-auto text-center">
-        <img
-          src="../../assets/firefox.png"
-          class="mx-3 browser"
-          width="50"
-          alt="firefox icon"
-        />
-      </div>
-      <div class="col-auto text-center">
-        <img
-          src="../../assets/opera.png"
-          class="mx-3 browser"
-          width="50"
-          alt="opera icon"
-        />
-      </div>
-      <div class="col-auto text-center">
-        <img
-          src="../../assets/brave.png"
-          class="mx-3 browser"
-          width="50"
-          alt="brave icon"
-        />
-      </div>
-      <div class="col-auto text-center">
-        <img
-          src="../../assets/chrome.png"
-          class="mx-3 browser"
-          width="50"
-          alt="chrome icon"
-        />
-      </div>
-      <div class="col-auto text-center">
-        <img
-          src="../../assets/edge.png"
-          class="mx-3 browser"
-          width="50"
-          alt="edge icon"
-        />
-      </div>
+    <div class="col-auto text-center">
+      <img
+        src="../../assets/icons/opera.png"
+        class="mx-3 browser"
+        width="25"
+        alt="opera icon"
+      />
+    </div>
+    <div class="col-auto text-center">
+      <img
+        src="../../assets/icons/brave.png"
+        class="mx-3 browser"
+        width="25"
+        alt="brave icon"
+      />
+    </div>
+    <div class="col-auto text-center">
+      <img
+        src="../../assets/icons/chrome.png"
+        class="mx-3 browser"
+        width="25"
+        alt="chrome icon"
+      />
+    </div>
+    <div class="col-auto text-center">
+      <img
+        src="../../assets/icons/edge.png"
+        class="mx-3 browser"
+        width="25"
+        alt="edge icon"
+      />
     </div>
   </div>
 </div>
 
 <div class="text-center bg-color text-light pt-2">
-  <p>Desarrollado por Insinia</p>
-  <p class="text-light mb-0 pb-2">
+  <p>Desarrollado por Insinia<logo class="ms-1" [width]="15"></logo></p>
+  <small class="text-light mb-0 p-0">
     2022 © Insinia. Todos los derechos reservados.
-  </p>
+  </small>
 </div>
 
-<div class="fixed-bottom me-2 mb-2" *ngIf="goupStatus" @slideInOut>
+<div class="fixed-bottom me-2 mb-2" *ngIf="goupShow" @slideInOut>
   <div class="text-end">
     <a
       routerLink="/home#welcome-image"
       class="btn btn-color text-light"
       id="go-up"
-      ><i class="bi bi-arrow-up-circle-fill"></i
+      ><i class="bi icon-lg bi-arrow-up-circle-fill"></i
     ></a>
   </div>
 </div>

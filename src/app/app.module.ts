@@ -19,8 +19,9 @@ import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
 import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModeratorPageComponent } from './moderator-page/moderator-page.component';
-import { LoadingComponent } from './loading/loading.component';
-import { LogoComponent } from './logo/logo.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LogoComponent } from './logo/logo.component';
     UserRankingComponent,
     ModeratorPageComponent,
     LoadingComponent,
-    LogoComponent
+    LogoComponent,
+    NavbarComponent
   ],
   imports: [
     MatTableModule,

@@ -1,7 +1,7 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-@import "keyframes.css";
-@import "roboto.css";
+@import "assets/keyframes.css";
+@import "assets/roboto.css";
 
 :root {
   --corp-color-one: #6d30f3;

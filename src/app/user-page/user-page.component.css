@@ -88,14 +88,3 @@
 	background-image: linear-gradient(to right, #dedfe1 0, #f2f3f5 20%, #dedfe1 40%, #dedfe1 60%, #dedfe1 80%, #dedfe1 100%);
 	background-repeat: no-repeat
 }
-
-@keyframes loading {
-	0% {
-		border: 0;
-		background-position: -100px
-	}
-	100% {
-		border: 0;
-		background-position: 200px
-	}
-}

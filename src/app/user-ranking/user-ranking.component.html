@@ -47,7 +47,6 @@
       </div>
     </div>
   </nav>
-
   <div class="container">
     <h1 class="title col-6">Mis rankings</h1>
   </div>
@@ -76,21 +75,16 @@
     </div>
   </div>
 
-  <section>
-    <div #rankingCard [@fadeIn] *ngFor="let item of rankings">
-      <div class="card" style="width: 18rem">
-        <img class="card-img-top" src="" alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="container justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <div class="row rol-selector">
+          <span class="col-6 user-rol-filter">Participante</span>
+          <span class="col-6 moderator-rol-filter">Moderador</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <div class="cards_landscape_wrap-2 mt-5">
     <div class="container">
@@ -107,14 +101,54 @@
           ></button>
         </form>
       </div>
-
-      <div *ngIf="!nullRankings" class="row justify-content-center">
+      <!-- Rankings en los que es usuario -->
+      <div
+        *ngIf="!nullRankings && rankingsUserView"
+        class="row justify-content-center"
+      >
         <div
           class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
           id="rankingCard"
           #rankingCard
           [@fadeIn]
           *ngFor="let item of rankings"
+        >
+          <div class="card-flyer">
+            <div class="text-box">
+              <div class="image-box ranking-image">
+                <img src="data:image/png;base64,{{ item.logo }}" />
+              </div>
+              <div class="text-container">
+                <h6>{{ item.name }}</h6>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </div>
+          <ag-grid-angular
+            class="ag-theme-alpine ranking table-responsive"
+            [columnDefs]="columnDefs"
+            [rowData]="item.rankingData"
+            id="dataTable"
+            [defaultColDef]="defaultColDef"
+            resizable="true"
+            (onGridSizeChanged)="onGridSizeChanged($event)"
+            (gridReady)="onGridReady($event)"
+          >
+          </ag-grid-angular>
+        </div>
+      </div>
+      <!-- Rankings en los que modera -->
+
+      <div
+        *ngIf="!nullRankings && rankingsModeratorView"
+        class="row justify-content-center"
+      >
+        <div
+          class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
+          id="rankingCard"
+          #rankingCard
+          [@fadeIn]
+          *ngFor="let item of rankingsModerator"
         >
           <div class="card-flyer">
             <div class="text-box">

@@ -17,7 +17,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   selector: 'app-user-ranking',
   templateUrl: './user-ranking.component.html',
   styleUrls: ['./user-ranking.component.css'],
-  animations: [fadeIn]
+  animations: [fadeIn],
+
 })
 export class UserRankingComponent implements OnInit {
 
@@ -38,6 +39,7 @@ export class UserRankingComponent implements OnInit {
   ];
   public rowData: any;
   public rankings: any;
+  public rankingsModerator: any;
   public Ranking: any;
   public nullRankings: boolean;
   public navbarStatus: boolean;
@@ -49,6 +51,8 @@ export class UserRankingComponent implements OnInit {
   public gridApi: any;
   public columnApi: any;
   public defaultColDef: any;
+  public rankingsUserView: boolean = false;
+  public rankingsModeratorView: boolean = true;
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
@@ -68,6 +72,14 @@ export class UserRankingComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
 
 
     this.addRanking = new FormGroup({
@@ -76,6 +88,8 @@ export class UserRankingComponent implements OnInit {
     );
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
+    this.rankingsModerator = await this.http.getRankingModerator();
+
     if (this.rankings.length > 0) {
       this.nullRankings = false;
     } else {
@@ -83,6 +97,8 @@ export class UserRankingComponent implements OnInit {
     }
     console.log(this.rankings);
     this.rowData = await this.http.getRankingData();
+    // this.rowData = await this.http.getRankingModerator();
+
   }
 
   async addRankingByCode() {
@@ -131,6 +147,9 @@ export class UserRankingComponent implements OnInit {
       });
     });
   }
+
+
+
 
 
 

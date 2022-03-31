@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { fadeIn } from '../config/animations.config';
 import { HttpService } from '../services/http.service';
 import { JwtService } from '../services/jwt.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public disabledButton: boolean;
 
-  constructor(private request: HttpService, private jwt: JwtService, private router: Router) {
+  constructor(private request: HttpService, private jwt: JwtService, private notifier: NotifierService) {
     this.disabledButton = false;
     this.request = request;    
   }
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
      if (res) {
       this.jwt.redirectTo('/profile');
      } else {
-      console.log('No Loggeado')
+      this.notifier.notify('default', '¡Datos incorrectos!');
      }
   }
 }

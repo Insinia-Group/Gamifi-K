@@ -138,3 +138,14 @@ nav {
   box-shadow: 0 0 0 0.1rem var(--corp-color-one-hover) !important;
   transition: var(--transition);
 }
+
+.notifier__notification-button {
+  display: none !important;
+}
+
+.notifier__notification--default {
+  background-color: white !important;
+  color: var(--corp-color-one) !important;
+}
+
+

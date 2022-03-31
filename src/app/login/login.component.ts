@@ -33,7 +33,11 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.get('email')?.value,
       password: this.loginForm.get('password')?.value
     }
-    await this.request.login(user);
-    this.jwt.redirectTo('/profile');
+    const res = await this.request.login(user);
+     if (res) {
+      this.jwt.redirectTo('/profile');
+     } else {
+      console.log('No Loggeado')
+     }
   }
 }

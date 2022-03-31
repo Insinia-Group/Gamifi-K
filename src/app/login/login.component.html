@@ -17,7 +17,7 @@
                     <input formControlName="password" type="password" placeholder="Introduce tu contraseña" class="form-control text-color"/>
                     <div *ngIf="loginForm.controls.password.errors">
                         <small [@fadeIn] class="text-danger" *ngIf ="loginForm.controls.password.touched && loginForm.controls.password.errors['minlength']"><i class="bi bi-x me-2"></i>La longitud debe ser de 8 caracteres.</small>
-                        <small [@fadeIn] class="text-danger" *ngIf ="loginForm.controls.password.touched && loginForm.controls.password.errors['required']">><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small>
+                        <small [@fadeIn] class="text-danger" *ngIf ="loginForm.controls.password.touched && loginForm.controls.password.errors['required']"><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small>
                     </div>
                     <div *ngIf="!loginForm.controls.password.errors">
                         <small [@fadeIn] class="text-success"><i class="bi bi-check-lg me-2"></i>La contraseña es válida.</small>

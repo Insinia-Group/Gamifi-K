@@ -51,7 +51,7 @@ export class UserRankingComponent implements OnInit {
   public gridApi: any;
   public columnApi: any;
   public defaultColDef: any;
-  public rankingsUserView: boolean = false;
+  public rankingsUserView: boolean = true;
   public rankingsModeratorView: boolean = true;
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
@@ -148,7 +148,15 @@ export class UserRankingComponent implements OnInit {
     });
   }
 
+  showRankingsUser() {
+    this.rankingsUserView = true;
+    this.rankingsModeratorView = false;
+  }
 
+  showRankingsModerator() {
+    this.rankingsUserView = false;
+    this.rankingsModeratorView = true;
+  }
 
 
 

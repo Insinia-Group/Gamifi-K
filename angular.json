@@ -30,6 +30,7 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/angular-notifier/styles.css",
               "node_modules/css.gg/icons/all.css",
               "src/custom-ng-material.css"
             ],
@@ -105,6 +106,7 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/angular-notifier/styles.css",
               "node_modules/css.gg/icons/all.css",
               "src/custom-ng-material.css"
             ],

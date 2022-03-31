@@ -31,13 +31,16 @@ export class HttpService {
             if (res.headers.get('Authorization')) {
               const token = res.headers.get('Authorization')?.split('"')[1];
               this.jwt.setToken(token);
-              resolve(token);
+              resolve(true);
+            } else if (res.body && !res.body.authentication) {
+              resolve(false)
             }
           } else {
             reject('Server Error');
           }
         },
         (err) => {
+          console.log(err)
           reject('Error with the login');
         }
       );

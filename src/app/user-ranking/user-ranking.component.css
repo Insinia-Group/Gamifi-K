@@ -1,6 +1,3 @@
-@import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
 .body {
   background: #f7f7f7;
 }
@@ -18,12 +15,23 @@
   white-space: nowrap;
 }
 
+.card-user {
+  width: inherit;
+  margin: auto;
+  border-radius: 1rem;
+}
+
 .ranking-image {
   /* width: 5rem !important;
   height: 5rem !important;
   position: absolute;
   left: 50%; */
-  transform: scaleX(0.99);
+  max-width: 600px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  height: auto;
+  position: relative;
 }
 
 .rol-selector {
@@ -38,12 +46,10 @@
 }
 
 .user-rol-filter {
-  background-color: brown;
   border-radius: 0.5rem;
 }
 
 .moderator-rol-filter {
-  background-color: #000000;
   border-radius: 0.5rem;
 }
 
@@ -53,8 +59,12 @@
   cursor: pointer;
 }
 
+.card-flyer {
+  border-radius: 3rem !important;
+}
+
 .rankingData {
-  /* width: 25rem; */
+  /* width: 25rem; border-radius: 3rem; */
 }
 .add-ranking-title:hover {
   text-shadow: var(--corp-color-one) 0.2px 0.2px;
@@ -201,3 +211,5 @@
   letter-spacing: 1px;
   color: #8a00c1;
 }
+
+/**/

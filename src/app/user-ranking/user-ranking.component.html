@@ -79,8 +79,25 @@
     <div class="row justify-content-center">
       <div class="col-2">
         <div class="row rol-selector">
-          <span class="col-6 user-rol-filter">Participante</span>
-          <span class="col-6 moderator-rol-filter">Moderador</span>
+          <span
+            [@fadeIn]
+            class="col-6 user-rol-filter"
+            (click)="showRankingsUser()"
+            [ngStyle]="{
+              background: rankingsUserView === true ? '#6d30f3' : '#a27af351'
+            }"
+            >Participante</span
+          >
+          <span
+            [@fadeIn]
+            class="col-6 moderator-rol-filter"
+            (click)="showRankingsModerator()"
+            [ngStyle]="{
+              background:
+                rankingsModeratorView === true ? '#6d30f3' : '#a27af351'
+            }"
+            >Moderador</span
+          >
         </div>
       </div>
     </div>
@@ -113,7 +130,7 @@
           [@fadeIn]
           *ngFor="let item of rankings"
         >
-          <div class="card-flyer">
+          <div class="card-flyer card-user">
             <div class="text-box">
               <div class="image-box ranking-image">
                 <img src="data:image/png;base64,{{ item.logo }}" />

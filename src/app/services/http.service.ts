@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {API} from '../models/api';
-import {Router} from '@angular/router';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { Router } from '@angular/router';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,7 @@ export class HttpService {
   register(user: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/register'), user, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/register'), user, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -66,7 +66,7 @@ export class HttpService {
   setProfilePicture(profile: object) {
     return new Promise((resolve, reject) => {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, {headers: headers}).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, { headers: headers }).subscribe(
         (res) => {
           if (res) {
             console.log(res)
@@ -86,7 +86,7 @@ export class HttpService {
   addRankingByCode(code: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/addRankingByCode'), code, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/addRankingByCode'), code, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );
@@ -216,7 +216,7 @@ export class HttpService {
   getRankingById(id: any): any {
     try {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/getRankingById'), id, {headers: headers}).subscribe(
+      this.http.post(this.api.toThisPath('/getRankingById'), id, { headers: headers }).subscribe(
         (data) => console.log(data),
         (err) => console.log(err)
       );

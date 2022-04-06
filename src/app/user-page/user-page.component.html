@@ -355,7 +355,7 @@
         <div class="container-fluid">
           <div *ngIf="profile" class="row text-center mb-2">
             <div class="col text-center">
-              <h3>Esta es tu foto ahora</h3>
+              <h3>Esta es tu foto ahora.</h3>
               <img
                 [src]="profile.avatar"
                 class="img-fluid"
@@ -363,7 +363,7 @@
               />
             </div>
             <div [@fadeIn] *ngIf="image && image.base" class="col text-center">
-              <h3>La imagen que vas a subir</h3>
+              <h3>La nueva imagen.</h3>
               <img [src]="image.base" class="img-fluid" style="width: 12em" />
             </div>
           </div>

@@ -25,9 +25,9 @@ export class UserPageComponent implements OnInit {
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-      nick: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/), Validators.maxLength(30)]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')] ),
+      nick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
+      email: new FormControl('', [Validators.required, Validators.maxLength(120) ,Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       description: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(300)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]),
       dateBirth: new FormControl('', [Validators.required]),
@@ -134,6 +134,10 @@ export class UserPageComponent implements OnInit {
           });
         });
       }
+    })
+    console.log(this.profile)
+    Object.keys(this.profileForm.controls).forEach(key => {
+      console.log(key, this.profileForm.controls[key].value);
     })
   }
 }

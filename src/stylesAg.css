@@ -177,7 +177,9 @@
   content: "\f128";
 }
 .ag-theme-alpine .ag-root-wrapper {
-  border-radius: 1rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom: none;
   background-color: #fff;
   background-color: var(--ag-background-color, #fff);
 }
@@ -910,9 +912,7 @@
   text-align: right;
 }
 .ag-theme-alpine .ag-root-wrapper {
-  border: solid 1px;
-  border-color: #babfc7;
-  border-color: var(--ag-border-color, #babfc7);
+  border-top: none !important;
 }
 .ag-theme-alpine .ag-ltr .ag-row > .ag-cell-wrapper.ag-row-group-indent-1 {
   padding-left: 46px;

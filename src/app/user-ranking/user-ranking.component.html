@@ -77,7 +77,7 @@
 
   <div class="container justify-content-center">
     <div class="row justify-content-center">
-      <div class="col-2">
+      <div class="col-2 ranking-filter">
         <div class="row rol-selector">
           <span
             [@fadeIn]
@@ -124,13 +124,147 @@
         class="row justify-content-center"
       >
         <div
-          class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
+          class="col-xs-10 col-sm-10 col-md-8 col-lg-7 ranking-card"
           id="rankingCard"
           #rankingCard
           [@fadeIn]
-          *ngFor="let item of rankings"
+          *ngFor="let item of rankings; let i = index"
         >
-          <div class="card-flyer card-user">
+          <div class="col-12 ranking-name justify-content-center mt-5 mb-3">
+            {{ item.name }}
+          </div>
+          <div
+            style="background-image: url(data:image/png;base64,{{ item.logo }})"
+            class="mt-3 ranking-card"
+            data-bs-toggle="collapse"
+            (click)="collapse('aa' + i, 'show')"
+            role="button"
+            aria-expanded="true"
+            ngxTippy
+            [ngxTippy]="descripcion"
+            [tippyProps]="{
+              arrow: false,
+              placement: 'top'
+            }"
+          >
+            <template #descripcion class="bg-color text-light">
+              {{ item.description }}
+            </template>
+
+            <div class="row align-items-center">
+              <div class="col-2">
+                <img
+                  class="ranking-logo align-self-center"
+                  src="data:image/png;base64,{{ item.logo }}"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <ag-grid-angular
+              id="{{ 'aa' + i }}"
+              class="collapse ag-theme-alpine ranking table-responsive"
+              [columnDefs]="columnDefs"
+              [rowData]="item.rankingData"
+              id="dataTable"
+              [defaultColDef]="defaultColDef"
+              resizable="true"
+              (onGridSizeChanged)="onGridSizeChanged($event)"
+              (gridReady)="onGridReady($event)"
+              [@fadeIn]
+            >
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rankings en los que se modera -->
+
+      <div
+        *ngIf="!nullRankings && rankingsModeratorView"
+        class="row justify-content-center"
+      >
+        <div
+          class="col-xs-10 col-sm-10 col-md-8 col-lg-7 ranking-card"
+          id="rankingCard"
+          #rankingCard
+          [@fadeIn]
+          *ngFor="let item of rankingsModerator; let i = index"
+        >
+          <div class="col-12 ranking-name justify-content-center mt-5 mb-3">
+            {{ item.name }}
+          </div>
+          <div
+            style="background-image: url(data:image/png;base64,{{ item.logo }})"
+            class="mt-3 ranking-card"
+            data-bs-toggle="collapse"
+            (click)="collapse('bb' + i, 'show')"
+            role="button"
+            aria-expanded="true"
+            ngxTippy
+            [ngxTippy]="descripcion"
+            [tippyProps]="{
+              arrow: false,
+              placement: 'top'
+            }"
+          >
+            <template #descripcion class="bg-color text-light">
+              {{ item.description }}
+            </template>
+
+            <div class="row align-items-center">
+              <div class="col-2">
+                <img
+                  class="ranking-logo align-self-center"
+                  src="data:image/png;base64,{{ item.logo }}"
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <ag-grid-angular
+              id="{{ 'bb' + i }}"
+              style="width: 100%"
+              class="collapse ag-theme-alpine ranking table-responsive"
+              [columnDefs]="columnDefsModerator"
+              [rowData]="item.rankingData"
+              id="dataTable"
+              [defaultColDef]="defaultColDef"
+              resizable="true"
+              (cellValueChanged)="onCellValueChanged($event)"
+              (onGridSizeChanged)="onGridSizeChanged($event)"
+              (gridReady)="onGridReady($event)"
+              [@fadeIn]
+            >
+            </ag-grid-angular>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div
+            class="row ranking-header"
+            ngxTippy
+            [ngxTippy]="descripcion"
+            [tippyProps]="{
+              arrow: false,
+              placement: 'top'
+            }"
+          >
+            <template #descripcion class="bg-color text-light">
+              {{ item.description }}
+            </template>
+            <div class="image-box col-4">
+              <img
+                class="ranking-logo"
+                src="data:image/png;base64,{{ item.logo }}"
+              />
+            </div>
+            <div class="col-6 ranking-name">
+              <h2>Nombre: {{ item.name }}</h2>
+            </div>
+          </div> -->
+      <!-- <
+            div class="card-flyer card-user">
             <div class="text-box">
               <div class="image-box ranking-image">
                 <img src="data:image/png;base64,{{ item.logo }}" />
@@ -140,23 +274,11 @@
                 <p>{{ item.description }}</p>
               </div>
             </div>
-          </div>
-          <ag-grid-angular
-            class="ag-theme-alpine ranking table-responsive"
-            [columnDefs]="columnDefs"
-            [rowData]="item.rankingData"
-            id="dataTable"
-            [defaultColDef]="defaultColDef"
-            resizable="true"
-            (onGridSizeChanged)="onGridSizeChanged($event)"
-            (gridReady)="onGridReady($event)"
-          >
-          </ag-grid-angular>
-        </div>
-      </div>
+          </div> -->
+
       <!-- Rankings en los que modera -->
 
-      <div
+      <!-- <div
         *ngIf="!nullRankings && rankingsModeratorView"
         class="row justify-content-center"
       >
@@ -190,7 +312,7 @@
           >
           </ag-grid-angular>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

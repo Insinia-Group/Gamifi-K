@@ -553,7 +553,7 @@ a:hover {
 }
 
 .logo {
-  position: fixed;
+  position: inherit;
   top: 30px;
   right: 30px;
   display: block;

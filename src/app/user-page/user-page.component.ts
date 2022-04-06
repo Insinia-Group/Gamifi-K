@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize, isBase64 } from '../helpers/helpers';
 import { tempProfile } from '../models/profile';
@@ -24,10 +24,10 @@ export class UserPageComponent implements OnInit {
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+      name: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
       nick: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]),
+      email: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/), Validators.maxLength(30)]),
       description: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(300)]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]),
       dateBirth: new FormControl('', [Validators.required]),
@@ -43,6 +43,7 @@ export class UserPageComponent implements OnInit {
     }
   }
 
+  @ViewChild('toggleEditBtn') toggleEditBtn: ElementRef;
   @ViewChild('pictureProfile') profilePicture: ElementRef;
   @ViewChild('profilePictureLabel') profilePictureLabel: ElementRef;
 
@@ -72,6 +73,11 @@ export class UserPageComponent implements OnInit {
 
   toggleEdit() {
     this.editProfile = !this.editProfile
+    if (this.editProfile) {
+      this.toggleEditBtn.nativeElement.innerHTML = ' Dejar de editar el perfil <i class="ms-1 bi bi-pen"></i>'
+    } else {
+      this.toggleEditBtn.nativeElement.innerHTML = ' Editar perfil <i class="ms-1 bi bi-pen"></i>'
+    }
   }
 
   async readURL(event: any) {
@@ -117,6 +123,17 @@ export class UserPageComponent implements OnInit {
   }
 
   updateSubmit() {
-    console.log('asd')
+    Object.keys(this.profileForm.controls).forEach(key => {
+      const controlErrors: ValidationErrors = this.profileForm.get(key).errors;
+      if (controlErrors) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log({
+            'control': key,
+            'error': keyError,
+            'value': controlErrors[keyError]
+          });
+        });
+      }
+    })
   }
 }

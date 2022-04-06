@@ -24,7 +24,9 @@ import {LogoComponent} from './components/logo/logo.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {SwiperModule} from 'swiper/angular';
 import {NotifierModule} from 'angular-notifier';
+import {NotifierConfiguration} from './config/notifier.config';
 import {NgxTippyModule} from 'ngx-tippy-wrapper';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import {NgxTippyModule} from 'ngx-tippy-wrapper';
     NavbarComponent
   ],
   imports: [
-    NotifierModule,
+    NotifierModule.withConfig(NotifierConfiguration),
     MatTableModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -9,6 +9,8 @@ import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
 import {Ranking} from '../models/rankings';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+declare var $: any;
+
 
 
 
@@ -28,13 +30,24 @@ export class UserRankingComponent implements OnInit {
   //   window.addEventListener('resize', this.resizeListenerFunc);
   // }
   ngOnDestroy() {
-    window.removeEventListener('resize', this.resizeListenerFunc);
+    // window.removeEventListener('resize', this.resizeListenerFunc);
   }
 
   columnDefs: ColDef[] = [
     {field: 'Nombre', sortable: true, filter: true},
     {field: 'Apellido', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
+    {field: 'id', hide: true},
+    {field: 'idUser', hide: true},
+    {field: 'Insinias'},
+  ];
+
+  columnDefsModerator: ColDef[] = [
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true, editable: true},
+    {field: 'id', hide: true},
+    {field: 'idUser', hide: true},
     {field: 'Insinias'},
   ];
   public rowData: any;
@@ -53,6 +66,8 @@ export class UserRankingComponent implements OnInit {
   public defaultColDef: any;
   public rankingsUserView: boolean = true;
   public rankingsModeratorView: boolean = true;
+
+
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
@@ -97,6 +112,7 @@ export class UserRankingComponent implements OnInit {
     }
     console.log(this.rankings);
     this.rowData = await this.http.getRankingData();
+
     // this.rowData = await this.http.getRankingModerator();
 
   }
@@ -114,7 +130,7 @@ export class UserRankingComponent implements OnInit {
       this.http.addRankingByCode(code);
       this.rankings = await this.http.getRanking();
       this.rowData = await this.http.getRankingData();
-      console.log(this.rankings);
+      this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
 
     } else {
@@ -133,8 +149,8 @@ export class UserRankingComponent implements OnInit {
   tablaCargada(params: any) {
     this.gridApi = params.api;
     this.columnApi = params.columnApi;
-    console.log(this.gridApi, this.columnApi)
   }
+
   onGridSizeChanged(event: any) {
     console.log("chnege");
   }
@@ -146,6 +162,28 @@ export class UserRankingComponent implements OnInit {
         params.api.sizeColumnsToFit();
       });
     });
+    this.gridApi = params.api;
+    this.columnApi = params.columnApi;
+  }
+
+  async onCellValueChanged(event: any) {
+    if (!isNaN(event.value)) {
+      console.log("es una letra");
+      event.oldValue;
+
+      const data = {
+        id: event.data.id,
+        idUser: event.data.idUser,
+        points: parseInt(event.value)
+      }
+      await this.http.updateData(data);
+    }
+    // console.log("CAMBIO!");
+    // console.log(event.data.Nombre);
+    // console.log(parseInt(event.value));
+    // console.log(event.data.id);
+    // console.log(event.data.idUser);
+    // console.log(event);
   }
 
   showRankingsUser() {
@@ -159,6 +197,25 @@ export class UserRankingComponent implements OnInit {
   }
 
 
+
+  async collapse(id: string, state: string) {
+
+    if (state == 'show') {
+      state = 'hide';
+      $('#' + id).collapse(state);
+    }
+
+    if (state == 'hide') {
+      state = 'show';
+      $('#' + id).collapse(state = 'show');
+    }
+    await this.delay(1111);
+    this.gridApi.sizeColumnsToFit();
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 
 }

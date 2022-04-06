@@ -2,8 +2,39 @@
   background: #f7f7f7;
 }
 
+.ranking-filter {
+  width: 12rem;
+  margin-bottom: 3rem;
+}
+
 .scrollmenu-container {
   margin-top: 15rem;
+}
+
+.ranking-card {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #f7f7f737 !important;
+}
+
+.ranking-name {
+  color: var(--corp-color-one);
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+.ranking-header {
+  background-color: rgba(233, 228, 228, 0.776);
+  border-radius: 0.5rem;
+}
+
+.tippy-box {
+  background-color: var(--corp-color-one) !important;
+}
+.ranking-logo {
+  max-width: 15rem;
+  max-height: 6rem;
+  border-radius: 0.5rem;
 }
 
 .scrollmenu {

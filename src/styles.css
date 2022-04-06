@@ -1,8 +1,6 @@
-/* @import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-alpine.css"; */
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "stylesAg.css";
-
+@import "tippy.js/dist/tippy.css";
 @import "assets/keyframes.css";
 @import "assets/roboto.css";
 
@@ -27,6 +25,10 @@ body {
 
 nav {
   z-index: 10;
+}
+
+.tippy-box {
+  background-color: var(--corp-color-one) !important;
 }
 
 /* SCROLLBAR */
@@ -153,5 +155,3 @@ nav {
   background-color: white !important;
   color: var(--corp-color-one) !important;
 }
-
-

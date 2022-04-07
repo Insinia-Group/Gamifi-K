@@ -1,14 +1,14 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
-import {RegisterValidation} from '../models/registerValidation';
-import {ConfirmedValidator, futureDate} from '../models/confirmed.validator';
-import {Router, RouterLink} from '@angular/router';
-import {HttpService} from '../services/http.service';
-import {User} from '../models/user';
-import {API} from '../models/api';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { RegisterValidation } from '../models/registerValidation';
+import { ConfirmedValidator, futureDate } from '../models/confirmed.validator';
+import { Router, RouterLink } from '@angular/router';
+import { HttpService } from '../services/http.service';
+import { User } from '../models/user';
+import { API } from '../models/api';
 import * as bcrypt from 'bcryptjs';
-import {fadeIn} from '../config/animations.config';
-import {WeekDay} from '@angular/common';
+import { fadeIn } from '../config/animations.config';
+import { WeekDay } from '@angular/common';
 
 @Injectable({
   providedIn: "root"
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
     this.valid = new RegisterValidation();
   }
 
-  get f() {return this.registerForm.controls;}
+  get f() { return this.registerForm.controls; }
   ngOnInit(): void {
 
     document.getElementById("dateBirth")?.setAttribute("max", this.dateJoined.toISOString());
@@ -61,12 +61,7 @@ export class RegisterComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]),
       password2: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(25), this.passwordValidator.bind(this)]),
       dateBirth: new FormControl('', [Validators.required, this.dateValidator.bind(this)]),
-      description: new FormControl('', [Validators.required, Validators.minLength(3)]),
-
-
-    }, {
-      // validators: ConfirmedValidator('password', 'password2'),S
-
+      description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(300)]),
     }
     );
     if (this.registerForm) {
@@ -90,14 +85,14 @@ export class RegisterComponent implements OnInit {
   thirdFormActive: boolean = false;
   match = ConfirmedValidator('password', 'password2');
 
-  dateValidator(control: AbstractControl): {[key: string]: any} | null {
+  dateValidator(control: AbstractControl): { [key: string]: any } | null {
 
     if (this.registerForm) {
       console.log();
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value < "1900-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
           console.log('errorss')
-          return {'notEqual': true};
+          return { 'notEqual': true };
         }
       }
     }
@@ -105,14 +100,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  passwordValidator(control: AbstractControl): {[key: string]: any} | null {
-
+  passwordValidator(control: AbstractControl): { [key: string]: any } | null {
     if (this.registerForm) {
       console.log(control.value, this.registerForm.controls.password.value);
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value !== this.registerForm.controls.password.value) {
           console.log('error')
-          return {'notEqual': true};
+          return { 'notEqual': true };
         }
       }
     }

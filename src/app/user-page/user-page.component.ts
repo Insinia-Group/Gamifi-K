@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize, isBase64 } from '../helpers/helpers';
 import { tempProfile } from '../models/profile';
@@ -16,7 +16,7 @@ declare var $: any;
 })
 
 export class UserPageComponent implements OnInit {
-  public profile: tempProfile | null;
+  public profile: tempProfile | any | null;
   public profileForm: any;
   public profilePictureForm: any;
   public image: ProfilePicture;
@@ -24,14 +24,12 @@ export class UserPageComponent implements OnInit {
 
   constructor(private http: HttpService, private router: Router) {
     this.profileForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')] ),
+      name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
+      lastName: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
       nick: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-Z ]*$')]),
-      email: new FormControl('', [Validators.required, Validators.maxLength(120) ,Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      description: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(300)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(60)]),
-      dateBirth: new FormControl('', [Validators.required]),
-      avatar: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      email: new FormControl('', [Validators.required, Validators.maxLength(120), Validators.email, Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+      description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(300)]),
+      dateBirth: new FormControl('', [Validators.required, this.dateValidator.bind(this)]),
     });
     this.setFormValues();
     this.image = {
@@ -41,6 +39,7 @@ export class UserPageComponent implements OnInit {
       type: undefined,
       ready: false
     }
+
   }
 
   @ViewChild('toggleEditBtn') toggleEditBtn: ElementRef;
@@ -57,10 +56,18 @@ export class UserPageComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     await this.setProfile();
+    this.profileForm.controls.name.valueChanges.subscribe(() => this.isChanged('name'));
+    this.profileForm.controls.lastName.valueChanges.subscribe(() => this.isChanged('lastName'));
+    this.profileForm.controls.nick.valueChanges.subscribe(() => this.isChanged('nick'));
+    this.profileForm.controls.email.valueChanges.subscribe(() => this.isChanged('email'));
+    this.profileForm.controls.description.valueChanges.subscribe(() => this.isChanged('description'));
+    this.profileForm.controls.dateBirth.valueChanges.subscribe(() => this.isChanged('dateBirth'));
+
   }
 
   setFormValues() {
     const controls = this.profileForm.controls;
+    if (!controls) throw "Error with the profile data";
     if (this.profile) {
       controls.dateBirth.setValue(this.profile.dateBirth);
       controls.nick.setValue(this.profile.nick);
@@ -81,14 +88,14 @@ export class UserPageComponent implements OnInit {
   }
 
   async readURL(event: any) {
+    if (!event) throw "Not event provided"
     const file = event.target.files[0];
-    if (file) {
-      this.image.name = file.name;
-      this.image.size = file.size;
-      this.image.type = file.type;
-      this.image.base = null;
-      this.image.ready = false;
-    }
+    if (!file) throw "No file provided"
+    this.image.name = file.name;
+    this.image.size = file.size;
+    this.image.type = file.type;
+    this.image.base = null;
+    this.image.ready = false;
     const reader = new FileReader();
     reader.onload = () => this.image.base = reader.result;
     try {
@@ -96,11 +103,13 @@ export class UserPageComponent implements OnInit {
       this.image.ready = true;
       this.profilePictureLabel.nativeElement.innerHTML = this.image.name + ' ' + calculateSize(this.image.size);
     } catch (e) {
-      console.log('Image selection cancelled')
+      throw "Image selection cancelled"
     }
   }
 
   modal(id: string, state: string): void {
+    if (!id) throw "You must provide an id"
+    if (!state) throw "You muste provide a state"
     $('#' + id).modal(state);
   }
 
@@ -139,5 +148,27 @@ export class UserPageComponent implements OnInit {
     Object.keys(this.profileForm.controls).forEach(key => {
       console.log(key, this.profileForm.controls[key].value);
     })
+  }
+
+  dateValidator(control: AbstractControl): { [key: string]: any } | null {
+    let today: string | Date = new Date();
+    today = today.toISOString().slice(0, -14)
+    if (this.profileForm) {
+      if (typeof (this.profileForm) !== 'undefined') {
+        if (control.value < "1900-1-1") {
+          return { 'preOld': true };
+        } else if (control.value > today) {
+          return { 'postToday': true };
+        }
+      }
+    }
+    return null;
+  }
+
+  isChanged(control: string): any {
+    if (this.profile) {
+     console.log(control, this.profile[control] === this.profileForm.controls[control].value);
+    }
+    return null;
   }
 }

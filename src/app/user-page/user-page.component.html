@@ -105,8 +105,16 @@
                     profileForm.controls.name.touched &&
                     profileForm.controls.name.errors['minlength']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.name.touched &&
+                    profileForm.controls.name.errors['maxlength']
+                  "
+                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
                 >
                 <small
                   [@fadeIn]
@@ -115,7 +123,7 @@
                     profileForm.controls.name.touched &&
                     profileForm.controls.name.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
               </div>
             </div>
@@ -145,8 +153,16 @@
                     profileForm.controls.lastName.touched &&
                     profileForm.controls.lastName.errors['minlength']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.lastName.touched &&
+                    profileForm.controls.lastName.errors['maxlength']
+                  "
+                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
                 >
                 <small
                   [@fadeIn]
@@ -155,7 +171,7 @@
                     profileForm.controls.lastName.touched &&
                     profileForm.controls.lastName.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
               </div>
             </div>
@@ -187,8 +203,16 @@
                     profileForm.controls.nick.touched &&
                     profileForm.controls.nick.errors['minlength']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.nick.touched &&
+                    profileForm.controls.nick.errors['maxlength']
+                  "
+                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
                 >
                 <small
                   [@fadeIn]
@@ -197,11 +221,10 @@
                     profileForm.controls.nick.touched &&
                     profileForm.controls.nick.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
               </div>
             </div>
-
             <div class="col-sm-12">
               <label for="email" class="form-label">Email</label>
               <input
@@ -211,6 +234,7 @@
                 formControlName="email"
                 class="form-control"
                 placeholder="{{ profile.email }}"
+                maxlength="121"
                 [readonly]="!editProfile"
               />
               <input
@@ -225,19 +249,27 @@
                   class="text-danger"
                   *ngIf="
                     profileForm.controls.email.touched &&
-                    profileForm.controls.email.errors['minlength']
+                    profileForm.controls.email.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
                 <small
                   [@fadeIn]
                   class="text-danger"
                   *ngIf="
                     profileForm.controls.email.touched &&
-                    profileForm.controls.email.errors['required']
+                    profileForm.controls.email.errors['pattern']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>El formato es inválido.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.email.touched &&
+                    profileForm.controls.email.errors['maxlength']
+                  "
+                  ><i class="bi bi-x me-1"></i>Máximo 120 caracteres.</small
                 >
               </div>
             </div>
@@ -266,10 +298,18 @@
                   class="text-danger"
                   *ngIf="
                     profileForm.controls.dateBirth.touched &&
-                    profileForm.controls.dateBirth.errors['minlength']
+                    profileForm.controls.dateBirth.errors['preOld']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Fecha demasiado antigua.</small
+                >
+                <small
+                  [@fadeIn]
+                  class="text-danger"
+                  *ngIf="
+                    profileForm.controls.dateBirth.touched &&
+                    profileForm.controls.dateBirth.errors['postToday']
+                  "
+                  ><i class="bi bi-x me-1"></i>Fecha futura.</small
                 >
                 <small
                   [@fadeIn]
@@ -278,7 +318,7 @@
                     profileForm.controls.dateBirth.touched &&
                     profileForm.controls.dateBirth.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
               </div>
             </div>
@@ -310,8 +350,7 @@
                     profileForm.controls.description.touched &&
                     profileForm.controls.description.errors['minlength']
                   "
-                  ><i class="bi bi-x me-2"></i>La longitud debe ser de 8
-                  caracteres.</small
+                  ><i class="bi bi-x me-1"></i>Mínimo 3 caracteres.</small
                 >
                 <small
                   [@fadeIn]
@@ -320,7 +359,7 @@
                     profileForm.controls.description.touched &&
                     profileForm.controls.description.errors['required']
                   "
-                  ><i class="bi bi-x me-2"></i>Este campo es obligatorio.</small
+                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
                 >
               </div>
               <div class="d-flex mt-3">

@@ -14,12 +14,12 @@ export function isBase64(string: string) {
 export async function rejectByToken(http: HttpService, router: Router): Promise<boolean> {
     const statusToken = await http.tokenValidation();
     if (statusToken == false) {
-        return true;
         localStorage.removeItem('token');
         router.navigate(['/login']);
+        return true;
     } else if (statusToken) {
-        return false;
         console.log("Token valid");
+        return false;
     }
     else {
         return false;

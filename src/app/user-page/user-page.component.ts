@@ -106,6 +106,7 @@ export class UserPageComponent implements OnInit {
     this.profileForm.controls.dateBirth.valueChanges.subscribe(() =>
       this.isChanged('dateBirth')
     );
+    this.profileForm.controls.email.disable();
   }
 
   setFormValues() {

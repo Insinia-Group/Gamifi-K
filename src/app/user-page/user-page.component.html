@@ -363,7 +363,7 @@
                 >
               </div>
               <div class="d-flex mt-3">
-                <button [disabled]="!isValidToUpdate" class="btn btn-color text-light">Cambiar datos</button>
+                <button [disabled]="!isValidToUpdate || profileForm.invalid" class="btn btn-color text-light">Cambiar datos</button>
               </div>
             </div>
           </div>

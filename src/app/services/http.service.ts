@@ -268,6 +268,26 @@ export class HttpService {
     );
   }
 
+  updateProfile(profile: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/profile/data'), profile, this.observe).subscribe(
+        (res) => {
+          console.log(res);
+          
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.');
+        }
+      );
+    })
+  }
+
   updateData(data: any) {
     this.http.post<any>(this.api.toThisPath('/updateData'), data, this.observe).subscribe(
       (data) => console.log(data),

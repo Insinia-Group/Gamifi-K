@@ -26,6 +26,8 @@ import {SwiperModule} from 'swiper/angular';
 import {NotifierModule} from 'angular-notifier';
 import {NotifierConfiguration} from './config/notifier.config';
 import {NgxTippyModule} from 'ngx-tippy-wrapper';
+import {MoodRendererComponent} from './ag-grid/mood-renderer/mood-renderer.component';
+import {GenderRendererComponent} from './ag-grid/gender-renderer/gender-renderer.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import {NgxTippyModule} from 'ngx-tippy-wrapper';
     ModeratorPageComponent,
     LoadingComponent,
     LogoComponent,
-    NavbarComponent
+    NavbarComponent,
+    MoodRendererComponent,
+    GenderRendererComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),
@@ -54,7 +58,7 @@ import {NgxTippyModule} from 'ngx-tippy-wrapper';
     AppRoutingModule,
     FormsModule,
     MatInputModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([GenderRendererComponent, MoodRendererComponent]),
     SwiperModule,
     NgxTippyModule,
   ],

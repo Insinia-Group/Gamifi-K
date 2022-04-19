@@ -3,7 +3,9 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {fadeIn} from '../config/animations.config';
 import {HttpService} from '../services/http.service';
-import {ColDef, GridReadyEvent} from 'ag-grid-community';
+import {ColDef, GridReadyEvent, ICellRendererParams} from 'ag-grid-community';
+import {MoodRendererComponent} from '../ag-grid/mood-renderer/mood-renderer.component';
+import {GenderRendererComponent} from '../ag-grid/gender-renderer/gender-renderer.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AgGridModule} from 'ag-grid-angular';
 import {Observable} from 'rxjs';
@@ -39,7 +41,19 @@ export class UserRankingComponent implements OnInit {
     {field: 'Puntos', sortable: true, filter: true},
     {field: 'id', hide: true},
     {field: 'idUser', hide: true},
-    {field: 'Insinias'},
+    {
+      field: 'Insinias', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: [1]},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+
   ];
 
   columnDefsModerator: ColDef[] = [
@@ -119,11 +133,9 @@ export class UserRankingComponent implements OnInit {
 
   async addRankingByCode() {
     if (this.addRanking.controls.rankingId.value != "") {
-      console.log(this.addRanking.controls.rankingId.value);
 
       this.showAdd = false;
       this.rankingId = this.addRanking.controls.rankingId.value;
-      console.log(this.rankingId);
       const code = {
         code: this.rankingId
       }
@@ -152,7 +164,6 @@ export class UserRankingComponent implements OnInit {
   }
 
   onGridSizeChanged(event: any) {
-    console.log("chnege");
   }
 
   onGridReady(params: GridReadyEvent) {
@@ -178,13 +189,9 @@ export class UserRankingComponent implements OnInit {
       }
       await this.http.updateData(data);
     }
-    // console.log("CAMBIO!");
-    // console.log(event.data.Nombre);
-    // console.log(parseInt(event.value));
-    // console.log(event.data.id);
-    // console.log(event.data.idUser);
-    // console.log(event);
   }
+
+
 
   showRankingsUser() {
     this.rankingsUserView = true;

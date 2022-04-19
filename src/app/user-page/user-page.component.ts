@@ -190,37 +190,18 @@ export class UserPageComponent implements OnInit {
     this.setFormValues();
   }
 
-  updateSubmit() {
-    Object.keys(this.profileForm.controls).forEach((key) => {
-      const controlErrors: ValidationErrors = this.profileForm.get(key).errors;
-      if (controlErrors) {
-        Object.keys(controlErrors).forEach((keyError) => {
-          console.log({
-            control: key,
-            error: keyError,
-            value: controlErrors[keyError],
-          });
-        });
-      }
-    });
-    console.log(this.profile);
+  async updateSubmit() {
+    const profile: any = {};
     Object.keys(this.profileForm.controls).forEach((key) => {
       if (this.profileForm.controls[key].value !== this.profile[key]) {
-        console.log(
-          'Changed',
-          key,
-          this.profileForm.controls[key].value,
-          this.profile[key]
-        );
-      } else {
-        console.log(
-          'Same',
-          key,
-          this.profileForm.controls[key].value,
-          this.profile[key]
-        );
+        profile[key] = this.profileForm.controls[key].value
       }
-    });
+    })
+    if (!profile) throw 'You must change your profile data'
+    if (profile) {
+      await this.http.updateProfile(profile);
+      await this.setProfile();
+    }
   }
 
   dateValidator(control: AbstractControl): { [key: string]: any } | null {

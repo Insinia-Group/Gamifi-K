@@ -363,7 +363,8 @@
                 >
               </div>
               <div class="d-flex mt-3">
-                <button [disabled]="!isValidToUpdate || profileForm.invalid" class="btn btn-color text-light">Cambiar datos</button>
+                <button [disabled]="!isValidToUpdate || profileForm.invalid" class="btn btn-color text-light me-2" type="submit">Actualizar datos <i class="bi bi-save2 ms-2"></i></button>
+                <button [disabled]="!isValidToUpdate" class="btn btn-color text-light" (click)="setFormValues()">Restablecer datos<i class="bi bi-arrow-clockwise ms-1"></i></button>
               </div>
             </div>
           </div>

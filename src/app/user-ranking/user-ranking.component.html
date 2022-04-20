@@ -169,6 +169,7 @@
               id="dataTable"
               [defaultColDef]="defaultColDef"
               resizable="true"
+              (cellValueChanged)="onCellValueChanged($event)"
               (onGridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"
               [@fadeIn]

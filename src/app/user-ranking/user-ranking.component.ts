@@ -39,13 +39,13 @@ export class UserRankingComponent implements OnInit {
     {field: 'Nombre', sortable: true, filter: true},
     {field: 'Apellido', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
-    {field: 'id', hide: true},
+    // {field: 'id', hide: true},
     {field: 'idUser', hide: true},
     {
-      field: 'Insinias', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'responsability', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: {values: [1]},
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -53,6 +53,55 @@ export class UserRankingComponent implements OnInit {
       },
       editable: true
     },
+    {
+      field: 'cooperation', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'autonomy', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'emotional', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'thinking', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+
 
   ];
 
@@ -62,7 +111,67 @@ export class UserRankingComponent implements OnInit {
     {field: 'Puntos', sortable: true, filter: true, editable: true},
     {field: 'id', hide: true},
     {field: 'idUser', hide: true},
-    {field: 'Insinias'},
+    {field: 'idUser', hide: true},
+    {
+      field: 'responsability', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'cooperation', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'autonomy', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'emotional', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
+    {
+      field: 'thinking', cellRendererSelector: function (params: ICellRendererParams) {
+        let genderDetails = {
+          component: GenderRendererComponent,
+          params: {values: this},
+          componente: MoodRendererComponent,
+        };
+
+        return genderDetails;
+      },
+      editable: true
+    },
   ];
   public rowData: any;
   public rankings: any;
@@ -178,8 +287,24 @@ export class UserRankingComponent implements OnInit {
   }
 
   async onCellValueChanged(event: any) {
+
+    // responsability
+    // cooperation
+    // autonomy
+    // emotional
+    // thinking
+
+    let insinia = event.colDef.field
+
+    switch (insinia) {
+      case "emotional": console.log("pene");
+
+    }
+
+
     if (!isNaN(event.value)) {
       console.log("es una letra");
+      console.log(event.colDef.field)
       event.oldValue;
 
       const data = {

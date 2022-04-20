@@ -1,1 +1,19 @@
-<p>gender-renderer works!</p>
+<span
+  class="insinia"
+  ngxTippy
+  [ngxTippy]="nivel"
+  [tippyProps]="{
+    arrow: false,
+    placement: 'top'
+  }"
+>
+  <span
+    ngxTippy
+    [ngxTippy]="value"
+    [tippyProps]="{
+      arrow: false,
+      placement: 'bottom'
+    }"
+  >
+    <img [src]="imageSource" class="insinia" /> </span
+></span>

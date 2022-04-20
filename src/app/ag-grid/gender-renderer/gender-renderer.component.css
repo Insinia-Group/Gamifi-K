@@ -1,0 +1,29 @@
+.insinia {
+  transition: transform 0.2s;
+  width: 20px;
+}
+.insinia:hover {
+  transform: scale(1.5);
+}
+
+.insinia:hover + .add {
+  display: inline !important;
+  position: absolute !important;
+  width: 20rem;
+  height: 20rem !important;
+  z-index: 10 !important;
+  background-color: #8a00c1b4;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.add {
+  display: inline !important;
+  position: absolute !important;
+  width: 20rem;
+  height: 20rem !important;
+  z-index: 10 !important;
+  background-color: #8a00c1b4;
+  color: white;
+  border-radius: 0.5rem;
+}

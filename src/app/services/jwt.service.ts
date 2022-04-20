@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JwtService {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   /**
    * Saves the token in the localStorage.
@@ -23,8 +23,6 @@ export class JwtService {
   getToken(): any {
     return localStorage.getItem('token');
   }
-
-
 
   /**
    * Checks if the token exists.

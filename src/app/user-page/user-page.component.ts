@@ -12,6 +12,7 @@ import { tempProfile } from '../models/profile';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 import { ProfilePicture } from '../interface/image';
+import { NotifierService } from 'angular-notifier';
 declare var $: any;
 
 @Component({
@@ -28,7 +29,7 @@ export class UserPageComponent implements OnInit {
   public editProfile: boolean;
   public isValidToUpdate: boolean;
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: HttpService, private router: Router, private notifier: NotifierService) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -199,8 +200,12 @@ export class UserPageComponent implements OnInit {
     })
     if (!profile) throw 'You must change your profile data'
     if (profile) {
-      await this.http.updateProfile(profile);
-      await this.setProfile();
+      const res = await this.http.updateProfile(profile);
+      if (res) {
+        await this.setProfile();
+        this.toggleEdit();
+        this.notifier.notify('default', 'Datos cambiados correctamente.')
+      }
     }
   }
 

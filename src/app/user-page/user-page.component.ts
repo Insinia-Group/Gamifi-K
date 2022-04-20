@@ -12,6 +12,7 @@ import { tempProfile } from '../models/profile';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 import { ProfilePicture } from '../interface/image';
+import { NotifierService } from 'angular-notifier';
 declare var $: any;
 
 @Component({
@@ -28,7 +29,7 @@ export class UserPageComponent implements OnInit {
   public editProfile: boolean;
   public isValidToUpdate: boolean;
 
-  constructor(private http: HttpService, private router: Router) {
+  constructor(private http: HttpService, private router: Router, private notifier: NotifierService) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -190,37 +191,22 @@ export class UserPageComponent implements OnInit {
     this.setFormValues();
   }
 
-  updateSubmit() {
-    Object.keys(this.profileForm.controls).forEach((key) => {
-      const controlErrors: ValidationErrors = this.profileForm.get(key).errors;
-      if (controlErrors) {
-        Object.keys(controlErrors).forEach((keyError) => {
-          console.log({
-            control: key,
-            error: keyError,
-            value: controlErrors[keyError],
-          });
-        });
-      }
-    });
-    console.log(this.profile);
+  async updateSubmit() {
+    const profile: any = {};
     Object.keys(this.profileForm.controls).forEach((key) => {
       if (this.profileForm.controls[key].value !== this.profile[key]) {
-        console.log(
-          'Changed',
-          key,
-          this.profileForm.controls[key].value,
-          this.profile[key]
-        );
-      } else {
-        console.log(
-          'Same',
-          key,
-          this.profileForm.controls[key].value,
-          this.profile[key]
-        );
+        profile[key] = this.profileForm.controls[key].value
       }
-    });
+    })
+    if (!profile) throw 'You must change your profile data'
+    if (profile) {
+      const res = await this.http.updateProfile(profile);
+      if (res) {
+        await this.setProfile();
+        this.toggleEdit();
+        this.notifier.notify('default', 'Datos cambiados correctamente.')
+      }
+    }
   }
 
   dateValidator(control: AbstractControl): { [key: string]: any } | null {

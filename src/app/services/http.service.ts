@@ -272,10 +272,8 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/profile/data'), profile, this.observe).subscribe(
         (res) => {
-          console.log(res);
-          
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve(res.body);
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }

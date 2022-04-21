@@ -1,48 +1,53 @@
 <topnav></topnav>
 
-<div class="container text-color">
-  <div class="border-0 shadow-sm card-hover-primary">
-    <div class="d-flex gap-2 justify-content-end">
-      <button
-        *ngIf="profile"
-        class="btn btn-sm btn-color text-light"
-        data-bs-toggle="modal"
-        data-bs-target="#profilePictureModal"
-      >
-        Cambiar foto
-        <i class="ms-1 bi bi-image"></i>
-      </button>
-      <button
-        *ngIf="profile"
-        class="btn btn-sm btn-color text-light"
-        #toggleEditBtn
-        (click)="toggleEdit()"
-      >
-        Editar perfil
-        <i class="ms-1 bi bi-pen"></i>
-      </button>
-      <button
-        *ngIf="!profile"
-        class="
-          btn btn-sm btn-color
-          text-light
-          placeholder placeholder-glow
-          disabled
-          col-2
-        "
-      ></button>
-      <button
-        *ngIf="!profile"
-        class="
-          btn btn-sm btn-color
-          text-light
-          placeholder placeholder-glow
-          disabled
-          col-2
-        "
-      ></button>
+<div class="container-fluid mt-topnav">
+  <div *ngIf="profile" class="row bg-color rounded py-2 mx-2">
+    <div class="col-auto">
+      <img
+        *ngIf="profile && profile.avatar"
+        class="img-fluid rounded"
+        [src]="profile.avatar"
+        alt="profile picture"
+        style="width: 100px; height: 100px"
+      />
     </div>
+    <div class="col text-light">
+      <div class="row">
+        <div class="pt-2 fw-bolder">{{ profile.name + " " + profile.lastName }}</div>
+      </div>
+      <div class="row">
+        <div class="pb-1" style="font-size: 0.7rem">Cuenta creada: {{ profile.dateJoined }}</div>
+      </div>
+      <div class="row">
+        <div class="py-2">{{ profile.description }}</div>
+      </div>
+    </div>
+  </div>
 
+  <div *ngIf="!profile" class="row bg-color rounded py-2 mx-2 placeholder-glow">
+    <div class="col-auto">
+      <div
+        class="placeholder rounded bg-white"
+        style="width: 100px; height: 100px"
+      ></div>
+    </div>
+    <div class="col text-light">
+      <div class="row pt-0 mt-0">
+        <div class="mt-2 placeholder py-2 me-1 bg-white" style="width: 75px; height: 30px;"></div>
+        <div class="mt-2 placeholder bg-white" style="width: 75px;"></div>
+      </div>
+      <div class="row">
+        <div class="py-1"></div>
+      </div>
+      <div class="row">
+        <div class="py-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container-fluid text-color">
+  <div class="border-0 shadow-sm card-hover-primary">
     <div class="row justify-content-center">
       <div id="content" class="content">
         <div class="row">
@@ -53,23 +58,48 @@
               [src]="profile.avatar"
               class="thumbnails img-fluid"
             />
-            <img [@fadeIn] *ngIf="!profile" class="thumbnails img-fluid" />
+            <div
+              [@fadeIn]
+              *ngIf="!profile"
+              class="placeholder placeholder-glow rounded g-0"
+              style="width: 80px; height: 80px"
+            ></div>
           </div>
           <div *ngIf="profile" class="col">
-            <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
-            <small>Te uniste el {{ profile.dateJoined }}</small
-            ><br />
-            <small>{{ profile.description }}</small>
+            <div class="row">
+              <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
+            </div>
+            <div class="row mt-1">
+              <small>Te uniste el {{ profile.dateJoined }}</small>
+            </div>
+            <div class="row">
+              <small>{{ profile.description }}</small>
+            </div>
+            <br />
           </div>
           <div *ngIf="!profile" class="col">
-            <h2 class="card-title gap-2 placeholder-glow">
-              <span class="placeholder col-1"></span>
-              <span class="placeholder col-1 ms-1"></span>
-            </h2>
-            <p class="card-text placeholder-glow">
-              <span class="placeholder col-3"></span><br />
-              <span class="placeholder col-10"></span><br />
-            </p>
+            <div class="row">
+              <div
+                class="placeholder placeholder-glow rounded me-1"
+                style="width: 75px; height: 32px"
+              ></div>
+              <div
+                class="placeholder placeholder-glow rounded me-1"
+                style="width: 75px; height: 32px"
+              ></div>
+            </div>
+            <div class="row mt-1">
+              <small
+                class="placeholder placeholder-glow rounded mt-1"
+                style="width: 150px"
+              ></small>
+            </div>
+            <div class="row">
+              <small
+                class="placeholder placeholder-glow rounded mt-1"
+                style="width: 200px"
+              ></small>
+            </div>
           </div>
         </div>
       </div>
@@ -132,7 +162,8 @@
                     profileForm.controls.name.touched &&
                     profileForm.controls.name.errors['pattern']
                   "
-                  ><i class="bi bi-x me-1"></i>No puede contener caracteres especiales.</small
+                  ><i class="bi bi-x me-1"></i>No puede contener caracteres
+                  especiales.</small
                 >
               </div>
             </div>
@@ -372,8 +403,48 @@
                 >
               </div>
               <div class="d-flex mt-3">
-                <button [disabled]="!isValidToUpdate || profileForm.invalid" class="btn btn-color text-light me-2" type="submit">Actualizar datos <i class="bi bi-save2 ms-2"></i></button>
-                <button [disabled]="!isValidToUpdate" class="btn btn-color text-light" (click)="setFormValues()">Restablecer datos<i class="bi bi-arrow-clockwise ms-1"></i></button>
+                <button
+                  [disabled]="!isValidToUpdate || profileForm.invalid"
+                  class="btn btn-color btn-sm text-light me-2"
+                  type="submit"
+                >
+                  Actualizar datos <i class="bi bi-save2 ms-2"></i>
+                </button>
+                <button
+                  [disabled]="!isValidToUpdate"
+                  class="btn btn-color btn-sm text-light me-2"
+                  (click)="setFormValues()"
+                >
+                  Restablecer datos<i class="bi bi-arrow-clockwise ms-1"></i>
+                </button>
+                <button
+                  *ngIf="profile"
+                  class="btn btn-sm btn-color text-light me-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#profilePictureModal"
+                >
+                  Cambiar foto
+                  <i class="ms-1 bi bi-image"></i>
+                </button>
+                <button
+                  *ngIf="profile"
+                  class="btn btn-sm btn-color text-light me-2"
+                  #toggleEditBtn
+                  (click)="toggleEdit()"
+                >
+                  Editar perfil
+                  <i class="ms-1 bi bi-pen"></i>
+                </button>
+                <button
+                  *ngIf="!profile"
+                  class="btn placeholder placeholder-glow disabled me-1"
+                  style="width: 120px; height: 31px"
+                ></button>
+                <button
+                  *ngIf="!profile"
+                  class="btn placeholder placeholder-glow disabled"
+                  style="width: 110px; height: 31px"
+                ></button>
               </div>
             </div>
           </div>
@@ -435,7 +506,7 @@
                 name="profilePicture"
                 id="profilePicture"
                 type="file"
-                accept="image/png, image/jpg, image/jpeg, image/svg"
+                accept="image/divng, image/jpg, image/jpeg, image/svg"
                 class="hide"
                 (change)="readURL($event)"
               />
@@ -462,4 +533,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

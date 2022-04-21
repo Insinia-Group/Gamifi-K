@@ -4,6 +4,10 @@
   object-fit: cover;
 }
 
+.mt-topnav {
+  margin-top: 70px;
+}
+
 .card-hover-primary {
   margin-top: 8rem;
 }

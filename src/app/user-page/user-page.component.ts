@@ -127,7 +127,7 @@ export class UserPageComponent implements OnInit {
     this.editProfile = !this.editProfile;
     if (this.editProfile) {
       this.toggleEditBtn.nativeElement.innerHTML =
-        ' Dejar de editar el perfil <i class="ms-1 bi bi-pen"></i>';
+        ' Dejar de editar<i class="ms-1 bi bi-pen"></i>';
     } else {
       this.toggleEditBtn.nativeElement.innerHTML =
         ' Editar perfil <i class="ms-1 bi bi-pen"></i>';

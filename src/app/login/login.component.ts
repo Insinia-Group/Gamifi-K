@@ -19,9 +19,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpService, private jwt: JwtService, private router: Router, private notifier: NotifierService) {
     this.disabledButton = false;
+    
   }
 
   async ngOnInit(): Promise<void> {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    });
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
@@ -30,10 +35,6 @@ export class LoginComponent implements OnInit {
       localStorage.removeItem('token');
       this.router.navigate(['/login']);
     }
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
-    });
   }
 
   async logIn(): Promise<void> {

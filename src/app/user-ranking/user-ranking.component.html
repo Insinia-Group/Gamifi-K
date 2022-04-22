@@ -141,6 +141,7 @@
             role="button"
             aria-expanded="true"
             ngxTippy
+            [tippyName]="item"
             [ngxTippy]="descripcion"
             [tippyProps]="{
               arrow: false,
@@ -203,13 +204,14 @@
             role="button"
             aria-expanded="true"
             ngxTippy
-            [ngxTippy]="descripcion"
+            [tippyName]="contador()"
+            [ngxTippy]="description"
             [tippyProps]="{
               arrow: false,
               placement: 'top'
             }"
           >
-            <template #descripcion class="bg-color text-light">
+            <template #description class="bg-color text-light">
               {{ item.description }}
             </template>
 

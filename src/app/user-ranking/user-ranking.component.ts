@@ -42,7 +42,7 @@ export class UserRankingComponent implements OnInit {
     // {field: 'id', hide: true},
     {field: 'idUser', hide: true},
     {
-      field: 'responsability', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Responsabilidad', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -54,7 +54,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'cooperation', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Coperacion', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -66,7 +66,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'autonomy', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Autonomia', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -78,7 +78,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'emotional', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Emocional', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -90,7 +90,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'thinking', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Inteligencia', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -113,7 +113,7 @@ export class UserRankingComponent implements OnInit {
     {field: 'idUser', hide: true},
     {field: 'idUser', hide: true},
     {
-      field: 'responsability', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Responsabilidad', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -125,7 +125,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'cooperation', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Coperacion', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -137,7 +137,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'autonomy', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Autonomia', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -149,7 +149,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'emotional', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Emocional', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -161,7 +161,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'thinking', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Inteligencia', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -189,12 +189,14 @@ export class UserRankingComponent implements OnInit {
   public defaultColDef: any;
   public rankingsUserView: boolean = true;
   public rankingsModeratorView: boolean = true;
-
+  public contadorTippy: any = "a" + 1;
+  public contadorT: any;
 
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
+    let i = 0;
     // this.http.tokenValidation();
   }
   @HostListener('window:scroll', ['$event'])
@@ -288,16 +290,16 @@ export class UserRankingComponent implements OnInit {
 
   async onCellValueChanged(event: any) {
 
-    // responsability
-    // cooperation
-    // autonomy
-    // emotional
-    // thinking
+    // Responsabilidad
+    // Coperacion
+    // Autonomia
+    // Emocional
+    // Inteligencia
 
     let insinia = event.colDef.field
 
     switch (insinia) {
-      case "emotional": console.log("pene");
+      case "Emocional": console.log("pene");
 
     }
 
@@ -347,6 +349,13 @@ export class UserRankingComponent implements OnInit {
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+
+
+  contador() {
+    this.contadorT++;
+    return this.contadorTippy + this.contador;
   }
 
 

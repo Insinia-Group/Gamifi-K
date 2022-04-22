@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { fadeIn } from '../config/animations.config';
-import { HttpService } from '../services/http.service';
-import { JwtService } from '../services/jwt.service';
-import { NotifierService } from 'angular-notifier';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {fadeIn} from '../config/animations.config';
+import {HttpService} from '../services/http.service';
+import {JwtService} from '../services/jwt.service';
+import {NotifierService} from 'angular-notifier';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpService, private jwt: JwtService, private router: Router, private notifier: NotifierService) {
     this.disabledButton = false;
-    
+
   }
 
   async ngOnInit(): Promise<void> {

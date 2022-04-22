@@ -15,7 +15,7 @@ export class GenderRendererComponent implements ICellRendererAngularComp {
   public nivel: any
 
   agInit(params: ICellRendererParams): void {
-    if (params.value < 1000 && params.value > 0) {
+    if (params.value < 1000 && params.value >= 0) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 1"
       this.value = params.value + " pts.";

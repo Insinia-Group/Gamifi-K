@@ -29,22 +29,20 @@ export class JwtService {
    * @returns Boolean
    */
   exist(): boolean {
-    if (this.getToken()) {
-      return true;
-    } else {
-      return false;
-    }
+    if (!this.getToken()) return false;
+    return true;
   }
 
   redirectTo(path: string) {
+    if (!path) throw 'You must provide a path parameter';
+    if (typeof (path) !== 'string') throw 'Parameter give is not a string ' + typeof (path);
     if (path.charAt(0) !== '/') path = '/' + path;
-    if (this.exist()) {
-      this.router.navigate([path]);
-    }
+    if (this.exist()) this.router.navigate([path]);
   }
 
-  removeLocalToken() {
-    localStorage.removeItem('token');
+  logout() {
+    if (this.exist()) localStorage.removeItem('token');
+    this.redirectTo('/login')
   }
 }
 

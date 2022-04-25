@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {API} from '../models/api';
-import {Router} from '@angular/router';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { Router } from '@angular/router';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,22 @@ export class HttpService {
     this.observe = {
       observe: 'response'
     };
+  }
+
+  async canContinue() {
+    const url = '/login'
+    if (!this.jwt.exist()) this.jwt.redirectTo(url);
+    const statusToken = await this.tokenValidation();
+    if (!statusToken) this.jwt.logout();
+  }
+
+  async canLogin() {
+    const url = '/profile'
+    if (this.jwt.exist()) {
+      const statusToken = await this.tokenValidation();
+      if (!statusToken) this.jwt.logout();
+      this.jwt.redirectTo(url)
+    }
   }
 
   /**
@@ -40,8 +56,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error with the login');
+          reject('Error with the login ' + err);
         }
       );
     });
@@ -52,21 +67,27 @@ export class HttpService {
    * @param user 
    */
   register(user: any): any {
-    try {
-      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/register'), user, {headers: headers}).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/getRankingById'), user, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the rankings. ' + err);
+        }
       );
-    } catch (e) {
-      console.log(e)
-    }
+    });
   }
 
   setProfilePicture(profile: object) {
     return new Promise((resolve, reject) => {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, {headers: headers}).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, { headers: headers }).subscribe(
         (res) => {
           if (res) {
             console.log(res)
@@ -76,23 +97,28 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error with the status.');
+          reject('Error setting the profile picture.' + err);
         }
       );
     });
   }
 
   addRankingByCode(code: any): any {
-    try {
-      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/addRankingByCode'), code, {headers: headers}).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/addRankingByCode'), code, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the rankings. ' + err);
+        }
       );
-    } catch (e) {
-      console.log(e)
-    }
+    });
   }
 
   /**
@@ -115,18 +141,20 @@ export class HttpService {
     });
   }
 
-  tokenValidation() {
-    return new Promise((resolve, reject) => {
-      this.http.get<HttpResponse<any>>(this.api.toThisPath('/tokenValidation'), this.observe).subscribe(
-        (res) => {
-          resolve(res.body);
-        },
-        (err) => {
-          reject('Invalid token');
-          this.router.navigate(['/login']);
-        }
-      );
-    });
+  tokenValidation(): any {
+    if (this.jwt.exist()) {
+      return new Promise((resolve, reject) => {
+        this.http.get<HttpResponse<any>>(this.api.toThisPath('/tokenValidation'), this.observe).subscribe(
+          (res) => {
+            resolve(res.body);
+          },
+          (err) => {
+            reject(err);
+            this.router.navigate(['/login']);
+          }
+        );
+      });
+    }
   }
 
   /**
@@ -135,10 +163,21 @@ export class HttpService {
    * @param options 
    */
   pictureUpload(data: FormData) {
-    this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data, this.observe).subscribe(
-      (data) => console.log(data),
-      (err) => console.log(err)
-    );
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/uploadAvatar'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the avatar. ' + err);
+        }
+      );
+    });
   }
 
   /**
@@ -188,8 +227,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error with the status.');
+          reject('Error getting the rankings.' + err);
         }
       );
     });
@@ -207,22 +245,28 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error with the status.');
+          reject('Error getting the rankings. ' + err);
         }
       );
     });
   }
 
   getRankingById(id: any): any {
-    try {
-      const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post(this.api.toThisPath('/getRankingById'), id, {headers: headers}).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/getRankingById'), id, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the rankings. ' + err);
+        }
       );
-    } catch (e) {
-      console.log(e)
-    }
+    });
   }
 
   getRankingData() {
@@ -237,7 +281,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error with the status.');
+          reject('Error getting ranking data. ' + err);
         }
       );
     });
@@ -255,17 +299,28 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error with the status.');
+          reject('Error getting the profile.' + err);
         }
       );
     });
   }
 
   addRanking(data: any) {
-    this.http.post<any>(this.api.toThisPath('/addRanking'), data, this.observe).subscribe(
-      (data) => console.log(data),
-      (err) => console.log(err)
-    );
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/addRanking'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({ status: true });
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error adding a ranking.' + err);
+        }
+      );
+    })
   }
 
   updateProfile(profile: any) {
@@ -273,30 +328,53 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/profile/data'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }
         },
         (err) => {
           console.log(err)
-          reject('Error changing profile data.');
+          reject('Error changing profile data.' + err);
         }
       );
     })
   }
 
   updateData(data: any) {
-    this.http.post<any>(this.api.toThisPath('/updateData'), data, this.observe).subscribe(
-      (data) => console.log(data),
-      (err) => console.log(err)
-    )
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/updateData'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({ status: true });
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.' + err);
+        }
+      );
+    })
   }
+
   updateInsinia(data: any) {
-    this.http.post<any>(this.api.toThisPath('/updateInsinia'), data, this.observe).subscribe(
-      (data) => console.log(data),
-      (err) => console.log(err)
-    )
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/updateInsinia'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({ status: true });
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.' + err);
+        }
+      );
+    })
   }
 
 }

@@ -1,4 +1,5 @@
 <topnav></topnav>
+<logout [isOpen]="false"></logout>
 
 <div class="container-fluid mt-topnav">
   <div *ngIf="profile" class="row bg-color rounded py-2 mx-2">
@@ -13,10 +14,14 @@
     </div>
     <div class="col text-light">
       <div class="row">
-        <div class="pt-2 fw-bolder">{{ profile.name + " " + profile.lastName }}</div>
+        <div class="pt-2 fw-bolder">
+          {{ profile.name + " " + profile.lastName }}
+        </div>
       </div>
       <div class="row">
-        <div class="pb-1" style="font-size: 0.7rem">Cuenta creada: {{ profile.dateJoined }}</div>
+        <div class="pb-1" style="font-size: 0.7rem">
+          Cuenta creada: {{ profile.dateJoined }}
+        </div>
       </div>
       <div class="row">
         <div class="py-2">{{ profile.description }}</div>
@@ -33,199 +38,81 @@
     </div>
     <div class="col text-light">
       <div class="row pt-0 mt-0">
-        <div class="mt-2 placeholder py-2 me-1 bg-white" style="width: 75px; height: 30px;"></div>
-        <div class="mt-2 placeholder bg-white" style="width: 75px;"></div>
+        <div
+          class="mt-2 placeholder py-2 me-1 bg-white"
+          style="width: 75px; height: 30px"
+        ></div>
+        <div class="mt-2 placeholder bg-white" style="width: 75px"></div>
       </div>
       <div class="row">
-        <div class="py-1"></div>
+        <div
+          class="mt-2 placeholder py-2 bg-white"
+          style="width: 150px; height: 10px"
+        ></div>
       </div>
       <div class="row">
-        <div class="py-2"></div>
+        <div
+          class="mt-2 placeholder py-2 bg-white"
+          style="width: 250px; height: 5px"
+        ></div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- <div class="container-fluid text-color">
-  <div class="border-0 shadow-sm card-hover-primary">
-    <div class="row justify-content-center">
-      <div id="content" class="content">
-        <div class="row">
-          <div class="ms-3 col-auto">
-            <img
-              [@fadeIn]
-              *ngIf="profile && profile.avatar"
-              [src]="profile.avatar"
-              class="thumbnails img-fluid"
-            />
-            <div
-              [@fadeIn]
-              *ngIf="!profile"
-              class="placeholder placeholder-glow rounded g-0"
-              style="width: 80px; height: 80px"
-            ></div>
-          </div>
-          <div *ngIf="profile" class="col">
-            <div class="row">
-              <h2 class="m-0">{{ profile.name + " " + profile.lastName }}</h2>
-            </div>
-            <div class="row mt-1">
-              <small>Te uniste el {{ profile.dateJoined }}</small>
-            </div>
-            <div class="row">
-              <small>{{ profile.description }}</small>
-            </div>
-            <br />
-          </div>
-          <div *ngIf="!profile" class="col">
-            <div class="row">
-              <div
-                class="placeholder placeholder-glow rounded me-1"
-                style="width: 75px; height: 32px"
-              ></div>
-              <div
-                class="placeholder placeholder-glow rounded me-1"
-                style="width: 75px; height: 32px"
-              ></div>
-            </div>
-            <div class="row mt-1">
-              <small
-                class="placeholder placeholder-glow rounded mt-1"
-                style="width: 150px"
-              ></small>
-            </div>
-            <div class="row">
-              <small
-                class="placeholder placeholder-glow rounded mt-1"
-                style="width: 200px"
-              ></small>
-            </div>
-          </div>
-        </div>
+  <div class="row py-2 mx-2 mt-1">
+    <div class="col-2">
+      <h4 class="mb-3 text-color">Opciones</h4>
+      <div class="d-grid gap-1">
+        <button
+          *ngIf="profile"
+          class="btn btn-sm btn-color text-light"
+          data-bs-toggle="modal"
+          data-bs-target="#profilePictureModal"
+        >
+          Cambiar foto
+        </button>
+        <button
+          *ngIf="profile"
+          class="btn btn-sm btn-color text-light"
+          #toggleEditBtn
+          (click)="toggleEdit()"
+        >
+          Editar perfil
+        </button>
+        <button
+          *ngIf="profile"
+          [disabled]="!isValidToUpdate"
+          class="btn btn-color btn-sm text-light"
+          (click)="setFormValues()"
+        >
+          Reiniciar datos
+        </button>
+        <button
+          *ngIf="profile"
+          [disabled]="!isValidToUpdate || profileForm.invalid"
+          (click)="updateSubmit()"
+          class="btn btn-color btn-sm text-light"
+          type="submit"
+        >
+          Actualizar datos
+        </button>
       </div>
     </div>
-
-    <div class="row justify-content-center">
-      <div [@fadeIn] class="col-lg rounded p-4">
-        <h4 class="mb-3">Editar tu perfil</h4>
-        <form [formGroup]="profileForm" (ngSubmit)="updateSubmit()">
-          <div class="row g-3">
-            <div class="col-sm">
-              <label for="name" class="form-label">Nombre</label>
-              <input
-                *ngIf="profile && profile.name"
-                [@fadeIn]
-                type="text"
-                formControlName="name"
-                placeholder="{{ profile.name }}"
-                class="form-control"
-                [readonly]="!editProfile"
-              />
-              <input
-                *ngIf="!profile"
-                [@fadeIn]
-                type="text"
-                class="form-control-loading"
-              />
-              <div *ngIf="profileForm.controls.name.errors && editProfile">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.name.touched &&
-                    profileForm.controls.name.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.name.touched &&
-                    profileForm.controls.name.errors['maxlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.name.touched &&
-                    profileForm.controls.name.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.name.touched &&
-                    profileForm.controls.name.errors['pattern']
-                  "
-                  ><i class="bi bi-x me-1"></i>No puede contener caracteres
-                  especiales.</small
-                >
-              </div>
-            </div>
-
-            <div class="col-sm">
-              <label for="lastName" class="form-label">Apellidos</label>
-              <input
-                *ngIf="profile && profile.lastName"
-                [@fadeIn]
-                type="text"
-                formControlName="lastName"
-                class="form-control"
-                placeholder="{{ profile.lastName }}"
-                [readonly]="!editProfile"
-              />
-              <input
-                *ngIf="!profile"
-                [@fadeIn]
-                type="text"
-                class="form-control-loading"
-              />
-              <div *ngIf="profileForm.controls.lastName.errors && editProfile">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.lastName.touched &&
-                    profileForm.controls.lastName.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.lastName.touched &&
-                    profileForm.controls.lastName.errors['maxlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.lastName.touched &&
-                    profileForm.controls.lastName.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
-              </div>
-            </div>
-
-            <div class="col-12">
-              <label for="username" class="form-label">Nick</label>
-              <div class="input-group">
+    <div class="col-10">
+      <div class="row justify-content-center">
+        <div [@fadeIn] class="col-lg rounded">
+          <h4 class="mb-3 text-color">Editar tu perfil</h4>
+          <form [formGroup]="profileForm">
+            <div class="row g-3">
+              <div class="col-sm">
+                <label for="name" class="form-label">Nombre</label>
                 <input
-                  *ngIf="profile && profile.nick"
+                  *ngIf="profile && profile.name"
                   [@fadeIn]
                   type="text"
-                  formControlName="nick"
+                  formControlName="name"
+                  placeholder="{{ profile.name }}"
                   class="form-control"
-                  placeholder="{{ profile.nick }}"
                   [readonly]="!editProfile"
                 />
                 <input
@@ -234,221 +121,295 @@
                   type="text"
                   class="form-control-loading"
                 />
+                <div *ngIf="profileForm.controls.name.errors && editProfile">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.name.touched &&
+                      profileForm.controls.name.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.name.touched &&
+                      profileForm.controls.name.errors['maxlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.name.touched &&
+                      profileForm.controls.name.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.name.touched &&
+                      profileForm.controls.name.errors['pattern']
+                    "
+                    ><i class="bi bi-x me-1"></i>No puede contener caracteres
+                    especiales.</small
+                  >
+                </div>
               </div>
-              <div *ngIf="profileForm.controls.nick.errors && editProfile">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.nick.touched &&
-                    profileForm.controls.nick.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.nick.touched &&
-                    profileForm.controls.nick.errors['maxlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.nick.touched &&
-                    profileForm.controls.nick.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <label for="email" class="form-label">Email</label>
-              <input
-                *ngIf="profile && profile.email"
-                [@fadeIn]
-                type="text"
-                formControlName="email"
-                class="form-control"
-                placeholder="{{ profile.email }}"
-                maxlength="121"
-                [readonly]="!editProfile"
-              />
-              <input
-                *ngIf="!profile"
-                [@fadeIn]
-                type="text"
-                class="form-control-loading"
-              />
-              <div *ngIf="profileForm.controls.email.errors && editProfile">
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.email.touched &&
-                    profileForm.controls.email.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.email.touched &&
-                    profileForm.controls.email.errors['pattern']
-                  "
-                  ><i class="bi bi-x me-1"></i>El formato es inválido.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.email.touched &&
-                    profileForm.controls.email.errors['maxlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Máximo 120 caracteres.</small
-                >
-              </div>
-            </div>
 
-            <div class="col-sm-12">
-              <label for="dateBirth" class="form-label"
-                >Fecha de nacimiento</label
-              >
-              <input
-                *ngIf="profile && profile.dateBirth"
-                [@fadeIn]
-                type="date"
-                formControlName="dateBirth"
-                class="form-control"
-                [readonly]="!editProfile"
-              />
-              <input
-                *ngIf="!profile"
-                [@fadeIn]
-                type="text"
-                class="form-control-loading"
-              />
-              <div *ngIf="profileForm.controls.dateBirth.errors && editProfile">
-                <small
+              <div class="col-sm">
+                <label for="lastName" class="form-label">Apellidos</label>
+                <input
+                  *ngIf="profile && profile.lastName"
                   [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.dateBirth.touched &&
-                    profileForm.controls.dateBirth.errors['preOld']
-                  "
-                  ><i class="bi bi-x me-1"></i>Fecha demasiado antigua.</small
-                >
-                <small
+                  type="text"
+                  formControlName="lastName"
+                  class="form-control"
+                  placeholder="{{ profile.lastName }}"
+                  [readonly]="!editProfile"
+                />
+                <input
+                  *ngIf="!profile"
                   [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.dateBirth.touched &&
-                    profileForm.controls.dateBirth.errors['postToday']
-                  "
-                  ><i class="bi bi-x me-1"></i>Fecha futura.</small
+                  type="text"
+                  class="form-control-loading"
+                />
+                <div
+                  *ngIf="profileForm.controls.lastName.errors && editProfile"
                 >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.dateBirth.touched &&
-                    profileForm.controls.dateBirth.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.lastName.touched &&
+                      profileForm.controls.lastName.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.lastName.touched &&
+                      profileForm.controls.lastName.errors['maxlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.lastName.touched &&
+                      profileForm.controls.lastName.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                </div>
               </div>
-            </div>
 
-            <div class="col-sm-12">
-              <label for="description" class="form-label">Descripción</label>
-              <textarea
-                *ngIf="profile && profile.description"
-                [@fadeIn]
-                type="text"
-                formControlName="description"
-                class="form-control"
-                [readonly]="!editProfile"
-              ></textarea>
-              <textarea
-                *ngIf="!profile"
-                [@fadeIn]
-                type="text"
-                class="form-control-loading"
-              ></textarea>
-              <div
-                *ngIf="profileForm.controls.description.errors && editProfile"
-              >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  f
-                  *ngIf="
-                    profileForm.controls.description.touched &&
-                    profileForm.controls.description.errors['minlength']
-                  "
-                  ><i class="bi bi-x me-1"></i>Mínimo 3 caracteres.</small
-                >
-                <small
-                  [@fadeIn]
-                  class="text-danger"
-                  *ngIf="
-                    profileForm.controls.description.touched &&
-                    profileForm.controls.description.errors['required']
-                  "
-                  ><i class="bi bi-x me-1"></i>Este campo es obligatorio.</small
-                >
+              <div class="col-12">
+                <label for="username" class="form-label">Nick</label>
+                <div class="input-group">
+                  <input
+                    *ngIf="profile && profile.nick"
+                    [@fadeIn]
+                    type="text"
+                    formControlName="nick"
+                    class="form-control"
+                    placeholder="{{ profile.nick }}"
+                    [readonly]="!editProfile"
+                  />
+                  <input
+                    *ngIf="!profile"
+                    [@fadeIn]
+                    type="text"
+                    class="form-control-loading"
+                  />
+                </div>
+                <div *ngIf="profileForm.controls.nick.errors && editProfile">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.nick.touched &&
+                      profileForm.controls.nick.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Mínimo 2 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.nick.touched &&
+                      profileForm.controls.nick.errors['maxlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Máximo 25 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.nick.touched &&
+                      profileForm.controls.nick.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                </div>
               </div>
-              <div class="d-flex mt-3">
-                <button
-                  [disabled]="!isValidToUpdate || profileForm.invalid"
-                  class="btn btn-color btn-sm text-light me-2"
-                  type="submit"
-                >
-                  Actualizar datos <i class="bi bi-save2 ms-2"></i>
-                </button>
-                <button
-                  [disabled]="!isValidToUpdate"
-                  class="btn btn-color btn-sm text-light me-2"
-                  (click)="setFormValues()"
-                >
-                  Restablecer datos<i class="bi bi-arrow-clockwise ms-1"></i>
-                </button>
-                <button
-                  *ngIf="profile"
-                  class="btn btn-sm btn-color text-light me-2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#profilePictureModal"
-                >
-                  Cambiar foto
-                  <i class="ms-1 bi bi-image"></i>
-                </button>
-                <button
-                  *ngIf="profile"
-                  class="btn btn-sm btn-color text-light me-2"
-                  #toggleEditBtn
-                  (click)="toggleEdit()"
-                >
-                  Editar perfil
-                  <i class="ms-1 bi bi-pen"></i>
-                </button>
-                <button
+              <div class="col-sm-12">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  *ngIf="profile && profile.email"
+                  [@fadeIn]
+                  type="text"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="{{ profile.email }}"
+                  maxlength="121"
+                  [readonly]="!editProfile"
+                />
+                <input
                   *ngIf="!profile"
-                  class="btn placeholder placeholder-glow disabled me-1"
-                  style="width: 120px; height: 31px"
-                ></button>
-                <button
+                  [@fadeIn]
+                  type="text"
+                  class="form-control-loading"
+                />
+                <div *ngIf="profileForm.controls.email.errors && editProfile">
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.email.touched &&
+                      profileForm.controls.email.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.email.touched &&
+                      profileForm.controls.email.errors['pattern']
+                    "
+                    ><i class="bi bi-x me-1"></i>El formato es inválido.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.email.touched &&
+                      profileForm.controls.email.errors['maxlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Máximo 120 caracteres.</small
+                  >
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <label for="dateBirth" class="form-label"
+                  >Fecha de nacimiento</label
+                >
+                <input
+                  *ngIf="profile && profile.dateBirth"
+                  [@fadeIn]
+                  type="date"
+                  formControlName="dateBirth"
+                  class="form-control"
+                  [readonly]="!editProfile"
+                />
+                <input
                   *ngIf="!profile"
-                  class="btn placeholder placeholder-glow disabled"
-                  style="width: 110px; height: 31px"
-                ></button>
+                  [@fadeIn]
+                  type="text"
+                  class="form-control-loading"
+                />
+                <div
+                  *ngIf="profileForm.controls.dateBirth.errors && editProfile"
+                >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.dateBirth.touched &&
+                      profileForm.controls.dateBirth.errors['preOld']
+                    "
+                    ><i class="bi bi-x me-1"></i>Fecha demasiado antigua.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.dateBirth.touched &&
+                      profileForm.controls.dateBirth.errors['postToday']
+                    "
+                    ><i class="bi bi-x me-1"></i>Fecha futura.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.dateBirth.touched &&
+                      profileForm.controls.dateBirth.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea
+                  *ngIf="profile && profile.description"
+                  [@fadeIn]
+                  type="text"
+                  formControlName="description"
+                  class="form-control"
+                  [readonly]="!editProfile"
+                ></textarea>
+                <textarea
+                  *ngIf="!profile"
+                  [@fadeIn]
+                  type="text"
+                  class="form-control-loading"
+                ></textarea>
+                <div
+                  *ngIf="profileForm.controls.description.errors && editProfile"
+                >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    f
+                    *ngIf="
+                      profileForm.controls.description.touched &&
+                      profileForm.controls.description.errors['minlength']
+                    "
+                    ><i class="bi bi-x me-1"></i>Mínimo 3 caracteres.</small
+                  >
+                  <small
+                    [@fadeIn]
+                    class="text-danger"
+                    *ngIf="
+                      profileForm.controls.description.touched &&
+                      profileForm.controls.description.errors['required']
+                    "
+                    ><i class="bi bi-x me-1"></i>Este campo es
+                    obligatorio.</small
+                  >
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -533,4 +494,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

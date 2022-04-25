@@ -28,6 +28,7 @@ import {NotifierConfiguration} from './config/notifier.config';
 import {NgxTippyModule} from 'ngx-tippy-wrapper';
 import {MoodRendererComponent} from './ag-grid/mood-renderer/mood-renderer.component';
 import {GenderRendererComponent} from './ag-grid/gender-renderer/gender-renderer.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {GenderRendererComponent} from './ag-grid/gender-renderer/gender-renderer
     LogoComponent,
     NavbarComponent,
     MoodRendererComponent,
-    GenderRendererComponent
+    GenderRendererComponent,
+    LogoutComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),

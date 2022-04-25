@@ -3,7 +3,6 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
@@ -13,6 +12,7 @@ import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 import { ProfilePicture } from '../interface/image';
 import { NotifierService } from 'angular-notifier';
+import { JwtService } from '../services/jwt.service';
 declare var $: any;
 
 @Component({
@@ -29,7 +29,7 @@ export class UserPageComponent implements OnInit {
   public editProfile: boolean;
   public isValidToUpdate: boolean;
 
-  constructor(private http: HttpService, private router: Router, private notifier: NotifierService) {
+  constructor(private http: HttpService, private router: Router, private notifier: NotifierService, private jwt: JwtService) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -80,14 +80,8 @@ export class UserPageComponent implements OnInit {
   @ViewChild('profilePictureLabel') profilePictureLabel: ElementRef;
 
   async ngOnInit(): Promise<void> {
-    if (localStorage.getItem('token') == null) {
-      this.router.navigate(['/login']);
-    }
-    const statusToken = await this.http.tokenValidation();
-    if (statusToken == false) {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    }
+    await this.http.canContinue();
+
     await this.setProfile();
     this.profileForm.controls.name.valueChanges.subscribe(() =>
       this.isChanged('name')
@@ -127,15 +121,15 @@ export class UserPageComponent implements OnInit {
     this.editProfile = !this.editProfile;
     if (this.editProfile) {
       this.toggleEditBtn.nativeElement.innerHTML =
-        ' Dejar de editar<i class="ms-1 bi bi-pen"></i>';
+        ' Dejar de editar';
     } else {
       this.toggleEditBtn.nativeElement.innerHTML =
-        ' Editar perfil <i class="ms-1 bi bi-pen"></i>';
+        ' Editar perfil';
     }
   }
 
   async readURL(event: any) {
-    if (!event) throw 'Not event provided';
+    if (!event) throw 'No event provided';
     const file = event.target.files[0];
     if (!file) throw 'No file provided';
     this.image.name = file.name;
@@ -199,13 +193,11 @@ export class UserPageComponent implements OnInit {
       }
     })
     if (!profile) throw 'You must change your profile data'
-    if (profile) {
-      const res = await this.http.updateProfile(profile);
-      if (res) {
-        await this.setProfile();
-        this.toggleEdit();
-        this.notifier.notify('default', 'Datos cambiados correctamente.')
-      }
+    const res = await this.http.updateProfile(profile);
+    if (res) {
+      await this.setProfile();
+      this.toggleEdit();
+      this.notifier.notify('default', 'Datos cambiados correctamente.')
     }
   }
 

@@ -134,7 +134,7 @@
             {{ item.name }}
           </div>
           <div
-            style="background-image: url(data:image/png;base64,{{ item.logo }})"
+            style="background-image: url(data:image/png;base64,{{item.logo}})"
             class="mt-3 ranking-card"
             data-bs-toggle="collapse"
             (click)="collapse('aa' + i, 'show')"
@@ -197,14 +197,14 @@
             {{ item.name }}
           </div>
           <div
-            style="background-image: url(data:image/png;base64,{{ item.logo }})"
+            style="background-image: url(data:image/png;base64,{{item.logo}})"
             class="mt-3 ranking-card"
             data-bs-toggle="collapse"
             (click)="collapse('bb' + i, 'show')"
             role="button"
             aria-expanded="true"
             ngxTippy
-            [tippyName]="contador()"
+            [tippyName]=""
             [ngxTippy]="description"
             [tippyProps]="{
               arrow: false,

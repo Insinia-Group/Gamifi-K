@@ -15,22 +15,22 @@ export class GenderRendererComponent implements ICellRendererAngularComp {
   public nivel: any
 
   agInit(params: ICellRendererParams): void {
-    if (params.value < 1000 && params.value >= 0) {
+    if (params.value < 2000 && params.value >= 0) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 1"
       this.value = params.value + " pts.";
     }
-    else if (params.value < 4000 && params.value > 2000) {
+    else if (params.value < 4000 && params.value >= 2000) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 2"
       this.value = params.value + " pts.";
     }
-    else if (params.value < 7000 && params.value > 4000) {
+    else if (params.value < 7000 && params.value >= 4000) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 3"
       this.value = params.value + " pts.";
     }
-    else if (params.value < 10000 && params.value > 7000) {
+    else if (params.value < 10000 && params.value >= 7000) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 4"
       this.value = params.value + " pts.";

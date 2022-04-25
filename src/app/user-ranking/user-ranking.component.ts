@@ -190,7 +190,7 @@ export class UserRankingComponent implements OnInit {
   public rankingsUserView: boolean = true;
   public rankingsModeratorView: boolean = true;
   public contadorTippy: any = "a" + 1;
-  public contadorT: any;
+  public isInsinia: boolean;
 
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
@@ -289,7 +289,7 @@ export class UserRankingComponent implements OnInit {
   }
 
   async onCellValueChanged(event: any) {
-
+    // this.isInsinia = false;
     // Responsabilidad
     // Coperacion
     // Autonomia
@@ -298,23 +298,28 @@ export class UserRankingComponent implements OnInit {
 
     let insinia = event.colDef.field
 
-    switch (insinia) {
-      case "Emocional": console.log("pene");
-
-    }
-
-
-    if (!isNaN(event.value)) {
-      console.log("es una letra");
-      console.log(event.colDef.field)
-      event.oldValue;
-
+    if (insinia == "Puntos") {
+      console.log("puntos");
       const data = {
         id: event.data.id,
         idUser: event.data.idUser,
         points: parseInt(event.value)
       }
       await this.http.updateData(data);
+    } else if (insinia == "Responsabilidad" || insinia == "Coperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
+      console.log("puntos");
+      const data = {
+        idUser: event.data.idUser,
+        points: parseInt(event.value),
+        insinia: insinia
+      }
+      console.log(data.points);
+      console.log(data.idUser);
+      console.log(data.insinia);
+
+
+
+      await this.http.updateInsinia(data);
     }
   }
 
@@ -353,10 +358,6 @@ export class UserRankingComponent implements OnInit {
 
 
 
-  contador() {
-    this.contadorT++;
-    return this.contadorTippy + this.contador;
-  }
 
 
 }

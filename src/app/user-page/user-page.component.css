@@ -30,6 +30,13 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .form-control-img:hover {
   border-color: var(--corp-color-one);
   color: var(--corp-color-one);

@@ -131,7 +131,7 @@
           *ngFor="let item of rankings; let i = index"
         >
           <div class="col-12 ranking-name justify-content-center mt-5 mb-3">
-            {{ item.name }}
+            {{item.name}}
           </div>
           <div
             style="background-image: url(data:image/png;base64,{{item.logo}})"
@@ -141,7 +141,6 @@
             role="button"
             aria-expanded="true"
             ngxTippy
-            [tippyName]="item"
             [ngxTippy]="descripcion"
             [tippyProps]="{
               arrow: false,
@@ -194,7 +193,7 @@
           *ngFor="let item of rankingsModerator; let i = index"
         >
           <div class="col-12 ranking-name justify-content-center mt-5 mb-3">
-            {{ item.name }}
+            {{item.name}}
           </div>
           <div
             style="background-image: url(data:image/png;base64,{{item.logo}})"
@@ -204,7 +203,6 @@
             role="button"
             aria-expanded="true"
             ngxTippy
-            [tippyName]=""
             [ngxTippy]="description"
             [tippyProps]="{
               arrow: false,
@@ -243,79 +241,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div
-            class="row ranking-header"
-            ngxTippy
-            [ngxTippy]="descripcion"
-            [tippyProps]="{
-              arrow: false,
-              placement: 'top'
-            }"
-          >
-            <template #descripcion class="bg-color text-light">
-              {{ item.description }}
-            </template>
-            <div class="image-box col-4">
-              <img
-                class="ranking-logo"
-                src="data:image/png;base64,{{ item.logo }}"
-              />
-            </div>
-            <div class="col-6 ranking-name">
-              <h2>Nombre: {{ item.name }}</h2>
-            </div>
-          </div> -->
-      <!-- <
-            div class="card-flyer card-user">
-            <div class="text-box">
-              <div class="image-box ranking-image">
-                <img src="data:image/png;base64,{{ item.logo }}" />
-              </div>
-              <div class="text-container">
-                <h6>{{ item.name }}</h6>
-                <p>{{ item.description }}</p>
-              </div>
-            </div>
-          </div> -->
-
-      <!-- Rankings en los que modera -->
-
-      <!-- <div
-        *ngIf="!nullRankings && rankingsModeratorView"
-        class="row justify-content-center"
-      >
-        <div
-          class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ranking-card"
-          id="rankingCard"
-          #rankingCard
-          [@fadeIn]
-          *ngFor="let item of rankingsModerator"
-        >
-          <div class="card-flyer">
-            <div class="text-box">
-              <div class="image-box ranking-image">
-                <img src="data:image/png;base64,{{ item.logo }}" />
-              </div>
-              <div class="text-container">
-                <h6>{{ item.name }}</h6>
-                <p>{{ item.description }}</p>
-              </div>
-            </div>
-          </div>
-          <ag-grid-angular
-            class="ag-theme-alpine ranking table-responsive"
-            [columnDefs]="columnDefs"
-            [rowData]="item.rankingData"
-            id="dataTable"
-            [defaultColDef]="defaultColDef"
-            resizable="true"
-            (onGridSizeChanged)="onGridSizeChanged($event)"
-            (gridReady)="onGridReady($event)"
-          >
-          </ag-grid-angular>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

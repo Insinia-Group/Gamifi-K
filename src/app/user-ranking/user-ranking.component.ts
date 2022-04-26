@@ -191,7 +191,8 @@ export class UserRankingComponent implements OnInit {
   public rankingsModeratorView: boolean = true;
   public contadorTippy: any = "a" + 1;
   public isInsinia: boolean;
-
+  public ran = (Math.random() + 1).toString(36).substring(7);
+  public ale = (Math.random() + 1).toString(36).substring(7);
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
@@ -288,42 +289,40 @@ export class UserRankingComponent implements OnInit {
     this.columnApi = params.columnApi;
   }
 
+  // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
-    // this.isInsinia = false;
     // Responsabilidad
     // Coperacion
     // Autonomia
     // Emocional
     // Inteligencia
+    if (!isNaN(event.value)) {
+      let insinia = event.colDef.field
 
-    let insinia = event.colDef.field
-
-    if (insinia == "Puntos") {
-      console.log("puntos");
-      const data = {
-        id: event.data.id,
-        idUser: event.data.idUser,
-        points: parseInt(event.value)
+      if (insinia == "Puntos") {
+        const data = {
+          id: event.data.id,
+          idUser: event.data.idUser,
+          points: parseInt(event.value)
+        }
+        await this.http.updateData(data);
+      } else if (insinia == "Responsabilidad" || insinia == "Coperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
+        const data = {
+          id: event.data.id,
+          idUser: event.data.idUser,
+          points: parseInt(event.value),
+          insinia: insinia
+        }
+        await this.http.updateInsinia(data);
       }
-      await this.http.updateData(data);
-    } else if (insinia == "Responsabilidad" || insinia == "Coperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
-      console.log("puntos");
-      const data = {
-        idUser: event.data.idUser,
-        points: parseInt(event.value),
-        insinia: insinia
-      }
-      console.log(data.points);
-      console.log(data.idUser);
-      console.log(data.insinia);
+    } else {
+      console.log(event);
 
+      event.value = event.oldValue;
 
-
-      await this.http.updateInsinia(data);
     }
+
   }
-
-
 
   showRankingsUser() {
     this.rankingsUserView = true;

@@ -13,9 +13,18 @@ export class GenderRendererComponent implements ICellRendererAngularComp {
   public imageSource!: string;
   public value: any;
   public nivel: any
+  public ran = (Math.random() + 1).toString(36).substring(7);
+  public al = (Math.random() + 1).toString(36).substring(7);
+
 
   agInit(params: ICellRendererParams): void {
-    if (params.value < 2000 && params.value >= 0) {
+    if (isNaN(params.value)) {
+      this.imageSource = `https://pngset.com/images/circulo-de-prohibido-2-image-stop-clothing-apparel-symbol-sign-transparent-png-2816430.png`;
+      this.nivel = "CARACTERES NO VALIDOS"
+      this.value = "introduce un numero";
+    }
+
+    else if (params.value < 2000 && params.value > 0) {
       this.imageSource = `https://www.ag-grid.com/static/angular-e185415c50bc1885eed6c6cc9d2b009e.svg`;
       this.nivel = "NIVEL 1"
       this.value = params.value + " pts.";

@@ -1,0 +1,16 @@
+<div class="modal fade" [attr.id]="uniqueId" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog shadow">
+    <div class="modal-content">
+      <div class="modal-header" [class.bg-color]="!isAlert" [class.alert]="isAlert" >
+        <h3 class="modal-title m-0">{{ title }}</h3>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

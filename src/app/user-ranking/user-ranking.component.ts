@@ -41,6 +41,7 @@ export class UserRankingComponent implements OnInit {
     {field: 'Puntos', sortable: true, filter: true},
     // {field: 'id', hide: true},
     {field: 'idUser', hide: true},
+    {field: 'isModerator', hide: true},
     {
       field: 'Responsabilidad', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
@@ -111,7 +112,7 @@ export class UserRankingComponent implements OnInit {
     {field: 'Puntos', sortable: true, filter: true, editable: true},
     {field: 'id', hide: true},
     {field: 'idUser', hide: true},
-    {field: 'idUser', hide: true},
+    {field: 'isModerator', hide: true},
     {
       field: 'Responsabilidad', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
@@ -237,6 +238,8 @@ export class UserRankingComponent implements OnInit {
       this.nullRankings = true;
     }
     console.log(this.rankings);
+    console.log(this.rankingsModerator);
+
     this.rowData = await this.http.getRankingData();
 
     // this.rowData = await this.http.getRankingModerator();
@@ -308,11 +311,14 @@ export class UserRankingComponent implements OnInit {
         await this.http.updateData(data);
       } else if (insinia == "Responsabilidad" || insinia == "Coperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
         const data = {
-          id: event.data.id,
-          idUser: event.data.idUser,
+          idRanking: event.data.id,
+          idUserModified: event.data.idUser,
           points: parseInt(event.value),
-          insinia: insinia
+          insinia: insinia,
+          isModerator: event.data.isModerator
         }
+        console.log(event);
+
         await this.http.updateInsinia(data);
       }
     } else {

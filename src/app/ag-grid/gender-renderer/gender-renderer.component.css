@@ -1,9 +1,10 @@
 .insinia {
   transition: transform 0.2s;
-  width: 20px;
+  width: 38px;
 }
 .insinia:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
+  /* position: fixed !important; */
 }
 
 .insinia:hover + .add {

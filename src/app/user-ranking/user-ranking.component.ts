@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {fadeIn} from '../config/animations.config';
 import {HttpService} from '../services/http.service';
-import {ColDef, GridReadyEvent, ICellRendererParams} from 'ag-grid-community';
+import {ColDef, GridReadyEvent, ICellRendererParams, RowNode} from 'ag-grid-community';
 import {MoodRendererComponent} from '../ag-grid/mood-renderer/mood-renderer.component';
 import {GenderRendererComponent} from '../ag-grid/gender-renderer/gender-renderer.component';
 import {BrowserModule} from '@angular/platform-browser';
@@ -55,7 +55,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'Coperacion', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Cooperacion', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -126,7 +126,7 @@ export class UserRankingComponent implements OnInit {
       editable: true
     },
     {
-      field: 'Coperacion', cellRendererSelector: function (params: ICellRendererParams) {
+      field: 'Cooperacion', cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
           params: {values: this},
@@ -295,10 +295,14 @@ export class UserRankingComponent implements OnInit {
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
     // Responsabilidad
-    // Coperacion
+    // Cooperacion
     // Autonomia
     // Emocional
     // Inteligencia
+    // console.log(event.api.setData(event.value));
+
+
+
     if (!isNaN(event.value)) {
       let insinia = event.colDef.field
 
@@ -309,7 +313,7 @@ export class UserRankingComponent implements OnInit {
           points: parseInt(event.value)
         }
         await this.http.updateData(data);
-      } else if (insinia == "Responsabilidad" || insinia == "Coperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
+      } else if (insinia == "Responsabilidad" || insinia == "Cooperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
         const data = {
           idRanking: event.data.id,
           idUserModified: event.data.idUser,

@@ -149,7 +149,7 @@ export class HttpService {
             resolve(res.body);
           },
           (err) => {
-            reject(err);
+            reject("Error con la validación del token");
             this.router.navigate(['/login']);
           }
         );

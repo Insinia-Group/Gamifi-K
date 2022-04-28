@@ -1,0 +1,150 @@
+.rectangle-1 {
+    width: 2000px;
+    height: 400px;
+    background: #8e2de2;
+    background: -webkit-linear-gradient(to right, #4a00e0, #8e2de2);
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    transform-origin: 50% 150% 0;
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    transform: scale(1) rotate(-10deg);
+  }
+  .rectangle-2 {
+    width: 2000px;
+    height: 400px;
+    background: #8e2de2;
+    background: -webkit-linear-gradient(to right, #4a00e0, #8e2de2);
+    background: linear-gradient(to right, #4a00e0, #8e2de2);
+    transform-origin: 65% 100% 0;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+    transform: scale(1) rotate(50deg);
+  }
+  .rectangle-1 {
+    opacity: 0;
+    animation: grow1 ease 1s forwards;
+    box-shadow: 0 20px 30px 0 rgba(9, 21, 54, 0.25) !important;
+  }
+  .rectangle-2 {
+    opacity: 0;
+    animation: grow2 ease 1s forwards;
+    box-shadow: 0 20px 30px 0 rgba(9, 21, 54, 0.25) !important;
+  }
+  .rectangle-transparent-1 {
+    width: 500px;
+    height: 500px;
+    border: 15px solid rgba(255, 255, 255, 0.08);
+    position: absolute;
+    left: -5%;
+    bottom: -10%;
+    display: block;
+    animation: floating-slow ease-in-out 12s infinite;
+  }
+  .rectangle-transparent-2 {
+    width: 600px;
+    height: 600px;
+    border: 15px solid rgba(255, 255, 255, 0.08);
+    position: absolute;
+    right: -10%;
+    top: 5%;
+    display: block;
+    animation: floating-slow ease-in-out 12s infinite;
+  }
+  .circle-1 {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+    left: 5%;
+    top: 50%;
+    animation: fadeInFromTop 0.5s linear forwards, floating ease 4s infinite;
+  }
+  .circle-2 {
+    width: 70px;
+    height: 70px;
+    top: 20%;
+    left: 83%;
+    border: 2px solid #fff;
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    transform-origin: 50% 50%;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 4s infinite;
+  }
+  .circle-3 {
+    top: 80%;
+    right: 25%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 4s infinite;
+  }
+  .triangle {
+    position: absolute;
+  }
+  .triangle-1 {
+    right: 0;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 6s infinite;
+  }
+  .triangle-1 img {
+    height: 50px;
+    width: 50px;
+    transform: rotate(30deg);
+  }
+  .triangle-2 {
+    top: 30%;
+    left: 20%;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 8s infinite;
+  }
+  .triangle-2 img {
+    width: 75px;
+    height: 75px;
+    transform: rotate(15deg);
+  }
+  .triangle-3 {
+    top: 80%;
+    left: 15%;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 10s infinite;
+  }
+  .triangle-3 img {
+    width: 45px;
+    height: 45px;
+    transform: rotate(40deg);
+  }
+  .triangle-4 {
+    top: 60%;
+    right: 15%;
+    animation: fadeInFromTop 0.5s linear forwards,
+      floating ease-in-out 5s infinite;
+  }
+  .triangle-4 img {
+    width: 45px;
+    height: 45px;
+    transform: rotate(-40deg);
+  }
+  .jumbotron {
+    color: #fff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: relative;
+    border-radius: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    min-height: 100vh;
+  }

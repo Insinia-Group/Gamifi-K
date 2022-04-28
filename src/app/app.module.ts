@@ -29,6 +29,7 @@ import { NgxTippyModule } from 'ngx-tippy-wrapper';
 import { MoodRendererComponent } from './ag-grid/mood-renderer/mood-renderer.component';
 import { GenderRendererComponent } from './ag-grid/gender-renderer/gender-renderer.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { AddRankingComponent } from './add-ranking/add-ranking.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { ModalComponent } from './components/modal/modal.component';
     NavbarComponent,
     MoodRendererComponent,
     GenderRendererComponent,
-    ModalComponent
+    ModalComponent,
+    AddRankingComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),

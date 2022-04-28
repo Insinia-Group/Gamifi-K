@@ -299,7 +299,7 @@ export class UserRankingComponent implements OnInit {
     // Autonomia
     // Emocional
     // Inteligencia
-    // console.log(event.api.setData(event.value));
+    // console.log(event.api.setData(event.value<));
 
 
 
@@ -313,7 +313,7 @@ export class UserRankingComponent implements OnInit {
           points: parseInt(event.value)
         }
         await this.http.updateData(data);
-      } else if (insinia == "Responsabilidad" || insinia == "Cooperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligenica") {
+      } else if (insinia == "Responsabilidad" || insinia == "Cooperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligencia") {
         const data = {
           idRanking: event.data.id,
           idUserModified: event.data.idUser,

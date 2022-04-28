@@ -18,7 +18,6 @@ export class GenderRendererComponent implements ICellRendererAngularComp {
 
 
   agInit(params: ICellRendererParams): void {
-    console.log(params.colDef?.field);
 
     if (isNaN(params.value)) {
       this.imageSource = `https://pngset.com/images/circulo-de-prohibido-2-image-stop-clothing-apparel-symbol-sign-transparent-png-2816430.png`;

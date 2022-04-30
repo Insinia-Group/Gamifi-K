@@ -52,7 +52,7 @@ import {AddRankingComponent} from './add-ranking/add-ranking.component';
     MoodRendererComponent,
     GenderRendererComponent,
     ModalComponent,
-    HistorialComponent
+    HistorialComponent,
     AddRankingComponent
   ],
   imports: [

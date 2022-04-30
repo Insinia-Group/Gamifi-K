@@ -148,6 +148,8 @@
               id="dataTable"
               [defaultColDef]="defaultColDef"
               resizable="true"
+             
+              [animateRows]="true"
               (cellValueChanged)="onCellValueChanged($event)"
               (onGridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"
@@ -211,6 +213,7 @@
               id="dataTable"
               [defaultColDef]="defaultColDef"
               resizable="true"
+              [animateRows]="true"
               (cellValueChanged)="onCellValueChanged($event)"
               (onGridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"

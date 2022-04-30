@@ -35,6 +35,12 @@ export class UserRankingComponent implements OnInit {
     // window.removeEventListener('resize', this.resizeListenerFunc);
   }
 
+  public responsiveColumn: ColDef[] = [
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true},
+  ]
+
   columnDefs: ColDef[] = [
     {field: 'Nombre', sortable: true, filter: true},
     {field: 'Apellido', filter: true},
@@ -237,7 +243,7 @@ export class UserRankingComponent implements OnInit {
     } else {
       this.nullRankings = true;
     }
-    console.log(this.rankings);
+    console.log(this.rankings.rankingData);
     console.log(this.rankingsModerator);
 
     this.rowData = await this.http.getRankingData();
@@ -290,20 +296,15 @@ export class UserRankingComponent implements OnInit {
     });
     this.gridApi = params.api;
     this.columnApi = params.columnApi;
+    if (window.innerWidth <= 480) {
+      this.gridApi.setColumnDefs(this.responsiveColumn);
+      params.api.sizeColumnsToFit();
+  }
   }
 
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
-    // Responsabilidad
-    // Cooperacion
-    // Autonomia
-    // Emocional
-    // Inteligencia
-    // console.log(event.api.setData(event.value<));
-
-
-
-    if (!isNaN(event.value)) {
+      if (!isNaN(event.value)) {
       let insinia = event.colDef.field
 
       if (insinia == "Puntos") {

@@ -377,9 +377,29 @@ export class HttpService {
     })
   }
 
-  getHistory(data: any) {
+  getHistory() {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.api.toThisPath('/history'), data, this.observe).subscribe(
+      this.http.get<HttpResponse<any>>(this.api.toThisPath('/history'), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the profile.' + err);
+        }
+      );
+    });
+  }
+
+
+  
+  revertHistory(profile: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/revertHistory'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve({status: true});
@@ -394,5 +414,4 @@ export class HttpService {
       );
     })
   }
-
 }

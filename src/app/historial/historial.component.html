@@ -1,8 +1,22 @@
- <div>
+<topnav></topnav>
+
+<div class="row tableContainer">
+    <button (click)="onRemoveSelected()">Revertir seleccion</button>
+<div class='d-flex justify-content-center tableContainer mt-5'>
          <ag-grid-angular
-    style="width: 500px; height: 150px;"
-    class="ag-theme-alpine"
+    class="ag-theme-alpine historyTable "
+    resizable="true"
     [rowData]="rowData"
-    [columnDefs]="columnDefs">
-</ag-grid-angular>
+    [rowSelection]="rowSelection"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [rowSelection]="rowSelection"
+    [overlayNoRowsTemplate]="noRowsTemplate"
+    [overlayLoadingTemplate]="loadingTemplate"
+    [groupSelectsChildren]="true"
+    [animateRows]="true"
+    (gridReady)="onGridReady($event)"></ag-grid-angular>
           </div>
+        </div>
+
+        

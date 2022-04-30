@@ -2,28 +2,7 @@
   <loading></loading>
 </div> -->
 <div class="body">
-  <nav
-    *ngIf="!navbarStatus"
-    class="navbar navbar-expand position-fixed w-100 top-0 navbar-home"
-  >
-    <div class="container-fluid">
-      <a class="navbar-brand text-color" routerLink="/home">Insinia</a>
-      <div class="d-flex justify-content-center">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-color active" routerLink="/home">
-              <i class="bi bi-house-door-fill"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-color" routerLink="/profile">
-              <i class="bi bi-person-circle"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <topnav></topnav>
 
   <nav
     *ngIf="navbarStatus"

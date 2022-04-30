@@ -377,4 +377,22 @@ export class HttpService {
     })
   }
 
+  getHistory(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/history'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({status: true});
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.' + err);
+        }
+      );
+    })
+  }
+
 }

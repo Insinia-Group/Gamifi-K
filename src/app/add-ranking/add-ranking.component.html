@@ -1,0 +1,104 @@
+<div class="container-fluid g-0">
+  <div class="d-flex row align-items-stretch" style="height: 100vh">
+    <div class="d-flex col-6 jumbotron bg-color align-items-center">
+      <div [@fadeIn] class="circle-1"></div>
+      <div [@fadeIn] class="rectangle-1"></div>
+      <div [@fadeIn] class="rectangle-2"></div>
+      <div [@fadeIn] class="circle-2"></div>
+      <div [@fadeIn] class="circle-3"></div>
+      <div [@fadeIn] class="rectangle-transparent-1"></div>
+      <div [@fadeIn] class="rectangle-transparent-2"></div>
+      <div [@fadeIn] class="triangle triangle-1">
+        <img src="../../assets/icons/obj_triangle.png" alt="" />
+      </div>
+      <div [@fadeIn] class="triangle triangle-2">
+        <img src="../../assets/icons/obj_triangle.png" alt="" />
+      </div>
+      <div [@fadeIn] class="triangle triangle-3">
+        <img src="../../assets/icons/obj_triangle.png" alt="" />
+      </div>
+      <div [@fadeIn] class="triangle triangle-4">
+        <img src="../../assets/icons/obj_triangle.png" alt="" />
+      </div>
+      <div class="align-items-center text-center">
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="col-6 bg-color">
+            <p>Lorem ipsum dolor sit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="
+        px-2
+        d-flex
+        col-sm-6
+        justify-content-center
+        bd-light
+        align-items-center
+      "
+    >
+      <form class="w-75 d-flex flex-column">
+        <h2 class="text-center text-color mb-3">Creador de rankings</h2>
+        <label class="text-color">Nombre</label>
+        <input
+          type="text"
+          placeholder="Introduce el nombre"
+          class="form-control text-color mb-3"
+        />
+        <label class="text-color">Código de invitación</label>
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            placeholder="Introduce el nombre"
+            class="form-control text-color"
+          />
+          <button class="btn btn-outline-color text-color" type="button">
+            Comprobar
+          </button>
+          <button class="btn btn-outline-color text-color" type="button">
+            Generar
+          </button>
+        </div>
+
+        <label class="text-color">Descripción</label>
+        <textarea
+          type="text"
+          placeholder="Introduce una descripción."
+          class="form-control text-color mb-3"
+        ></textarea>
+        <label class="text-color">
+          <label for="rankingPicture" class="form-control-img"
+            >Selecciona una foto</label
+          >
+          <small [@fadeIn] *ngIf="image.name" class="text-color"
+            >Puedes seleccionar otra foto si quieres.</small
+          >
+          <input
+            #rankingPicture
+            name="rankingPicture"
+            id="rankingPicture"
+            type="file"
+            accept="image/divng, image/jpg, image/jpeg, image/svg"
+            class="hide"
+            (change)="readURL($event)"
+          />
+
+          Icono
+          <input
+            type="file"
+            placeholder="Introduce tu email"
+            class="form-control text-color mb-3"
+          />
+        </label>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-color text-light mb-2">
+            Crear ranking
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

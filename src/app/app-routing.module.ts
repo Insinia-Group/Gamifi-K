@@ -9,6 +9,9 @@ import {UserPageComponent} from './user-page/user-page.component';
 import {UserRankingComponent} from './user-ranking/user-ranking.component';
 import {ModeratorPageComponent} from './moderator-page/moderator-page.component';
 import {HistorialComponent} from './historial/historial.component';
+import {AddRankingComponent} from './add-ranking/add-ranking.component';
+
+
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -27,6 +30,7 @@ const routes: Routes = [
   {path: 'rankings', component: UserRankingComponent, pathMatch: 'full'},
   {path: 'moderation', component: ModeratorPageComponent, pathMatch: 'full'},
   {path: 'history', component: HistorialComponent, pathMatch: 'full'},
+  {path: 'create', component: AddRankingComponent, pathMatch: 'full'},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', redirectTo: '/404'}
 ];

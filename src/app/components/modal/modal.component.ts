@@ -11,4 +11,5 @@ export class ModalComponent {
   @Input() title: any;
   @Input() isOpen: boolean = false;
   @Input() isAlert: boolean = false;
+  @Input() isLogout: boolean = false;
 }

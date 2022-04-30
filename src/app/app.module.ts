@@ -30,6 +30,9 @@ import {MoodRendererComponent} from './ag-grid/mood-renderer/mood-renderer.compo
 import {GenderRendererComponent} from './ag-grid/gender-renderer/gender-renderer.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {HistorialComponent} from './historial/historial.component';
+import {AddRankingComponent} from './add-ranking/add-ranking.component';
+
+
 
 
 @NgModule({
@@ -50,6 +53,7 @@ import {HistorialComponent} from './historial/historial.component';
     GenderRendererComponent,
     ModalComponent,
     HistorialComponent
+    AddRankingComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),

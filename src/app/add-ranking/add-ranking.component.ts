@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize } from '../helpers/helpers';
 
@@ -10,6 +11,7 @@ import { calculateSize } from '../helpers/helpers';
 })
 export class AddRankingComponent implements OnInit {
   public image: any;
+  public rankingForm: FormGroup;
   @ViewChild('rankingPicture') rankingPicture: ElementRef;
 
   constructor() {
@@ -19,7 +21,13 @@ export class AddRankingComponent implements OnInit {
       size: undefined,
       type: undefined,
       ready: false,
+      validate: false
     };
+    this.rankingForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(30)]),
+      code: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(5)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(0), Validators.maxLength(70)])
+    })
   }
 
   ngOnInit(): void {
@@ -46,4 +54,12 @@ export class AddRankingComponent implements OnInit {
     }
   }
 
+  create() {
+    const form = {
+      name: this.rankingForm.controls['name'].value,
+      code: this.rankingForm.controls['code'].value,
+      description: this.rankingForm.controls['description'].value
+    }
+    console.log(form);
+  }
 }

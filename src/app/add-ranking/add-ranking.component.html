@@ -58,7 +58,7 @@
             placeholder="Introduce el código personalizado"
             class="form-control text-color"
           />
-          <button class="btn btn-outline-color text-color" type="button">
+          <button class="btn btn-outline-color text-color" (click)="generateCode()" type="button">
             Generar
           </button>
         </div>
@@ -98,7 +98,7 @@
           />
         </label>
         <div class="d-grid mt-3">
-          <button type="submit" class="btn btn-color text-light mb-2">
+          <button type="submit" [disabled]="rankingForm.invalid" class="btn btn-color text-light mb-2">
             Crear ranking
           </button>
         </div>

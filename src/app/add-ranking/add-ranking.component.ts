@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize } from '../helpers/helpers';
 
@@ -6,10 +7,11 @@ import { calculateSize } from '../helpers/helpers';
   selector: 'app-add-ranking',
   templateUrl: './add-ranking.component.html',
   styleUrls: ['./add-ranking.component.css'],
-  animations: [fadeIn]
+  animations: [fadeIn],
 })
 export class AddRankingComponent implements OnInit {
   public image: any;
+  public rankingForm: FormGroup;
   @ViewChild('rankingPicture') rankingPicture: ElementRef;
 
   constructor() {
@@ -19,11 +21,28 @@ export class AddRankingComponent implements OnInit {
       size: undefined,
       type: undefined,
       ready: false,
+      validate: false,
     };
+    this.rankingForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(0),
+        Validators.maxLength(30),
+      ]),
+      code: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5),
+      ]),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(0),
+        Validators.maxLength(70),
+      ]),
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async readURL(event: any) {
     if (!event) throw 'No event provided';
@@ -46,4 +65,25 @@ export class AddRankingComponent implements OnInit {
     }
   }
 
+  generateCode() {
+    const length = 5;
+    var code = '';
+    var characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      code += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    this.rankingForm.controls['code'].setValue(code);
+  }
+
+  create() {
+    const form: any = {
+      name: this.rankingForm.controls['name'].value,
+      code: this.rankingForm.controls['code'].value,
+      description: this.rankingForm.controls['description'].value,
+    };
+    if (this.image.base) form['image'] = this.image.base
+    console.log(form);
+  }
 }

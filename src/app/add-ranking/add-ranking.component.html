@@ -1,5 +1,5 @@
 <div class="container-fluid g-0">
-  <div class="d-flex row align-items-stretch" style="height: 100vh">
+  <div class="d-flex g-0 row align-items-stretch" style="height: 100vh">
     <div class="d-flex col-6 jumbotron bg-color align-items-center">
       <div [@fadeIn] class="circle-1"></div>
       <div [@fadeIn] class="rectangle-1"></div>
@@ -22,28 +22,29 @@
       </div>
       <div class="align-items-center text-center">
         <div class="d-flex align-items-center justify-content-center">
-          <div class="col-6 bg-color">
-            <p>Lorem ipsum dolor sit.</p>
+          <div class="col-6 text-center justify-content-center bg-color">
+            <p>
+              excepturi tempora nostrum dicta id? Perferendis facere debitis a
+              voluptate vitae placeat cum quia reiciendis!
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <div
-      class="
-        px-2
-        d-flex
-        col-sm-6
-        justify-content-center
-        bd-light
-        align-items-center
-      "
+      class="d-flex col-sm-6 justify-content-center bd-light align-items-center"
     >
-      <form class="w-75 d-flex flex-column">
+      <form
+        class="w-75 d-flex flex-column"
+        [formGroup]="rankingForm"
+        (ngSubmit)="create()"
+      >
         <h2 class="text-center text-color mb-3">Creador de rankings</h2>
         <label class="text-color">Nombre</label>
         <input
           type="text"
+          formControlName="name"
           placeholder="Introduce el nombre"
           class="form-control text-color mb-3"
         />
@@ -51,13 +52,13 @@
         <div class="input-group mb-3">
           <input
             type="text"
-            placeholder="Introduce el nombre"
+            formControlName="code"
+            minlength="0"
+            maxlength="5"
+            placeholder="Introduce el código personalizado"
             class="form-control text-color"
           />
-          <button class="btn btn-outline-color text-color" type="button">
-            Comprobar
-          </button>
-          <button class="btn btn-outline-color text-color" type="button">
+          <button class="btn btn-outline-color text-color" (click)="generateCode()" type="button">
             Generar
           </button>
         </div>
@@ -65,12 +66,23 @@
         <label class="text-color">Descripción</label>
         <textarea
           type="text"
+          formControlName="description"
           placeholder="Introduce una descripción."
           class="form-control text-color mb-3"
         ></textarea>
-        <label class="text-color">
-          <label for="rankingPicture" class="form-control-img"
-            >Selecciona una foto</label
+        <label class="text-color text-truncate"
+          >Imagen
+          <label
+            *ngIf="!image.name"
+            for="rankingPicture"
+            class="form-control-img text-color text-center"
+            >Seleccionar imagen</label
+          >
+          <label
+            *ngIf="image.name"
+            for="rankingPicture"
+            class="form-control-img text-color text-center"
+            >{{ image.name }}</label
           >
           <small [@fadeIn] *ngIf="image.name" class="text-color"
             >Puedes seleccionar otra foto si quieres.</small
@@ -80,21 +92,13 @@
             name="rankingPicture"
             id="rankingPicture"
             type="file"
-            accept="image/divng, image/jpg, image/jpeg, image/svg"
+            accept="image/png, image/jpg, image/jpeg, image/svg"
             class="hide"
             (change)="readURL($event)"
           />
-
-          Icono
-          <input
-            type="file"
-            placeholder="Introduce tu email"
-            class="form-control text-color mb-3"
-          />
         </label>
-
         <div class="d-grid mt-3">
-          <button type="submit" class="btn btn-color text-light mb-2">
+          <button type="submit" [disabled]="rankingForm.invalid" class="btn btn-color text-light mb-2">
             Crear ranking
           </button>
         </div>

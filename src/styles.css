@@ -279,3 +279,7 @@ nav {
   animation-duration: 19s;
   opacity: 0.3;
 }
+
+.hide {
+  display: none;
+}

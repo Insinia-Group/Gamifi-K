@@ -78,9 +78,6 @@ hr {
   width: 10%;
 }
 
-.hide {
-  display: none;
-}
 
 .form-control-loading:focus {
   border-color: transparent !important;

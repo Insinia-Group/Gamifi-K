@@ -12,7 +12,10 @@ export class HistorialComponent implements OnInit {
   public loadingTemplate:any;
   public rowData: any;
   private gridApi: any;
-  public rowSelection = 'multiple';
+  public rowSelection = 'single';
+  public noSelected:boolean = true;
+  public modalTitle = "Deshacer evaluacion";
+  public modalId = "modal";
   constructor( private http: HttpService) {
     this.noRowsTemplate =
       `<span>Historial vacio</span>`;
@@ -22,9 +25,7 @@ export class HistorialComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.rowData = await this.http.getHistory();
-    
     console.log(this.rowData);
-
   }
 
   public responsiveColumn: ColDef[] = [
@@ -49,7 +50,15 @@ export class HistorialComponent implements OnInit {
   public defaultColDef: ColDef = {
     flex: 1,
   };
-  onRemoveSelected() {
+ 
+  selectRow(){
+    this.noSelected=false;
+  }
+
+
+  onRemoveSelected(i:boolean) {
+  
+    if(i){
     console.log(this.gridApi);
 
     const selectedData = this.gridApi.getSelectedRows();
@@ -74,6 +83,7 @@ export class HistorialComponent implements OnInit {
     const res = this.gridApi.applyTransaction({ remove: selectedData })!;
     this.printResult(res);
       this.http.revertHistory(data);
+  }
 
   }
   
@@ -94,6 +104,7 @@ export class HistorialComponent implements OnInit {
         console.log('Updated Row Node', rowNode);
       });
     }
+    
 }
 
 
@@ -112,6 +123,10 @@ onGridReady(params: GridReadyEvent) {
   });
  
   
+}
+
+onSelectionChanged(event:any) {
+  this.noSelected = false;
 }
 }
 

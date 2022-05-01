@@ -111,6 +111,10 @@
         >
           <div class="col-12 ranking-name justify-content-center mt-5 mb-3">
             {{item.name}}
+            <br>
+            <br>
+            <br>
+            {{"Puntos:" + item.insiniaPoints}}
           </div>
           <div
             style="background-image: url(data:image/png;base64,{{item.logo}})"
@@ -150,7 +154,7 @@
               resizable="true"
              
               [animateRows]="true"
-              (cellValueChanged)="onCellValueChanged($event)"
+              (cellValueChanged)="onCellValueChanged($event, item.insiniaPoints)"
               (onGridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"
               [@fadeIn]
@@ -214,7 +218,7 @@
               [defaultColDef]="defaultColDef"
               resizable="true"
               [animateRows]="true"
-              (cellValueChanged)="onCellValueChanged($event)"
+              (cellValueChanged)="onCellValueChanged($event,item.logo)"
               (onGridSizeChanged)="onGridSizeChanged($event)"
               (gridReady)="onGridReady($event)"
               [@fadeIn]

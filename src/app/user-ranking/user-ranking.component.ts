@@ -198,6 +198,8 @@ export class UserRankingComponent implements OnInit {
   public rankingsModeratorView: boolean = true;
   public contadorTippy: any = "a" + 1;
   public isInsinia: boolean;
+  public sessionPoints:any;
+  public insiniaPoints:any;
   public ran = (Math.random() + 1).toString(36).substring(7);
   public ale = (Math.random() + 1).toString(36).substring(7);
 
@@ -303,8 +305,12 @@ export class UserRankingComponent implements OnInit {
   }
 
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
-  async onCellValueChanged(event: any) {
+  async onCellValueChanged(event: any,userPoints:any) {
+    console.log(event);
+    userPoints = -1;
       if (!isNaN(event.value)) {
+        console.log( event.data.idUser);
+        
       let insinia = event.colDef.field
 
       if (insinia == "Puntos") {

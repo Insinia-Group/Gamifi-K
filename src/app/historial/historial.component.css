@@ -27,7 +27,19 @@
 
 .historyTable{
   width: 95vw;
-   height: 15rem;
+   height: 35rem;
+}
+
+.deshacer{
+  background-color:var(--corp-color-one) !important;
+  width: max-content;
+  margin: auto;
+  border-color: var(--corp-color-one) !important;
+}
+
+.deshacer:hover{
+background-color: rgba(109, 38, 203, 0.822) !important;
+
 }
 
 

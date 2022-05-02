@@ -68,10 +68,11 @@ export class HttpService {
    */
   register(user: any): any {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.api.toThisPath('/getRankingById'), user, this.observe).subscribe(
+      this.http.post<any>(this.api.toThisPath('/register'), user, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
+            this.router.navigate(['/login']);
           } else {
             reject('Server Error');
           }

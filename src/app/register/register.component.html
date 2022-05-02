@@ -1,5 +1,20 @@
+<div class="container-fluid fullscreen bg-color">
+  <div class="ocean">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+    <div class="bubble bubble-4"></div>
+    <div class="bubble bubble-5"></div>
+    <div class="bubble bubble-6"></div>
+    <div class="bubble bubble-7"></div>
+    <div class="bubble bubble-8"></div>
+    <div class="bubble bubble-9"></div>
+    <div class="bubble bubble-10"></div>
+    <div class="bubble bubble-11"></div>
+    <div class="bubble bubble-12"></div>
+  </div>
 <div class="backgroundRegister" [@fadeIn]>
-  <div class="comtainer containerRegister">
+  <div class=" containerRegister">
     <div class="logoContai">
       <a (click)="goHome()">
         <img
@@ -17,7 +32,7 @@
     <h1 class="titulo">REGISTRO</h1>
     <a [routerLink]="['/login']" class="loginLink">¿Ya tienes cuenta?</a>
 
-    <div class="container bg-white container-register">
+    <div class="container bg-white container-register m-auto">
       <form [formGroup]="registerForm">
         <div class="form form-group" *ngIf="firstFormActive">
           <div class="col-12 rounded-3 bg-registro">
@@ -143,7 +158,7 @@
                 <button
                   (click)="nextOne()"
                   type="submit"
-                  class="btn btn-primary bi bi-arrow-bar-right"
+                  class="btn btn-primary bi bi-arrow-bar-right nextBackButtons"
                   id="nextFirstForm"
                   aria-describedby="submit"
                 ></button>
@@ -266,25 +281,23 @@
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="col-5 nextBackButtons">
                 <label for="inputNick"></label>
+                <div class="col-5 justify-content-center">
+               
                 <button
                   (click)="backSecond()"
                   type="submit"
-                  class="btn btn-primary bi bi-arrow-bar-left"
+                  class="btn btn-primary bi bi-arrow-bar-left nextBackButtons m-1"
                   aria-describedby="name"
                 ></button>
-              </div>
-
-              <div class="col-5 nextBackButtons">
                 <label for="inputNick"></label>
                 <button
                   (click)="nextSecond()"
                   type="submit"
-                  class="btn btn-primary bi bi-arrow-bar-right"
+                  class="btn btn-primary bi bi-arrow-bar-right nextBackButtons m-1"
                   aria-describedby="name"
                 ></button>
-              </div>
+                </div>
             </div>
           </div>
         </div>
@@ -357,20 +370,18 @@
             </div>
             <div class="row justify-content-center pb-4"></div>
             <div class="row justify-content-center pb-4">
-              <div class="col-5 nextBackButtons">
                 <label for="inputDescription"></label>
+                <div class="col-5 justify-content-center" >
                 <button
                   (click)="backThird()"
                   type="submit"
-                  class="btn btn-primary bi bi-arrow-bar-left"
+                  class="btn btn-primary bi bi-arrow-bar-left nextBackButtons m-1"
                 ></button>
-              </div>
-              <div class="col-5 nextBackButtons">
                 <label for="inputDescription"></label>
                 <button
                   (click)="sendRegister()"
                   type="submit"
-                  class="btn btn-primary bi bi-send-check"
+                  class="btn btn-primary bi bi-send-check nextBackButtons m-1"
                 ></button>
               </div>
             </div>
@@ -379,4 +390,5 @@
       </form>
     </div>
   </div>
+</div>
 </div>

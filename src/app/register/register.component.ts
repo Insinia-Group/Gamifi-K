@@ -72,11 +72,7 @@ export class RegisterComponent implements OnInit {
     } else {
       this.samePass = false;
     }
-    if (!this.registerForm.controls.errors) {
-      console.log("Errorros");
-    } else {
-      console.log('yess')
-    }
+   
 
   }
 
@@ -91,7 +87,6 @@ export class RegisterComponent implements OnInit {
       console.log();
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value < "1900-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
-          console.log('errorss')
           return { 'notEqual': true };
         }
       }
@@ -102,10 +97,8 @@ export class RegisterComponent implements OnInit {
 
   passwordValidator(control: AbstractControl): { [key: string]: any } | null {
     if (this.registerForm) {
-      console.log(control.value, this.registerForm.controls.password.value);
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value !== this.registerForm.controls.password.value) {
-          console.log('error')
           return { 'notEqual': true };
         }
       }
@@ -155,13 +148,7 @@ export class RegisterComponent implements OnInit {
     this.secondFormActive = true;
   }
 
-  submmit() {
-    console.log(this.dateBirth);
-    alert("Hola " + this.userName + " " + this.lastUserName + " " + this.description + " " + this.dateBirth);
-    this.user = new User(1, this.nick, this.userName, this.lastUserName, this.emailVerify, this.description, this.password, this.dateBirth, this.avatar, "user", this.dateJoined, true);
-  }
-
-  goHome() {
+   goHome() {
     this.router.navigate(['/home']);
   }
 
@@ -190,9 +177,10 @@ export class RegisterComponent implements OnInit {
         dateJoined: this.dateJoined.toISOString().slice(0, -14),
         status: 1
       }
+      console.log(user);
+      
 
       this.request.register(user);
-      this.router.navigate(['/login']);
     }
   }
 

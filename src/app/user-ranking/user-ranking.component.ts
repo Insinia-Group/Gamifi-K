@@ -315,9 +315,12 @@ export class UserRankingComponent implements OnInit {
 
       if (insinia == "Puntos") {
         const data = {
-          id: event.data.id,
+          idRanking: event.data.id,
           idUser: event.data.idUser,
-          points: parseInt(event.value)
+          points: parseInt(event.value),
+          idUserModified: event.data.idUser,
+          insinia: 'puntos',
+          oldValue: event.oldValue,
         }
         await this.http.updateData(data);
       } else if (insinia == "Responsabilidad" || insinia == "Cooperacion" || insinia == "Autonomia" || insinia == "Emocional" || insinia == "Inteligencia") {
@@ -326,7 +329,8 @@ export class UserRankingComponent implements OnInit {
           idUserModified: event.data.idUser,
           points: parseInt(event.value),
           insinia: insinia,
-          isModerator: event.data.isModerator
+          isModerator: event.data.isModerator,
+          oldValue: event.oldValue,
         }
         console.log(event);
 

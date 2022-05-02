@@ -1,31 +1,10 @@
 <!-- <div *ngIf="ready">
   <loading></loading>
 </div> -->
+<topnav></topnav>
 <div class="body">
-  <topnav></topnav>
 
-  <nav
-    *ngIf="navbarStatus"
-    class="navbar navbar-expand navbar-dark bg-color position-fixed w-100 top-0 navbar-home"
-  >
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/home">Insinia</a>
-      <div class="d-flex justify-content-center">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <button class="nav-link btn active" routerLink="/home">
-              <i class="bi bi-house-door-fill"></i>
-            </button>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link btn" routerLink="/profile">
-              <i class="bi bi-person-circle"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+ 
   <div class="container">
     <h1 class="title col-6">Mis rankings</h1>
   </div>

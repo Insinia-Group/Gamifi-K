@@ -1,0 +1,19 @@
+.sidecont{
+    margin-top: 3rem;
+    z-index: 1;
+        width: 40vw!important;
+        max-width: 25rem;
+}
+.ranking-card{
+    width: 40vw!important;
+        max-width: 25rem;
+}
+.expandbutton{
+    margin-top: 3rem;
+}
+
+.img-ranking{
+    height: 4rem;
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+}

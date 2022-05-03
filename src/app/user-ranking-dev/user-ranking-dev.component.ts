@@ -18,13 +18,13 @@ declare var $: any;
 
 
 @Component({
-  selector: 'app-user-ranking',
-  templateUrl: './user-ranking.component.html',
-  styleUrls: ['./user-ranking.component.css'],
+  selector: 'app-user-ranking-dev',
+  templateUrl: './user-ranking-dev.component.html',
+  styleUrls: ['./user-ranking-dev.component.css'],
   animations: [fadeIn],
 
 })
-export class UserRankingComponent implements OnInit {
+export class UserRankingDevComponent implements OnInit {
 
   private resizeListenerFunc = () => {this.gridApi.api.sizeColumnsToFit();};
   // onGridReady() {

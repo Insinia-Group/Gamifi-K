@@ -31,6 +31,7 @@ import {GenderRendererComponent} from './ag-grid/gender-renderer/gender-renderer
 import {ModalComponent} from './components/modal/modal.component';
 import {HistorialComponent} from './historial/historial.component';
 import {AddRankingComponent} from './add-ranking/add-ranking.component';
+import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
 
 
 
@@ -53,7 +54,8 @@ import {AddRankingComponent} from './add-ranking/add-ranking.component';
     GenderRendererComponent,
     ModalComponent,
     HistorialComponent,
-    AddRankingComponent
+    AddRankingComponent,
+    UserRankingDevComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),

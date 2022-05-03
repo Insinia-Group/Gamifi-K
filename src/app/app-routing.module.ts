@@ -10,6 +10,7 @@ import {UserRankingComponent} from './user-ranking/user-ranking.component';
 import {ModeratorPageComponent} from './moderator-page/moderator-page.component';
 import {HistorialComponent} from './historial/historial.component';
 import {AddRankingComponent} from './add-ranking/add-ranking.component';
+import {UserRankingDevComponent} from './user-ranking-dev/user-ranking-dev.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: '404', component: NotFoundComponent, pathMatch: 'full'},
   {path: 'register', component: RegisterComponent, pathMatch: 'full'},
   {path: 'rankings', component: UserRankingComponent, pathMatch: 'full'},
+  {path: 'rankingsdev', component: UserRankingDevComponent, pathMatch: 'full'},
   {path: 'moderation', component: ModeratorPageComponent, pathMatch: 'full'},
   {path: 'history', component: HistorialComponent, pathMatch: 'full'},
   {path: 'create', component: AddRankingComponent, pathMatch: 'full'},

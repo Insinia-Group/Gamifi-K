@@ -1,8 +1,8 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {API} from '../models/api';
-import {Router} from '@angular/router';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { Router } from '@angular/router';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +88,7 @@ export class HttpService {
   setProfilePicture(profile: object) {
     return new Promise((resolve, reject) => {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, {headers: headers}).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, { headers: headers }).subscribe(
         (res) => {
           if (res) {
             console.log(res)
@@ -308,10 +308,10 @@ export class HttpService {
 
   addRanking(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.api.toThisPath('/addRanking'), data, this.observe).subscribe(
+      this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }
@@ -329,7 +329,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/profile/data'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }
@@ -347,7 +347,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/updateData'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }
@@ -365,7 +365,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/updateInsinia'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }
@@ -397,13 +397,13 @@ export class HttpService {
   }
 
 
-  
+
   revertHistory(profile: any) {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/revertHistory'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({status: true});
+            resolve({ status: true });
           } else {
             reject('Server Error');
           }

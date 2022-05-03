@@ -1,108 +1,153 @@
-<div class="container-fluid g-0">
-  <div class="d-flex g-0 row align-items-stretch" style="height: 100vh">
-    <div class="d-flex col-6 jumbotron bg-color align-items-center">
-      <div [@fadeIn] class="circle-1"></div>
-      <div [@fadeIn] class="rectangle-1"></div>
-      <div [@fadeIn] class="rectangle-2"></div>
-      <div [@fadeIn] class="circle-2"></div>
-      <div [@fadeIn] class="circle-3"></div>
-      <div [@fadeIn] class="rectangle-transparent-1"></div>
-      <div [@fadeIn] class="rectangle-transparent-2"></div>
-      <div [@fadeIn] class="triangle triangle-1">
-        <img src="../../assets/icons/obj_triangle.png" alt="" />
-      </div>
-      <div [@fadeIn] class="triangle triangle-2">
-        <img src="../../assets/icons/obj_triangle.png" alt="" />
-      </div>
-      <div [@fadeIn] class="triangle triangle-3">
-        <img src="../../assets/icons/obj_triangle.png" alt="" />
-      </div>
-      <div [@fadeIn] class="triangle triangle-4">
-        <img src="../../assets/icons/obj_triangle.png" alt="" />
-      </div>
-      <div class="align-items-center text-center">
-        <div class="d-flex align-items-center justify-content-center">
-          <div class="col-6 text-center justify-content-center bg-color">
-            <p>
-              excepturi tempora nostrum dicta id? Perferendis facere debitis a
-              voluptate vitae placeat cum quia reiciendis!
-            </p>
-          </div>
+<div>
+  <div class="row justify-content-center g-0">
+    <div
+      class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 pe-0 overflow-hidden"
+    >
+      <div class="d-flex jumbotron bg-color align-items-center">
+        <div [@fadeIn] class="circle-1"></div>
+        <div [@fadeIn] class="circle-2"></div>
+        <div [@fadeIn] class="circle-3"></div>
+        <div [@fadeIn] class="rectangle-transparent-1"></div>
+        <div [@fadeIn] class="rectangle-transparent-2"></div>
+        <div [@fadeIn] class="rectangle-1"></div>
+        <div [@fadeIn] class="rectangle-2"></div>
+        <div [@fadeIn] class="triangle triangle-1">
+          <img src="../../assets/icons/obj_triangle.png" alt="" />
         </div>
+        <div [@fadeIn] class="triangle triangle-2">
+          <img src="../../assets/icons/obj_triangle.png" alt="" />
+        </div>
+        <div [@fadeIn] class="triangle triangle-3">
+          <img src="../../assets/icons/obj_triangle.png" alt="" />
+        </div>
+        <div [@fadeIn] class="triangle triangle-4">
+          <img src="../../assets/icons/obj_triangle.png" alt="" />
+        </div>
+        <section class="py-5 container">
+          <div class="mx-5 row justify-content-center text-color">
+            <div class="card mb-3" style="max-width: 700px">
+              <div class="row no-gutters">
+                <div class="d-flex col-auto align-items-center">
+                  <img
+                    *ngIf="image.base"
+                    [src]="image.base"
+                    class="card-img my-2 mx-0 align-self-center"
+                    style="height: 100px; width: 100px"
+                  />
+                  <div
+                    *ngIf="!image.base"
+                    class="card-img bg-color my-2 mx-0 align-self-center"
+                    style="height: 100px; width: 100px"
+                  ></div>
+                </div>
+                <div class="col-md-8 p-0">
+                  <div class="card-body">
+                    <p class="card-title fw-bolder">
+                      {{ rankingForm.controls["name"].value || "Nombre" }}
+                    </p>
+                    <p class="card-text">
+                      {{
+                        rankingForm.controls["description"].value ||
+                          "Descripción amplia del ranking con detalles."
+                      }}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted">
+                        Código:
+                        {{ rankingForm.controls["code"].value || "#####" }}
+                      </small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
-
     <div
-      class="d-flex col-sm-6 justify-content-center bd-light align-items-center"
+      class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 px-5 hidden-md-down"
     >
-      <form
-        class="w-75 d-flex flex-column"
-        [formGroup]="rankingForm"
-        (ngSubmit)="create()"
-      >
-        <h2 class="text-center text-color mb-3">Creador de rankings</h2>
-        <label class="text-color">Nombre</label>
-        <input
-          type="text"
-          formControlName="name"
-          placeholder="Introduce el nombre"
-          class="form-control text-color mb-3"
-        />
-        <label class="text-color">Código de invitación</label>
-        <div class="input-group mb-3">
+      <div class="d-flex justify-content-center align-items-center">
+        <form
+          class="w-100 mx-2 d-flex flex-column reduce-margin"
+          style="margin-top: 40%"
+          [formGroup]="rankingForm"
+          (ngSubmit)="create()"
+        >
+          <h2 class="text-center text-color mb-3">Creador de rankings</h2>
+          <label class="text-color">Nombre</label>
           <input
             type="text"
-            formControlName="code"
-            minlength="0"
-            maxlength="5"
-            placeholder="Introduce el código personalizado"
-            class="form-control text-color"
+            formControlName="name"
+            placeholder="Introduce el nombre"
+            class="form-control text-color mb-3"
           />
-          <button class="btn btn-outline-color text-color" (click)="generateCode()" type="button">
-            Generar
-          </button>
-        </div>
+          <label class="text-color">Código de invitación</label>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              formControlName="code"
+              minlength="0"
+              maxlength="5"
+              placeholder="Introduce el código personalizado"
+              class="form-control text-color"
+            />
+            <button
+              class="btn btn-outline-color text-color"
+              (click)="generateCode()"
+              type="button"
+            >
+              Generar
+            </button>
+          </div>
 
-        <label class="text-color">Descripción</label>
-        <textarea
-          type="text"
-          formControlName="description"
-          placeholder="Introduce una descripción."
-          class="form-control text-color mb-3"
-        ></textarea>
-        <label class="text-color text-truncate"
-          >Imagen
-          <label
-            *ngIf="!image.name"
-            for="rankingPicture"
-            class="form-control-img text-color text-center"
-            >Seleccionar imagen</label
-          >
-          <label
-            *ngIf="image.name"
-            for="rankingPicture"
-            class="form-control-img text-color text-center"
-            >{{ image.name }}</label
-          >
-          <small [@fadeIn] *ngIf="image.name" class="text-color"
-            >Puedes seleccionar otra foto si quieres.</small
-          >
-          <input
-            #rankingPicture
-            name="rankingPicture"
-            id="rankingPicture"
-            type="file"
-            accept="image/png, image/jpg, image/jpeg, image/svg"
-            class="hide"
-            (change)="readURL($event)"
-          />
-        </label>
-        <div class="d-grid mt-3">
-          <button type="submit" [disabled]="rankingForm.invalid" class="btn btn-color text-light mb-2">
-            Crear ranking
-          </button>
-        </div>
-      </form>
+          <label class="text-color">Descripción</label>
+          <textarea
+            type="text"
+            formControlName="description"
+            placeholder="Introduce una descripción."
+            maxlength="200"
+            class="form-control text-color mb-3"
+          ></textarea>
+          <label class="text-color text-truncate"
+            >Imagen
+            <label
+              *ngIf="!image.name"
+              for="rankingPicture"
+              class="form-control-img text-color text-center"
+              >Seleccionar imagen</label
+            >
+            <label
+              *ngIf="image.name"
+              for="rankingPicture"
+              class="form-control-img text-color text-center"
+              >{{ image.name }}</label
+            >
+            <small [@fadeIn] *ngIf="image.name" class="text-color"
+              >Puedes seleccionar otra foto si quieres.</small
+            >
+            <input
+              #rankingPicture
+              name="rankingPicture"
+              id="rankingPicture"
+              type="file"
+              accept="image/png, image/jpg, image/jpeg, image/svg"
+              class="hide"
+              (change)="readURL($event)"
+            />
+          </label>
+          <div class="d-grid mt-3">
+            <button
+              type="submit"
+              [disabled]="rankingForm.invalid"
+              class="btn btn-color text-light mb-2"
+            >
+              Crear ranking
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -171,3 +171,10 @@
   border-color: var(--corp-color-one);
   color: var(--corp-color-one);
 }
+
+@media only screen and (max-width: 990px) {
+  .reduce-margin {
+    margin-top: 2rem !important;
+    margin-bottom: 5rem;
+  }
+}

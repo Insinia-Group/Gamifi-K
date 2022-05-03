@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize } from '../helpers/helpers';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-add-ranking',
@@ -9,12 +10,12 @@ import { calculateSize } from '../helpers/helpers';
   styleUrls: ['./add-ranking.component.css'],
   animations: [fadeIn],
 })
-export class AddRankingComponent implements OnInit {
+export class AddRankingComponent {
   public image: any;
   public rankingForm: FormGroup;
   @ViewChild('rankingPicture') rankingPicture: ElementRef;
 
-  constructor() {
+  constructor(private http: HttpService) {
     this.image = {
       base: undefined,
       name: undefined,
@@ -37,12 +38,10 @@ export class AddRankingComponent implements OnInit {
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(0),
-        Validators.maxLength(70),
+        Validators.maxLength(200),
       ]),
     });
   }
-
-  ngOnInit(): void {}
 
   async readURL(event: any) {
     if (!event) throw 'No event provided';
@@ -68,22 +67,22 @@ export class AddRankingComponent implements OnInit {
   generateCode() {
     const length = 5;
     var code = '';
-    var characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     var charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
       code += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    this.rankingForm.controls['code'].setValue(code);
+    this.rankingForm.controls['code'].setValue(code.toUpperCase());
   }
 
-  create() {
+  async create() {
     const form: any = {
       name: this.rankingForm.controls['name'].value,
       code: this.rankingForm.controls['code'].value,
       description: this.rankingForm.controls['description'].value,
     };
-    if (this.image.base) form['image'] = this.image.base
-    console.log(form);
+    if (this.image.base) form['image'] = this.image.base;
+    const res = await this.http.addRanking(form)
+    console.log(res);
   }
 }

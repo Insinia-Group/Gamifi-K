@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fadeIn } from '../config/animations.config';
 import { calculateSize } from '../helpers/helpers';
 import { HttpService } from '../services/http.service';
+
 
 @Component({
   selector: 'app-add-ranking',

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ColDef,GridApi, GridReadyEvent, RowNodeTransaction,} from 'ag-grid-community';
+import {Router} from '@angular/router';
+import {ColDef, GridApi, GridReadyEvent, RowNodeTransaction, } from 'ag-grid-community';
 import {HttpService} from '../services/http.service';
 
 @Component({
@@ -8,22 +9,30 @@ import {HttpService} from '../services/http.service';
   styleUrls: ['./historial.component.css']
 })
 export class HistorialComponent implements OnInit {
-  public noRowsTemplate:any;
-  public loadingTemplate:any;
+  public noRowsTemplate: any;
+  public loadingTemplate: any;
   public rowData: any;
   private gridApi: any;
   public rowSelection = 'single';
-  public noSelected:boolean = true;
+  public noSelected: boolean = true;
   public modalTitle = "Deshacer evaluacion";
   public modalId = "modal";
-  constructor( private http: HttpService) {
+  constructor(private http: HttpService, private router: Router) {
     this.noRowsTemplate =
       `<span>Historial vacio</span>`;
-      this.loadingTemplate =
+    this.loadingTemplate =
       `<span class="ag-overlay-loading-center">Cargando...</span>`;
   }
 
   async ngOnInit(): Promise<void> {
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
     this.rowData = await this.http.getHistory();
     console.log(this.rowData);
   }
@@ -34,61 +43,61 @@ export class HistorialComponent implements OnInit {
     {field: 'Evaluado', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
   ]
-  
+
 
   public columnDefs: ColDef[] = [
-    {field: 'Evaluador', sortable: true, filter: true,checkboxSelection:false,},
+    {field: 'Evaluador', sortable: true, filter: true, checkboxSelection: false, },
     {field: 'Evaluado', filter: true},
     {field: 'Puntos', sortable: true, filter: true},
     {field: 'Ranking', filter: true, sortable: true},
     {field: 'Insinia', filter: true, sortable: true},
     {field: 'Fecha', filter: true, sortable: true},
     // {field: 'id', hide: true},
-    
+
 
   ];
   public defaultColDef: ColDef = {
     flex: 1,
   };
- 
-  selectRow(){
-    this.noSelected=false;
+
+  selectRow() {
+    this.noSelected = false;
   }
 
 
-  onRemoveSelected(i:boolean) {
-  
-    if(i){
-    console.log(this.gridApi);
+  onRemoveSelected(i: boolean) {
 
-    const selectedData = this.gridApi.getSelectedRows();
-    let data;
-    // let data: any[] = []
-    // for (let i = 0; i < selectedData.length; i++){
-    //  data.push({id : selectedData[i].idHistory});
-    // }
-    // const datae = JSON.stringify(data);
-    console.log(selectedData[0]);
+    if (i) {
+      console.log(this.gridApi);
+
+      const selectedData = this.gridApi.getSelectedRows();
+      let data;
+      // let data: any[] = []
+      // for (let i = 0; i < selectedData.length; i++){
+      //  data.push({id : selectedData[i].idHistory});
+      // }
+      // const datae = JSON.stringify(data);
+      console.log(selectedData[0]);
 
 
-    data = {
-      idHistory:  selectedData[0].idHistory,
-      insinia: selectedData[0].Insinia,
-      idUser: selectedData[0].idEvaluado,
-      idRanking: selectedData[0].idRanking,
-      Puntos: selectedData[0].Puntos,
-      oldValue: selectedData[0].oldValue,
+      data = {
+        idHistory: selectedData[0].idHistory,
+        insinia: selectedData[0].Insinia,
+        idUser: selectedData[0].idEvaluado,
+        idRanking: selectedData[0].idRanking,
+        Puntos: selectedData[0].Puntos,
+        oldValue: selectedData[0].oldValue,
 
-    };
-    
-    const res = this.gridApi.applyTransaction({ remove: selectedData })!;
-    this.printResult(res);
+      };
+
+      const res = this.gridApi.applyTransaction({remove: selectedData})!;
+      this.printResult(res);
       this.http.revertHistory(data);
-  }
+    }
 
   }
-  
-   printResult(res: RowNodeTransaction) {
+
+  printResult(res: RowNodeTransaction) {
     console.log('---------------------------------------');
     if (res.add) {
       res.add.forEach(function (rowNode) {
@@ -105,30 +114,30 @@ export class HistorialComponent implements OnInit {
         console.log('Updated Row Node', rowNode);
       });
     }
-    
-}
+
+  }
 
 
-onGridReady(params: GridReadyEvent) {
+  onGridReady(params: GridReadyEvent) {
 
-  this.gridApi = params.api;
-  if (window.innerWidth <= 480) {
-    this.gridApi.setColumnDefs(this.responsiveColumn);
-    params.api.sizeColumnsToFit();
-}
-  params.api.sizeColumnsToFit();
-  window.addEventListener('resize', function () {
-    setTimeout(function () {
+    this.gridApi = params.api;
+    if (window.innerWidth <= 480) {
+      this.gridApi.setColumnDefs(this.responsiveColumn);
       params.api.sizeColumnsToFit();
+    }
+    params.api.sizeColumnsToFit();
+    window.addEventListener('resize', function () {
+      setTimeout(function () {
+        params.api.sizeColumnsToFit();
+      });
     });
-  });
- 
-  
-}
 
-onSelectionChanged(event:any) {
-  this.noSelected = false;
-}
+
+  }
+
+  onSelectionChanged(event: any) {
+    this.noSelected = false;
+  }
 }
 
 

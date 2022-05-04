@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {
   AbstractControl,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { fadeIn } from '../config/animations.config';
-import { calculateSize, isBase64 } from '../helpers/helpers';
-import { tempProfile } from '../models/profile';
-import { HttpService } from '../services/http.service';
-import { Router } from '@angular/router';
-import { ProfilePicture } from '../interface/image';
-import { NotifierService } from 'angular-notifier';
-import { JwtService } from '../services/jwt.service';
+import {fadeIn} from '../config/animations.config';
+import {calculateSize, isBase64} from '../helpers/helpers';
+import {tempProfile} from '../models/profile';
+import {HttpService} from '../services/http.service';
+import {Router} from '@angular/router';
+import {ProfilePicture} from '../interface/image';
+import {NotifierService} from 'angular-notifier';
+import {JwtService} from '../services/jwt.service';
 declare var $: any;
 
 @Component({
@@ -80,6 +80,16 @@ export class UserPageComponent implements OnInit {
   @ViewChild('profilePictureLabel') profilePictureLabel: ElementRef;
 
   async ngOnInit(): Promise<void> {
+
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
+
     await this.http.canContinue();
 
     await this.setProfile();
@@ -201,15 +211,15 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  dateValidator(control: AbstractControl): { [key: string]: any } | null {
+  dateValidator(control: AbstractControl): {[key: string]: any} | null {
     let today: string | Date = new Date();
     today = today.toISOString().slice(0, -14);
     if (this.profileForm) {
       if (typeof this.profileForm !== 'undefined') {
         if (control.value < '1900-1-1') {
-          return { preOld: true };
+          return {preOld: true};
         } else if (control.value > today) {
-          return { postToday: true };
+          return {postToday: true};
         }
       }
     }

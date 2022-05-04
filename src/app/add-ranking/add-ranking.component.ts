@@ -1,7 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { fadeIn } from '../config/animations.config';
-import { calculateSize } from '../helpers/helpers';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {fadeIn} from '../config/animations.config';
+import {calculateSize} from '../helpers/helpers';
+import {HttpService} from '../services/http.service';
 
 @Component({
   selector: 'app-add-ranking',
@@ -14,7 +16,7 @@ export class AddRankingComponent implements OnInit {
   public rankingForm: FormGroup;
   @ViewChild('rankingPicture') rankingPicture: ElementRef;
 
-  constructor() {
+  constructor(private router: Router, private http: HttpService) {
     this.image = {
       base: undefined,
       name: undefined,
@@ -42,7 +44,16 @@ export class AddRankingComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit(): Promise<void> {
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
+  }
 
   async readURL(event: any) {
     if (!event) throw 'No event provided';

@@ -1,0 +1,7 @@
+<div *ngIf="shouldShowErrors()">
+  <div class="d-grid mt-1">
+    <small @fadeInError class="text-color" *ngFor="let error of listOfErrors()"
+      ><i class="bi bi-x me-1"></i> {{ error }}
+    </small>
+  </div>
+</div>

@@ -40,7 +40,7 @@
                     style="height: 100px; width: 100px"
                   ></div>
                 </div>
-                <div class="col-md-8 p-0">
+                <div class="col p-0">
                   <div class="card-body">
                     <p class="card-title fw-bolder">
                       {{ rankingForm.controls["name"].value || "Nombre" }}
@@ -68,10 +68,16 @@
     <div
       class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 px-5 hidden-md-down"
     >
-      <div class="d-flex justify-content-center align-items-center">
+      <div
+        class="
+          d-flex
+          justify-content-center
+          align-self-center align-items-center
+        "
+      >
         <form
-          class="w-100 mx-2 d-flex flex-column reduce-margin"
-          style="margin-top: 40%"
+          class="w-100 mx-2 d-flex flex-column align-self-center reduce-margin"
+          style="margin-top: 65%"
           [formGroup]="rankingForm"
           (ngSubmit)="create()"
         >
@@ -124,7 +130,7 @@
               class="form-control-img text-color text-center"
               >{{ image.name }}</label
             >
-            <small [@fadeIn] *ngIf="image.name" class="text-color"
+            <small @fadeIn *ngIf="image.name" class="text-color"
               >Puedes seleccionar otra foto si quieres.</small
             >
             <input

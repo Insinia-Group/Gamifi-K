@@ -150,6 +150,7 @@ export class HttpService {
             resolve(res.body);
           },
           (err) => {
+            console.log(err);
             reject("Error con la validación del token");
             this.router.navigate(['/login']);
           }
@@ -311,7 +312,12 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            console.log(res);
+            if (res.body.done) {
+              resolve({ status: true });
+            } else {
+              resolve({ status: false });
+            }
           } else {
             reject('Server Error');
           }

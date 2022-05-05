@@ -83,7 +83,7 @@ export class AddRankingComponent {
       description: this.rankingForm.controls['description'].value,
     };
     if (this.image.base) form['image'] = this.image.base;
-    const res = await this.http.addRanking(form)
-    console.log(res);
+    const res: any = await this.http.addRanking(form)
+    if (!res.status) this.rankingForm.controls.code.setErrors({ codeExist: true })
   }
 }

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public disabledButton: boolean;
 
-  constructor(private http: HttpService, private jwt: JwtService, private router: Router, private notifier: NotifierService) {
+  constructor(private http: HttpService, private jwt: JwtService, private notifier: NotifierService) {
     this.disabledButton = false;
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),

@@ -37,7 +37,7 @@ export class CustomValidator {
 
     static isUpperCase(control: AbstractControl) {
         const value = control.value;
-        if (value.toUpperCase() !== value) {
+        if (value && value.toUpperCase() !== value) {
             return { 'notUpperCase': true }
         }
         return null;

@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
 import { fadeIn } from '../config/animations.config';
+import { CustomValidator } from '../helpers/custom-validators';
 import { calculateSize } from '../helpers/helpers';
 import { HttpService } from '../services/http.service';
 
@@ -16,7 +18,7 @@ export class AddRankingComponent {
   public rankingForm: FormGroup;
   @ViewChild('rankingPicture') rankingPicture: ElementRef;
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpService, private notifier: NotifierService) {
     this.image = {
       base: undefined,
       name: undefined,
@@ -28,18 +30,22 @@ export class AddRankingComponent {
     this.rankingForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
-        Validators.minLength(0),
+        Validators.minLength(3),
         Validators.maxLength(30),
+        Validators.pattern('^[a-zA-Z0-9]*$'),
       ]),
       code: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(5),
+        Validators.pattern('^[a-zA-Z0-9]*$'),
+        CustomValidator.isUpperCase
       ]),
       description: new FormControl('', [
         Validators.required,
-        Validators.minLength(0),
+        Validators.minLength(10),
         Validators.maxLength(200),
+        Validators.pattern('^[a-zA-Z0-9]*$'),
       ]),
     });
   }
@@ -84,6 +90,7 @@ export class AddRankingComponent {
     };
     if (this.image.base) form['image'] = this.image.base;
     const res: any = await this.http.addRanking(form)
-    if (!res.status) this.rankingForm.controls.code.setErrors({ codeExist: true })
+    if (!res.status) this.rankingForm.controls.code.setErrors({ codeExist: true });
+    this.notifier.notify('default', '¡Código no válido, introduce otro!')
   }
 }

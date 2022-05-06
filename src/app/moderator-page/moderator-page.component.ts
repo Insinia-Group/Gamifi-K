@@ -81,7 +81,7 @@ export class ModeratorPageComponent implements OnInit {
       this.nullRankings = true;
     }
     console.log(this.rankings);
-    this.rowData = await this.http.getRankingData();
+    // this.rowData = await this.http.getRankingData();
   }
 
   async addRankingByCode() {
@@ -96,7 +96,7 @@ export class ModeratorPageComponent implements OnInit {
       }
       this.http.addRankingByCode(code);
       this.rankings = await this.http.getRanking();
-      this.rowData = await this.http.getRankingData();
+      // this.rowData = await this.http.getRankingData();
       console.log(this.rankings);
       this.nullRankings = false;
 

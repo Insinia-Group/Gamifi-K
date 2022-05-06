@@ -202,11 +202,16 @@ export class UserRankingDevComponent implements OnInit {
   public insiniaPoints: any;
   public ran = (Math.random() + 1).toString(36).substring(7);
   public ale = (Math.random() + 1).toString(36).substring(7);
+  public rankingSelect = false;
 
   constructor(private router: Router, private http: HttpService, private httpC: HttpClient) {
     this.goupStatus = false;
     this.navbarStatus = false;
     let i = 0;
+    this.addRanking = new FormGroup({
+      rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
+    }
+    );
     // this.http.tokenValidation();
   }
   @HostListener('window:scroll', ['$event'])
@@ -232,10 +237,7 @@ export class UserRankingDevComponent implements OnInit {
     }
 
 
-    this.addRanking = new FormGroup({
-      rankingId: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern('^[a-zA-Z ]*$')]),
-    }
-    );
+
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
     this.rankingsModerator = await this.http.getRankingModerator();
@@ -247,8 +249,6 @@ export class UserRankingDevComponent implements OnInit {
     }
     console.log(this.rankings.rankingData);
     console.log(this.rankingsModerator);
-
-    this.rowData = await this.http.getRankingData();
 
     // this.rowData = await this.http.getRankingModerator();
 
@@ -264,7 +264,7 @@ export class UserRankingDevComponent implements OnInit {
       }
       this.http.addRankingByCode(code);
       this.rankings = await this.http.getRanking();
-      this.rowData = await this.http.getRankingData();
+      // this.rowData = await this.http.getRankingData();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
 
@@ -305,9 +305,10 @@ export class UserRankingDevComponent implements OnInit {
   }
 
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
-  async onCellValueChanged(event: any, userPoints: any) {
+  async onCellValueChanged(event: any) {
+    // , userPoints: any
     console.log(event);
-    userPoints = -1;
+    // userPoints = -1;
     if (!isNaN(event.value)) {
       console.log(event.data.idUser);
 
@@ -378,6 +379,27 @@ export class UserRankingDevComponent implements OnInit {
 
 
 
+
+
+
+  /**********DEV */
+
+  async rankingData(rankingId: any) {
+
+    const data = {
+      rankingId: rankingId,
+    }
+
+
+    this.rowData = await this.http.getRankingData(data);
+    console.log(this.rowData);
+    this.rankingSelect = true;
+  }
+
+
+  clearLocalStorage() {
+    localStorage.removeItem('token');
+  }
 
 
 }

@@ -248,7 +248,7 @@ export class UserRankingComponent implements OnInit {
     console.log(this.rankings.rankingData);
     console.log(this.rankingsModerator);
 
-    this.rowData = await this.http.getRankingData();
+    // this.rowData = await this.http.getRankingData();
 
     // this.rowData = await this.http.getRankingModerator();
 
@@ -264,7 +264,7 @@ export class UserRankingComponent implements OnInit {
       }
       this.http.addRankingByCode(code);
       this.rankings = await this.http.getRanking();
-      this.rowData = await this.http.getRankingData();
+      // this.rowData = await this.http.getRankingData();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
 

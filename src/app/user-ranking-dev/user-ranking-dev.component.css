@@ -5,15 +5,48 @@
         max-width: 25rem;
 }
 .ranking-card{
-    width: 40vw!important;
-        max-width: 25rem;
+  
+}
+
+.ranking{
+    margin-top: 1.5rem;
+width: 80rem;
+height: 65rem;
+}
+
+.ranking-card:hover{
+    transform: scale(1.1);
 }
 .expandbutton{
     margin-top: 3rem;
 }
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
 
-.img-ranking{
-    height: 4rem;
-    margin-left: 0.5rem;
-    border-radius: 0.5rem;
+.add-ranking-container{
+        min-width: 8rem;
+}
+
+.add-ranking-input {
+  border-radius: 0.5rem;
+  width: 5rem !important;
+  height: 2rem;
+  font-size: x-large;
+}
+
+.add-ranking-button{
+    width: 2rem !important;
+    position: absolute;
+    left: 6rem;
+    top: 1rem;
+}
+
+.sidecont{
+    cursor: pointer;
+}
+
+.mat-typography{
+    overflow: visible !important;
 }

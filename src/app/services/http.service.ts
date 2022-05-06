@@ -312,7 +312,6 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            console.log(res);
             if (res.body.done) {
               resolve({ status: true });
             } else {

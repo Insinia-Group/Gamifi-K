@@ -32,7 +32,7 @@ export class AddRankingComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        Validators.pattern('^[a-zA-Z0-9]*$'),
+        Validators.pattern('^[a-zA-Z0-9.#\d\\s]*$'),
       ]),
       code: new FormControl('', [
         Validators.required,
@@ -45,7 +45,7 @@ export class AddRankingComponent {
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(200),
-        Validators.pattern('^[a-zA-Z0-9]*$'),
+        Validators.pattern('^[a-zA-Z0-9.#\d\\s]*$'),
       ]),
     });
   }
@@ -89,8 +89,22 @@ export class AddRankingComponent {
       description: this.rankingForm.controls['description'].value,
     };
     if (this.image.base) form['image'] = this.image.base;
-    const res: any = await this.http.addRanking(form)
-    if (!res.status) this.rankingForm.controls.code.setErrors({ codeExist: true });
-    this.notifier.notify('default', '¡Código no válido, introduce otro!')
+    const res: any = await this.http.addRanking(form);
+    if (res.status) {
+      this.rankingForm.reset();
+      this.notifier.notify('default', '¡Ranking creado!');
+      this.rankingPicture.nativeElement.value = "";
+      this.image = {
+        base: undefined,
+        name: undefined,
+        size: undefined,
+        type: undefined,
+        ready: false,
+        validate: false,
+      };
+    } else {
+      this.rankingForm.controls.code.setErrors({ codeExist: true });
+      this.notifier.notify('default', '¡Código no válido, introduce otro!');
+    }
   }
 }

@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { fadeIn } from 'src/app/config/animations.config';
 
 @Component({
-  selector: 'app-validator-error',
+  selector: 'validator',
   templateUrl: './validator-error.component.html',
-  styleUrls: ['./validator-error.component.css']
+  styleUrls: ['./validator-error.component.css'],
+  animations: [fadeIn]
 })
-export class ValidatorErrorComponent implements OnInit {
+export class ValidatorErrorComponent {
   @Input() ctrl: FormControl | any;
   @Input() isTouched: boolean = false;
 
@@ -22,13 +24,12 @@ export class ValidatorErrorComponent implements OnInit {
     hasExtension: () => `No hace falta escribir la extensión.`,
     lastSlash: () => `La última letra tiene que ser /.`,
     max: (par: any) => `El valor máximo es ${par.max}.`,
-    min: (par: any) => `El valor mínimo es ${par.min}.`
+    min: (par: any) => `El valor mínimo es ${par.min}.`,
+    codeExist: () => `Este código no esta disponible.`,
+    notUpperCase: () => `Debe estar en mayúsculas.`
   };
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   shouldShowErrors(): boolean {
     if (!this.isTouched) return this.ctrl && this.ctrl.errors;
@@ -40,6 +41,4 @@ export class ValidatorErrorComponent implements OnInit {
       err => this.ERROR_MESSAGE[err](this.ctrl.getError(err))
     );
   }
-
-
 }

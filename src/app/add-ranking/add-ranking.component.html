@@ -25,7 +25,7 @@
         </div>
         <section class="py-5 container">
           <div class="mx-5 row justify-content-center text-color">
-            <div class="card mb-3" style="max-width: 700px">
+            <div class="card" style="max-width: 700px">
               <div class="row no-gutters">
                 <div class="d-flex col-auto align-items-center">
                   <img
@@ -85,16 +85,29 @@
           <label class="text-color">Nombre</label>
           <input
             type="text"
+            maxlength="30"
             formControlName="name"
             placeholder="Introduce el nombre"
-            class="form-control text-color mb-3"
+            class="form-control text-color"
           />
-          <label class="text-color">Código de invitación</label>
-          <div class="input-group mb-3">
+          <div>
+            <validator
+              [isTouched]="true"
+              [ctrl]="rankingForm.get('name')"
+            ></validator>
+          </div>
+          <div *ngIf="!rankingForm.controls['name'].errors">
+            <div class="d-grid mt-1">
+              <small @fadeIn class="text-success"
+                ><i class="bi bi-check-lg me-1"></i>El nombre es válido.
+              </small>
+            </div>
+          </div>
+          <label class="text-color mt-2">Código de invitación</label>
+          <div class="input-group">
             <input
               type="text"
               formControlName="code"
-              minlength="0"
               maxlength="5"
               placeholder="Introduce el código personalizado"
               class="form-control text-color"
@@ -107,16 +120,42 @@
               Generar
             </button>
           </div>
+          <div>
+            <validator
+              [isTouched]="true"
+              [ctrl]="rankingForm.get('code')"
+            ></validator>
+          </div>
+          <div *ngIf="!rankingForm.controls['code'].errors">
+            <div class="d-grid mt-1">
+              <small @fadeIn class="text-success"
+                ><i class="bi bi-check-lg me-1"></i>El código es válido.
+              </small>
+            </div>
+          </div>
 
-          <label class="text-color">Descripción</label>
+          <label class="text-color mt-2">Descripción</label>
           <textarea
             type="text"
             formControlName="description"
             placeholder="Introduce una descripción."
             maxlength="200"
-            class="form-control text-color mb-3"
+            class="form-control text-color"
           ></textarea>
-          <label class="text-color text-truncate"
+          <div>
+            <validator
+              [isTouched]="true"
+              [ctrl]="rankingForm.get('description')"
+            ></validator>
+          </div>
+          <div *ngIf="!rankingForm.controls['description'].errors">
+            <div class="d-grid mt-1">
+              <small @fadeIn class="text-success"
+                ><i class="bi bi-check-lg me-1"></i>La descripción es válida.
+              </small>
+            </div>
+          </div>
+          <label class="text-color text-truncate mt-2"
             >Imagen
             <label
               *ngIf="!image.name"
@@ -146,7 +185,7 @@
           <div class="d-grid mt-3">
             <button
               type="submit"
-              [disabled]="rankingForm.invalid"
+              [disabled]="!rankingForm.valid || !image.name"
               class="btn btn-color text-light mb-2"
             >
               Crear ranking

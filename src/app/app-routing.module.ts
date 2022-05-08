@@ -10,6 +10,7 @@ import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AddRankingComponent } from './add-ranking/add-ranking.component';
 import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
+import { ChipsComponent } from './chips/chips.component';
 
 const routerOptions: ExtraOptions = {
   useHash: false,
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'rankings', component: UserRankingComponent, pathMatch: 'full' },
   { path: 'history', component: HistorialComponent, pathMatch: 'full' },
   { path: 'create', component: AddRankingComponent, pathMatch: 'full' },
+  { path: 'chips', component: ChipsComponent, pathMatch: 'full' },
   {
     path: 'rankingsdev',
     component: UserRankingDevComponent,

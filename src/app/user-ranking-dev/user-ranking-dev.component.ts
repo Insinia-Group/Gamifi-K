@@ -189,9 +189,9 @@ export class UserRankingDevComponent implements OnInit {
       editable: true,
     },
   ];
+  
   public rowData: any;
   public rankings: any;
-  public rankingsModerator: any;
   public Ranking: any;
   public nullRankings: boolean;
   public navbarStatus: boolean;
@@ -203,8 +203,6 @@ export class UserRankingDevComponent implements OnInit {
   public gridApi: any;
   public columnApi: any;
   public defaultColDef: any;
-  public rankingsUserView: boolean = true;
-  public rankingsModeratorView: boolean = true;
   public contadorTippy: any = 'a' + 1;
   public isInsinia: boolean;
   public sessionPoints: any;
@@ -212,6 +210,7 @@ export class UserRankingDevComponent implements OnInit {
   public ran = (Math.random() + 1).toString(36).substring(7);
   public ale = (Math.random() + 1).toString(36).substring(7);
   public rankingSelect = false;
+  public columnDefsSelect:any;
 
   constructor(
     private router: Router,
@@ -254,7 +253,7 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    this.rankingsModerator = await this.http.getRankingModerator();
+    // this.rankingsModerator = await this.http.getRankingModerator();
 
     if (this.rankings.length > 0) {
       this.nullRankings = false;
@@ -262,7 +261,6 @@ export class UserRankingDevComponent implements OnInit {
       this.nullRankings = true;
     }
     console.log(this.rankings.rankingData);
-    console.log(this.rankingsModerator);
 
     // this.rowData = await this.http.getRankingModerator();
   }
@@ -330,7 +328,7 @@ export class UserRankingDevComponent implements OnInit {
           points: parseInt(event.value),
           idUserModified: event.data.idUser,
           insinia: 'puntos',
-          oldValue: event.oldValue,
+          oldValue: event.oldValue
         };
         await this.http.updateData(data);
       } else if (
@@ -345,29 +343,16 @@ export class UserRankingDevComponent implements OnInit {
           idUserModified: event.data.idUser,
           points: parseInt(event.value),
           insinia: insinia,
-          isModerator: event.data.isModerator,
-          oldValue: event.oldValue,
+          oldValue: event.oldValue
         };
-        console.log(event);
-
         await this.http.updateInsinia(data);
       } else {
-        console.log(event);
-
         event.value = event.oldValue;
       }
     }
   }
 
-  showRankingsUser() {
-    this.rankingsUserView = true;
-    this.rankingsModeratorView = false;
-  }
 
-  showRankingsModerator() {
-    this.rankingsUserView = false;
-    this.rankingsModeratorView = true;
-  }
 
   async collapse(id: string, state: string) {
     if (state == 'show') {
@@ -393,9 +378,18 @@ export class UserRankingDevComponent implements OnInit {
     const data = {
       rankingId: rankingId,
     };
-
+    
     this.rowData = await this.http.getRankingData(data);
-    console.log(this.rowData);
+    console.log();
+    if(this.rowData.moderator){
+      this.columnDefsSelect = this.columnDefsModerator;
+    }else{
+      this.columnDefsSelect = this.columnDefs;
+    }
+   
+
+    this.rowData = this.rowData.response;
+    
     this.rankingSelect = true;
   }
 

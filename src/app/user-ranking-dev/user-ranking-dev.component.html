@@ -16,11 +16,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" id="addRegisterInput">
+          <input type="text" id="addRegisterInput" placeholder="Codigo" name="addRegisterInput" #addRegisterInput>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Añadir</button>
+          <button type="button" class="btn btn-primary" (click)="addRankingByCode(addRegisterInput.value)"data-bs-dismiss="modal">Añadir</button>
         </div>
       </div>
     </div>
@@ -47,9 +47,8 @@
                 <div class="row g-0">
                   <div class="col-sm-5" style="background: #868e96">
                     <img
-                    [src]="'data:image/*;base64,'+item.logo"
-                      class="card-img-top h-100"
-                      alt="..."
+                    [src]="atobImg(item.logo)"
+                      class="card-img-top h-100 ranking-img"
                     />
                   </div>
                   <div class="col-sm-7">

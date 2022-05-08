@@ -8,6 +8,10 @@ font: 732 47px/33px Roboto !important;
 
 }
 
+.ranking-img{
+    max-height: 7rem;
+}
+
 .btn{
 background-color: var(--corp-color-one);
 border-color: var(--corp-color-two);

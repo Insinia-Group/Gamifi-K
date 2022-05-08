@@ -253,28 +253,25 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    // this.rankingsModerator = await this.http.getRankingModerator();
 
     if (this.rankings.length > 0) {
       this.nullRankings = false;
     } else {
       this.nullRankings = true;
     }
-    console.log(this.rankings.rankingData);
-
-    // this.rowData = await this.http.getRankingModerator();
   }
 
-  async addRankingByCode() {
-    if (this.addRanking.controls.rankingId.value != '') {
+  async addRankingByCode(code:any) {
+    if (code != '') {
       this.showAdd = false;
-      this.rankingId = this.addRanking.controls.rankingId.value;
-      const code = {
-        code: this.rankingId,
+      const data = {
+        code: code
       };
-      this.http.addRankingByCode(code);
+      const ga = this.http.addRankingByCode(data);
+
+      console.log(ga);
+      
       this.rankings = await this.http.getRanking();
-      // this.rowData = await this.http.getRankingData();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
     } else {
@@ -380,20 +377,20 @@ export class UserRankingDevComponent implements OnInit {
     };
     
     this.rowData = await this.http.getRankingData(data);
-    console.log();
     if(this.rowData.moderator){
       this.columnDefsSelect = this.columnDefsModerator;
     }else{
       this.columnDefsSelect = this.columnDefs;
     }
-   
-
     this.rowData = this.rowData.response;
-    
     this.rankingSelect = true;
   }
 
   clearLocalStorage() {
     localStorage.removeItem('token');
   }
-}
+
+  atobImg(data:any){
+    return atob(data);
+  }
+  }

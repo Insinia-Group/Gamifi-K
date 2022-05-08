@@ -18,7 +18,6 @@ import { MatInputModule } from '@angular/material/input';
 import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
 import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { ModeratorPageComponent } from './moderator-page/moderator-page.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -32,6 +31,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AddRankingComponent } from './add-ranking/add-ranking.component';
 import { ValidatorErrorComponent } from './components/validator-error/validator-error.component';
+import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,6 @@ import { ValidatorErrorComponent } from './components/validator-error/validator-
     NotFoundComponent,
     UserPageComponent,
     UserRankingComponent,
-    ModeratorPageComponent,
     LoadingComponent,
     LogoComponent,
     NavbarComponent,
@@ -52,7 +51,8 @@ import { ValidatorErrorComponent } from './components/validator-error/validator-
     ModalComponent,
     HistorialComponent,
     AddRankingComponent,
-    ValidatorErrorComponent
+    ValidatorErrorComponent,
+    UserRankingDevComponent
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),

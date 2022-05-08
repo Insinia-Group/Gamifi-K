@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <form [formGroup]="addEmailForm">
+    <div class="input-group mt-1">
+      <input
+        formControlName="email"
+        class="form-control"
+        type="text"
+        (keydown)="add($event)"
+      />
+      <button
+        [disabled]="addEmailForm.invalid"
+        class="btn btn-sm btn-outline-color"
+        (click)="addButton()"
+        type="button"
+      >
+        Añadir
+      </button>
+    </div>
+    <div>
+      <validator [ctrl]="addEmailForm.get('email')"></validator>
+    </div>
+    <div *ngIf="!addEmailForm.controls['email'].errors">
+      <div class="d-grid mt-1">
+        <small @fadeIn class="text-success"
+          ><i class="bi bi-check-lg me-1"></i>El email es válido.
+        </small>
+      </div>
+    </div>
+  </form>
+  <div class="d-flex flex-wrap">
+    <div class="mt-1" *ngFor="let email of emailArr">
+      <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
+        <div>
+          {{ email
+          }}<i
+            class="bi bi-x-circle-fill ms-1 link-white-to-color"
+            (click)="remove(email)"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

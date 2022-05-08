@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { fadeIn } from '../config/animations.config';
+import { fadeIn, slideDownHideUp } from 'src/app/config/animations.config';
 import { HttpService } from '../services/http.service';
 import {
   ColDef,
@@ -22,7 +22,7 @@ declare var $: any;
   selector: 'app-user-ranking-dev',
   templateUrl: './user-ranking-dev.component.html',
   styleUrls: ['./user-ranking-dev.component.css'],
-  animations: [fadeIn],
+  animations: [fadeIn, slideDownHideUp]
 })
 export class UserRankingDevComponent implements OnInit {
   private resizeListenerFunc = () => {

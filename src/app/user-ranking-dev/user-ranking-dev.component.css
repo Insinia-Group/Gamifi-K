@@ -1,20 +1,37 @@
+
+.sideTitle{
+margin-top:3.1rem;
+margin-bottom:1rem;
+margin-left: 3rem;
+color: var(--corp-color-one);
+font: 732 47px/33px Roboto !important;
+
+}
+
+.btn{
+background-color: var(--corp-color-one);
+border-color: var(--corp-color-two);
+margin-left:1rem;
+}
 .sidecont {
-  margin-top: 3rem;
+  top: 8rem ;
   z-index: 1;
-  width: 40vw !important;
-  max-width: 25rem;
+  max-width: 100%;
+  height: 55rem;
+  overflow:scroll;
 }
 .ranking-card {
 }
 
 .ranking {
-  margin-top: 1.5rem;
   width: 80rem;
   height: 65rem;
+  margin-top: 5rem;
+  
 }
 
 .ranking-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .expandbutton {
   margin-top: 3rem;
@@ -48,4 +65,13 @@
 
 .mat-typography {
   overflow: visible !important;
+}
+
+
+#addRegisterInput{
+    width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: x-large;
 }

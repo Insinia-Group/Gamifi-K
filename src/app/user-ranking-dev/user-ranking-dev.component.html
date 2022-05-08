@@ -1,27 +1,44 @@
 <topnav></topnav>
+
+<div class="row sideTitle" @slideDownHideUp >
+    <div class="col-6">
+      <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
+      <div class="btn btn-primary" routerLink="/create">Crear</div>
+    </div>
+</div>
+<div class="row">
+   <!-- MODALS-->
+   <div class="modal fade" id="addRankingModal" tabindex="-1" aria-labelledby="addRankingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="addRankingModalLabel">Añadir codigo</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="addRegisterInput">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
 <div
-  class="offcanvas show offcanvas-start sidecont"
+  class="sidebar show sidebar-start sidecont col-12 col-md-3"
   tabindex="-1"
-  id="offcanvas"
+  id="sidebar"
   data-bs-keyboard="false"
   data-bs-backdrop="false"
 >
-  <div class="offcanvas-header">
-    <h3 class="offcanvas-title d-none d-sm-block side-tittle" id="offcanvas">
-      Insinia
-    </h3>
-    <button
-      type="button"
-      class="btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
-  <div class="offcanvas-body px-0">
+  <div class="sidebar-body px-0">
     <ul
       class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start"
       id="menu"
     >
+    
       <li class="nav-item">
         <div class="card mb-0">
           <div *ngFor="let item of rankings">
@@ -30,7 +47,7 @@
                 <div class="row g-0">
                   <div class="col-sm-5" style="background: #868e96">
                     <img
-                      src="data:image/png;base64,{{ item.logo }}"
+                    [src]="'data:image/*;base64,'+item.logo"
                       class="card-img-top h-100"
                       alt="..."
                     />
@@ -53,80 +70,73 @@
         </div>
       </li>
 
-      <li class="dropdown">
-        <a
-          href="#"
-          class="nav-link dropdown-toggle text-truncate"
-          id="dropdown"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fs-5 bi-bootstrap"></i
-          ><span class="ms-1 d-none d-sm-inline">Unirse a un ranking</span>
-        </a>
-        <ul
-          class="dropdown-menu text-small shadow add-ranking-container"
-          aria-labelledby="dropdown"
-        >
-          <li>
-            <form class="add-ranking" [@fadeIn] [formGroup]="this.addRanking">
-              <input
-                formControlName="rankingId"
-                class="add-ranking-input"
-                type="text"
-              />
-              <div
-                type="submit"
-                class="bi bi-plus-circle-dotted add-ranking-button"
-                (click)="addRankingByCode()"
-              ></div>
-            </form>
-          </li>
-        </ul>
-      </li>
 
-      <li>
-        <a
-          [routerLink]="['/create']"
-          routerLinkActive="router-link-active"
-          data-bs-toggle="collapse"
-          class="nav-link text-truncate"
-        >
-          <i class="fs-5 bi-speedometer2"></i
-          ><span class="ms-1 d-none d-sm-inline">Crear</span>
-        </a>
-      </li>
-      <li>
-        <a
-          [routerLink]="['/login']"
-          (click)="clearLocalStorage()"
-          routerLinkActive="router-link-active"
-          data-bs-toggle="collapse"
-          class="nav-link text-truncate"
-        >
-          <i class="fs-5 bi-speedometer2"></i
-          ><span class="ms-1 d-none d-sm-inline">Salir</span>
-        </a>
-      </li>
+      
+      
     </ul>
   </div>
+  
 </div>
-<div class="container-fluid">
+<!-- <li class="dropdown">
+    <a
+      href="#"
+      class="nav-link dropdown-toggle text-truncate"
+      id="dropdown"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i class="fs-5 bi-bootstrap"></i
+      ><span class="ms-1 d-none d-sm-inline">Unirse a un ranking</span>
+    </a>
+    <ul
+      class="dropdown-menu text-small shadow add-ranking-container"
+      aria-labelledby="dropdown"
+    >
+      <li>
+        <form class="add-ranking" [@fadeIn] [formGroup]="this.addRanking">
+          <input
+            formControlName="rankingId"
+            class="add-ranking-input"
+            type="text"
+          />
+          <div
+            type="submit"
+            class="bi bi-plus-circle-dotted add-ranking-button"
+            (click)="addRankingByCode()"
+          ></div>
+        </form>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <a
+      [routerLink]="['/create']"
+      routerLinkActive="router-link-active"
+      data-bs-toggle="collapse"
+      class="nav-link text-truncate"
+    >
+      <i class="fs-5 bi-speedometer2"></i
+      ><span class="ms-1 d-none d-sm-inline">Crear</span>
+    </a>
+  </li>
+  
+  <li>
+    <a
+      [routerLink]="['/login']"
+      (click)="clearLocalStorage()"
+      routerLinkActive="router-link-active"
+      data-bs-toggle="collapse"
+      class="nav-link text-truncate"
+    >
+      <i class="fs-5 bi-speedometer2"></i
+      ><span class="ms-1 d-none d-sm-inline">Salir</span>
+    </a>
+  </li> -->
+  
+<div class="col-12 col-md-9">
   <div class="row">
     <div class="col min-vh-100 py-3">
-      <!-- toggler -->
-      <button
-        class="btn expandbutton"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvas"
-        role="button"
-      >
-        <i
-          class="bi bi-arrow-right-square-fill fs-3"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvas"
-        ></i>
-      </button>
       <div class="row justify-content-center">
         <div class="d-flex justify-content-end" *ngIf="rankingSelect">
           <ag-grid-angular
@@ -147,4 +157,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

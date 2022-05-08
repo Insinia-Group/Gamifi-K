@@ -271,9 +271,9 @@ export class HttpService {
     });
   }
 
-  getRankingData() {
+  getRankingData(data: any): any {
     return new Promise((resolve, reject) => {
-      this.http.get<HttpResponse<any>>(this.api.toThisPath('/rankingData'), this.observe).subscribe(
+      this.http.post<any>(this.api.toThisPath('/rankingData'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
@@ -283,7 +283,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting ranking data. ' + err);
+          reject('Error getting the rankings. ' + err);
         }
       );
     });
@@ -311,6 +311,7 @@ export class HttpService {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
+          console.log(res);
           if (res.status == 200 && res.statusText == 'OK') {
             if (res.body.done) {
               resolve({ status: true });

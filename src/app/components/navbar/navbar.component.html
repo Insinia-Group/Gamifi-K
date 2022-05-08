@@ -78,7 +78,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light btn-nav">
+          <a class="nav-link text-light btn-nav" (click)="logout()" routerLink="/login"  >
             <i class="icon-lg bi bi-lock-fill"
             [ngxTippy]="'Salir'"
             [tippyProps]="{

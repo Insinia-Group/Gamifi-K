@@ -198,8 +198,8 @@ export class UserRankingComponent implements OnInit {
   public rankingsModeratorView: boolean = true;
   public contadorTippy: any = "a" + 1;
   public isInsinia: boolean;
-  public sessionPoints:any;
-  public insiniaPoints:any;
+  public sessionPoints: any;
+  public insiniaPoints: any;
   public ran = (Math.random() + 1).toString(36).substring(7);
   public ale = (Math.random() + 1).toString(36).substring(7);
 
@@ -248,7 +248,7 @@ export class UserRankingComponent implements OnInit {
     console.log(this.rankings.rankingData);
     console.log(this.rankingsModerator);
 
-    this.rowData = await this.http.getRankingData();
+    // this.rowData = await this.http.getRankingData();
 
     // this.rowData = await this.http.getRankingModerator();
 
@@ -264,7 +264,7 @@ export class UserRankingComponent implements OnInit {
       }
       this.http.addRankingByCode(code);
       this.rankings = await this.http.getRanking();
-      this.rowData = await this.http.getRankingData();
+      // this.rowData = await this.http.getRankingData();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
 
@@ -301,16 +301,16 @@ export class UserRankingComponent implements OnInit {
     if (window.innerWidth <= 480) {
       this.gridApi.setColumnDefs(this.responsiveColumn);
       params.api.sizeColumnsToFit();
-  }
+    }
   }
 
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
-  async onCellValueChanged(event: any,userPoints:any) {
+  async onCellValueChanged(event: any, userPoints: any) {
     console.log(event);
     userPoints = -1;
-      if (!isNaN(event.value)) {
-        console.log( event.data.idUser);
-        
+    if (!isNaN(event.value)) {
+      console.log(event.data.idUser);
+
       let insinia = event.colDef.field
 
       if (insinia == "Puntos") {
@@ -335,14 +335,14 @@ export class UserRankingComponent implements OnInit {
         console.log(event);
 
         await this.http.updateInsinia(data);
+
+      } else {
+        console.log(event);
+
+        event.value = event.oldValue;
+
       }
-    } else {
-      console.log(event);
-
-      event.value = event.oldValue;
-
     }
-
   }
 
   showRankingsUser() {

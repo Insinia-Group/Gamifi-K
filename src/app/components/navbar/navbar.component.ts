@@ -13,4 +13,8 @@ export class NavbarComponent {
   constructor() {
     this.toggleBlur = true;
   }
+
+  logout(){
+    localStorage.removeItem('token');
+  }
 }

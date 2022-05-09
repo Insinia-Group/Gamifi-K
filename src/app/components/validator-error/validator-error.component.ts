@@ -29,9 +29,11 @@ export class ValidatorErrorComponent {
     min: (par: any) => `El valor mínimo es ${par.min}.`,
     codeExist: () => `Este código no esta disponible.`,
     notUpperCase: () => `Debe estar en mayúsculas.`,
+    invalidEmail: () => `El email es inválido.`,
+    emailNotExists: () => `El email no existe.`
   };
 
-  constructor() {}
+  constructor() { }
 
   shouldShowErrors(): boolean {
     if (!this.isTouched) return this.ctrl && this.ctrl.errors;

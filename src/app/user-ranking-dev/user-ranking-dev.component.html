@@ -1,30 +1,13 @@
 <topnav></topnav>
-
+<div class="component-container">
 <div class="row sideTitle" @slideDownHideUp >
     <div class="col-6">
-      <div class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
-      <div class="btn btn-primary" routerLink="/create">Crear</div>
+      <div class="btn btn-primary col-6 col-md-2" data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
+      <div class="btn btn-primary col-6 col-md-2" routerLink="/create">Crear</div>
     </div>
 </div>
 <div class="row">
-   <!-- MODALS-->
-   <div class="modal fade" id="addRankingModal" tabindex="-1" aria-labelledby="addRankingModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="addRankingModalLabel">Añadir codigo</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <input type="text" id="addRegisterInput" placeholder="Codigo" name="addRegisterInput" #addRegisterInput>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="addRankingByCode(addRegisterInput.value)"data-bs-dismiss="modal">Añadir</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
     
 <div
   class="sidebar show sidebar-start sidecont col-12 col-md-3"
@@ -42,7 +25,7 @@
       <li class="nav-item">
         <div class="card mb-0">
           <div *ngFor="let item of rankings">
-            <div class="m-4 ranking-card" (click)="rankingData(item.id)">
+            <div class="m-4 ranking-card" (click)="rankingData(item.id,item.name)">
               <div class="card" style="max-width: 500px">
                 <div class="row g-0">
                   <div class="col-sm-5" style="background: #868e96">
@@ -55,11 +38,17 @@
                     <div class="card-body">
                       <h2 class="card-title">{{ item.name }}</h2>
                       <p
-                        class="card-text text-truncate"
+                        class="card-text"
                         style="max-width: 15rem"
                       >
-                        {{ item.description }}
+                        {{ item.role}}
                       </p>
+                        <!-- <p
+                          class="card-text text-truncate"
+                          style="max-width: 15rem"
+                        >
+                          {{ item.description }}
+                        </p> -->
                     </div>
                   </div>
                 </div>
@@ -133,13 +122,17 @@
     </a>
   </li> -->
   
-<div class="col-12 col-md-9">
+
+<div class="col-12 col-md-9 ">
+  <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#addUsersModal">Añadir participantes</button>
+  <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#deleteRankingModal">Eliminar ranking</button>
+
   <div class="row">
-    <div class="col min-vh-100 py-3">
+    <div class="col  py-3">
       <div class="row justify-content-center">
         <div class="d-flex justify-content-end" *ngIf="rankingSelect">
           <ag-grid-angular
-            class="ag-theme-alpine ranking table-responsive"
+            class="ag-theme-alpine ranking table-responsive  "
             [columnDefs]="columnDefsSelect"
             [rowData]="rowData"
             id="dataTable"
@@ -149,6 +142,7 @@
             (cellValueChanged)="onCellValueChanged($event)"
             (onGridSizeChanged)="onGridSizeChanged($event)"
             (gridReady)="onGridReady($event)"
+            [overlayNoRowsTemplate]="'No hay participantes'"
             [@fadeIn]
           >
           </ag-grid-angular>
@@ -158,3 +152,81 @@
   </div>
 </div>
 </div>
+</div>
+
+
+
+ <!-- MODALS-->
+   <div class="modal fade" id="addRankingModal" tabindex="-1" aria-labelledby="addRankingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="addRankingModalLabel">Añadir codigo</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="addRegisterInput" placeholder="Codigo" name="addRegisterInput" #addRegisterInput>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="addRankingByCode(addRegisterInput.value)"data-bs-dismiss="modal">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="addUsersModal" tabindex="-1" aria-labelledby="addUsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="addUsersModalLabel">Añadir codigo</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="addUsersInput" placeholder="Codigo" name="addUsersInput" #addUsersInput>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade" id="deleteRankingModal" tabindex="-1" aria-labelledby="deleteRankingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="deleteRankingModalLabel">Eliminar ranking</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Estas seguro que quieres eliminar el Ranking {{nameSelect}}</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#deleteRankingModal2" data-bs-toggle="modal">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+     <div class="modal fade" id="deleteRankingModal2" tabindex="-1" aria-labelledby="deleteRankingModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="deleteRankingModalLabel2">Eliminar ranking</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h3>Eliminar el ranking {{nameSelect}} es irreversible</h3>
+          <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteRanking()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

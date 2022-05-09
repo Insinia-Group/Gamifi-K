@@ -404,12 +404,35 @@ export class UserRankingDevComponent implements OnInit {
     return atob(data);
   }
 
-  deleteRanking() {
+  async deleteRanking() {
 
     const data = {
       idRanking: this.idSelect
     }
-    this.http.deleteRanking(data);
+    console.log(data);
+    
+    await this.http.deleteRanking(data);
+    this.rankings = await this.http.getRanking();
   }
 
+  async exitRanking() {
+
+    const data = {
+      idRanking: this.idSelect
+    }
+    console.log(data);
+    
+    await this.http.exitRanking(data);
+    this.rankings = await this.http.getRanking();
+  }
+  
+
+  async renewJoinCode(){
+    const data = {
+      idRanking: this.idSelect
+    }
+    await this.http.renewJoinCode(data);
+  }
+
+ 
 }

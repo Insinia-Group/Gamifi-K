@@ -440,5 +440,40 @@ export class HttpService {
     })
   }
 
+  exitRanking(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/exitRanking'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({status: true});
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.' + err);
+        }
+      );
+    })
+  }
+
+  renewJoinCode(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/renewJoinCode'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({status: true});
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error changing profile data.' + err);
+        }
+      );
+    })
+  }
 
 }

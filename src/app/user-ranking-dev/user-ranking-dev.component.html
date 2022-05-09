@@ -18,7 +18,7 @@
 >
   <div class="sidebar-body px-0">
     <ul
-      class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start"
+      class="nav nav-pills flex-column mb-sm-auto mb-0 "
       id="menu"
     >
     
@@ -125,12 +125,16 @@
 
 <div class="col-12 col-md-9 ">
   <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#addUsersModal">Añadir participantes</button>
+  <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#renewJoinCodeRankingModal">Nuevo codigo</button>
   <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#deleteRankingModal">Eliminar ranking</button>
+
+  <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Salir del ranking</button>
+
 
   <div class="row">
     <div class="col  py-3">
       <div class="row justify-content-center">
-        <div class="d-flex justify-content-end" *ngIf="rankingSelect">
+        <div class="d-flex " *ngIf="rankingSelect">
           <ag-grid-angular
             class="ag-theme-alpine ranking table-responsive  "
             [columnDefs]="columnDefsSelect"
@@ -156,7 +160,7 @@
 
 
 
- <!-- MODALS-->
+ <!-- MODALS Moderadores-->
    <div class="modal fade" id="addRankingModal" tabindex="-1" aria-labelledby="addRankingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -192,6 +196,26 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="renewJoinCodeRankingModal" tabindex="-1" aria-labelledby="renewJoinCodeRankingModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="renewJoinCodeRankingModal">Crear nuevo codigo para unirse</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>Si renuevas el codigo de accesso el anterior no sera valido</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="renewJoinCode()">Renovar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
 
    <div class="modal fade" id="deleteRankingModal" tabindex="-1" aria-labelledby="deleteRankingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -230,3 +254,40 @@
     </div>
   </div>
   
+<!-- MODALS Participantes   -->
+<div class="modal fade" id="exitRankingModal" tabindex="-1" aria-labelledby="exitRankingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exitRankingModalLabel">Salir del ranking</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>Estas seguro que quieres salir del Ranking {{nameSelect}}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-target="#exitRankingModal2" data-bs-toggle="modal">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Segunda parte del modal anterior -->
+<div class="modal fade" id="exitRankingModal2" tabindex="-1" aria-labelledby="exitRankingModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exitRankingModalLabel2">Salir del ranking</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>Si sales del ranking {{nameSelect}} perderas todos tus puntos</h3>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="exitRanking()">Salir</button>
+      </div>
+    </div>
+  </div>
+</div>

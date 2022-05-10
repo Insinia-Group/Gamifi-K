@@ -15,7 +15,6 @@ export class ValidatorErrorComponent {
   ERROR_MESSAGE: any = {
     required: () => `El campo es obligatorio.`,
     email: () => `Debes introducir un email.`,
-    emailAlreadyExist: () => `Este email ya existe.`,
     minlength: (par: any) => `Mínimo ${par.requiredLength} caracteres.`,
     maxlength: (par: any) => `Máximo ${par.requiredLength} caracteres.`,
     pattern: () => `Este formato no es válido.`,
@@ -29,8 +28,10 @@ export class ValidatorErrorComponent {
     min: (par: any) => `El valor mínimo es ${par.min}.`,
     codeExist: () => `Este código no esta disponible.`,
     notUpperCase: () => `Debe estar en mayúsculas.`,
-    invalidEmail: () => `El email es inválido.`,
-    emailNotExists: () => `El email no existe.`
+    invalidEmail: () => `El email no es válido.`,
+    emailNotExists: () => `El email no existe.`,
+    emailAlreadyExist: () => `Este email ya esta añadido.`,
+    isVoid: () => `Debes introducir el email de un miembro para añadirlo`
   };
 
   constructor() { }

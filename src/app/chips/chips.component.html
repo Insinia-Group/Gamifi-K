@@ -1,5 +1,8 @@
 <div class="container-fluid">
   <form [formGroup]="addEmailForm">
+    <label class="text-color mt-3" for="email"
+      >Introduce a los miembros del Ranking</label
+    >
     <div class="input-group mt-1">
       <input
         formControlName="email"
@@ -17,7 +20,9 @@
       </button>
     </div>
     <div>
-      <validator [ctrl]="addEmailForm.get('email')"></validator>
+      <validator
+        [ctrl]="addEmailForm.get('email')"
+      ></validator>
     </div>
     <div *ngIf="!addEmailForm.controls['email'].errors">
       <div class="d-grid mt-1">
@@ -39,5 +44,15 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="emailArr.length > 0" class="d-grid mt-2">
+    <button
+      [disabled]="emailArr.length < 0"
+      class="btn btn-sm btn-outline-color"
+      type="submit"
+      (click)="addUsersToRanking()"
+    >
+      Agregar a todos los usuarios
+    </button>
   </div>
 </div>

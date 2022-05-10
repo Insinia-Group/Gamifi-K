@@ -325,6 +325,29 @@ export class HttpService {
     })
   }
 
+  addUsersToRanking(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
+        (res) => {
+          console.log(res);
+          if (res.status == 200 && res.statusText == 'OK') {
+            if (res.body.done) {
+              resolve({ status: true });
+            } else {
+              resolve({ status: false });
+            }
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error adding a ranking.');
+        }
+      );
+    })
+  }
+
   addRanking(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(

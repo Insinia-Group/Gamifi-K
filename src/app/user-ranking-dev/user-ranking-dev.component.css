@@ -80,7 +80,9 @@ margin-left:1rem;
 .mat-typography {
   overflow: visible !important;
 }
-
+.bootonGestion{
+min-width: 11rem;
+}
 
 #addRegisterInput{
     width: 100%;

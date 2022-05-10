@@ -7,15 +7,11 @@ import {
   ColDef,
   GridReadyEvent,
   ICellRendererParams,
-  RowNode,
 } from 'ag-grid-community';
 import {MoodRendererComponent} from '../ag-grid/mood-renderer/mood-renderer.component';
 import {GenderRendererComponent} from '../ag-grid/gender-renderer/gender-renderer.component';
-import {BrowserModule} from '@angular/platform-browser';
-import {AgGridModule} from 'ag-grid-angular';
-import {Observable} from 'rxjs';
-import {Ranking} from '../models/rankings';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NotifierService} from 'angular-notifier';
 declare var $: any;
 
 @Component({
@@ -214,11 +210,12 @@ export class UserRankingDevComponent implements OnInit {
   public isModerator: any;
   public nameSelect: string;
   public idSelect: number;
+  public joinCode: string;
 
   constructor(
     private router: Router,
     private http: HttpService,
-    private httpC: HttpClient
+    private notifier: NotifierService
   ) {
     this.goupStatus = false;
     this.navbarStatus = false;
@@ -313,8 +310,19 @@ export class UserRankingDevComponent implements OnInit {
     }
   }
 
+  public onRowEditingStarted(event: any) {
+    console.log(event);
+
+  }
+
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
+    console.log(event.node);
+
+
+
+
+    this.notifier.notify('default', 'No puedes autoevaluarte');
     // , userPoints: any
     console.log(event);
     // userPoints = -1;
@@ -345,7 +353,8 @@ export class UserRankingDevComponent implements OnInit {
           idUserModified: event.data.idUser,
           points: parseInt(event.value),
           insinia: insinia,
-          oldValue: event.oldValue
+          oldValue: event.oldValue,
+          isModerator: this.isModerator
         };
         await this.http.updateInsinia(data);
       } else {
@@ -389,6 +398,7 @@ export class UserRankingDevComponent implements OnInit {
       this.columnDefsSelect = this.columnDefs;
       this.isModerator = false;
     }
+    this.joinCode = this.rowData.joinCode;
     this.rowData = this.rowData.response;
     this.nameSelect = rankingName;
     this.idSelect = rankingId;
@@ -410,7 +420,7 @@ export class UserRankingDevComponent implements OnInit {
       idRanking: this.idSelect
     }
     console.log(data);
-    
+
     await this.http.deleteRanking(data);
     this.rankings = await this.http.getRanking();
   }
@@ -421,18 +431,21 @@ export class UserRankingDevComponent implements OnInit {
       idRanking: this.idSelect
     }
     console.log(data);
-    
+
     await this.http.exitRanking(data);
     this.rankings = await this.http.getRanking();
   }
-  
 
-  async renewJoinCode(){
+
+  async renewJoinCode() {
     const data = {
       idRanking: this.idSelect
     }
     await this.http.renewJoinCode(data);
+    this.rankings = await this.http.getRanking();
   }
 
- 
+
+
+
 }

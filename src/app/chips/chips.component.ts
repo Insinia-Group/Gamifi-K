@@ -19,7 +19,7 @@ export class ChipsComponent {
   public emailArr: string[] = [];
   public addEmailForm: FormGroup;
   public invalidEmails: string[] = [];
-  public idRanking: number = 54
+  public idRanking: number = 54;
 
   constructor(private http: HttpService) {
     this.addEmailForm = new FormGroup({
@@ -27,7 +27,7 @@ export class ChipsComponent {
         CustomValidator.isVoid,
         Validators.pattern('^[a-z0-9._]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         this.emailAlreadyExist.bind(this),
-        this.emailInvalid.bind(this)
+        this.emailInvalid.bind(this),
       ]),
     });
   }
@@ -39,6 +39,10 @@ export class ChipsComponent {
         this.push();
       }
     }
+  }
+
+  async getRankingUsers() {
+    const res: any = await this.http.getRankingUsersById(this.idRanking);
   }
 
   emailAlreadyExist(control: AbstractControl): { [key: string]: any } | null {
@@ -56,28 +60,34 @@ export class ChipsComponent {
   }
 
   async push() {
-    const res: any = await this.http.emailExists(this.addEmailForm.controls.email.value.toLowerCase());
+    const res: any = await this.http.emailExists(
+      this.addEmailForm.controls.email.value.toLowerCase()
+    );
     console.log(res);
 
     if (!res.body.exists) {
-      this.invalidEmails.push((this.addEmailForm.controls.email.value).toLowerCase())
-      this.addEmailForm.controls.email.setErrors({ emailNotExists: true })
+      this.invalidEmails.push(
+        this.addEmailForm.controls.email.value.toLowerCase()
+      );
+      this.addEmailForm.controls.email.setErrors({ emailNotExists: true });
       return;
     }
     if (res.body.admin) {
-      this.invalidEmails.push(this.addEmailForm.controls.email.value.toLowerCase())
-      this.addEmailForm.controls.email.setErrors({ invalidEmail: true })
+      this.invalidEmails.push(
+        this.addEmailForm.controls.email.value.toLowerCase()
+      );
+      this.addEmailForm.controls.email.setErrors({ invalidEmail: true });
       return;
     }
     this.emailArr.push(this.addEmailForm.controls.email.value.toLowerCase());
-    this.addEmailForm.controls.email.setValue('')
+    this.addEmailForm.controls.email.setValue('');
   }
 
   async addUsersToRanking() {
     const request = {
       idRanking: this.idRanking,
-      users: this.emailArr
-    }
+      users: this.emailArr,
+    };
     await this.http.addUsersToRanking(request);
   }
 }

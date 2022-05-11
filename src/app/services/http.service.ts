@@ -104,6 +104,10 @@ export class HttpService {
     });
   }
 
+  getRankingUsersById(idRanking: number) {
+
+  }
+
   addRankingByCode(code: any): any {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/addRankingByCode'), code, this.observe).subscribe(

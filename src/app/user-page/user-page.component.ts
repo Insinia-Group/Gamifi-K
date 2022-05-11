@@ -166,7 +166,7 @@ export class UserPageComponent implements OnInit {
 
   async setProfile() {
     const profile: any = await this.http.getProfile();
-    if (isBase64(profile[0].avatar)) {
+    if (profile[0].avatar && isBase64(profile[0].avatar)) {
       profile[0].avatar = atob(profile[0].avatar);
     }
     this.profile = new tempProfile(

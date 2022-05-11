@@ -1,5 +1,7 @@
 <topnav></topnav>
-<div class="component-container">
+<loading *ngIf="!isReady"></loading>
+
+<div class="component-container" *ngIf="isReady">
 <div class="row sideTitle" @slideDownHideUp >
     <div class="col-6">
       <div class="btn btn-primary col-6 col-md-2" data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
@@ -23,6 +25,7 @@
     >
     
       <li class="nav-item">
+        
         <div class="card mb-0">
           <div *ngFor="let item of rankings">
             <div class="m-4 ranking-card" (click)="rankingData(item.id,item.name)">

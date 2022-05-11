@@ -211,6 +211,7 @@ export class UserRankingDevComponent implements OnInit {
   public nameSelect: string;
   public idSelect: number;
   public joinCode: string;
+  public isReady:boolean = false;
 
   constructor(
     private router: Router,
@@ -253,7 +254,8 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    console.log(this.rankings);
+    this.isReady =true;
+
 
 
     if (this.rankings.length > 0) {

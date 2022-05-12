@@ -276,21 +276,30 @@ export class UserRankingDevComponent implements OnInit {
   }
 
   async addRankingByCode(code: any) {
-    if (code != '') {
+    if (code == '') {
       this.showAdd = false;
+      this.notifier.notify('error', 'Codigo invalido.');
+
+    } else{
       const data = {
         code: code
       };
-      const ga = this.http.addRankingByCode(data);
 
-      console.log(ga);
+      const isValidRanking = await this.http.addRankingByCode(data);
+
+      if(isValidRanking ){
 
       this.rankings = await this.http.getRanking();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
-    } else {
-      this.nullRankings = false;
+    }else{
+      this.notifier.notify('error', 'Codigo invalido.');
+      this.nullRankings = true;
+      this.showAdd = false;
+      
     }
+  }
+
   }
   showInput() {
     if (this.showAdd == false) {
@@ -333,7 +342,6 @@ export class UserRankingDevComponent implements OnInit {
 
     if (event.data.idUser == this.idClient) {
       this.notifier.notify('error', 'No puedes ponerte puntos a ti mismo.');
-      
     } else if (event.newValue > this.insiniaPoints && !this.isModerator) {
       this.notifier.notify('error', 'No tienes tantos puntos.');
     } else {

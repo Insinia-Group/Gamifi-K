@@ -2,6 +2,7 @@
 <loading *ngIf="!isReady"></loading>
 
 <div class="component-container" *ngIf="isReady">
+  <div class="row">/
 <div class="row sideTitle" @slideDownHideUp >
     <div class="col-6">
       <div class="btn btn-primary col-5 col-md-2" data-bs-toggle="modal" data-bs-target="#addRankingModal" *ngIf="!nullRankings" >Añadir</div>
@@ -23,7 +24,7 @@
 
 
 <div
-  class="sidebar show sidebar-start sidecont col-12 col-md-3"
+  class="sidebar show sidebar-start sidecont col-12 col-md-5"
   tabindex="-1"
   id="sidebar"
   data-bs-keyboard="false"
@@ -138,8 +139,8 @@
   </li> -->
 
 
-<div class="col-12 col-md-9 ">
-  <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#addUsersModal">Añadir participantes</button>
+<div class="col-12 col-md-8 ">
+  <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#addUsersModal">Participantes</button>
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#renewJoinCodeRankingModal">Codigo acceso</button>
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#deleteRankingModal">Eliminar ranking</button>
   <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Salir del ranking</button>
@@ -152,7 +153,7 @@
   <div class="row">
     <div class="col  py-3">
       <div class="row justify-content-center">
-        <div class="d-flex " *ngIf="rankingSelect">
+        <div class="d-flex col-12" *ngIf="rankingSelect">
           <ag-grid-angular
             class="ag-theme-alpine ranking table-responsive  "
             [columnDefs]="columnDefsSelect"
@@ -331,6 +332,7 @@
   </div>
 </div>
 
+</div>
 
 
 

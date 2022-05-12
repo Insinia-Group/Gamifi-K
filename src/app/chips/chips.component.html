@@ -20,9 +20,7 @@
       </button>
     </div>
     <div>
-      <validator
-        [ctrl]="addEmailForm.get('email')"
-      ></validator>
+      <validator [ctrl]="addEmailForm.get('email')"></validator>
     </div>
     <div *ngIf="!addEmailForm.controls['email'].errors">
       <div class="d-grid mt-1">
@@ -33,21 +31,21 @@
     </div>
   </form>
   <div class="d-flex flex-wrap">
-    <div class="mt-1" *ngFor="let email of emailArr">
+    <div class="mt-1" *ngFor="let email of emails.changed">
       <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
         <div>
           {{ email
           }}<i
             class="bi bi-x-circle-fill ms-1 link-white-to-color"
-            (click)="remove(email)"
+            (click)="modal('removeUser', 'show'); setSelected(email)"
           ></i>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="emailArr.length > 0" class="d-grid mt-2">
+  <div *ngIf="emails.changed && emails.changed.length > 0" class="d-grid mt-2">
     <button
-      [disabled]="emailArr.length < 0"
+      [disabled]="emailsChanged()"
       class="btn btn-sm btn-outline-color"
       type="submit"
       (click)="addUsersToRanking()"
@@ -56,3 +54,17 @@
     </button>
   </div>
 </div>
+
+<modal [title]="'Eliminar usuario'" [uniqueId]="'removeUser'">
+  <div class="modal-body">
+    ¿Quieres eliminar a <b>{{ selectedEmail }}</b> del ranking?
+  </div>
+  <div class="modal-footer p-1">
+    <button type="button" class="btn btn-sm btn-outline-color" (click)="remove()">
+      Confirmar
+    </button>
+    <button type="button" class="btn btn-sm btn-color text-light" data-bs-dismiss="modal">
+      Cancelar 
+    </button>
+  </div>
+</modal>

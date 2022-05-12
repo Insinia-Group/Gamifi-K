@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,6 +8,7 @@ import {
 import { fadeIn } from '../config/animations.config';
 import { CustomValidator } from '../helpers/custom-validators';
 import { HttpService } from '../services/http.service';
+declare var $: any;
 
 @Component({
   selector: 'app-chips',
@@ -15,11 +16,16 @@ import { HttpService } from '../services/http.service';
   styleUrls: ['./chips.component.css'],
   animations: [fadeIn],
 })
-export class ChipsComponent {
-  public emailArr: string[] = [];
+export class ChipsComponent implements OnInit {
+  public emails: any = {
+    original: [],
+    changed: [],
+    removed: [],
+    invalid: []
+  }
+  public selectedEmail: string;
   public addEmailForm: FormGroup;
-  public invalidEmails: string[] = [];
-  public idRanking: number = 54;
+  public idRanking: number = 2;
 
   constructor(private http: HttpService) {
     this.addEmailForm = new FormGroup({
@@ -32,7 +38,17 @@ export class ChipsComponent {
     });
   }
 
-  async add(event: any) {
+  ngOnInit() {
+    this.getRankingUsers();
+  }
+
+  modal(id: string, state: any): void {
+    if (!id) throw 'You must provide an id';
+    if (!state) throw 'You muste provide a state';
+    $('#' + id).modal(state);
+  }
+
+  add(event: any) {
     if (this.addEmailForm.valid) {
       const key = event.key;
       if (key == ',' || key == ' ' || key == 'Enter') {
@@ -41,52 +57,74 @@ export class ChipsComponent {
     }
   }
 
+  async remove() {
+    this.modal('removeUser', 'hide')
+    const removeEmail = this.selectedEmail;
+    this.emails.changed = this.emails.changed.filter((email: string) => removeEmail !== email);
+    const email: object = {
+      email: removeEmail
+    }
+    await this.http.removeUserFromRanking(email);
+  }
+
+  setSelected(email: string): void {
+    this.selectedEmail = email;
+  }
+
   async getRankingUsers() {
     const res: any = await this.http.getRankingUsersById(this.idRanking);
+    this.emails.original = res;
+    this.emails.changed = res;
   }
 
   emailAlreadyExist(control: AbstractControl): { [key: string]: any } | null {
-    if (!this.emailArr.includes(control.value.toLowerCase())) return null;
+    if (!this.emails.changed.includes(control.value.toLowerCase())) return null;
     return { emailAlreadyExist: true };
   }
 
   emailInvalid(control: AbstractControl): { [key: string]: any } | null {
-    if (!this.invalidEmails.includes(control.value.toLowerCase())) return null;
+    if (!this.emails.invalid.includes(control.value.toLowerCase())) return null;
     return { invalidEmail: true };
   }
 
-  remove(removeEmail: string) {
-    this.emailArr = this.emailArr.filter((email) => removeEmail !== email);
+  emailsChanged() {
+    if (this.emails.original === this.emails.changed) return true;
+    if (this.emails.original == null || this.emails.changed == null) return false;
+    if (this.emails.original.length !== this.emails.changed.length) return false;
+    for (var i = 0; i < this.emails.original.length; ++i) {
+      if (this.emails.original[i] !== this.emails.changed[i]) return false;
+    }
+    return true;
   }
 
   async push() {
     const res: any = await this.http.emailExists(
       this.addEmailForm.controls.email.value.toLowerCase()
     );
-    console.log(res);
 
     if (!res.body.exists) {
-      this.invalidEmails.push(
+      this.emails.invalid.push(
         this.addEmailForm.controls.email.value.toLowerCase()
       );
       this.addEmailForm.controls.email.setErrors({ emailNotExists: true });
       return;
     }
     if (res.body.admin) {
-      this.invalidEmails.push(
+      this.emails.invalid.push(
         this.addEmailForm.controls.email.value.toLowerCase()
       );
       this.addEmailForm.controls.email.setErrors({ invalidEmail: true });
       return;
     }
-    this.emailArr.push(this.addEmailForm.controls.email.value.toLowerCase());
+    this.emails.changed.push(this.addEmailForm.controls.email.value.toLowerCase());
     this.addEmailForm.controls.email.setValue('');
   }
 
   async addUsersToRanking() {
+
     const request = {
       idRanking: this.idRanking,
-      users: this.emailArr,
+      users: this.emails
     };
     await this.http.addUsersToRanking(request);
   }

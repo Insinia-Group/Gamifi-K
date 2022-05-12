@@ -333,7 +333,7 @@ export class HttpService {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve(res.body);
           } else {
             reject({ status: false });
           }

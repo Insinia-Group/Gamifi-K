@@ -211,6 +211,7 @@ export class UserRankingDevComponent implements OnInit {
   public idSelect: number;
   public joinCode: string;
   public isReady: boolean = false;
+  public idClient:number ;
 
   constructor(
     private router: Router,
@@ -253,8 +254,13 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
+    console.log(this.rankings);
+    
     if (this.rankings.length > 0) {
       this.nullRankings = false;
+      this.idClient = this.rankings[0].idClient;
+      console.log(this.idClient);
+
     } else {
       this.nullRankings = true;
     }
@@ -325,11 +331,11 @@ export class UserRankingDevComponent implements OnInit {
   async onCellValueChanged(event: any) {
     console.log(event.newValue);
 
-    if (event.newValue > this.insiniaPoints && !this.isModerator) {
-
+    if (event.data.idUser == this.idClient) {
+      this.notifier.notify('error', 'No puedes ponerte puntos a ti mismo.');
+      
+    } else if (event.newValue > this.insiniaPoints && !this.isModerator) {
       this.notifier.notify('error', 'No tienes tantos puntos.');
-    } else if (event.data.idUser == 1) {
-
     } else {
 
 

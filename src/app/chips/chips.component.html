@@ -31,7 +31,7 @@
     </div>
   </form>
   <div class="d-flex flex-wrap">
-    <div class="mt-1" *ngFor="let email of emails.changed">
+    <div class="mt-1" *ngFor="let email of emails.original">
       <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
         <div>
           {{ email
@@ -43,9 +43,10 @@
       </div>
     </div>
   </div>
-  <div *ngIf="emails.changed && emails.changed.length > 0" class="d-grid mt-2">
+  <div *ngIf="emails && emails.original.length > 0" class="d-grid mt-2">
+    <p>{{emails.added}}</p>
     <button
-      [disabled]="emailsChanged()"
+      [disabled]="emails.added.length === 0"
       class="btn btn-sm btn-outline-color"
       type="submit"
       (click)="addUsersToRanking()"
@@ -60,11 +61,19 @@
     ¿Quieres eliminar a <b>{{ selectedEmail }}</b> del ranking?
   </div>
   <div class="modal-footer p-1">
-    <button type="button" class="btn btn-sm btn-outline-color" (click)="remove()">
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-color"
+      (click)="remove()"
+    >
       Confirmar
     </button>
-    <button type="button" class="btn btn-sm btn-color text-light" data-bs-dismiss="modal">
-      Cancelar 
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+    >
+      Cancelar
     </button>
   </div>
 </modal>

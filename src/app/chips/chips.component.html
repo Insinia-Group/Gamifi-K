@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <form [formGroup]="addEmailForm">
+  <form @fadeIn [formGroup]="addEmailForm">
     <label class="text-color mt-3" for="email"
       >Introduce a los miembros del Ranking</label
     >
@@ -31,7 +31,7 @@
     </div>
   </form>
   <div class="d-flex flex-wrap">
-    <div class="mt-1" *ngFor="let email of emails.original">
+    <div @fadeIn class="mt-1" *ngFor="let email of emails.original">
       <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
         <div>
           {{ email
@@ -43,7 +43,10 @@
       </div>
     </div>
     <div class="mt-1" *ngFor="let added of emails.added">
-      <div class="bg-color text-light opacity-50 rounded-pill px-2 py-1 me-1">
+      <div
+        @fadeIn
+        class="bg-color text-light opacity-50 rounded-pill px-2 py-1 me-1"
+      >
         <div>
           {{ added
           }}<i
@@ -54,15 +57,14 @@
       </div>
     </div>
   </div>
-  <div *ngIf="emails && emails.original.length > 0" class="d-grid mt-2">
-    <p>{{emails.added}}</p>
+  <div @fadeIn *ngIf="emails && emails.original.length > 0" class="d-grid mt-2">
     <button
       [disabled]="emails.added.length === 0"
       class="btn btn-sm btn-outline-color"
       type="submit"
       (click)="addUsersToRanking()"
     >
-      Agregar a todos los usuarios
+      Añadir a los usuarios agregados
     </button>
   </div>
 </div>

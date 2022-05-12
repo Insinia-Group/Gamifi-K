@@ -4,13 +4,24 @@
 <div class="component-container" *ngIf="isReady">
 <div class="row sideTitle" @slideDownHideUp >
     <div class="col-6">
-      <div class="btn btn-primary col-6 col-md-2" data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
-      <div class="btn btn-primary col-6 col-md-2" routerLink="/create">Crear</div>
+      <div class="btn btn-primary col-5 col-md-2" data-bs-toggle="modal" data-bs-target="#addRankingModal" *ngIf="!nullRankings" >Añadir</div>
+      <div class="btn btn-primary col-5 col-md-2" routerLink="/create" *ngIf="!nullRankings">Crear</div>
     </div>
 </div>
-<div class="row">
+<div class="row ">
   
-    
+          <div class="card welcome m-5 h-25 " *ngIf="nullRankings" style="width: 40rem;">
+  <div class="card-body">
+    <h2 class="card-title">Bienvenido</h2>
+    <p class="card-text">No tienes rankings, puedes crear uno o pedir un codigo de acceso</p>
+    <div class="row">
+     <div class="btn btn-primary col-6 col-md-2 " data-bs-toggle="modal" data-bs-target="#addRankingModal" >Añadir</div>
+     <div class="btn btn-primary col-6 col-md-2" routerLink="/create">Crear</div>
+     </div>
+  </div>
+</div>
+
+
 <div
   class="sidebar show sidebar-start sidecont col-12 col-md-3"
   tabindex="-1"
@@ -18,6 +29,7 @@
   data-bs-keyboard="false"
   data-bs-backdrop="false"
 >
+  
   <div class="sidebar-body px-0">
     <ul
       class="nav nav-pills flex-column mb-sm-auto mb-0 "
@@ -25,8 +37,8 @@
     >
     
       <li class="nav-item">
-        
-        <div class="card mb-0">
+
+        <div class="card mb-0" *ngIf="!nullRankings">
           <div *ngFor="let item of rankings">
             <div class="m-4 ranking-card" (click)="rankingData(item.id,item.name)">
               <div class="card" style="max-width: 500px">
@@ -131,7 +143,7 @@
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#renewJoinCodeRankingModal">Codigo acceso</button>
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#deleteRankingModal">Eliminar ranking</button>
   <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Salir del ranking</button>
-  <a class="btn btn-primary  col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Puntos Insinia: {{insiniaPoints}}</a>
+  <a class="btn btn-primary  col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#puntosModal">Puntos Insinia: {{insiniaPoints}}</a>
   
 <br>
 <br>
@@ -299,3 +311,26 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="puntosModal" tabindex="-1" aria-labelledby="puntosModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="puntosModal">Puntos Insinia</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>Tienes {{insiniaPoints}} puntos Insinia</h3>
+        <h3> Estos puntos sirven para valuar a los compañeros de ranking segun sus aptitudes</h3>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="exitRanking()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

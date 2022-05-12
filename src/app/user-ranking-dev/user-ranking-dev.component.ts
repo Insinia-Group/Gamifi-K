@@ -211,7 +211,7 @@ export class UserRankingDevComponent implements OnInit {
   public nameSelect: string;
   public idSelect: number;
   public joinCode: string;
-  public isReady:boolean = false;
+  public isReady: boolean = false;
 
   constructor(
     private router: Router,
@@ -254,7 +254,12 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    this.isReady =true;
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
+    }
+    this.isReady = true;
 
 
 
@@ -320,55 +325,55 @@ export class UserRankingDevComponent implements OnInit {
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
     console.log(event.newValue);
-    
-    if(event.newValue>this.insiniaPoints){
+
+    if (event.newValue > this.insiniaPoints && !this.isModerator) {
 
       this.notifier.notify('error', 'No tienes tantos puntos.');
-    }else if(event.data.idUser == 1){
+    } else if (event.data.idUser == 1) {
 
-    }else{
+    } else {
 
 
-    // , userPoints: any
-    console.log(event);
-    // userPoints = -1;
-    if (!isNaN(event.value)) {
+      // , userPoints: any
+      console.log(event);
+      // userPoints = -1;
+      if (!isNaN(event.value)) {
 
-      let insinia = event.colDef.field;
+        let insinia = event.colDef.field;
 
-      if (insinia == 'Puntos') {
-        const data = {
-          idRanking: event.data.id,
-          idUser: event.data.idUser,
-          points: parseInt(event.value),
-          idUserModified: event.data.idUser,
-          insinia: 'puntos',
-          oldValue: event.oldValue
-        };
-        await this.http.updateData(data);
-      } else if (
-        insinia == 'Responsabilidad' ||
-        insinia == 'Cooperacion' ||
-        insinia == 'Autonomia' ||
-        insinia == 'Emocional' ||
-        insinia == 'Inteligencia'
-      ) {
-        const data = {
-          idRanking: event.data.id,
-          idUserModified: event.data.idUser,
-          points: parseInt(event.value),
-          insinia: insinia,
-          oldValue: event.oldValue,
-          isModerator: this.isModerator
-        };
-        await this.http.updateInsinia(data);
-      } else {
-        event.value = event.oldValue;
+        if (insinia == 'Puntos') {
+          const data = {
+            idRanking: event.data.id,
+            idUser: event.data.idUser,
+            points: parseInt(event.value),
+            idUserModified: event.data.idUser,
+            insinia: 'puntos',
+            oldValue: event.oldValue
+          };
+          await this.http.updateData(data);
+        } else if (
+          insinia == 'Responsabilidad' ||
+          insinia == 'Cooperacion' ||
+          insinia == 'Autonomia' ||
+          insinia == 'Emocional' ||
+          insinia == 'Inteligencia'
+        ) {
+          const data = {
+            idRanking: event.data.id,
+            idUserModified: event.data.idUser,
+            points: parseInt(event.value),
+            insinia: insinia,
+            oldValue: event.oldValue,
+            isModerator: this.isModerator
+          };
+          await this.http.updateInsinia(data);
+        } else {
+          event.value = event.oldValue;
+        }
       }
     }
-  }
 
-    this.rankingData(this.idSelect,this.nameSelect,);
+    this.rankingData(this.idSelect, this.nameSelect,);
 
   }
 
@@ -395,7 +400,7 @@ export class UserRankingDevComponent implements OnInit {
   /**********DEV */
 
   async rankingData(rankingId: any, rankingName: string) {
-    
+
     const data = {
       rankingId: rankingId,
     };
@@ -413,7 +418,7 @@ export class UserRankingDevComponent implements OnInit {
     this.rowData = this.rowData.response;
     this.nameSelect = rankingName;
     this.idSelect = rankingId;
-    
+
     this.rankingSelect = true;
 
   }
@@ -446,6 +451,12 @@ export class UserRankingDevComponent implements OnInit {
 
     await this.http.exitRanking(data);
     this.rankings = await this.http.getRanking();
+    this.rankingSelect = false;
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
+    }
   }
 
 

@@ -6,7 +6,7 @@
 .sideTitle{
 margin-top:3.1rem;
 margin-bottom:1rem;
-margin-left: 3rem;
+margin-left: 0rem;
 color: var(--corp-color-one);
 font: 732 47px/33px Roboto !important;
 
@@ -31,6 +31,7 @@ min-width: 11rem;
   top: 8rem ;
   z-index: 1;
   max-width: 100%;
+  width: 22rem;
   height: 40rem;
   overflow:scroll;
 }
@@ -38,7 +39,7 @@ min-width: 11rem;
 }
 
 .ranking {
-  width: 75rem;
+  width: 60rem;
   height: 34rem;
   margin-right: 1rem;
   margin-top: 1rem;

@@ -476,4 +476,21 @@ export class HttpService {
     })
   }
 
+  emailExists(email: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.api.toThisPath('/exist/email/' + email), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({status: true, body: res.body});
+          } else {
+            resolve({status: false});
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error checking email existence.');
+        }
+      );
+    })
+  }
 }

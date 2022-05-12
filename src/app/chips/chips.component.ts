@@ -19,9 +19,8 @@ declare var $: any;
 export class ChipsComponent implements OnInit {
   public emails: any = {
     original: [],
-    changed: [],
-    removed: [],
-    invalid: []
+    invalid: [],
+    added: [],
   }
   public selectedEmail: string;
   public addEmailForm: FormGroup;
@@ -60,9 +59,10 @@ export class ChipsComponent implements OnInit {
   async remove() {
     this.modal('removeUser', 'hide')
     const removeEmail = this.selectedEmail;
-    this.emails.changed = this.emails.changed.filter((email: string) => removeEmail !== email);
+    this.emails.original = this.emails.original.filter((email: string) => removeEmail !== email);
     const email: object = {
-      email: removeEmail
+      email: removeEmail,
+      idRanking: this.idRanking
     }
     await this.http.removeUserFromRanking(email);
   }
@@ -74,11 +74,10 @@ export class ChipsComponent implements OnInit {
   async getRankingUsers() {
     const res: any = await this.http.getRankingUsersById(this.idRanking);
     this.emails.original = res;
-    this.emails.changed = res;
   }
 
   emailAlreadyExist(control: AbstractControl): { [key: string]: any } | null {
-    if (!this.emails.changed.includes(control.value.toLowerCase())) return null;
+    if (!this.emails.original.includes(control.value.toLowerCase())) return null;
     return { emailAlreadyExist: true };
   }
 
@@ -88,11 +87,11 @@ export class ChipsComponent implements OnInit {
   }
 
   emailsChanged() {
-    if (this.emails.original === this.emails.changed) return true;
-    if (this.emails.original == null || this.emails.changed == null) return false;
-    if (this.emails.original.length !== this.emails.changed.length) return false;
+    if (this.emails.original === this.emails.original) return true;
+    if (this.emails.original == null || this.emails.original == null) return false;
+    if (this.emails.original.length !== this.emails.original.length) return false;
     for (var i = 0; i < this.emails.original.length; ++i) {
-      if (this.emails.original[i] !== this.emails.changed[i]) return false;
+      if (this.emails.original[i] !== this.emails.original[i]) return false;
     }
     return true;
   }
@@ -116,15 +115,15 @@ export class ChipsComponent implements OnInit {
       this.addEmailForm.controls.email.setErrors({ invalidEmail: true });
       return;
     }
-    this.emails.changed.push(this.addEmailForm.controls.email.value.toLowerCase());
+    this.emails.added.push(this.addEmailForm.controls.email.value.toLowerCase());
+    await this.getRankingUsers();
     this.addEmailForm.controls.email.setValue('');
   }
 
   async addUsersToRanking() {
-
     const request = {
       idRanking: this.idRanking,
-      users: this.emails
+      users: this.emails.added
     };
     await this.http.addUsersToRanking(request);
   }

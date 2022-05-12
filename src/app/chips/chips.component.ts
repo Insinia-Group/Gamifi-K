@@ -67,6 +67,10 @@ export class ChipsComponent implements OnInit {
     await this.http.removeUserFromRanking(email);
   }
 
+  removeAdded(added: string) {
+    this.emails.added = this.emails.added.filter((email: string) => added !== email);
+  }
+
   setSelected(email: string): void {
     this.selectedEmail = email;
   }
@@ -100,7 +104,7 @@ export class ChipsComponent implements OnInit {
     const res: any = await this.http.emailExists(
       this.addEmailForm.controls.email.value.toLowerCase()
     );
-
+      
     if (!res.body.exists) {
       this.emails.invalid.push(
         this.addEmailForm.controls.email.value.toLowerCase()
@@ -115,8 +119,8 @@ export class ChipsComponent implements OnInit {
       this.addEmailForm.controls.email.setErrors({ invalidEmail: true });
       return;
     }
-    this.emails.added.push(this.addEmailForm.controls.email.value.toLowerCase());
     await this.getRankingUsers();
+    this.emails.added.push(this.addEmailForm.controls.email.value.toLowerCase());
     this.addEmailForm.controls.email.setValue('');
   }
 
@@ -126,5 +130,7 @@ export class ChipsComponent implements OnInit {
       users: this.emails.added
     };
     await this.http.addUsersToRanking(request);
+    await this.getRankingUsers();
+    this.emails.added = [];
   }
 }

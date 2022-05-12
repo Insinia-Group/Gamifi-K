@@ -32,6 +32,7 @@ import { HistorialComponent } from './historial/historial.component';
 import { AddRankingComponent } from './add-ranking/add-ranking.component';
 import { ValidatorErrorComponent } from './components/validator-error/validator-error.component';
 import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
+import { ChipsComponent } from './chips/chips.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.com
     HistorialComponent,
     AddRankingComponent,
     ValidatorErrorComponent,
-    UserRankingDevComponent
+    UserRankingDevComponent,
+    ChipsComponent,
   ],
   imports: [
     NotifierModule.withConfig(NotifierConfiguration),
@@ -65,14 +67,17 @@ import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.com
     AppRoutingModule,
     FormsModule,
     MatInputModule,
-    AgGridModule.withComponents([GenderRendererComponent, MoodRendererComponent]),
+    AgGridModule.withComponents([
+      GenderRendererComponent,
+      MoodRendererComponent,
+    ]),
     SwiperModule,
     NgxTippyModule,
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

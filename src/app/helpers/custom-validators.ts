@@ -42,4 +42,12 @@ export class CustomValidator {
         }
         return null;
     }
+
+    static isVoid(control: AbstractControl) {
+        const value = control.value;
+        if (value == "" || value.length === 0) {
+            return { 'isVoid': true }
+        }
+        return null;
+    }
 }

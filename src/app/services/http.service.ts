@@ -1,8 +1,9 @@
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {API} from '../models/api';
-import {Router} from '@angular/router';
-import {JwtService} from './jwt.service';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { API } from '../models/api';
+import { Router } from '@angular/router';
+import { JwtService } from './jwt.service';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,9 @@ export class HttpService {
           }
         },
         (err) => {
-          reject('Error with the login ' + err);
+          console.log(err);
+
+          reject('Error with the login ');
         }
       );
     });
@@ -79,7 +82,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the rankings. ' + err);
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -91,14 +94,31 @@ export class HttpService {
       this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, {headers: headers}).subscribe(
         (res) => {
           if (res) {
-            console.log(res)
             resolve(res);
           } else {
             reject('Server Error');
           }
         },
         (err) => {
-          reject('Error setting the profile picture.' + err);
+          reject('Error setting the profile picture.');
+        }
+      );
+    });
+  }
+
+  getRankingUsersById(id: number) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/getRankingUsersById'), { idRanking: id }, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -116,7 +136,26 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the rankings. ' + err);
+          reject('Error getting the rankings.');
+        }
+      );
+    });
+  }
+
+
+  removeUserFromRanking(email: object) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/removeUserFromRanking'), email, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve(res.body);
+          } else {
+            reject('Server Error');
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -136,7 +175,7 @@ export class HttpService {
           }
         },
         (err) => {
-          reject('Error with the status.' + err);
+          reject('Error with the status.');
         }
       );
     });
@@ -176,7 +215,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the avatar. ' + err);
+          reject('Error getting the avatar.');
         }
       );
     });
@@ -229,7 +268,7 @@ export class HttpService {
           }
         },
         (err) => {
-          reject('Error getting the rankings.' + err);
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -247,7 +286,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the rankings. ' + err);
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -265,7 +304,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the rankings. ' + err);
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -283,7 +322,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the rankings. ' + err);
+          reject('Error getting the rankings.');
         }
       );
     });
@@ -294,6 +333,42 @@ export class HttpService {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
+            resolve({ status: true });
+          } else {
+            reject({ status: false });
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error getting the profile.');
+        }
+      );
+    });
+  }
+
+  emailExists(email: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(this.api.toThisPath('/exist/email/' + email), this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({ status: true, body: res.body });
+          } else {
+            resolve({ status: false });
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error checking email existence.');
+        }
+      );
+    })
+  }
+
+  addUsersToRanking(data: any) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/addUsersToRanking'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
           } else {
             reject('Server Error');
@@ -301,30 +376,28 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the profile.' + err);
+          reject('Error adding a ranking.');
         }
       );
-    });
+    })
   }
 
   addRanking(data: any) {
     return new Promise((resolve, reject) => {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
-          console.log(res);
           if (res.status == 200 && res.statusText == 'OK') {
-            if (res.body.done) {
               resolve({status: true});
             } else {
               resolve({status: false});
             }
           } else {
-            reject('Server Error');
+            resolve({ status: false });
           }
         },
         (err) => {
           console.log(err)
-          reject('Error adding a ranking.' + err);
+          reject('Error adding a ranking.');
         }
       );
     })
@@ -342,7 +415,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error changing profile data.');
         }
       );
     })
@@ -360,7 +433,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error changing profile data.');
         }
       );
     })
@@ -378,7 +451,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error changing profile data.');
         }
       );
     })
@@ -396,12 +469,11 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error getting the profile.' + err);
+          reject('Error getting the profile.');
         }
       );
     });
   }
-
 
 
   revertHistory(profile: any) {
@@ -416,7 +488,7 @@ export class HttpService {
         },
         (err) => {
           console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error changing profile data.');
         }
       );
     })

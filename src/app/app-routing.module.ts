@@ -6,7 +6,6 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
-import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { HistorialComponent } from './historial/historial.component';
 import { AddRankingComponent } from './add-ranking/add-ranking.component';
 import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
@@ -26,7 +25,6 @@ const routes: Routes = [
   { path: 'profile', component: UserPageComponent, pathMatch: 'full' },
   { path: '404', component: NotFoundComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
-  { path: 'rankings', component: UserRankingComponent, pathMatch: 'full' },
   { path: 'history', component: HistorialComponent, pathMatch: 'full' },
   { path: 'create', component: AddRankingComponent, pathMatch: 'full' },
   { path: 'chips', component: ChipsComponent, pathMatch: 'full' },

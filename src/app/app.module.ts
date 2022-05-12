@@ -16,7 +16,6 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
-import { UserRankingComponent } from './user-ranking/user-ranking.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -43,7 +42,6 @@ import { ChipsComponent } from './chips/chips.component';
     AboutComponent,
     NotFoundComponent,
     UserPageComponent,
-    UserRankingComponent,
     LoadingComponent,
     LogoComponent,
     NavbarComponent,

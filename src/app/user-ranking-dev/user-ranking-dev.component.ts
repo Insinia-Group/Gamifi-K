@@ -319,17 +319,20 @@ export class UserRankingDevComponent implements OnInit {
 
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
-    console.log(event.node);
+    console.log(event.newValue);
+    
+    if(event.newValue>this.insiniaPoints){
+
+      this.notifier.notify('error', 'No tienes tantos puntos.');
+    }else if(event.data.idUser == 1){
+
+    }else{
 
 
-
-
-    this.notifier.notify('default', 'No puedes autoevaluarte');
     // , userPoints: any
     console.log(event);
     // userPoints = -1;
     if (!isNaN(event.value)) {
-      console.log(event.data.idUser);
 
       let insinia = event.colDef.field;
 
@@ -365,6 +368,10 @@ export class UserRankingDevComponent implements OnInit {
     }
   }
 
+    this.rankingData(this.idSelect,this.nameSelect,);
+
+  }
+
 
 
   async collapse(id: string, state: string) {
@@ -388,6 +395,7 @@ export class UserRankingDevComponent implements OnInit {
   /**********DEV */
 
   async rankingData(rankingId: any, rankingName: string) {
+    
     const data = {
       rankingId: rankingId,
     };
@@ -401,9 +409,11 @@ export class UserRankingDevComponent implements OnInit {
       this.isModerator = false;
     }
     this.joinCode = this.rowData.joinCode;
+    this.insiniaPoints = this.rowData.insiniaPoints;
     this.rowData = this.rowData.response;
     this.nameSelect = rankingName;
     this.idSelect = rankingId;
+    
     this.rankingSelect = true;
 
   }

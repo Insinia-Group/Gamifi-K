@@ -131,6 +131,7 @@
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#renewJoinCodeRankingModal">Codigo acceso</button>
   <button class="btn btn-primary col-6 col-md-2 bootonGestion" *ngIf="rankingSelect && isModerator" data-bs-toggle="modal" data-bs-target="#deleteRankingModal">Eliminar ranking</button>
   <button class="btn btn-primary col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Salir del ranking</button>
+  <a class="btn btn-primary  col-6 col-md-2 " *ngIf="rankingSelect && !isModerator" data-bs-toggle="modal" data-bs-target="#exitRankingModal">Puntos Insinia: {{insiniaPoints}}</a>
   
 <br>
 <br>

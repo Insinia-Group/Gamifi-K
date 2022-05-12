@@ -25,6 +25,7 @@ font: 732 47px/33px Roboto !important;
 background-color: var(--corp-color-one);
 border-color: var(--corp-color-two);
 margin-left:1rem;
+min-width: 11rem;
 }
 .sidecont {
   top: 8rem ;

@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { API } from '../models/api';
-import { Router } from '@angular/router';
-import { JwtService } from './jwt.service';
-import { User } from '../models/user';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {API} from '../models/api';
+import {Router} from '@angular/router';
+import {JwtService} from './jwt.service';
+import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -91,7 +91,7 @@ export class HttpService {
   setProfilePicture(profile: object) {
     return new Promise((resolve, reject) => {
       const headers = this.createHeader(['Content-type'], ['application/x-www-form-urlencoded; charset=UTF-8'], true);
-      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, { headers: headers }).subscribe(
+      this.http.post<HttpResponse<any>>(this.api.toThisPath('/profile/image'), profile, {headers: headers}).subscribe(
         (res) => {
           if (res) {
             resolve(res);
@@ -108,7 +108,7 @@ export class HttpService {
 
   getRankingUsersById(id: number) {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.api.toThisPath('/getRankingUsersById'), { idRanking: id }, this.observe).subscribe(
+      this.http.post<any>(this.api.toThisPath('/getRankingUsersById'), {idRanking: id}, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve(res.body);
@@ -333,9 +333,9 @@ export class HttpService {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
-            reject({ status: false });
+            reject({status: false});
           }
         },
         (err) => {
@@ -351,9 +351,9 @@ export class HttpService {
       this.http.get<any>(this.api.toThisPath('/exist/email/' + email), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true, body: res.body });
+            resolve({status: true, body: res.body});
           } else {
-            resolve({ status: false });
+            resolve({status: false});
           }
         },
         (err) => {
@@ -363,6 +363,26 @@ export class HttpService {
       );
     })
   }
+
+  emailExistsRegister(data: string) {
+    return new Promise((resolve, reject) => {
+      this.http.post<any>(this.api.toThisPath('/validateEmail'), data, this.observe).subscribe(
+        (res) => {
+          if (res.status == 200 && res.statusText == 'OK') {
+            resolve({status: true, body: res.body});
+          } else {
+            resolve({status: false});
+          }
+        },
+        (err) => {
+          console.log(err)
+          reject('Error checking email existence.');
+        }
+      );
+    })
+  }
+
+
 
   addUsersToRanking(data: any) {
     return new Promise((resolve, reject) => {
@@ -387,7 +407,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/ranking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -405,7 +425,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/profile/data'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -423,7 +443,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/updateData'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -441,7 +461,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/updateInsinia'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -478,7 +498,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/revertHistory'), profile, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -496,7 +516,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/deleteRanking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -514,7 +534,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/exitRanking'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }
@@ -532,7 +552,7 @@ export class HttpService {
       this.http.post<any>(this.api.toThisPath('/renewJoinCode'), data, this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-            resolve({ status: true });
+            resolve({status: true});
           } else {
             reject('Server Error');
           }

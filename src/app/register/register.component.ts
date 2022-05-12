@@ -1,14 +1,13 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
 import {RegisterValidation} from '../models/registerValidation';
-import {ConfirmedValidator, futureDate} from '../models/confirmed.validator';
-import {Router, RouterLink} from '@angular/router';
+import {ConfirmedValidator} from '../models/confirmed.validator';
+import {Router} from '@angular/router';
 import {HttpService} from '../services/http.service';
 import {User} from '../models/user';
 import {API} from '../models/api';
 import * as bcrypt from 'bcryptjs';
 import {fadeIn} from '../config/animations.config';
-import {WeekDay} from '@angular/common';
 import {NotifierService} from 'angular-notifier';
 
 @Injectable({
@@ -135,10 +134,13 @@ export class RegisterComponent implements OnInit {
     /* this.email = (document.getElementById("email") as HTMLInputElement).value;
     this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
-    const response: any = await this.http.emailExists(this.registerForm.controls.email.value)
-    console.log(response.body.exists);
+    const data: any = {
+      email: this.registerForm.controls.email.value
+    }
+    const response: any = await this.http.emailExistsRegister(data)
+    console.log(response);
 
-    if (response.body.exists) {
+    if (!response.body) {
       this.notifier.notify('error', 'Este correo ya esta registrado');
     }
     else if (!this.registerForm.controls.email.errors && !this.registerForm.controls.password.errors && !this.registerForm.controls.password2.errors) {

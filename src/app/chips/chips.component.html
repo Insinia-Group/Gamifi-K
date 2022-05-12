@@ -42,6 +42,17 @@
         </div>
       </div>
     </div>
+    <div class="mt-1" *ngFor="let added of emails.added">
+      <div class="bg-color text-light opacity-50 rounded-pill px-2 py-1 me-1">
+        <div>
+          {{ added
+          }}<i
+            class="bi bi-x-circle-fill ms-1 link-white-to-color"
+            (click)="removeAdded(added)"
+          ></i>
+        </div>
+      </div>
+    </div>
   </div>
   <div *ngIf="emails && emails.original.length > 0" class="d-grid mt-2">
     <p>{{emails.added}}</p>

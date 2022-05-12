@@ -453,5 +453,6 @@ export class UserRankingDevComponent implements OnInit {
     };
     await this.http.renewJoinCode(data);
     this.rankings = await this.http.getRanking();
+
   }
 }

@@ -29,7 +29,10 @@ export class UserPageComponent implements OnInit {
   public editProfile: boolean;
   public isValidToUpdate: boolean;
 
-  constructor(private http: HttpService, private router: Router, private notifier: NotifierService, private jwt: JwtService) {
+  constructor(
+    private http: HttpService,
+    private notifier: NotifierService,
+  ) {
     this.profileForm = new FormGroup({
       name: new FormControl('', [
         Validators.required,
@@ -120,11 +123,9 @@ export class UserPageComponent implements OnInit {
   toggleEdit() {
     this.editProfile = !this.editProfile;
     if (this.editProfile) {
-      this.toggleEditBtn.nativeElement.innerHTML =
-        ' Dejar de editar';
+      this.toggleEditBtn.nativeElement.innerHTML = ' Dejar de editar';
     } else {
-      this.toggleEditBtn.nativeElement.innerHTML =
-        ' Editar perfil';
+      this.toggleEditBtn.nativeElement.innerHTML = ' Editar perfil';
     }
   }
 
@@ -190,15 +191,15 @@ export class UserPageComponent implements OnInit {
     const profile: any = {};
     Object.keys(this.profileForm.controls).forEach((key) => {
       if (this.profileForm.controls[key].value !== this.profile[key]) {
-        profile[key] = this.profileForm.controls[key].value
+        profile[key] = this.profileForm.controls[key].value;
       }
-    })
-    if (!profile) throw 'You must change your profile data'
+    });
+    if (!profile) throw 'You must change your profile data';
     const res = await this.http.updateProfile(profile);
     if (res) {
       await this.setProfile();
       this.toggleEdit();
-      this.notifier.notify('default', 'Datos cambiados correctamente.')
+      this.notifier.notify('default', 'Datos cambiados correctamente.');
     }
   }
 

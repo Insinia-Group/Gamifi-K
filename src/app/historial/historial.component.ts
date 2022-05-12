@@ -74,10 +74,12 @@ export class HistorialComponent implements OnInit {
     data = {
       idHistory:  selectedData[0].idHistory,
       insinia: selectedData[0].Insinia,
-      idUser: selectedData[0].idEvaluado,
+      idEvaluado: selectedData[0].idEvaluado,
+      idEvaluador: selectedData[0].idEvaluador,
       idRanking: selectedData[0].idRanking,
       Puntos: selectedData[0].Puntos,
       oldValue: selectedData[0].oldValue,
+
 
     };
     

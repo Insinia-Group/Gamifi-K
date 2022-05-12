@@ -67,7 +67,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light btn-nav" routerLink="/login">
+          <a class="nav-link text-light btn-nav" routerLink="/profile">
             <i class="bi icon-lg bi-person-circle"
             [ngxTippy]="'Perfil'"
             [tippyProps]="{
@@ -77,6 +77,19 @@
             ></i>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link text-light btn-nav" (click)="logout()" routerLink="/login"  >
+            <i class="icon-lg bi gg-log-off "
+            [ngxTippy]="'Salir'"
+            [tippyProps]="{
+            arrow: false,
+            placement: 'top'
+            }"
+            ></i>
+          </a>
+        </li>
+        
+
       </ul>
     </div>
   </div>

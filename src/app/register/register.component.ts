@@ -1,14 +1,15 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { RegisterValidation } from '../models/registerValidation';
-import { ConfirmedValidator, futureDate } from '../models/confirmed.validator';
-import { Router, RouterLink } from '@angular/router';
-import { HttpService } from '../services/http.service';
-import { User } from '../models/user';
-import { API } from '../models/api';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
+import {RegisterValidation} from '../models/registerValidation';
+import {ConfirmedValidator, futureDate} from '../models/confirmed.validator';
+import {Router, RouterLink} from '@angular/router';
+import {HttpService} from '../services/http.service';
+import {User} from '../models/user';
+import {API} from '../models/api';
 import * as bcrypt from 'bcryptjs';
-import { fadeIn } from '../config/animations.config';
-import { WeekDay } from '@angular/common';
+import {fadeIn} from '../config/animations.config';
+import {WeekDay} from '@angular/common';
+import {NotifierService} from 'angular-notifier';
 
 @Injectable({
   providedIn: "root"
@@ -44,12 +45,12 @@ export class RegisterComponent implements OnInit {
   api: API;
   futureDate: boolean;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private request: HttpService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpService, private notifier: NotifierService) {
     this.api = new API;
     this.valid = new RegisterValidation();
   }
 
-  get f() { return this.registerForm.controls; }
+  get f() {return this.registerForm.controls;}
   ngOnInit(): void {
 
     document.getElementById("dateBirth")?.setAttribute("max", this.dateJoined.toISOString());
@@ -72,7 +73,7 @@ export class RegisterComponent implements OnInit {
     } else {
       this.samePass = false;
     }
-   
+
 
   }
 
@@ -81,13 +82,13 @@ export class RegisterComponent implements OnInit {
   thirdFormActive: boolean = false;
   match = ConfirmedValidator('password', 'password2');
 
-  dateValidator(control: AbstractControl): { [key: string]: any } | null {
+  dateValidator(control: AbstractControl): {[key: string]: any} | null {
 
     if (this.registerForm) {
       console.log();
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value < "1900-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
-          return { 'notEqual': true };
+          return {'notEqual': true};
         }
       }
     }
@@ -95,11 +96,11 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  passwordValidator(control: AbstractControl): { [key: string]: any } | null {
+  passwordValidator(control: AbstractControl): {[key: string]: any} | null {
     if (this.registerForm) {
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value !== this.registerForm.controls.password.value) {
-          return { 'notEqual': true };
+          return {'notEqual': true};
         }
       }
     }
@@ -130,11 +131,17 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  nextSecond() {
+  async nextSecond() {
     /* this.email = (document.getElementById("email") as HTMLInputElement).value;
     this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
     this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
-    if (!this.registerForm.controls.email.errors && !this.registerForm.controls.password.errors && !this.registerForm.controls.password2.errors) {
+    const response: any = await this.http.emailExists(this.registerForm.controls.email.value)
+    console.log(response.body.exists);
+
+    if (response.body.exists) {
+      this.notifier.notify('error', 'Este correo ya esta registrado');
+    }
+    else if (!this.registerForm.controls.email.errors && !this.registerForm.controls.password.errors && !this.registerForm.controls.password2.errors) {
       this.secondFormActive = false;
       this.thirdFormActive = true;
     }
@@ -148,7 +155,7 @@ export class RegisterComponent implements OnInit {
     this.secondFormActive = true;
   }
 
-   goHome() {
+  goHome() {
     this.router.navigate(['/home']);
   }
 
@@ -178,9 +185,9 @@ export class RegisterComponent implements OnInit {
         status: 1
       }
       console.log(user);
-      
 
-      this.request.register(user);
+
+      this.http.register(user);
     }
   }
 

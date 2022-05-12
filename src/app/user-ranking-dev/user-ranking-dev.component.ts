@@ -1,28 +1,24 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { fadeIn } from '../config/animations.config';
-import { HttpService } from '../services/http.service';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {fadeIn, slideDownHideUp} from 'src/app/config/animations.config';
+import {HttpService} from '../services/http.service';
 import {
   ColDef,
   GridReadyEvent,
   ICellRendererParams,
-  RowNode,
 } from 'ag-grid-community';
-import { MoodRendererComponent } from '../ag-grid/mood-renderer/mood-renderer.component';
-import { GenderRendererComponent } from '../ag-grid/gender-renderer/gender-renderer.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { AgGridModule } from 'ag-grid-angular';
-import { Observable } from 'rxjs';
-import { Ranking } from '../models/rankings';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MoodRendererComponent} from '../ag-grid/mood-renderer/mood-renderer.component';
+import {GenderRendererComponent} from '../ag-grid/gender-renderer/gender-renderer.component';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {NotifierService} from 'angular-notifier';
 declare var $: any;
 
 @Component({
   selector: 'app-user-ranking-dev',
   templateUrl: './user-ranking-dev.component.html',
   styleUrls: ['./user-ranking-dev.component.css'],
-  animations: [fadeIn],
+  animations: [fadeIn, slideDownHideUp]
 })
 export class UserRankingDevComponent implements OnInit {
   private resizeListenerFunc = () => {
@@ -37,24 +33,24 @@ export class UserRankingDevComponent implements OnInit {
   }
 
   public responsiveColumn: ColDef[] = [
-    { field: 'Nombre', sortable: true, filter: true },
-    { field: 'Apellido', filter: true },
-    { field: 'Puntos', sortable: true, filter: true },
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true},
   ];
 
   columnDefs: ColDef[] = [
-    { field: 'Nombre', sortable: true, filter: true },
-    { field: 'Apellido', filter: true },
-    { field: 'Puntos', sortable: true, filter: true },
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true},
     // {field: 'id', hide: true},
-    { field: 'idUser', hide: true },
-    { field: 'isModerator', hide: true },
+    {field: 'idUser', hide: true},
+    {field: 'isModerator', hide: true},
     {
       field: 'Responsabilidad',
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -67,7 +63,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -80,7 +76,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -93,7 +89,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -106,7 +102,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -117,18 +113,18 @@ export class UserRankingDevComponent implements OnInit {
   ];
 
   columnDefsModerator: ColDef[] = [
-    { field: 'Nombre', sortable: true, filter: true },
-    { field: 'Apellido', filter: true },
-    { field: 'Puntos', sortable: true, filter: true, editable: true },
-    { field: 'id', hide: true },
-    { field: 'idUser', hide: true },
-    { field: 'isModerator', hide: true },
+    {field: 'Nombre', sortable: true, filter: true},
+    {field: 'Apellido', filter: true},
+    {field: 'Puntos', sortable: true, filter: true, editable: true},
+    {field: 'id', hide: true},
+    {field: 'idUser', hide: true},
+    {field: 'isModerator', hide: true},
     {
       field: 'Responsabilidad',
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -141,7 +137,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -154,7 +150,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -167,7 +163,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -180,7 +176,7 @@ export class UserRankingDevComponent implements OnInit {
       cellRendererSelector: function (params: ICellRendererParams) {
         let genderDetails = {
           component: GenderRendererComponent,
-          params: { values: this },
+          params: {values: this},
           componente: MoodRendererComponent,
         };
 
@@ -189,9 +185,9 @@ export class UserRankingDevComponent implements OnInit {
       editable: true,
     },
   ];
+
   public rowData: any;
   public rankings: any;
-  public rankingsModerator: any;
   public Ranking: any;
   public nullRankings: boolean;
   public navbarStatus: boolean;
@@ -203,8 +199,6 @@ export class UserRankingDevComponent implements OnInit {
   public gridApi: any;
   public columnApi: any;
   public defaultColDef: any;
-  public rankingsUserView: boolean = true;
-  public rankingsModeratorView: boolean = true;
   public contadorTippy: any = 'a' + 1;
   public isInsinia: boolean;
   public sessionPoints: any;
@@ -212,11 +206,17 @@ export class UserRankingDevComponent implements OnInit {
   public ran = (Math.random() + 1).toString(36).substring(7);
   public ale = (Math.random() + 1).toString(36).substring(7);
   public rankingSelect = false;
+  public columnDefsSelect: any;
+  public isModerator: any;
+  public nameSelect: string;
+  public idSelect: number;
+  public joinCode: string;
+  public isReady: boolean = false;
 
   constructor(
     private router: Router,
     private http: HttpService,
-    private httpC: HttpClient
+    private notifier: NotifierService
   ) {
     this.goupStatus = false;
     this.navbarStatus = false;
@@ -254,29 +254,33 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    this.rankingsModerator = await this.http.getRankingModerator();
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
+    }
+    this.isReady = true;
+
+
 
     if (this.rankings.length > 0) {
       this.nullRankings = false;
     } else {
       this.nullRankings = true;
     }
-    console.log(this.rankings.rankingData);
-    console.log(this.rankingsModerator);
-
-    // this.rowData = await this.http.getRankingModerator();
   }
 
-  async addRankingByCode() {
-    if (this.addRanking.controls.rankingId.value != '') {
+  async addRankingByCode(code: any) {
+    if (code != '') {
       this.showAdd = false;
-      this.rankingId = this.addRanking.controls.rankingId.value;
-      const code = {
-        code: this.rankingId,
+      const data = {
+        code: code
       };
-      this.http.addRankingByCode(code);
+      const ga = this.http.addRankingByCode(data);
+
+      console.log(ga);
+
       this.rankings = await this.http.getRanking();
-      // this.rowData = await this.http.getRankingData();
       this.onGridSizeChanged(this.gridApi);
       this.nullRankings = false;
     } else {
@@ -313,61 +317,67 @@ export class UserRankingDevComponent implements OnInit {
     }
   }
 
+  public onRowEditingStarted(event: any) {
+    console.log(event);
+
+  }
+
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
-    // , userPoints: any
-    console.log(event);
-    // userPoints = -1;
-    if (!isNaN(event.value)) {
-      console.log(event.data.idUser);
+    console.log(event.newValue);
 
-      let insinia = event.colDef.field;
+    if (event.newValue > this.insiniaPoints && !this.isModerator) {
 
-      if (insinia == 'Puntos') {
-        const data = {
-          idRanking: event.data.id,
-          idUser: event.data.idUser,
-          points: parseInt(event.value),
-          idUserModified: event.data.idUser,
-          insinia: 'puntos',
-          oldValue: event.oldValue,
-        };
-        await this.http.updateData(data);
-      } else if (
-        insinia == 'Responsabilidad' ||
-        insinia == 'Cooperacion' ||
-        insinia == 'Autonomia' ||
-        insinia == 'Emocional' ||
-        insinia == 'Inteligencia'
-      ) {
-        const data = {
-          idRanking: event.data.id,
-          idUserModified: event.data.idUser,
-          points: parseInt(event.value),
-          insinia: insinia,
-          isModerator: event.data.isModerator,
-          oldValue: event.oldValue,
-        };
-        console.log(event);
+      this.notifier.notify('error', 'No tienes tantos puntos.');
+    } else if (event.data.idUser == 1) {
 
-        await this.http.updateInsinia(data);
-      } else {
-        console.log(event);
+    } else {
 
-        event.value = event.oldValue;
+
+      // , userPoints: any
+      console.log(event);
+      // userPoints = -1;
+      if (!isNaN(event.value)) {
+
+        let insinia = event.colDef.field;
+
+        if (insinia == 'Puntos') {
+          const data = {
+            idRanking: event.data.id,
+            idUser: event.data.idUser,
+            points: parseInt(event.value),
+            idUserModified: event.data.idUser,
+            insinia: 'puntos',
+            oldValue: event.oldValue
+          };
+          await this.http.updateData(data);
+        } else if (
+          insinia == 'Responsabilidad' ||
+          insinia == 'Cooperacion' ||
+          insinia == 'Autonomia' ||
+          insinia == 'Emocional' ||
+          insinia == 'Inteligencia'
+        ) {
+          const data = {
+            idRanking: event.data.id,
+            idUserModified: event.data.idUser,
+            points: parseInt(event.value),
+            insinia: insinia,
+            oldValue: event.oldValue,
+            isModerator: this.isModerator
+          };
+          await this.http.updateInsinia(data);
+        } else {
+          event.value = event.oldValue;
+        }
       }
     }
+
+    this.rankingData(this.idSelect, this.nameSelect,);
+
   }
 
-  showRankingsUser() {
-    this.rankingsUserView = true;
-    this.rankingsModeratorView = false;
-  }
 
-  showRankingsModerator() {
-    this.rankingsUserView = false;
-    this.rankingsModeratorView = true;
-  }
 
   async collapse(id: string, state: string) {
     if (state == 'show') {
@@ -389,17 +399,76 @@ export class UserRankingDevComponent implements OnInit {
 
   /**********DEV */
 
-  async rankingData(rankingId: any) {
+  async rankingData(rankingId: any, rankingName: string) {
+
     const data = {
       rankingId: rankingId,
     };
 
     this.rowData = await this.http.getRankingData(data);
-    console.log(this.rowData);
+    if (this.rowData.moderator) {
+      this.columnDefsSelect = this.columnDefsModerator;
+      this.isModerator = true;
+    } else {
+      this.columnDefsSelect = this.columnDefs;
+      this.isModerator = false;
+    }
+    this.joinCode = this.rowData.joinCode;
+    this.insiniaPoints = this.rowData.insiniaPoints;
+    this.rowData = this.rowData.response;
+    this.nameSelect = rankingName;
+    this.idSelect = rankingId;
+
     this.rankingSelect = true;
+
   }
 
   clearLocalStorage() {
     localStorage.removeItem('token');
   }
+
+  atobImg(data: any) {
+    return atob(data);
+  }
+
+  async deleteRanking() {
+
+    const data = {
+      idRanking: this.idSelect
+    }
+    console.log(data);
+
+    await this.http.deleteRanking(data);
+    this.rankings = await this.http.getRanking();
+  }
+
+  async exitRanking() {
+
+    const data = {
+      idRanking: this.idSelect
+    }
+    console.log(data);
+
+    await this.http.exitRanking(data);
+    this.rankings = await this.http.getRanking();
+    this.rankingSelect = false;
+    if (this.rankings.length > 0) {
+      this.nullRankings = false;
+    } else {
+      this.nullRankings = true;
+    }
+  }
+
+
+  async renewJoinCode() {
+    const data = {
+      idRanking: this.idSelect
+    }
+    await this.http.renewJoinCode(data);
+    this.rankings = await this.http.getRanking();
+  }
+
+
+
+
 }

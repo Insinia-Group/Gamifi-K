@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,7 +16,8 @@ declare var $: any;
   styleUrls: ['./chips.component.css'],
   animations: [fadeIn],
 })
-export class ChipsComponent implements OnInit {
+export class ChipsComponent implements OnChanges {
+  @Input() idRanking: number;
   public emails: any = {
     original: [],
     invalid: [],
@@ -24,7 +25,6 @@ export class ChipsComponent implements OnInit {
   };
   public selectedEmail: string;
   public addEmailForm: FormGroup;
-  public idRanking: number = 2;
 
   constructor(private http: HttpService) {
     this.addEmailForm = new FormGroup({
@@ -37,8 +37,10 @@ export class ChipsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.idRanking = changes.idRanking.currentValue;
     this.getRankingUsers();
+    this.emails.added = [];
   }
 
   modal(id: string, state: any): void {

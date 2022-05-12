@@ -21,7 +21,7 @@ export class ChipsComponent implements OnInit {
     original: [],
     invalid: [],
     added: [],
-  }
+  };
   public selectedEmail: string;
   public addEmailForm: FormGroup;
   public idRanking: number = 2;
@@ -50,25 +50,33 @@ export class ChipsComponent implements OnInit {
   add(event: any) {
     if (this.addEmailForm.valid) {
       const key = event.key;
-      if (key == ',' || key == ' ' || key == 'Enter') {
+      if (key == 'Enter') {
         this.push();
       }
     }
   }
 
+  isInArray(array: Array<String>, value: string) {
+    return array.indexOf(value) > -1;
+  }
+
   async remove() {
-    this.modal('removeUser', 'hide')
+    this.modal('removeUser', 'hide');
     const removeEmail = this.selectedEmail;
-    this.emails.original = this.emails.original.filter((email: string) => removeEmail !== email);
+    this.emails.original = this.emails.original.filter(
+      (email: string) => removeEmail !== email
+    );
     const email: object = {
       email: removeEmail,
-      idRanking: this.idRanking
-    }
+      idRanking: this.idRanking,
+    };
     await this.http.removeUserFromRanking(email);
   }
 
   removeAdded(added: string) {
-    this.emails.added = this.emails.added.filter((email: string) => added !== email);
+    this.emails.added = this.emails.added.filter(
+      (email: string) => added !== email
+    );
   }
 
   setSelected(email: string): void {
@@ -81,53 +89,42 @@ export class ChipsComponent implements OnInit {
   }
 
   emailAlreadyExist(control: AbstractControl): { [key: string]: any } | null {
-    if (!this.emails.original.includes(control.value.toLowerCase())) return null;
+    const value = control.value.toLowerCase();
+    if (
+      !this.isInArray(this.emails.original, value) &&
+      !this.isInArray(this.emails.added, value)
+    )
+      return null;
     return { emailAlreadyExist: true };
   }
 
   emailInvalid(control: AbstractControl): { [key: string]: any } | null {
-    if (!this.emails.invalid.includes(control.value.toLowerCase())) return null;
+    const value = control.value.toLowerCase();
+    if (!this.isInArray(this.emails.invalid, value)) return null;
     return { invalidEmail: true };
   }
 
-  emailsChanged() {
-    if (this.emails.original === this.emails.original) return true;
-    if (this.emails.original == null || this.emails.original == null) return false;
-    if (this.emails.original.length !== this.emails.original.length) return false;
-    for (var i = 0; i < this.emails.original.length; ++i) {
-      if (this.emails.original[i] !== this.emails.original[i]) return false;
-    }
-    return true;
-  }
-
   async push() {
-    const res: any = await this.http.emailExists(
-      this.addEmailForm.controls.email.value.toLowerCase()
-    );
-      
+    const value = this.addEmailForm.controls.email.value.toLowerCase();
+    const res: any = await this.http.emailExists(value);
     if (!res.body.exists) {
-      this.emails.invalid.push(
-        this.addEmailForm.controls.email.value.toLowerCase()
-      );
+      this.emails.invalid.push(value);
       this.addEmailForm.controls.email.setErrors({ emailNotExists: true });
       return;
     }
     if (res.body.admin) {
-      this.emails.invalid.push(
-        this.addEmailForm.controls.email.value.toLowerCase()
-      );
+      this.emails.invalid.push(value);
       this.addEmailForm.controls.email.setErrors({ invalidEmail: true });
       return;
     }
     await this.getRankingUsers();
-    this.emails.added.push(this.addEmailForm.controls.email.value.toLowerCase());
+    this.emails.added.push(value);
     this.addEmailForm.controls.email.setValue('');
   }
-
   async addUsersToRanking() {
     const request = {
       idRanking: this.idRanking,
-      users: this.emails.added
+      users: this.emails.added,
     };
     await this.http.addUsersToRanking(request);
     await this.getRankingUsers();

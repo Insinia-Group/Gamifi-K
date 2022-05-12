@@ -80,7 +80,7 @@ export class UserPageComponent implements OnInit {
   @ViewChild('profilePictureLabel') profilePictureLabel: ElementRef;
 
   async ngOnInit(): Promise<void> {
-    await this.http.canContinue();
+    // await this.http.canContinue();
 
     await this.setProfile();
     this.profileForm.controls.name.valueChanges.subscribe(() =>
@@ -166,22 +166,23 @@ export class UserPageComponent implements OnInit {
 
   async setProfile() {
     const profile: any = await this.http.getProfile();
-    if (profile[0].avatar && isBase64(profile[0].avatar)) {
-      profile[0].avatar = atob(profile[0].avatar);
+    if (profile && isBase64(profile.avatar)) {
+      profile.avatar = atob(profile.avatar);
+      this.profile = new tempProfile(
+        profile.id,
+        profile.nick,
+        profile.name,
+        profile.lastName,
+        profile.email,
+        profile.description,
+        profile.dateBirth,
+        profile.avatar,
+        profile.role,
+        profile.dateJoined,
+        profile.status
+      );
     }
-    this.profile = new tempProfile(
-      profile[0].id,
-      profile[0].nick,
-      profile[0].name,
-      profile[0].lastName,
-      profile[0].email,
-      profile[0].description,
-      profile[0].dateBirth,
-      profile[0].avatar,
-      profile[0].role,
-      profile[0].dateJoined,
-      profile[0].status
-    );
+
     this.setFormValues();
   }
 

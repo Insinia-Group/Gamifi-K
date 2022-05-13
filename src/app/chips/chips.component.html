@@ -1,5 +1,10 @@
-<div class="container-fluid">
-  <form @fadeIn [formGroup]="addEmailForm">
+<modal
+  [title]="'Agregar usuarios al ranking'"
+  [uniqueId]="'addUsersModal'"
+  [isLarge]="true"
+  class="container-fluid"
+>
+  <form @fadeIn [formGroup]="addEmailForm" class="modal-body">
     <label class="text-color mt-3" for="email"
       >Introduce a los miembros del Ranking</label
     >
@@ -30,34 +35,41 @@
       </div>
     </div>
   </form>
-  <div class="d-flex flex-wrap">
-    <div @fadeIn class="mt-1" *ngFor="let email of emails.original">
-      <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
-        <div>
-          {{ email
-          }}<i
-            class="bi bi-x-circle-fill ms-1 link-white-to-color"
-            (click)="modal('removeUser', 'show'); setSelected(email)"
-          ></i>
+  <div class="modal-footer">
+    <div class="d-flex flex-wrap">
+      <div @fadeIn class="mt-1" *ngFor="let email of emails.original">
+        <div class="bg-color text-light rounded-pill px-2 py-1 me-1">
+          <div>
+            {{ email
+            }}<i
+              class="bi bi-x-circle-fill ms-1 link-white-to-color"
+              (click)="modal('removeUser', 'show'); setSelected(email)"
+            ></i>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="mt-1" *ngFor="let added of emails.added">
-      <div
-        @fadeIn
-        class="bg-color text-light opacity-50 rounded-pill px-2 py-1 me-1"
-      >
-        <div>
-          {{ added
-          }}<i
-            class="bi bi-x-circle-fill ms-1 link-white-to-color"
-            (click)="removeAdded(added)"
-          ></i>
+      <div *ngFor="let added of emails.added">
+        <div
+          @fadeIn
+          class="bg-color text-light opacity-50 rounded-pill px-2 py-1 me-1"
+        >
+          <div>
+            {{ added
+            }}<i
+              class="bi bi-x-circle-fill ms-1 link-white-to-color"
+              (click)="removeAdded(added)"
+            ></i>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div @fadeIn *ngIf="emails && emails.added.length > 0" class="d-grid mt-2">
+
+  <div
+    @fadeIn
+    *ngIf="emails && emails.added.length > 0"
+    class="d-grid modal-footer"
+  >
     <button
       [disabled]="emails.added.length === 0"
       class="btn btn-sm btn-outline-color"
@@ -67,7 +79,7 @@
       Añadir a los usuarios agregados
     </button>
   </div>
-</div>
+</modal>
 
 <modal [title]="'Eliminar usuario'" [uniqueId]="'removeUser'">
   <div class="modal-body">

@@ -7,7 +7,7 @@ export class API {
      */
     constructor() {
         this.empty();
-        this.url = 'http://localhost:3000';
+        this.url = 'https://api.marcgavin.com';
     }
 
     /**
@@ -54,7 +54,7 @@ export class API {
         if (path.includes('?')) return '&';
         else return '?';
     }
-    
+
     /**
      * Inicializa a vacio el atributo route.
      */

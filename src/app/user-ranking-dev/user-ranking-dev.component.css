@@ -27,6 +27,12 @@ border-color: var(--corp-color-two);
 margin-left:1rem;
 min-width: 11rem;
 }
+
+@media (max-width: 600px) {
+  .btn{
+min-width: 5rem;
+  }
+}
 .sidecont {
   top: 8rem ;
   z-index: 1;

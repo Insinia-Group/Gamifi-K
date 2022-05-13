@@ -12,7 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { UserPageComponent } from './user-page/user-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
@@ -32,6 +31,7 @@ import { AddRankingComponent } from './add-ranking/add-ranking.component';
 import { ValidatorErrorComponent } from './components/validator-error/validator-error.component';
 import { UserRankingDevComponent } from './user-ranking-dev/user-ranking-dev.component';
 import { ChipsComponent } from './chips/chips.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { ChipsComponent } from './chips/chips.component';
     RegisterComponent,
     AboutComponent,
     NotFoundComponent,
-    UserPageComponent,
+    ProfileComponent,
     LoadingComponent,
     LogoComponent,
     NavbarComponent,

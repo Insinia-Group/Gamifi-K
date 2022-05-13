@@ -193,7 +193,15 @@
           data-bs-target="#puntosModal"
           >Puntos Insinia: {{ insiniaPoints }}</a
         >
-
+        
+          <button
+          class="btn btn-primary col-6 col-md-2"
+          *ngIf="rankingSelect && isModerator"
+          data-bs-toggle="modal"
+          data-bs-target="#documnetModal"
+        >
+          Documento
+        </button>
         <br />
         <br />
 
@@ -551,4 +559,60 @@
       </div>
     </div>
   
+
+    <div
+      class="modal fade"
+      id="documnetModal"
+      tabindex="-1"
+      aria-labelledby="documnetModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="documnetModal">Documento del Ranking</h3>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+      <label class="text-color text-truncate mt-2"
+            >Imagen
+                      <label
+              class="form-control-img text-color text-center"
+              >Documento</label
+            >
+            <small @fadeIn  class="text-color"
+              >Puedes seleccionar otra foto si quieres.</small
+            >
+            <input
+              #rankingPicture
+              name="rankingPicture"
+              id="rankingPicture"
+              type="file"
+              accept="image/png, image/jpg, image/jpeg, image/svg"
+              class="hide"
+            />
+          </label>
+
+            <br />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              download ="file"
+              href="..\..\files\ciudades.txt"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
+

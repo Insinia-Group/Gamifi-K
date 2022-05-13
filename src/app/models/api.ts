@@ -7,7 +7,9 @@ export class API {
      */
     constructor() {
         this.empty();
-        this.url = 'https://api.marcgavin.com';
+        this.url = 'http://localhost:3000';
+        // this.url = 'https://api.marcgavin.com';
+
     }
 
     /**

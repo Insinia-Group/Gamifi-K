@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalComponent {
   @Input() uniqueId: string;
-  @Input() title: any;
+  @Input() title: string;
   @Input() isOpen: boolean = false;
   @Input() isAlert: boolean = false;
   @Input() isLogout: boolean = false;

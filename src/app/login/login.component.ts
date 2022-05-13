@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {fadeIn} from '../config/animations.config';
-import {HttpService} from '../services/http.service';
-import {JwtService} from '../services/jwt.service';
-import {NotifierService} from 'angular-notifier';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { fadeIn } from '../config/animations.config';
+import { HttpService } from '../services/http.service';
+import { JwtService } from '../services/jwt.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +15,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public disabledButton: boolean;
+  public isReady: boolean = false;
 
   constructor(private http: HttpService, private jwt: JwtService, private notifier: NotifierService) {
     this.disabledButton = false;
@@ -26,7 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.http.canLogin();
+    const res = await this.http.isValid();
+    if (res.isValid) {
+      this.http.redirectTo('profile')
+    } else {
+      this.isReady = true;
+    }
   }
 
   async logIn(): Promise<void> {

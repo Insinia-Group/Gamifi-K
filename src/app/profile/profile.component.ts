@@ -5,12 +5,14 @@ import { calculateSize, isBase64 } from '../helpers/helpers';
 import { ProfilePicture } from '../interface/image';
 import { tempProfile } from '../models/profile';
 import { HttpService } from '../services/http.service';
+import { fadeIn } from '../config/animations.config';
 declare var $: any;
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  animations: [fadeIn]
 })
 export class ProfileComponent implements OnInit {
 

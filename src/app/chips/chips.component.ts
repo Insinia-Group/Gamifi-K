@@ -11,7 +11,7 @@ import { HttpService } from '../services/http.service';
 declare var $: any;
 
 @Component({
-  selector: 'app-chips',
+  selector: 'chips',
   templateUrl: './chips.component.html',
   styleUrls: ['./chips.component.css'],
   animations: [fadeIn],

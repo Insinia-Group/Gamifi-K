@@ -274,14 +274,8 @@
     </div>
   </div>
 
-  <modal [title]="'Agregar usuarios al ranking'" [uniqueId]="'addUsersModal'" [isLarge]="true">
-    <div class="modal-body">
-      <chips *ngIf="idSelect" [idRanking]="idSelect"></chips>
-    </div>
-  </modal>
-
+  <chips *ngIf="idSelect" [idRanking]="idSelect"></chips>
  
-
     <div
       class="modal fade"
       id="renewJoinCodeRankingModal"

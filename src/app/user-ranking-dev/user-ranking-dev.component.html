@@ -317,6 +317,7 @@
               Cerrar
             </button>
             <button
+            [disabled]="buttonDisabled"
               type="button"
               class="btn btn-primary"
               (click)="renewJoinCode()"
@@ -565,6 +566,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title" id="documnetModal">Documento del Ranking</h3>
+            <input type="file" name="file" id="file" [files]="file" onchange="console.log(event.target.files)">
+
+
+            
             <button
               type="button"
               class="btn-close"

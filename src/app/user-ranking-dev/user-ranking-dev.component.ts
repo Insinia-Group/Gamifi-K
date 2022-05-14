@@ -205,6 +205,8 @@ export class UserRankingDevComponent implements OnInit {
   public joinCode: string;
   public isReady: boolean = false;
   public idClient: number;
+  public file:any;
+  public buttonDisabled:boolean =false;
 
   constructor(
     private router: Router,
@@ -448,11 +450,24 @@ export class UserRankingDevComponent implements OnInit {
   }
 
   async renewJoinCode() {
+    this.buttonDisabled = true;
     const data = {
       idRanking: this.idSelect,
     };
     await this.http.renewJoinCode(data);
     this.rankings = await this.http.getRanking();
+    await this.rankingData(this.idSelect, this.nameSelect);
+    this.buttonDisabled = false;
+  }
+  async sendFile(){
+    const data ={
+
+    }
+
+  }
+
+  logFile(event?:any){
+console.log(event.data);
 
   }
 }

@@ -1,617 +1,507 @@
 <topnav></topnav>
 <loading *ngIf="!isReady"></loading>
 
-<div class="component-container" *ngIf="isReady">
+<div class="container-fluid">
   <div class="row">
-    /
-    <div class="row sideTitle" @slideDownHideUp>
-      <div class="col-12">
-        <div
-          class="btn btn-primary col-5 col-md-1"
-          data-bs-toggle="modal"
-          data-bs-target="#addRankingModal"
-          *ngIf="!nullRankings"
-        >
-          Añadir
-        </div>
-        <div
-          class="btn btn-primary col-5 col-md-1"
-          routerLink="/create"
-          *ngIf="!nullRankings"
-        >
-          Crear
-        </div>
+    <div class="col-xl-3 border-bottom">
+      <div class="row border-bottom">
+        <h3 class="btn-sm my-1 text-color">Rankings</h3>
       </div>
-    </div>
-    <div class="row">
       <div
-        class="card welcome m-5 h-25"
-        *ngIf="nullRankings"
-        style="width: 40rem"
+        class="list-group list-group-flush scrollarea"
+        style="height: 90vh; overflow-y: scroll"
       >
-        <div class="card-body">
-          <h2 class="card-title">Bienvenido</h2>
-          <p class="card-text">
-            No tienes rankings, puedes crear uno o pedir un codigo de acceso
-          </p>
-          <div class="row">
-            <div
-              class="btn btn-primary col-6 col-md-2"
-              data-bs-toggle="modal"
-              data-bs-target="#addRankingModal"
-            >
-              Añadir
-            </div>
-            <div class="btn btn-primary col-6 col-md-2" routerLink="/create">
-              Crear
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="sidebar show sidebar-start sidecont col-12 col-md-5"
-        tabindex="-1"
-        id="sidebar"
-        data-bs-keyboard="false"
-        data-bs-backdrop="false"
-      >
-        <div class="sidebar-body px-0">
-          <ul class="nav nav-pills flex-column mb-sm-auto mb-0" id="menu">
-            <li class="nav-item">
-              <div class="card mb-0" *ngIf="!nullRankings">
-                <div *ngFor="let item of rankings">
-                  <div
-                    class="m-4 ranking-card"
-                    (click)="rankingData(item.id, item.name)"
-                  >
-                    <div class="card" style="max-width: 500px">
-                      <div class="row g-0">
-                        <div class="col-sm-5" style="background: #868e96">
-                          <img
-                            [src]="atobImg(item.logo)"
-                            class="card-img-top h-100 ranking-img"
-                          />
-                        </div>
-                        <div class="col-sm-7">
-                          <div class="card-body">
-                            <h2 class="card-title">{{ item.name }}</h2>
-                            <p class="card-text" style="max-width: 15rem">
-                              {{ item.role }}
-                            </p>
-                            <!-- <p
-                          class="card-text text-truncate"
-                          style="max-width: 15rem"
-                        >
-                          {{ item.description }}
-                        </p> -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- <li class="dropdown">
-    <a
-      href="#"
-      class="nav-link dropdown-toggle text-truncate"
-      id="dropdown"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <i class="fs-5 bi-bootstrap"></i
-      ><span class="ms-1 d-none d-sm-inline">Unirse a un ranking</span>
-    </a>
-    <ul
-      class="dropdown-menu text-small shadow add-ranking-container"
-      aria-labelledby="dropdown"
-    >
-      <li>
-        <form class="add-ranking" [@fadeIn] [formGroup]="this.addRanking">
-          <input
-            formControlName="rankingId"
-            class="add-ranking-input"
-            type="text"
-          />
+        <div
+          *ngFor="let item of rankings"
+          class="list-group-item list-group-item-action py-3 lh-tight"
+        >
           <div
-            type="submit"
-            class="bi bi-plus-circle-dotted add-ranking-button"
-            (click)="addRankingByCode()"
-          ></div>
-        </form>
-      </li>
-    </ul>
-  </li>
-
-  <li>
-    <a
-      [routerLink]="['/create']"
-      routerLinkActive="router-link-active"
-      data-bs-toggle="collapse"
-      class="nav-link text-truncate"
-    >
-      <i class="fs-5 bi-speedometer2"></i
-      ><span class="ms-1 d-none d-sm-inline">Crear</span>
-    </a>
-  </li>
-  
-  <li>
-    <a
-      [routerLink]="['/login']"
-      (click)="clearLocalStorage()"
-      routerLinkActive="router-link-active"
-      data-bs-toggle="collapse"
-      class="nav-link text-truncate"
-    >
-      <i class="fs-5 bi-speedometer2"></i
-      ><span class="ms-1 d-none d-sm-inline">Salir</span>
-    </a>
-  </li> -->
-
-      <div class="col-12 col-md-8">
-        <button
-          class="btn btn-primary col-6 col-md-2 bootonGestion"
-          *ngIf="rankingSelect && isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#addUsersModal"
-        >
-          Participantes
-        </button>
-        <button
-          class="btn btn-primary col-6 col-md-2 bootonGestion"
-          *ngIf="rankingSelect && isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#renewJoinCodeRankingModal"
-        >
-          Codigo acceso
-        </button>
-        <button
-          class="btn btn-primary col-6 col-md-2 bootonGestion"
-          *ngIf="rankingSelect && isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#deleteRankingModal"
-        >
-          Eliminar ranking
-        </button>
-        <button
-          class="btn btn-primary col-6 col-md-2"
-          *ngIf="rankingSelect && !isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#exitRankingModal"
-        >
-          Salir del ranking
-        </button>
-        <a
-          class="btn btn-primary col-6 col-md-2"
-          *ngIf="rankingSelect && !isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#puntosModal"
-          >Puntos Insinia: {{ insiniaPoints }}</a
-        >
-        
-          <button
-          class="btn btn-primary col-6 col-md-2"
-          *ngIf="rankingSelect && isModerator"
-          data-bs-toggle="modal"
-          data-bs-target="#documnetModal"
-        >
-          Documento
-        </button>
-        <br />
-        <br />
-
-        <div class="row">
-          <div class="col py-3">
-            <div class="row justify-content-center">
-              <div class="d-flex col-12" *ngIf="rankingSelect">
-                <ag-grid-angular
-                  class="ag-theme-alpine ranking table-responsive"
-                  [columnDefs]="columnDefsSelect"
-                  [rowData]="rowData"
-                  id="dataTable"
-                  [defaultColDef]="defaultColDef"
-                  resizable="true"
-                  [animateRows]="true"
-                  (cellValueChanged)="onCellValueChanged($event)"
-                  (onGridSizeChanged)="onGridSizeChanged($event)"
-                  (rowEditingStarted)="onRowEditingStarted($event)"
-                  (gridReady)="onGridReady($event)"
-                  [overlayNoRowsTemplate]="'No hay participantes'"
-                  [@fadeIn]
-                >
-                </ag-grid-angular>
-              </div>
+            class="d-flex w-100 align-items-center justify-content-between"
+            (click)="rankingData(item.id, item.name)"
+          >
+            <div class="flex-shrink-0">
+              <img
+                [src]="atobImg(item.logo)"
+                class="rounded-circle img-ranking"
+                height="40"
+                width="40"
+              />
             </div>
+            <span class="text-muted">{{ item.role }}</span>
+          </div>
+          <div class="d-flex mt-2">
+            <div class="flex-grow-1 fw-bolder">
+              {{ item.name }}
+            </div>
+          </div>
+          <div
+            class="col-10 my-1 small"
+            style="max-width: 350px; word-break: break-all"
+          >
+            {{ item.description }}
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- MODALS Moderadores-->
-  <div
-    class="modal fade"
-    id="addRankingModal"
-    tabindex="-1"
-    aria-labelledby="addRankingModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="addRankingModalLabel">Añadir codigo</h3>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+    <div class="col-xl-9">
+      <div class="row gap-1 border-bottom">
+        <div class="col-auto ms-1 ps-0">
+          <h3 class="btn-sm my-1 text-color">Opciones</h3>
         </div>
-        <div class="modal-body">
-          <input
-            type="text"
-            id="addRegisterInput"
-            placeholder="Codigo"
-            name="addRegisterInput"
-            #addRegisterInput
-          />
-        </div>
-        <div class="modal-footer">
+        <div class="col-auto g-0 mt-1">
           <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="addRankingByCode(addRegisterInput.value)"
-            data-bs-dismiss="modal"
+            class="btn btn-sm btn-color text-light"
+            data-bs-toggle="modal"
+            data-bs-target="#addRankingModal"
+            *ngIf="!nullRankings"
           >
             Añadir
           </button>
         </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            routerLink="/create"
+            *ngIf="!nullRankings"
+          >
+            Crear
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#addUsersModal"
+          >
+            Participantes
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#renewJoinCodeRankingModal"
+          >
+            Codigo acceso
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#documnetModal"
+          >
+            Documento
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteRankingModal"
+          >
+            Eliminar ranking
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && !isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#exitRankingModal"
+          >
+            Salir del ranking
+          </button>
+        </div>
+        <div class="col-auto g-0 mt-1">
+          <button
+            class="btn btn-sm btn-color text-light"
+            *ngIf="rankingSelect && !isModerator"
+            data-bs-toggle="modal"
+            data-bs-target="#puntosModal"
+          >
+            Puntos Insinia: {{ insiniaPoints }}
+          </button>
+        </div>
+      </div>
+      <div style="height: 89vh">
+        <ag-grid-angular
+          style="height: 96%; width: 50rem;"
+          class="ag-theme-alpine ranking table-responsive"
+          [columnDefs]="columnDefsSelect"
+          [rowData]="rowData"
+          id="dataTable"
+          [defaultColDef]="defaultColDef"
+          resizable="true"
+          [animateRows]="true"
+          (cellValueChanged)="onCellValueChanged($event)"
+          (onGridSizeChanged)="onGridSizeChanged($event)"
+          (rowEditingStarted)="onRowEditingStarted($event)"
+          (gridReady)="onGridReady($event)"
+          [overlayNoRowsTemplate]="'No hay participantes'"
+          [@fadeIn]
+        >
+        </ag-grid-angular>
       </div>
     </div>
   </div>
-
-  <chips *ngIf="idSelect" [idRanking]="idSelect"></chips>
- 
-    <div
-      class="modal fade"
-      id="renewJoinCodeRankingModal"
-      tabindex="-1"
-      aria-labelledby="renewJoinCodeRankingModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="renewJoinCodeRankingModal">
-              Este codigo sirve para unirse al ranking {{ nameSelect }}
-            </h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h1>Codigo: {{ joinCode }}</h1>
-            <h4>Si renuevas el codigo de accesso el anterior no sera valido</h4>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <button
-            [disabled]="buttonDisabled"
-              type="button"
-              class="btn btn-primary"
-              (click)="renewJoinCode()"
-            >
-              Renovar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="deleteRankingModal"
-      tabindex="-1"
-      aria-labelledby="deleteRankingModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="deleteRankingModalLabel">
-              Eliminar ranking
-            </h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h3>
-              Estas seguro que quieres eliminar el Ranking {{ nameSelect }}
-            </h3>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              No
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              data-bs-target="#deleteRankingModal2"
-              data-bs-toggle="modal"
-            >
-              Si
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="deleteRankingModal2"
-      tabindex="-1"
-      aria-labelledby="deleteRankingModalLabel2"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="deleteRankingModalLabel2">
-              Eliminar ranking
-            </h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h3>Eliminar el ranking {{ nameSelect }} es irreversible</h3>
-            <br />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              (click)="deleteRanking()"
-            >
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MODALS Participantes   -->
-    <div
-      class="modal fade"
-      id="exitRankingModal"
-      tabindex="-1"
-      aria-labelledby="exitRankingModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="exitRankingModalLabel">
-              Salir del ranking
-            </h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h3>Estas seguro que quieres salir del Ranking {{ nameSelect }}</h3>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              No
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              data-bs-target="#exitRankingModal2"
-              data-bs-toggle="modal"
-            >
-              Si
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Segunda parte del modal anterior -->
-    <div
-      class="modal fade"
-      id="exitRankingModal2"
-      tabindex="-1"
-      aria-labelledby="exitRankingModalLabel2"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="exitRankingModalLabel2">
-              Salir del ranking
-            </h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h3>
-              Si sales del ranking {{ nameSelect }} perderas todos tus puntos
-            </h3>
-            <br />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              (click)="exitRanking()"
-            >
-              Salir
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="puntosModal"
-      tabindex="-1"
-      aria-labelledby="puntosModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="puntosModal">Puntos Insinia</h3>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h3>Tienes {{ insiniaPoints }} puntos Insinia</h3>
-            <h3>
-              Estos puntos sirven para valuar a los compañeros de ranking segun
-              sus aptitudes
-            </h3>
-            <br />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              (click)="exitRanking()"
-            >
-              Cerrar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-
-    <div
-      class="modal fade"
-      id="documnetModal"
-      tabindex="-1"
-      aria-labelledby="documnetModal"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="documnetModal">Documento del Ranking</h3>
-            <input type="file" name="file" id="file" [files]="file" onchange="console.log(event.target.files)">
-
-
-            
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-      <label class="text-color text-truncate mt-2"
-            >Imagen
-                      <label
-              class="form-control-img text-color text-center"
-              >Documento</label
-            >
-            <small @fadeIn  class="text-color"
-              >Puedes seleccionar otra foto si quieres.</small
-            >
-            <input
-              #rankingPicture
-              name="rankingPicture"
-              id="rankingPicture"
-              type="file"
-              accept="image/png, image/jpg, image/jpeg, image/svg"
-              class="hide"
-            />
-          </label>
-
-            <br />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              download ="file"
-              href="..\..\files\ciudades.txt"
-            >
-              Cerrar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 </div>
 
+<div
+  class="modal fade"
+  id="addRankingModal"
+  tabindex="-1"
+  aria-labelledby="addRankingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="addRankingModalLabel">Añadir codigo</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          id="addRegisterInput"
+          placeholder="Codigo"
+          name="addRegisterInput"
+          #addRegisterInput
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          (click)="addRankingByCode(addRegisterInput.value)"
+          data-bs-dismiss="modal"
+        >
+          Añadir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<chips *ngIf="idSelect" [idRanking]="idSelect"></chips>
+
+<div
+  class="modal fade"
+  id="renewJoinCodeRankingModal"
+  tabindex="-1"
+  aria-labelledby="renewJoinCodeRankingModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="renewJoinCodeRankingModal">
+          Este codigo sirve para unirse al ranking {{ nameSelect }}
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h1>Codigo: {{ joinCode }}</h1>
+        <h4>Si renuevas el codigo de accesso el anterior no sera valido</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          [disabled]="buttonDisabled"
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          (click)="renewJoinCode()"
+        >
+          Renovar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="deleteRankingModal"
+  tabindex="-1"
+  aria-labelledby="deleteRankingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deleteRankingModalLabel">
+          Eliminar ranking
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Estas seguro que quieres eliminar el Ranking {{ nameSelect }}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          data-bs-target="#deleteRankingModal2"
+          data-bs-toggle="modal"
+        >
+          Si
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="deleteRankingModal2"
+  tabindex="-1"
+  aria-labelledby="deleteRankingModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deleteRankingModalLabel2">
+          Eliminar ranking
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Eliminar el ranking {{ nameSelect }} es irreversible</h3>
+        <br />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          (click)="deleteRanking()"
+        >
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS Participantes   -->
+<div
+  class="modal fade"
+  id="exitRankingModal"
+  tabindex="-1"
+  aria-labelledby="exitRankingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exitRankingModalLabel">
+          Salir del ranking
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Estas seguro que quieres salir del Ranking {{ nameSelect }}</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          data-bs-target="#exitRankingModal2"
+          data-bs-toggle="modal"
+        >
+          Si
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Segunda parte del modal anterior -->
+<div
+  class="modal fade"
+  id="exitRankingModal2"
+  tabindex="-1"
+  aria-labelledby="exitRankingModalLabel2"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exitRankingModalLabel2">
+          Salir del ranking
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Si sales del ranking {{ nameSelect }} perderas todos tus puntos</h3>
+        <br />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          (click)="exitRanking()"
+        >
+          Salir
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="puntosModal"
+  tabindex="-1"
+  aria-labelledby="puntosModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="puntosModal">Puntos Insinia</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h3>Tienes {{ insiniaPoints }} puntos Insinia</h3>
+        <h3>
+          Estos puntos sirven para valuar a los compañeros de ranking segun sus
+          aptitudes
+        </h3>
+        <br />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          (click)="exitRanking()"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="documnetModal"
+  tabindex="-1"
+  aria-labelledby="documnetModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="documnetModal">Documento del Ranking</h3>
+        <input
+          type="file"
+          name="file"
+          id="file"
+          [files]="file"
+          onchange="console.log(event.target.files)"
+        />
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <label class="text-color text-truncate mt-2"
+          >Imagen
+          <label class="form-control-img text-color text-center"
+            >Documento</label
+          >
+          <small @fadeIn class="text-color"
+            >Puedes seleccionar otra foto si quieres.</small
+          >
+          <input
+            #rankingPicture
+            name="rankingPicture"
+            id="rankingPicture"
+            type="file"
+            accept="image/png, image/jpg, image/jpeg, image/svg"
+            class="hide"
+          />
+        </label>
+
+        <br />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-sm btn-color text-light"
+          data-bs-dismiss="modal"
+          download="file"
+          href="..\..\files\ciudades.txt"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

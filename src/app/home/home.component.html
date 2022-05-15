@@ -1,4 +1,4 @@
-<topnav [toggleBlur]="topnavShow"></topnav>
+<topnav [fixed]="true"></topnav>
 
 <div class="jumbotron bg-color d-flex align-items-center" id="welcome-image">
   <div [@fadeIn] class="container text-center interactive">
@@ -174,19 +174,8 @@
 </div>
 
 <div class="text-center bg-color text-light pt-2">
-  <p>Desarrollado por Insinia<logo class="ms-1" [width]="15"></logo></p>
+  <small>Desarrollado por Insinia<logo class="ms-1" [width]="15"></logo></small>
   <small class="text-light mb-0 p-0">
     2022 © Insinia. Todos los derechos reservados.
   </small>
-</div>
-
-<div class="fixed-bottom me-2 mb-2" *ngIf="goupShow" @slideInOut>
-  <div class="text-end">
-    <a
-      routerLink="/home#welcome-image"
-      class="btn btn-color text-light"
-      id="go-up"
-      ><i class="bi icon-lg bi-arrow-up-circle-fill"></i
-    ></a>
-  </div>
 </div>

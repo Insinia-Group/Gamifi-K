@@ -1,3 +1,11 @@
 .img-ranking {
   object-fit: cover;
 }
+
+input[type="file"] {
+  color: transparent;
+}
+
+.ranking-card{
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeIn, slideDownHideUp } from 'src/app/config/animations.config';
 import { HttpService } from '../services/http.service';
@@ -207,6 +207,8 @@ export class UserRankingDevComponent implements OnInit {
   public idClient: number;
   public file:any;
   public buttonDisabled:boolean =false;
+  public docPath:string;
+  public linkNull: boolean =true;
 
   constructor(
     private router: Router,
@@ -370,7 +372,7 @@ export class UserRankingDevComponent implements OnInit {
       }
     }
 
-    this.rankingData(this.idSelect, this.nameSelect);
+    this.rankingData(this.idSelect, this.nameSelect,this.docPath);
   }
 
   async collapse(id: string, state: string) {
@@ -393,7 +395,8 @@ export class UserRankingDevComponent implements OnInit {
 
   /**********DEV */
 
-  async rankingData(rankingId: any, rankingName: string) {
+  async rankingData(rankingId: any, rankingName: string,docPath:string) {
+    this.docPath = "";
     const data = {
       rankingId: rankingId,
     };
@@ -411,8 +414,23 @@ export class UserRankingDevComponent implements OnInit {
     this.rowData = this.rowData.response;
     this.nameSelect = rankingName;
     this.idSelect = rankingId;
+    console.log(docPath);
+    
+    if(docPath == ""){
+      this.linkNull=true;
+      console.log(this.linkNull);
+      
+    }else{
+    this.docPath = "https://api.marcgavin.com/"+docPath;
+    this.linkNull=false;
+    console.log(this.linkNull);
+    
+    }
+    
 
     this.rankingSelect = true;
+
+    
   }
 
   clearLocalStorage() {
@@ -456,18 +474,23 @@ export class UserRankingDevComponent implements OnInit {
     };
     await this.http.renewJoinCode(data);
     this.rankings = await this.http.getRanking();
-    await this.rankingData(this.idSelect, this.nameSelect);
+    await this.rankingData(this.idSelect, this.nameSelect,this.docPath);
     this.buttonDisabled = false;
   }
-  async sendFile(){
-    const data ={
 
-    }
+  @ViewChild('files') files: ElementRef;
 
-  }
+  async sendFile() {
+    // console.log(this.files.nativeElement.files);
+    
+    const fileList: FileList = this.files.nativeElement.files;
+    const formData: FormData = new FormData();
 
-  logFile(event?:any){
-console.log(event.data);
+    formData.append('file', fileList[0], fileList[0].name);
+    formData.append('idRanking', this.idSelect.toString());
 
+    await this.http.sendFile(formData);
+
+    
   }
 }

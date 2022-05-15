@@ -63,7 +63,7 @@
                 <div *ngFor="let item of rankings">
                   <div
                     class="m-4 ranking-card"
-                    (click)="rankingData(item.id, item.name,item.docPath)"
+                    (click)="rankingData(item.id, item.name)"
                   >
                     <div class="card" style="max-width: 500px">
                       <div class="row g-0">
@@ -178,13 +178,6 @@
         >
           Eliminar ranking
         </button>
-        <a
-        class="btn btn-primary col-6 col-md-2"
-        *ngIf="rankingSelect && !isModerator"
-        data-bs-toggle="modal"
-        data-bs-target="#puntosModal"
-        >Puntos Insinia: {{ insiniaPoints }}</a
-      >
         <button
           class="btn btn-primary col-6 col-md-2"
           *ngIf="rankingSelect && !isModerator"
@@ -193,11 +186,17 @@
         >
           Salir del ranking
         </button>
-    
+        <a
+          class="btn btn-primary col-6 col-md-2"
+          *ngIf="rankingSelect && !isModerator"
+          data-bs-toggle="modal"
+          data-bs-target="#puntosModal"
+          >Puntos Insinia: {{ insiniaPoints }}</a
+        >
         
           <button
           class="btn btn-primary col-6 col-md-2"
-          *ngIf="rankingSelect"
+          *ngIf="rankingSelect && isModerator"
           data-bs-toggle="modal"
           data-bs-target="#documnetModal"
         >
@@ -567,15 +566,9 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title" id="documnetModal">Documento del Ranking</h3>
-            <!-- <input type="file" name="file" id="file" [files]="file" onchange="console.log(event.target.files)"> -->
-            <!-- <form #f="ngForm" [formGroup] = "uploadFile" (ngSubmit)="sendFile()">
-              <input type="file" name="file" id="file" formControlName="file" onchange="console.log(uploadFile.get('file')?.value)" >
+            <input type="file" name="file" id="file" [files]="file" onchange="console.log(event.target.files)">
 
-            </form> -->
-            <form #f="ngForm" *ngIf="isModerator" >
-              <input type="file"  #files enctype="multipart/form-data">
-              <input  type="submit" name="submit" value="Upload" (click)="sendFile()"/>
-            </form>
+
             
             <button
               type="button"
@@ -585,8 +578,24 @@
             ></button>
           </div>
           <div class="modal-body">
-      <a href="{{docPath}}">Descargar el documento del ranking</a>
-          
+      <label class="text-color text-truncate mt-2"
+            >Imagen
+                      <label
+              class="form-control-img text-color text-center"
+              >Documento</label
+            >
+            <small @fadeIn  class="text-color"
+              >Puedes seleccionar otra foto si quieres.</small
+            >
+            <input
+              #rankingPicture
+              name="rankingPicture"
+              id="rankingPicture"
+              type="file"
+              accept="image/png, image/jpg, image/jpeg, image/svg"
+              class="hide"
+            />
+          </label>
 
             <br />
           </div>

@@ -5,7 +5,7 @@ import { fadeIn, slideDownHideUp } from 'src/app/config/animations.config';
   selector: 'topnav',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  animations: [fadeIn, slideDownHideUp]
+  animations: [fadeIn, slideDownHideUp],
 })
 export class NavbarComponent {
   @Input() toggleBlur: boolean;
@@ -14,7 +14,7 @@ export class NavbarComponent {
     this.toggleBlur = true;
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
   }
 }

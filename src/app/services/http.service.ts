@@ -53,8 +53,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err);
-
           reject('Error with the login ');
         }
       );
@@ -77,8 +75,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the rankings.');
+          reject('Error with the register.');
         }
       );
     });
@@ -113,8 +110,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the rankings.');
+          reject('Error getting the users from ranking.');
         }
       );
     });
@@ -131,8 +127,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the rankings.');
+          reject('Error adding the ranking.');
         }
       );
     });
@@ -150,8 +145,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the rankings.');
+          reject('Error remove the ranking.');
         }
       );
     });
@@ -185,7 +179,6 @@ export class HttpService {
             resolve(res.body);
           },
           (err) => {
-            console.log(err);
             reject("Error con la validación del token");
             this.router.navigate(['/login']);
           }
@@ -210,36 +203,10 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the avatar.');
+          reject('Error uploading the avatar.');
         }
       );
     });
-  }
-
-  /**
-   * Sets multiples headers.
-   * @param names 
-   * @param values 
-   * @param isHTTP 
-   * @returns any (Headers | HttpHeader);
-   */
-  createHeader(names: string[], values: string[], isHTTP: boolean): any {
-    let headers: any;
-    if (isHTTP) {
-      headers = new HttpHeaders();
-    } else {
-      headers = new Headers();
-    }
-
-    if (names.length === values.length) {
-      names.forEach((name, index) => {
-        headers.append(name, values[index])
-      });
-    } else {
-      throw 'Not the same amount of names ' + names.length + ' values ' + values.length;
-    }
-    return headers;
   }
 
   getRankings() {
@@ -281,7 +248,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error getting the rankings.');
         }
       );
@@ -299,7 +265,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error getting the rankings.');
         }
       );
@@ -317,7 +282,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error getting the rankings.');
         }
       );
@@ -329,15 +293,14 @@ export class HttpService {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/profile'), this.observe).subscribe(
         (res) => {
           if (res.status == 200 && res.statusText == 'OK') {
-
             resolve(res.body);
           } else {
             reject({ status: false });
           }
         },
         (err) => {
-          console.log(err)
           reject('Error getting the profile.');
+          this.router.navigate(['/login']);
         }
       );
     });
@@ -354,7 +317,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error checking email existence.');
         }
       );
@@ -372,7 +334,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error checking email existence.');
         }
       );
@@ -392,8 +353,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error adding a ranking.');
+          reject('Error adding users to ranking.');
         }
       );
     })
@@ -406,11 +366,10 @@ export class HttpService {
           if (res.status == 200 && res.statusText == 'OK') {
             resolve({ status: true });
           } else {
-            reject('Server Error');
+            reject('Server error');
           }
         },
         (err) => {
-          console.log(err)
           reject('Error adding a ranking.');
         }
       );
@@ -428,8 +387,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.');
+          reject('Error updating profile data.');
         }
       );
     })
@@ -446,7 +404,6 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
           reject('Error changing profile data.');
         }
       );
@@ -464,8 +421,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.');
+          reject('Error updating data.');
         }
       );
     })
@@ -482,8 +438,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error getting the profile.');
+          reject('Error getting the history.');
         }
       );
     });
@@ -501,8 +456,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.');
+          reject('Error reverting history.');
         }
       );
     })
@@ -519,8 +473,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error deleting the ranking');
         }
       );
     })
@@ -537,8 +490,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error exiting ranking.');
         }
       );
     })
@@ -555,8 +507,7 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error renewing join code.');
         }
       );
     })
@@ -573,10 +524,33 @@ export class HttpService {
           }
         },
         (err) => {
-          console.log(err)
-          reject('Error changing profile data.' + err);
+          reject('Error sending file');
         }
       );
     })
+  }
+  /**
+ * Sets multiples headers.
+ * @param names 
+ * @param values 
+ * @param isHTTP 
+ * @returns any (Headers | HttpHeader);
+ */
+  createHeader(names: string[], values: string[], isHTTP: boolean): any {
+    let headers: any;
+    if (isHTTP) {
+      headers = new HttpHeaders();
+    } else {
+      headers = new Headers();
+    }
+
+    if (names.length === values.length) {
+      names.forEach((name, index) => {
+        headers.append(name, values[index])
+      });
+    } else {
+      throw 'Not the same amount of names ' + names.length + ' values ' + values.length;
+    }
+    return headers;
   }
 }

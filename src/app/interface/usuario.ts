@@ -8,10 +8,8 @@ export interface Usuario {
     birthDate: Date;
 }
 
-
 export interface UsuarioRanking {
     name: string;
     lastName: string;
     position: number;
-
 }

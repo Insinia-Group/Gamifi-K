@@ -1,9 +1,17 @@
 ## GAMIFI-K
 En este repositorio encontraremos:
+* Programadores
 * Despligue.
 * Diseño.
 * Guía técnica.
-* Programadores
+
+### Programadores
+* **Marc Gavin Grau**
+* **Klaudijus Miskinis**
+
+### Estructura proyecto completo
+* [Frontend](https://github.com/Insinia-Group/Gamifi-K)
+* [Backend](https://github.com/Insinia-Group/Gamifi-K-Backend)
 
 ### Despligue
 Para desplegar este proyecto:

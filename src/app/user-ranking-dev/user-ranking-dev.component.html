@@ -397,6 +397,10 @@
   </div>
 </div>
 
+<modal>
+  
+</modal>
+
 <div
   class="modal fade"
   id="puntosModal"
@@ -481,37 +485,18 @@
   </div>
 </modal>
 
-<div
-  class="modal fade"
-  id="puntosModal2"
-  tabindex="-1"
-  aria-labelledby="puntosModal2"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="puntosModal2">Subido con exito</h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <h3>Puedes cerrar la ventana</h3>
-        <br />
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          data-bs-dismiss="modal"
-        >
-          Cerrar
-        </button>
-      </div>
-    </div>
+<modal [uniqueId]="'puntosModal2'" [title]="'Subido con exito'">
+  <div class="modal-body">
+    <h3>Puedes cerrar la ventana</h3>
+    <br />
   </div>
-</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+    >
+      Cerrar
+    </button>
+  </div>
+</modal>

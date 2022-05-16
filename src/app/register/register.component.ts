@@ -1,14 +1,14 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl, AbstractControl} from '@angular/forms';
-import {RegisterValidation} from '../models/registerValidation';
-import {ConfirmedValidator} from '../models/confirmed.validator';
-import {Router} from '@angular/router';
-import {HttpService} from '../services/http.service';
-import {User} from '../models/user';
-import {API} from '../models/api';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { RegisterValidation } from '../models/registerValidation';
+import { ConfirmedValidator } from '../models/confirmed.validator';
+import { Router } from '@angular/router';
+import { HttpService } from '../services/http.service';
+import { User } from '../models/user';
+import { API } from '../models/api';
 import * as bcrypt from 'bcryptjs';
-import {fadeIn} from '../config/animations.config';
-import {NotifierService} from 'angular-notifier';
+import { fadeIn } from '../config/animations.config';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: "root"
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
     this.valid = new RegisterValidation();
   }
 
-  get f() {return this.registerForm.controls;}
+  get f() { return this.registerForm.controls; }
   ngOnInit(): void {
 
     document.getElementById("dateBirth")?.setAttribute("max", this.dateJoined.toISOString());
@@ -64,9 +64,6 @@ export class RegisterComponent implements OnInit {
       description: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(300)]),
     }
     );
-    if (this.registerForm) {
-      console.log(this.registerForm.get('description')?.value)
-    }
     if (this.password == this.password2) {
       this.samePass = true;
     } else {
@@ -81,13 +78,12 @@ export class RegisterComponent implements OnInit {
   thirdFormActive: boolean = false;
   match = ConfirmedValidator('password', 'password2');
 
-  dateValidator(control: AbstractControl): {[key: string]: any} | null {
+  dateValidator(control: AbstractControl): { [key: string]: any } | null {
 
     if (this.registerForm) {
-      console.log();
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value < "1900-12-12" || control.value > this.dateJoined.toISOString().slice(0, -14)) {
-          return {'notEqual': true};
+          return { 'notEqual': true };
         }
       }
     }
@@ -95,11 +91,11 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  passwordValidator(control: AbstractControl): {[key: string]: any} | null {
+  passwordValidator(control: AbstractControl): { [key: string]: any } | null {
     if (this.registerForm) {
       if (typeof (this.registerForm) !== 'undefined') {
         if (control.value !== this.registerForm.controls.password.value) {
-          return {'notEqual': true};
+          return { 'notEqual': true };
         }
       }
     }
@@ -138,7 +134,6 @@ export class RegisterComponent implements OnInit {
       email: this.registerForm.controls.email.value
     }
     const response: any = await this.http.emailExistsRegister(data)
-    console.log(response);
 
     if (!response.body) {
       this.notifier.notify('error', 'Este correo ya esta registrado');
@@ -170,9 +165,6 @@ export class RegisterComponent implements OnInit {
       this.dateBirth = this.registerForm.controls.dateBirth.value;
       this.description = this.registerForm.controls.description.value;
       this.email = this.registerForm.controls.email.value;
-
-
-      const salt = bcrypt.genSaltSync(10);
       this.password = bcrypt.hashSync(this.password, 10);
       const user = {
         nick: this.nick,
@@ -186,9 +178,6 @@ export class RegisterComponent implements OnInit {
         dateJoined: this.dateJoined.toISOString().slice(0, -14),
         status: 1
       }
-      console.log(user);
-
-
       this.http.register(user);
     }
   }

@@ -80,8 +80,6 @@ export class HistorialComponent implements OnInit {
         params.api.sizeColumnsToFit();
       });
     });
-
-
   }
 
   onSelectionChanged(event: any) {

@@ -1,5 +1,4 @@
-import {FormGroup, AbstractControl, ValidatorFn, ValidationErrors, NG_VALIDATORS, Validator} from '@angular/forms';
-import {Directive} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 export function ConfirmedValidator(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
@@ -9,16 +8,9 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
             return;
         }
         if (control.value !== matchingControl.value) {
-            matchingControl.setErrors({confirmedValidator: true});
+            matchingControl.setErrors({ confirmedValidator: true });
         } else {
             matchingControl.setErrors(null);
         }
     }
-}
-
-
-export function futureDate(date: Date) {
-    console.log(date);
-    console.log(Date.now);
-
 }

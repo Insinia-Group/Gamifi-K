@@ -306,51 +306,29 @@
   </div>
 </div>
 
-<!-- MODALS Participantes   -->
-<div
-  class="modal fade"
-  id="exitRankingModal"
-  tabindex="-1"
-  aria-labelledby="exitRankingModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exitRankingModalLabel">
-          Salir del ranking
-        </h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <h3>Estas seguro que quieres salir del Ranking {{ nameSelect }}</h3>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary btn-sm"
-          data-bs-dismiss="modal"
-        >
-          No
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          data-bs-dismiss="modal"
-          data-bs-target="#exitRankingModal2"
-          data-bs-toggle="modal"
-        >
-          Si
-        </button>
-      </div>
-    </div>
+<modal [title]="'Salir del ranking'" [uniqueId]="'exitRankingModal'">
+  <div class="modal-body">
+    <h3>Estas seguro que quieres salir del Ranking {{ nameSelect }}</h3>
   </div>
-</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      data-bs-dismiss="modal"
+    >
+      No
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+      data-bs-target="#exitRankingModal2"
+      data-bs-toggle="modal"
+    >
+      Si
+    </button>
+  </div>
+</modal>
 
 <modal [title]="'Salir del ranking'" [uniqueId]="'exitRankingModal2'">
   <div class="modal-body">

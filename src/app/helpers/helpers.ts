@@ -21,13 +21,10 @@ export async function rejectByToken(
   router: Router
 ): Promise<boolean> {
   const statusToken = await http.tokenValidation();
-  if (statusToken == false) {
+  if (!statusToken) {
     localStorage.removeItem('token');
     router.navigate(['/login']);
     return true;
-  } else if (statusToken) {
-    console.log('Token valid');
-    return false;
   } else {
     return false;
   }

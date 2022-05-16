@@ -1,7 +1,5 @@
 ## GAMIFI-K
 
-insinia.marcgavin.com
-
 En este repositorio encontraremos:
 * Programadores
 * Despliegue.

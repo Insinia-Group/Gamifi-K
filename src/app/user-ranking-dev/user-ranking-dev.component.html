@@ -14,12 +14,10 @@
         <div
           *ngFor="let item of rankings"
           class="list-group-item list-group-item-action py-3 lh-tight ranking-card"
-          (click)="rankingData(item.id, item.name,item.docPath)"
+          [class.bg-color]="item.name == rankingSelect"
+          (click)="rankingData(item.id, item.name, item.docPath)"
         >
-          <div
-            class="d-flex w-100 align-items-center justify-content-between"
-           
-          >
+          <div class="d-flex w-100 align-items-center justify-content-between">
             <div class="flex-shrink-0">
               <img
                 [src]="atobImg(item.logo)"
@@ -60,10 +58,7 @@
           </button>
         </div>
         <div class="col-auto g-0 mt-1">
-          <button
-            class="btn btn-sm btn-color text-light"
-            routerLink="/create"
-          >
+          <button class="btn btn-sm btn-color text-light" routerLink="/create">
             Crear
           </button>
         </div>
@@ -140,8 +135,9 @@
       </div>
       <div style="height: 85vh">
         <ag-grid-angular
-        *ngIf="rankingSelect"
-          style="height: 96%; width: 100%;"
+          @fadeIn
+          *ngIf="rankingSelect"
+          style="height: 96%; width: 100%"
           class="ag-theme-alpine ranking table-responsive mt-3"
           [columnDefs]="columnDefsSelect"
           [rowData]="rowData"
@@ -154,7 +150,6 @@
           (rowEditingStarted)="onRowEditingStarted($event)"
           (gridReady)="onGridReady($event)"
           [overlayNoRowsTemplate]="'No hay participantes'"
-          [@fadeIn]
         >
         </ag-grid-angular>
       </div>
@@ -191,7 +186,11 @@
         />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           Cerrar
         </button>
         <button
@@ -234,7 +233,11 @@
         <h4>Si renuevas el codigo de accesso el anterior no sera valido</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           Cerrar
         </button>
         <button
@@ -274,7 +277,11 @@
         <h3>Estas seguro que quieres eliminar el Ranking {{ nameSelect }}</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           No
         </button>
         <button
@@ -316,7 +323,11 @@
         <br />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           Cancelar
         </button>
         <button
@@ -357,7 +368,11 @@
         <h3>Estas seguro que quieres salir del Ranking {{ nameSelect }}</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           No
         </button>
         <button
@@ -399,7 +414,11 @@
         <br />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          data-bs-dismiss="modal"
+        >
           Cancelar
         </button>
         <button
@@ -454,50 +473,50 @@
   </div>
 </div>
 
-
-<div
-  class="modal fade"
-  id="documentModal"
-  tabindex="-1"
-  aria-labelledby="puntosModal"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="documentModal">Documento del ranking</h3>
+<modal [title]="'Documento del ranking'" [uniqueId]="'documentModal'">
+  <div class="modal-body">
+    <form #f="ngForm" *ngIf="isModerator">
+      <div class="input-group mb-1">
+        <input
+          type="file"
+          name="subirarchivo"
+          #files
+          enctype="multipart/form-data"
+          class="form-control text-color"
+        />
         <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-      ></button>
-      </div>
-      <div class="modal-body">
-        <form #f="ngForm" *ngIf="isModerator" >
-          <input class = "btn btn-default btn-choose" type="file"  #files enctype="multipart/form-data">
-          <button  type="submit" name="submit" value="Upload" class="btn btn-sm btn-color text-light mt-5" (click)="sendFile()"    data-bs-target="#puntosModal2">Subir</button>
-        </form>
-        
-     
-      </div>
-      <div class="modal-body">
-      <a class="link" *ngIf="!linkNull" href="{{docPath}}">Descargar el documento del ranking</a>
-      <h3 *ngIf="linkNull">De momento no hay ningun documento</h3>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          data-bs-dismiss="modal"
+          *ngIf="files.value"
+          class="btn btn-color text-light"
+          (click)="sendFile()"
+          for="subirarchivo"
+          data-bs-target="#puntosModal2"
         >
-          Cerrar
+          Subir
         </button>
       </div>
-    </div>
+    </form>
   </div>
-</div>
-
+  <div class="modal-body text-color">
+    <div class="d-grid">
+      <a *ngIf="!linkNull" class="btn btn-color text-light" href="{{ docPath }}"
+        >Descargar el documento del ranking</a
+      >
+    </div>
+    <p *ngIf="linkNull">
+      <i class="bi bi-exclamation-triangle-fill me-1"></i>De momento no hay
+      ningun documento para descargar
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+    >
+      Cerrar
+    </button>
+  </div>
+</modal>
 
 <div
   class="modal fade"

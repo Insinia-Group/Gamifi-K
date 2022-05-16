@@ -16,14 +16,6 @@ declare var $: any;
   animations: [fadeIn, slideDownHideUp],
 })
 export class UserRankingDevComponent implements OnInit {
-  private resizeListenerFunc = () => {
-    this.gridApi.api.sizeColumnsToFit();
-  };
-  // onGridReady() {
-  //   this.gridApi.api.sizeColumnsToFit();
-  //   window.addEventListener('resize', this.resizeListenerFunc);
-  // }
-
   public responsiveColumn: ColDef[] = [
     { field: 'Nombre', sortable: true, filter: true },
     { field: 'Apellido', filter: true },
@@ -34,7 +26,6 @@ export class UserRankingDevComponent implements OnInit {
     { field: 'Nombre', sortable: true, filter: true },
     { field: 'Apellido', filter: true },
     { field: 'Puntos', sortable: true, filter: true },
-    // {field: 'id', hide: true},
     { field: 'idUser', hide: true },
     { field: 'isModerator', hide: true },
     {
@@ -205,10 +196,10 @@ export class UserRankingDevComponent implements OnInit {
   public joinCode: string;
   public isReady: boolean = false;
   public idClient: number;
-  public file:any;
-  public buttonDisabled:boolean =false;
-  public docPath:string;
-  public linkNull: boolean =true;
+  public file: any;
+  public buttonDisabled: boolean = false;
+  public docPath: string;
+  public linkNull: boolean = true;
 
   constructor(
     private router: Router,
@@ -217,7 +208,6 @@ export class UserRankingDevComponent implements OnInit {
   ) {
     this.goupStatus = false;
     this.navbarStatus = false;
-    let i = 0;
     this.addRanking = new FormGroup({
       rankingId: new FormControl('', [
         Validators.required,
@@ -226,7 +216,6 @@ export class UserRankingDevComponent implements OnInit {
         Validators.pattern('^[a-zA-Z ]*$'),
       ]),
     });
-    // this.http.tokenValidation();
   }
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
@@ -251,12 +240,10 @@ export class UserRankingDevComponent implements OnInit {
 
     this.isScrolledIntoView();
     this.rankings = await this.http.getRanking();
-    console.log(this.rankings);
 
     if (this.rankings.length > 0) {
       this.nullRankings = false;
       this.idClient = this.rankings[0].idClient;
-      console.log(this.idClient);
     } else {
       this.nullRankings = true;
     }
@@ -304,7 +291,7 @@ export class UserRankingDevComponent implements OnInit {
     this.columnApi = params.columnApi;
   }
 
-  onGridSizeChanged(event: any) {}
+  onGridSizeChanged(event: any) { }
 
   onGridReady(params: GridReadyEvent) {
     params.api.sizeColumnsToFit();
@@ -321,25 +308,16 @@ export class UserRankingDevComponent implements OnInit {
     }
   }
 
-  public onRowEditingStarted(event: any) {
-    console.log(event);
-  }
-
   // Al cambiar un elemento de la tabla le passamos al backend para realizar el update
   async onCellValueChanged(event: any) {
-    console.log(event.newValue);
 
     if (event.data.idUser == this.idClient) {
       this.notifier.notify('error', 'No puedes ponerte puntos a ti mismo.');
     } else if (event.newValue > this.insiniaPoints && !this.isModerator) {
       this.notifier.notify('error', 'No tienes tantos puntos.');
     } else {
-      // , userPoints: any
-      console.log(event);
-      // userPoints = -1;
       if (!isNaN(event.value)) {
         let insinia = event.colDef.field;
-
         if (insinia == 'Puntos') {
           const data = {
             idRanking: event.data.id,
@@ -372,7 +350,7 @@ export class UserRankingDevComponent implements OnInit {
       }
     }
 
-    this.rankingData(this.idSelect, this.nameSelect,this.docPath);
+    this.rankingData(this.idSelect, this.nameSelect, this.docPath);
   }
 
   async collapse(id: string, state: string) {
@@ -395,12 +373,11 @@ export class UserRankingDevComponent implements OnInit {
 
   /**********DEV */
 
-  async rankingData(rankingId: any, rankingName: string,docPath:string) {
+  async rankingData(rankingId: any, rankingName: string, docPath: string) {
     this.docPath = "";
     const data = {
       rankingId: rankingId,
     };
-
     this.rowData = await this.http.getRankingData(data);
     if (this.rowData.moderator) {
       this.columnDefsSelect = this.columnDefsModerator;
@@ -414,23 +391,13 @@ export class UserRankingDevComponent implements OnInit {
     this.rowData = this.rowData.response;
     this.nameSelect = rankingName;
     this.idSelect = rankingId;
-    console.log(docPath);
-    
-    if(docPath == ""){
-      this.linkNull=true;
-      console.log(this.linkNull);
-      
-    }else{
-    this.docPath = "https://api.marcgavin.com/"+docPath;
-    this.linkNull=false;
-    console.log(this.linkNull);
-    
+    if (docPath == "") {
+      this.linkNull = true;
+    } else {
+      this.docPath = "https://api.marcgavin.com/" + docPath;
+      this.linkNull = false;
     }
-    
-
     this.rankingSelect = true;
-
-    
   }
 
   clearLocalStorage() {
@@ -445,8 +412,6 @@ export class UserRankingDevComponent implements OnInit {
     const data = {
       idRanking: this.idSelect,
     };
-    console.log(data);
-
     await this.http.deleteRanking(data);
     this.rankings = await this.http.getRanking();
   }
@@ -455,8 +420,6 @@ export class UserRankingDevComponent implements OnInit {
     const data = {
       idRanking: this.idSelect,
     };
-    console.log(data);
-
     await this.http.exitRanking(data);
     this.rankings = await this.http.getRanking();
     this.rankingSelect = false;
@@ -474,23 +437,17 @@ export class UserRankingDevComponent implements OnInit {
     };
     await this.http.renewJoinCode(data);
     this.rankings = await this.http.getRanking();
-    await this.rankingData(this.idSelect, this.nameSelect,this.docPath);
+    await this.rankingData(this.idSelect, this.nameSelect, this.docPath);
     this.buttonDisabled = false;
   }
 
   @ViewChild('files') files: ElementRef;
 
   async sendFile() {
-    // console.log(this.files.nativeElement.files);
-    
     const fileList: FileList = this.files.nativeElement.files;
     const formData: FormData = new FormData();
-
     formData.append('file', fileList[0], fileList[0].name);
     formData.append('idRanking', this.idSelect.toString());
-
     await this.http.sendFile(formData);
-
-    
   }
 }

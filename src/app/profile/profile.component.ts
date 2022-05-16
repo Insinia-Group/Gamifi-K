@@ -15,7 +15,6 @@ declare var $: any;
   animations: [fadeIn]
 })
 export class ProfileComponent implements OnInit {
-
   public profile: tempProfile | any | null;
   public profileForm: any;
   public profilePictureForm: any;

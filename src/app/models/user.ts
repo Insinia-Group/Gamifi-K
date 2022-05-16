@@ -32,11 +32,11 @@ export class User {
         return this.id;
     }
 
-    getNick(): string  {
+    getNick(): string {
         return this.nick;
     }
 
-    getName(): string  {
+    getName(): string {
         return this.name;
     }
 

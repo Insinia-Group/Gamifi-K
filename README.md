@@ -1,7 +1,8 @@
 ## GAMIFI-K
 En este repositorio encontraremos:
 * Programadores
-* Despligue.
+* Despliegue.
+* Estructura proyecto completo.
 * Diseño.
 * Guía técnica.
 
@@ -13,7 +14,7 @@ En este repositorio encontraremos:
 * [Frontend](https://github.com/Insinia-Group/Gamifi-K)
 * [Backend](https://github.com/Insinia-Group/Gamifi-K-Backend)
 
-### Despligue
+### Despliegue
 Para desplegar este proyecto:
 1. Clonar el repositorio.
 ```

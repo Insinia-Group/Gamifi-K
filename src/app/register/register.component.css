@@ -1,11 +1,10 @@
-
 .fullscreen {
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 .container-register {
   width: 25em;
@@ -23,7 +22,7 @@
 
 input::-webkit-input-placeholder {
   text-align: center;
-  line-height: 100px; /* Centrado vertical */
+  line-height: 100px;
 }
 
 .titulo {
@@ -42,16 +41,7 @@ input::-webkit-input-placeholder {
   text-align: center;
   display: block;
 }
-/*   .registerTittle{
-      position: absolute;
-      width: max-content;
-      background-color: aliceblue;
-      left:69%;
-      top: 30%;
-      transform: scale(2);
-      border-radius: 0.2em;
-      padding: 5px;
-  } */
+
 .form-control.is-invalid:focus,
 .was-validated .form-control:invalid:focus {
   border-color: #dc3545 !important;
@@ -79,23 +69,10 @@ input::-webkit-input-placeholder {
 .logo {
   min-width: 7rem;
   width: 100%;
-  max-width: 200px; /* Original width of the logo image */
-
+  max-width: 200px;
   margin-right: auto;
   text-align: center;
 }
-/* @keyframes rotar {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.logo:hover {
-  animation-name: rotar;
-  animation-duration: 1s;
-} */
 
 .inputsRegister {
   max-width: 30em;
@@ -113,8 +90,6 @@ input::-webkit-input-placeholder {
   font-size: xx-large;
   font-weight: 900 !important;
   font-size: 3rem;
-  /*   margin-top: 3em !important;
- */
   margin-left: -0.5em;
   margin-bottom: 2rem;
 }
@@ -126,34 +101,6 @@ input::-webkit-input-placeholder {
   background-color: var(--corp-color-one);
   width: 41.666667% !important;
 }
-
-/* 
-.bg-registro{
-    width: 35%;
-    background: rgb(106,42,217);
-    background: linear-gradient(180deg, rgba(106,42,217,0.6758419432226015) 0%, rgba(184,156,244,0.7514721953234419) 51%, rgba(255,255,255,1) 99%);
-    
-}
- */
-
-/* .registerForm{
-    position:relative;
-    margin-left: 50%;
-    top: 20%;
-
-    
-}
-
-.registerForm{
-background-color:#611cf6 ;
-
-
-} */
-/* .formulario{
-    margin-left: 50%;
-    margin-top: 20%;
-    background-color: #6d30f3;
-} */
 
 :root {
   font-size: 20px;

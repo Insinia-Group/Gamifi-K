@@ -1,38 +1,52 @@
 <topnav [fixed]="true"></topnav>
 
 <div class="row tableContainer">
-  <div class="col-12 d-flex justify-content-center ">
-    <button type="button" class="btn btn-primary deshacer d-flex justify-content-center" [disabled]="noSelected" data-bs-toggle="modal"  data-bs-target="#modal">
+  <div class="col-12 d-flex justify-content-center">
+    <button
+      type="button"
+      class="btn btn-primary deshacer d-flex justify-content-center"
+      [disabled]="noSelected"
+      data-bs-toggle="modal"
+      data-bs-target="#modal"
+    >
       Deshacer evaluacion
     </button>
   </div>
-<div class='d-flex justify-content-center tableContainer mt-5'>
-         <ag-grid-angular
-    class="ag-theme-alpine historyTable "
-    resizable="true"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [defaultColDef]="defaultColDef"
-    [rowSelection]="rowSelection"
-    [overlayNoRowsTemplate]="noRowsTemplate"
-    [overlayLoadingTemplate]="loadingTemplate"
-    [animateRows]="true"
-    (selectionChanged)="onSelectionChanged($event)"
-    (gridReady)="onGridReady($event)"></ag-grid-angular>
-          </div>
-        </div>
- <!-- Button trigger modal -->
-<!-- Modal -->
-  <modal [title]="modalTitle" [uniqueId]="modalId"  >
-    <div class="modal-body ">
-      ¿Estás seguro de que quieres deshacer esta evaluación?
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-sm btn-color text-light" (click)="onRemoveSelected(false)">Cancelar</button>
-      <button type="button" class="btn btn-sm btn-dark" data-bs-dismiss="modal" (click)="onRemoveSelected(true)">
-       Confirmar
-      </button>
-    </div>
-  </modal>
-
-
+  <div class="d-flex justify-content-center tableContainer mt-5">
+    <ag-grid-angular
+      class="ag-theme-alpine historyTable"
+      resizable="true"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [rowSelection]="rowSelection"
+      [overlayNoRowsTemplate]="noRowsTemplate"
+      [overlayLoadingTemplate]="loadingTemplate"
+      [animateRows]="true"
+      (selectionChanged)="onSelectionChanged($event)"
+      (gridReady)="onGridReady($event)"
+    ></ag-grid-angular>
+  </div>
+</div>
+<modal [title]="modalTitle" [uniqueId]="modalId">
+  <div class="modal-body">
+    ¿Estás seguro de que quieres deshacer esta evaluación?
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      (click)="onRemoveSelected(false)"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-dark"
+      data-bs-dismiss="modal"
+      (click)="onRemoveSelected(true)"
+    >
+      Confirmar
+    </button>
+  </div>
+</modal>

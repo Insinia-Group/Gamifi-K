@@ -15,14 +15,15 @@ En este repositorio encontraremos:
 * [Backend](https://github.com/Insinia-Group/Gamifi-K-Backend)
 
 ### Despliegue
-Para desplegar este proyecto:
+### Frontend
+Para desplegar el frontend:
 1. Clonar el repositorio.
 ```
 git clone https://github.com/Insinia-Group/Gamifi-K.git
 ```
 2. Instalar las dependencias.
 ```
-npm i
+npm install
 ```
 3. Desplegar el proyecto para desarrollo.
 ```
@@ -31,6 +32,25 @@ ng serve
 *Opcional* Desplegar el proyecto para producción.
 ```
 ng build
+```
+
+### Backend
+Para desplegar el backend proyecto:
+1. Clonar el repositorio.
+```
+git clone https://github.com/Insinia-Group/Gamifi-K-Backend.git
+```
+2. Instalar las dependencias.
+```
+composer install
+```
+3. Configurar las variables de entorno.
+```
+.env
+```
+4. Desplegar en cmd
+```
+php -S 127.0.0.1:3000 index.php
 ```
 
 ### Diseño

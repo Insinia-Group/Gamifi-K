@@ -2,8 +2,7 @@ export class RegisterValidation {
     valid: number;
     isDisabled: boolean;
 
-    constructor ()
-    {
+    constructor() {
         this.valid = 0;
         this.isDisabled = false;
     }

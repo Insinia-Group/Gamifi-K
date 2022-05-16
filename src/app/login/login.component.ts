@@ -26,15 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-   try{ const res = await this.http.isValid();
-    if (res.isValid) {
-      this.http.redirectTo('profile')
-    } else {
+    try {
+      const res = await this.http.isValid();
+      if (res.isValid) {
+        this.http.redirectTo('profile')
+      } else {
+        this.isReady = true;
+      }
+    } catch {
       this.isReady = true;
     }
-  }catch{
-    this.isReady = true;
-  }
   }
 
   async logIn(): Promise<void> {

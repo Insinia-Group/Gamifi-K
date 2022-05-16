@@ -15,18 +15,18 @@ export class tempUser {
         return this.id;
     }
 
-    getNick(): string  {
+    getNick(): string {
         return this.nick;
     }
 
-    getName(): string  {
+    getName(): string {
         return this.name;
     }
 
     getLastName(): string {
         return this.lastName;
     }
-    
+
     setId(id: number): void {
         this.id = id;
     }

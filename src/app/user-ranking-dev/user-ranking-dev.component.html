@@ -351,7 +351,7 @@
     </div>
   </div>
 </div>
-<!-- Segunda parte del modal anterior -->
+
 <div
   class="modal fade"
   id="exitRankingModal2"
@@ -397,48 +397,25 @@
   </div>
 </div>
 
-<modal>
-  
-</modal>
-
-<div
-  class="modal fade"
-  id="puntosModal"
-  tabindex="-1"
-  aria-labelledby="puntosModal"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="puntosModal">Puntos Insinia</h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <h3>Tienes {{ insiniaPoints }} puntos Insinia</h3>
-        <h3>
-          Estos puntos sirven para valuar a los compañeros de ranking según sus
-          aptitudes
-        </h3>
-        <br />
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          data-bs-dismiss="modal"
-        >
-          Cerrar
-        </button>
-      </div>
-    </div>
+<modal [title]="'Puntos Insinia'" [uniqueId]="'puntosModal'">
+  <div class="modal-body">
+    <h3>Tienes {{ insiniaPoints }} puntos Insinia</h3>
+    <h3>
+      Estos puntos sirven para valuar a los compañeros de ranking según sus
+      aptitudes
+    </h3>
+    <br />
   </div>
-</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+    >
+      Cerrar
+    </button>
+  </div>
+</modal>
 
 <modal [title]="'Documento del ranking'" [uniqueId]="'documentModal'">
   <div class="modal-body">

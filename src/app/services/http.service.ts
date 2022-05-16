@@ -209,17 +209,6 @@ export class HttpService {
     });
   }
 
-  getRankings() {
-    try {
-      this.http.get(this.api.toThisPath('/rankings'), this.observe).subscribe(
-        (data) => console.log(data),
-        (err) => console.log(err)
-      );
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
   getRanking() {
     return new Promise((resolve, reject) => {
       this.http.get<HttpResponse<any>>(this.api.toThisPath('/rankings'), this.observe).subscribe(

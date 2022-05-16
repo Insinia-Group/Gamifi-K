@@ -124,6 +124,4 @@ export class User {
     setStatus(status: Boolean): void {
         this.status = status;
     }
-
-    /* METHODs */
 }

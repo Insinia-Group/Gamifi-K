@@ -4,7 +4,6 @@
 }
 .insinia:hover {
   transform: scale(1.2);
-  /* position: fixed !important; */
 }
 
 .insinia:hover + .add {

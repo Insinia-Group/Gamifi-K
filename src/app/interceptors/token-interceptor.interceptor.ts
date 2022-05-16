@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import {JwtService} from '../services/jwt.service';
+import { JwtService } from '../services/jwt.service';
 
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private jwt: JwtService) {}
+  constructor(private jwt: JwtService) { }
 
   /**
    * Set a Header Authorization to every request if the token exists.

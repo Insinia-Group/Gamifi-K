@@ -1,20 +1,20 @@
 .top-40 {
-	top: 40%
+  top: 40%;
 }
 
 .login-card-width {
-	width: 600px
+  width: 600px;
 }
 
 .login-card-height {
-	height: 25%
+  height: 25%;
 }
 
 .fullscreen {
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

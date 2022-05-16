@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { fadeIn, slideIn } from '../config/animations.config';
 
 @Component({
@@ -9,6 +9,6 @@ import { fadeIn, slideIn } from '../config/animations.config';
 })
 export class NotFoundComponent {
 
-  constructor() {}
+  constructor() { }
 
 }

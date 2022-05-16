@@ -12,4 +12,4 @@ import {
   styleUrls: ['./home.component.css'],
   animations: [slideIn, fadeIn, slideInOut, slideDownHideUp],
 })
-export class HomeComponent {}
+export class HomeComponent { }

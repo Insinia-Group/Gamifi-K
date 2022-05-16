@@ -6,7 +6,6 @@ import { CustomValidator } from '../helpers/custom-validators';
 import { calculateSize } from '../helpers/helpers';
 import { HttpService } from '../services/http.service';
 
-
 @Component({
   selector: 'app-add-ranking',
   templateUrl: './add-ranking.component.html',

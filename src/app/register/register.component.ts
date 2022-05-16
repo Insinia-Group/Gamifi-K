@@ -117,19 +117,12 @@ export class RegisterComponent implements OnInit {
   }
   nextOne() {
     if (!this.registerForm.controls.userNick.errors && !this.registerForm.controls.userName.errors && !this.registerForm.controls.lastUserName.errors) {
-
-      /*  this.userName = (document.getElementById("name") as HTMLInputElement).value;
-       this.lastUserName = ( document.getElementById( "lastName" ) as HTMLInputElement ).value;
-       this.nick = ( document.getElementById( "nick" ) as HTMLInputElement ).value; */
       this.firstFormActive = false;
       this.secondFormActive = true;
     }
   }
 
   async nextSecond() {
-    /* this.email = (document.getElementById("email") as HTMLInputElement).value;
-    this.password = ( document.getElementById( "password" ) as HTMLInputElement ).value;
-    this.password2 = ( document.getElementById( "password2" ) as HTMLInputElement ).value; */
     const data: any = {
       email: this.registerForm.controls.email.value
     }

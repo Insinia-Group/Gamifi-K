@@ -352,50 +352,29 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="exitRankingModal2"
-  tabindex="-1"
-  aria-labelledby="exitRankingModalLabel2"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exitRankingModalLabel2">
-          Salir del ranking
-        </h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <h3>Si sales del ranking {{ nameSelect }} perderas todos tus puntos</h3>
-        <br />
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary btn-sm"
-          data-bs-dismiss="modal"
-        >
-          Cancelar
-        </button>
-        <button
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          data-bs-dismiss="modal"
-          (click)="exitRanking()"
-        >
-          Salir
-        </button>
-      </div>
-    </div>
+<modal [title]="'Salir del ranking'" [uniqueId]="'exitRankingModal2'">
+  <div class="modal-body">
+    <h3>Si sales del ranking {{ nameSelect }} perderas todos tus puntos</h3>
+    <br />
   </div>
-</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      data-bs-dismiss="modal"
+    >
+      Cancelar
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      data-bs-dismiss="modal"
+      (click)="exitRanking()"
+    >
+      Salir
+    </button>
+  </div>
+</modal>
 
 <modal [title]="'Puntos Insinia'" [uniqueId]="'puntosModal'">
   <div class="modal-body">

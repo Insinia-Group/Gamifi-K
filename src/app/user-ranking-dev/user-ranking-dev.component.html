@@ -159,7 +159,6 @@
 
 <chips *ngIf="idSelect" [idRanking]="idSelect"></chips>
 
-
 <modal [title]="'Añadir código'" [uniqueId]="'addRankingModal'">
   <div class="modal-body">
     <input
@@ -190,51 +189,32 @@
   </div>
 </modal>
 
-
-<div
-  class="modal fade"
-  id="renewJoinCodeRankingModal"
-  tabindex="-1"
-  aria-labelledby="renewJoinCodeRankingModal"
-  aria-hidden="true"
+<modal
+  [title]="'Este codigo sirve para unirse al ranking' + nameSelect"
+  [uniqueId]="'renewJoinCodeRankingModal'"
 >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="renewJoinCodeRankingModal">
-          Este codigo sirve para unirse al ranking {{ nameSelect }}
-        </h3>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <h1>Codigo: {{ joinCode }}</h1>
-        <h4>Si renuevas el codigo de accesso el anterior no sera valido</h4>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary btn-sm"
-          data-bs-dismiss="modal"
-        >
-          Cerrar
-        </button>
-        <button
-          [disabled]="buttonDisabled"
-          type="button"
-          class="btn btn-sm btn-color text-light"
-          (click)="renewJoinCode()"
-        >
-          Renovar
-        </button>
-      </div>
-    </div>
+  <div class="modal-body">
+    <h1>Codigo: {{ joinCode }}</h1>
+    <h4>Si renuevas el código de accesso el anterior no sera válido</h4>
   </div>
-</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-sm"
+      data-bs-dismiss="modal"
+    >
+      Cerrar
+    </button>
+    <button
+      [disabled]="buttonDisabled"
+      type="button"
+      class="btn btn-sm btn-color text-light"
+      (click)="renewJoinCode()"
+    >
+      Renovar
+    </button>
+  </div>
+</modal>
 
 <div
   class="modal fade"

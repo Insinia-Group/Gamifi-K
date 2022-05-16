@@ -97,7 +97,9 @@ El diseño se ha exportado para podernos permitir un rápido avance en el estilo
 ### Guía técnica
 
 La estructura del proyecto es la siguiente:
+### Frontend
 ```
+FRONT
 |   .browserslistrc
 |   .editorconfig
 |   .gitignore
@@ -318,3 +320,57 @@ La estructura del proyecto es la siguiente:
             environment.prod.ts
             environment.ts
   ```
+### Backend
+```
+BACK
+|   .env
+|   .env.template
+|   .gitignore
+|   .htaccess
+|   composer.json
+|   composer.lock
+|   dotenv.php
+|   index.php
+|   output.txt
+|   README.md
+|   test.http
+|   
++---class
+|       Auth.php
+|       Database.php
+|       Helper.php
+|       Router.php
+|       
++---get
+|       code.php
+|       email.php
+|       history.php
+|       insignias.php
+|       profile.php
+|       rankingData.php
+|       rankings.php
+|       rankingsById.php
+|       rankingsOfModerator.php
+|       status.php
+|       tokenValidation.php
+|       users.php
+|       
+\---post
+        addRankingByCode.php
+        addUsersToRanking.php
+        deleteRanking.php
+        exitRanking.php
+        getRankingUsersById.php
+        login.php
+        profile-data.php
+        profile-image.php
+        ranking.php
+        register.php
+        removeUserFromRanking.php
+        renewJoinCode.php
+        revertHistory.php
+        sendFile.php
+        updateData.php
+        updateInsinia.php
+        validateEmail.php
+```

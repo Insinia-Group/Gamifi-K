@@ -1,5 +1,4 @@
 ## GAMIFI-K
-
 En este repositorio encontraremos:
 * Programadores
 * Despliegue.

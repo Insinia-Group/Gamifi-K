@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { HttpService } from '../services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-historial',
@@ -16,7 +17,7 @@ export class HistorialComponent implements OnInit {
   public noSelected: boolean = true;
   public modalTitle = "Deshacer evaluacion";
   public modalId = "modal";
-  constructor(private http: HttpService) {
+  constructor(private router: Router,private http: HttpService) {
     this.noRowsTemplate =
       `<span>Historial vacio</span>`;
     this.loadingTemplate =
@@ -24,6 +25,16 @@ export class HistorialComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+
+  
+    if (localStorage.getItem('token') == null) {
+      this.router.navigate(['/login']);
+    }
+    const statusToken = await this.http.tokenValidation();
+    if (statusToken == false) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    }
     this.rowData = await this.http.getHistory();
   }
 

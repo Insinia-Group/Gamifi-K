@@ -340,7 +340,6 @@
           class="form-control text-color"
         />
         <button
-          *ngIf="files.value"
           class="btn btn-color text-light"
           (click)="sendFile()"
           for="subirarchivo"
@@ -352,10 +351,8 @@
     </form>
   </div>
   <div class="modal-body text-color">
-    <div class="d-grid">
-      <a *ngIf="!linkNull" class="btn btn-color text-light" href="{{ docPath }}"
-        >Descargar el documento del ranking</a
-      >
+    <div class="d-grid" *ngIf="!linkNull">
+      <a  class="btn btn-color text-light" href="{{pathDoc}}">Descargar el documento del ranking</a>
     </div>
     <p *ngIf="linkNull">
       <i class="bi bi-exclamation-triangle-fill me-1"></i>De momento no hay
@@ -363,6 +360,14 @@
     </p>
   </div>
   <div class="modal-footer">
+    <button
+    *ngIf="isModerator"
+    type="button"
+    class="btn btn-sm btn-color text-light"
+    (click)="deleteFile()"
+  >
+    Eliminar
+  </button>
     <button
       type="button"
       class="btn btn-sm btn-color text-light"
